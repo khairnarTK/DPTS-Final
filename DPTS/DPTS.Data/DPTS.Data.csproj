@@ -52,69 +52,9 @@
   <ItemGroup>
     <Compile Include="Context\DPTSDbContext.cs" />
     <Compile Include="IdentityEntities\User.cs" />
-    <Compile Include="Migrations\201702020854305_InitialMigration.cs" />
-    <Compile Include="Migrations\201702020854305_InitialMigration.Designer.cs">
-      <DependentUpon>201702020854305_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702021649475_createZipCodeTable.cs" />
-    <Compile Include="Migrations\201702021649475_createZipCodeTable.Designer.cs">
-      <DependentUpon>201702021649475_createZipCodeTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702090207407_CreateSocialLinksInfo.cs" />
-    <Compile Include="Migrations\201702090207407_CreateSocialLinksInfo.Designer.cs">
-      <DependentUpon>201702090207407_CreateSocialLinksInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702170452230_AddHonorsAwardsTbl.cs" />
-    <Compile Include="Migrations\201702170452230_AddHonorsAwardsTbl.Designer.cs">
-      <DependentUpon>201702170452230_AddHonorsAwardsTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702170507144_UpdateHonorsAwardsTbl.cs" />
-    <Compile Include="Migrations\201702170507144_UpdateHonorsAwardsTbl.Designer.cs">
-      <DependentUpon>201702170507144_UpdateHonorsAwardsTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702171707310_AddEducationTable.cs" />
-    <Compile Include="Migrations\201702171707310_AddEducationTable.Designer.cs">
-      <DependentUpon>201702171707310_AddEducationTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702171841149_AddExperienceTable.cs" />
-    <Compile Include="Migrations\201702171841149_AddExperienceTable.Designer.cs">
-      <DependentUpon>201702171841149_AddExperienceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702171945261_UpdateDoctorTable.cs" />
-    <Compile Include="Migrations\201702171945261_UpdateDoctorTable.Designer.cs">
-      <DependentUpon>201702171945261_UpdateDoctorTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702172023478_UpdateDoctorTable1.cs" />
-    <Compile Include="Migrations\201702172023478_UpdateDoctorTable1.Designer.cs">
-      <DependentUpon>201702172023478_UpdateDoctorTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702191730513_updateDocTable.cs" />
-    <Compile Include="Migrations\201702191730513_updateDocTable.Designer.cs">
-      <DependentUpon>201702191730513_updateDocTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702280524565_CreateReviewComments.cs" />
-    <Compile Include="Migrations\201702280524565_CreateReviewComments.Designer.cs">
-      <DependentUpon>201702280524565_CreateReviewComments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703030551207_createPictureAndMapping.cs" />
-    <Compile Include="Migrations\201703030551207_createPictureAndMapping.Designer.cs">
-      <DependentUpon>201703030551207_createPictureAndMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703191510148_UpdateDocTable1.cs" />
-    <Compile Include="Migrations\201703191510148_UpdateDocTable1.Designer.cs">
-      <DependentUpon>201703191510148_UpdateDocTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703232040469_UpdateSpecailtyMapTable.cs" />
-    <Compile Include="Migrations\201703232040469_UpdateSpecailtyMapTable.Designer.cs">
-      <DependentUpon>201703232040469_UpdateSpecailtyMapTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703250510541_updatedoctortablemiddlename.cs" />
-    <Compile Include="Migrations\201703250510541_updatedoctortablemiddlename.Designer.cs">
-      <DependentUpon>201703250510541_updatedoctortablemiddlename.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704120139259_CreateReatingAndReview.cs" />
-    <Compile Include="Migrations\201704120139259_CreateReatingAndReview.Designer.cs">
-      <DependentUpon>201704120139259_CreateReatingAndReview.cs</DependentUpon>
+    <Compile Include="Migrations\201704161443462_Initial.cs" />
+    <Compile Include="Migrations\201704161443462_Initial.Designer.cs">
+      <DependentUpon>201704161443462_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,53 +69,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702020854305_InitialMigration.resx">
-      <DependentUpon>201702020854305_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702021649475_createZipCodeTable.resx">
-      <DependentUpon>201702021649475_createZipCodeTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702090207407_CreateSocialLinksInfo.resx">
-      <DependentUpon>201702090207407_CreateSocialLinksInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702170452230_AddHonorsAwardsTbl.resx">
-      <DependentUpon>201702170452230_AddHonorsAwardsTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702170507144_UpdateHonorsAwardsTbl.resx">
-      <DependentUpon>201702170507144_UpdateHonorsAwardsTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702171707310_AddEducationTable.resx">
-      <DependentUpon>201702171707310_AddEducationTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702171841149_AddExperienceTable.resx">
-      <DependentUpon>201702171841149_AddExperienceTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702171945261_UpdateDoctorTable.resx">
-      <DependentUpon>201702171945261_UpdateDoctorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702172023478_UpdateDoctorTable1.resx">
-      <DependentUpon>201702172023478_UpdateDoctorTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702191730513_updateDocTable.resx">
-      <DependentUpon>201702191730513_updateDocTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702280524565_CreateReviewComments.resx">
-      <DependentUpon>201702280524565_CreateReviewComments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703030551207_createPictureAndMapping.resx">
-      <DependentUpon>201703030551207_createPictureAndMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703191510148_UpdateDocTable1.resx">
-      <DependentUpon>201703191510148_UpdateDocTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703232040469_UpdateSpecailtyMapTable.resx">
-      <DependentUpon>201703232040469_UpdateSpecailtyMapTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703250510541_updatedoctortablemiddlename.resx">
-      <DependentUpon>201703250510541_updatedoctortablemiddlename.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704120139259_CreateReatingAndReview.resx">
-      <DependentUpon>201704120139259_CreateReatingAndReview.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704161443462_Initial.resx">
+      <DependentUpon>201704161443462_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

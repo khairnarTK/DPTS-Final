@@ -16,8 +16,8 @@ using DPTS.Services.Doctors;
 using DPTS.Services.ExportImport;
 using DPTS.Web;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof (NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof (NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
 namespace DPTS.Web
 {
@@ -34,14 +34,8 @@ namespace DPTS.Web
     using Domain.Appointment;
     using EmailSmsNotifications.IServices;
     using EmailSmsNotifications.Services;
-    using Domain.Core.ReviewComments;
-    using Domain.ReviewComments;
     using Domain.Common;
     using Services.Common;
-    using Microsoft.AspNet.Identity;
-    using Models;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.Owin.Security;
     using Domain.Core.Common;
     public static class NinjectWebCommon
     {
@@ -106,7 +100,6 @@ namespace DPTS.Web
             kernel.Bind<ISmsNotificationService>().To<SmsNotificationService>();
             kernel.Bind<IEmailNotificationService>().To<EmailNotificationService>();
             kernel.Bind<IImportManager>().To<ImportManager>();
-            kernel.Bind<IReviewCommentsService>().To<ReviewCommentsService>();
             kernel.Bind<IPictureService>().To<PictureService>();
             kernel.Bind<IQualifiactionService>().To<QualifiactionService>();
             //kernel.Bind<ApplicationSignInManager>().To<ApplicationSignInManager>();

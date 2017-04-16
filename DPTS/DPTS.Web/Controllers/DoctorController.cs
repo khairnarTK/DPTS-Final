@@ -13,7 +13,6 @@ using DPTS.Domain.Core.StateProvince;
 using DPTS.Domain.Entities;
 using DPTS.Web.Models;
 using Microsoft.AspNet.Identity;
-using DPTS.Domain.Core.ReviewComments;
 using DPTS.Common.Kendoui;
 using HttpVerbs = System.Web.Mvc.HttpVerbs;
 using DPTS.Services;
@@ -36,7 +35,6 @@ namespace DPTS.Web.Controllers
         private readonly IAddressService _addressService;
         private readonly IAppointmentService _scheduleService;
         private readonly ApplicationDbContext _context;
-        private readonly IReviewCommentsService _reviewCommentsService;
         private readonly IPictureService _pictureService;
         private ISmsNotificationService _smsService;
         private readonly DPTSDbContext context;
@@ -47,7 +45,6 @@ namespace DPTS.Web.Controllers
             ICountryService countryService,
             IStateProvinceService stateProvinceService,
             IAddressService addressService, IAppointmentService scheduleService,
-            IReviewCommentsService reviewCommentsService,
             IPictureService pictureService,
             ISmsNotificationService smsService)
         {
@@ -58,7 +55,6 @@ namespace DPTS.Web.Controllers
             _stateProvinceService = stateProvinceService;
             _addressService = addressService;
             _scheduleService = scheduleService;
-            _reviewCommentsService = reviewCommentsService;
             _pictureService = pictureService;
             _smsService = smsService;
             context = new DPTSDbContext();
@@ -1233,7 +1229,6 @@ namespace DPTS.Web.Controllers
                 model.Addresses = _addressService.GetAllAddressByUser(doctor.DoctorId);
                 model.Specialitys = _specialityService.GetDoctorSpecilities(doctor.DoctorId);
                 model.Schedule = _scheduleService.GetScheduleByDoctorId(doctor.DoctorId);
-                model.listReviewComments = _reviewCommentsService.GetAllAprovedReviewCommentsByUser(doctor.DoctorId);
 
                 #region Picture
                 var pictures = _pictureService.GetPicturesByUserId(doctorId);
@@ -1272,26 +1267,6 @@ namespace DPTS.Web.Controllers
 
         #endregion
 
-        #region Review Comments
-        [HttpPost]
-        public ActionResult SaveReivewComment(FormCollection form)
-        {
-            ReviewComments ReviewComments = new ReviewComments();
-            ReviewComments.CommentForId = TempData["CommentForId"].ToString();
-            ReviewComments.CommentOwnerId = User.Identity.GetUserId();
-            ReviewComments.CommentOwnerUser = User.Identity.Name;
-            ReviewComments.Comment = form["UserComment"];
-            ReviewComments.Rating = Convert.ToDecimal(form["starrating"]) * 20;
-            ReviewComments.DateCreated = DateTime.Now;
-            ReviewComments.IsApproved = false;
-            ReviewComments.IsActive = true;
-
-            if (_reviewCommentsService.InsertReviewComment(ReviewComments))
-                return Content("Success");
-
-            return Content("Error");
-        }
-        #endregion
 
         #region Social Links
 

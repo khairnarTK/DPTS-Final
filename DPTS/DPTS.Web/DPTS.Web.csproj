@@ -393,7 +393,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
-    <Compile Include="Controllers\ReviewCommentsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SpecialityController.cs" />
     <Compile Include="Controllers\DefaultNotificationSettingsController.cs" />
@@ -422,7 +421,6 @@
     <Compile Include="Models\JoinUsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PictureModel.cs" />
-    <Compile Include="Models\ReviewCommentsViewModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SheduleViewModel.cs" />
@@ -2123,7 +2121,6 @@
     <Content Include="Scripts\kendo\2017.1.118\cultures\kendo.culture.af.min.js.map" />
     <Content Include="Scripts\kendo\2017.1.118\cultures\kendo.culture.af-ZA.min.js.map" />
     <Content Include="Views\Appointment\ReScheduling.cshtml" />
-    <Content Include="Views\ReviewComments\ReviewCommentsApproveList.cshtml" />
     <Content Include="Views\Shared\Notifications.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Picture.cshtml" />
     <Content Include="Views\Doctor\_CreateOrUpdate.Pictures.cshtml" />

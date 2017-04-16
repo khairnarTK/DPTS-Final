@@ -53,7 +53,6 @@
     <Compile Include="Core\Notification\IEmailCategoryService.cs" />
     <Compile Include="Core\Country\ICountryService.cs" />
     <Compile Include="Core\Doctors\IDoctorService.cs" />
-    <Compile Include="Core\ReviewComments\IReviewComments.cs" />
     <Compile Include="Core\Speciality\ISpecialityService.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Core\Notification\IDefaultNotificationSettingsService.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="Entities\AspNetUserLogin.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\BaseEntityWithDateTime.cs" />
-    <Compile Include="Entities\DoctorReviewHelpfulness.cs" />
     <Compile Include="Entities\Education.cs" />
     <Compile Include="Entities\Experience.cs" />
     <Compile Include="Entities\HonorsAwards.cs" />
@@ -79,9 +77,7 @@
     <Compile Include="Entities\Picture.cs" />
     <Compile Include="Entities\PictureMapping.cs" />
     <Compile Include="Entities\PictureType.cs" />
-    <Compile Include="Entities\DoctorReview.cs" />
     <Compile Include="Entities\Qualifiaction.cs" />
-    <Compile Include="Entities\ReviewComments.cs" />
     <Compile Include="Entities\Notification\SentSmsHistory.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Doctor.cs" />

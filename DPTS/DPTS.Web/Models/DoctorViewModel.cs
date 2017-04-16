@@ -11,8 +11,6 @@ namespace DPTS.Web.Models
             Addresses = new List<Address>();
             Specialitys = new List<Speciality>();
             Schedule=new List<Schedule>();
-            listReviewComments = new List<DoctorUserReviewComments>();
-            ReviewComments = new ReviewComments();
             DoctorPictureModels = new List<PictureModel>();
             AddPictureModel = new PictureModel();
         }
@@ -36,16 +34,8 @@ namespace DPTS.Web.Models
 
         public double Distance { get; set; }
 
-        // review
-        public virtual IList<DoctorUserReviewComments> listReviewComments { get; set; }
-        public virtual ReviewComments ReviewComments { get; set; }
-
-        //picture
         //pictures
         public PictureModel AddPictureModel { get; set; }
         public IList<PictureModel> DoctorPictureModels { get; set; }
-
-
-
     }
 }

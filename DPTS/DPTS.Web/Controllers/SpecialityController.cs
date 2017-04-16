@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using DPTS.Domain.Core.Speciality;
 using DPTS.Domain.Entities;
-using DPTS.Common.Kendoui;
 using System.Linq;
 
 namespace DPTS.Web.Controllers

@@ -27,7 +27,6 @@ namespace DPTS.Data.Context
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<EmailCategory> EmailCategory { get; set; }
         public virtual DbSet<DefaultNotificationSettings> DefaultNotificationSettings { get; set; }
-        public virtual DbSet<ReviewComments> ReviewComments { get; set; }
         public virtual DbSet<DoctorNotificationSettings> DoctorNotificationSettings { get; set; }
         public virtual DbSet<SentEmailHistory> SentEmailHistory { get; set; }
         public virtual DbSet<SentSmsHistory> SentSmsHistory { get; set; }
@@ -39,8 +38,6 @@ namespace DPTS.Data.Context
         public virtual DbSet<Picture> Picture { get; set; }
         public virtual DbSet<PictureMapping> PictureMapping { get; set; }
         public virtual DbSet<Qualifiaction> Qualifiaction { get; set; }
-        public virtual DbSet<DoctorReview> DoctorReview { get; set; }
-        public virtual DbSet<DoctorReviewHelpfulness> DoctorReviewHelpfulness { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

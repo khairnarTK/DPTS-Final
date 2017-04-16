@@ -3,7 +3,7 @@ namespace DPTS.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -117,9 +117,9 @@ namespace DPTS.Data.Migrations
                         DoctorId = c.String(nullable: false, maxLength: 128),
                         DoctorGuid = c.Guid(nullable: false),
                         Gender = c.String(),
-                        Qualifications = c.String(),
+                        MiddleName = c.String(),
+                        Language = c.String(),
                         RegistrationNumber = c.String(),
-                        YearsOfExperience = c.Int(),
                         ShortProfile = c.String(),
                         Expertise = c.String(),
                         Subscription = c.String(),
@@ -128,6 +128,10 @@ namespace DPTS.Data.Migrations
                         DisplayOrder = c.Int(nullable: false),
                         DateOfBirth = c.String(),
                         Rating = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ProfessionalStatements = c.String(),
+                        VideoLink = c.String(),
+                        ConsultationFee = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        IsAvailability = c.Boolean(nullable: false),
                         DateCreated = c.DateTime(nullable: false),
                         DateUpdated = c.DateTime(nullable: false),
                         Id = c.Int(nullable: false),
@@ -135,6 +139,87 @@ namespace DPTS.Data.Migrations
                 .PrimaryKey(t => t.DoctorId)
                 .ForeignKey("dbo.AspNetUsers", t => t.DoctorId)
                 .Index(t => t.DoctorId);
+            
+            CreateTable(
+                "dbo.Educations",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DoctorId = c.String(nullable: false, maxLength: 128),
+                        Title = c.String(nullable: false),
+                        Description = c.String(),
+                        Institute = c.String(nullable: false),
+                        StartDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                        DisplayOrder = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Doctors", t => t.DoctorId, cascadeDelete: true)
+                .Index(t => t.DoctorId);
+            
+            CreateTable(
+                "dbo.Experiences",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DoctorId = c.String(nullable: false, maxLength: 128),
+                        Title = c.String(nullable: false),
+                        Description = c.String(),
+                        Organization = c.String(nullable: false),
+                        StartDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                        DisplayOrder = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Doctors", t => t.DoctorId, cascadeDelete: true)
+                .Index(t => t.DoctorId);
+            
+            CreateTable(
+                "dbo.HonorsAwards",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DoctorId = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false),
+                        Description = c.String(),
+                        AwardDate = c.DateTime(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                        DisplayOrder = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Doctors", t => t.DoctorId, cascadeDelete: true)
+                .Index(t => t.DoctorId);
+            
+            CreateTable(
+                "dbo.PictureMappings",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        PictureId = c.Int(nullable: false),
+                        DisplayOrder = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pictures", t => t.PictureId)
+                .ForeignKey("dbo.Doctors", t => t.UserId)
+                .Index(t => t.UserId)
+                .Index(t => t.PictureId);
+            
+            CreateTable(
+                "dbo.Pictures",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PictureBinary = c.Binary(),
+                        MimeType = c.String(),
+                        AltAttribute = c.String(),
+                        TitleAttribute = c.String(),
+                        IsNew = c.Boolean(nullable: false),
+                        SeoFilename = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Schedules",
@@ -151,12 +236,28 @@ namespace DPTS.Data.Migrations
                 .Index(t => t.DoctorId);
             
             CreateTable(
+                "dbo.SocialLinkInformations",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DoctorId = c.String(nullable: false, maxLength: 128),
+                        SocialType = c.String(nullable: false),
+                        SocialLink = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                        DisplayOrder = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Doctors", t => t.DoctorId)
+                .Index(t => t.DoctorId);
+            
+            CreateTable(
                 "dbo.SpecialityMappings",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Doctor_Id = c.String(nullable: false, maxLength: 128),
                         Speciality_Id = c.Int(nullable: false),
+                        SubSpeciality_Id = c.Int(nullable: false),
                         DateCreated = c.DateTime(nullable: false),
                         DateUpdated = c.DateTime(nullable: false),
                     })
@@ -316,26 +417,15 @@ namespace DPTS.Data.Migrations
                 .Index(t => t.EmailCategory_Id);
             
             CreateTable(
-                "dbo.ReviewComments",
+                "dbo.Qualifiactions",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CommentForId = c.Int(nullable: false),
-                        CommentOwnerId = c.String(),
-                        Comment = c.String(),
-                        Rating = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        IsApproved = c.Boolean(nullable: false),
+                        Name = c.String(),
                         IsActive = c.Boolean(nullable: false),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateUpdated = c.DateTime(nullable: false),
-                        AspNetUser_Id = c.String(maxLength: 128),
-                        Doctor_DoctorId = c.String(maxLength: 128),
+                        DisplayOrder = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUser_Id)
-                .ForeignKey("dbo.Doctors", t => t.Doctor_DoctorId)
-                .Index(t => t.AspNetUser_Id)
-                .Index(t => t.Doctor_DoctorId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.SentEmailHistories",
@@ -380,6 +470,17 @@ namespace DPTS.Data.Migrations
                 .Index(t => t.Doctor_DoctorId);
             
             CreateTable(
+                "dbo.ZipCodes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ZipCode = c.String(),
+                        Latitude = c.Double(nullable: false),
+                        Longitude = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.AspNetUserRoles",
                 c => new
                     {
@@ -400,8 +501,6 @@ namespace DPTS.Data.Migrations
             DropForeignKey("dbo.SentSmsHistories", "AspNetUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.SentEmailHistories", "Doctor_DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.SentEmailHistories", "AspNetUser_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.ReviewComments", "Doctor_DoctorId", "dbo.Doctors");
-            DropForeignKey("dbo.ReviewComments", "AspNetUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.DoctorNotificationSettings", "EmailCategory_Id", "dbo.EmailCategories");
             DropForeignKey("dbo.DoctorNotificationSettings", "DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.DefaultNotificationSettings", "EmailCategory_Id", "dbo.EmailCategories");
@@ -418,7 +517,13 @@ namespace DPTS.Data.Migrations
             DropForeignKey("dbo.SpecialityMappings", "Doctor_Id", "dbo.Doctors");
             DropForeignKey("dbo.SubSpecialities", "SpecialityId", "dbo.Specialities");
             DropForeignKey("dbo.SpecialityMappings", "Speciality_Id", "dbo.Specialities");
+            DropForeignKey("dbo.SocialLinkInformations", "DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.Schedules", "DoctorId", "dbo.Doctors");
+            DropForeignKey("dbo.PictureMappings", "UserId", "dbo.Doctors");
+            DropForeignKey("dbo.PictureMappings", "PictureId", "dbo.Pictures");
+            DropForeignKey("dbo.HonorsAwards", "DoctorId", "dbo.Doctors");
+            DropForeignKey("dbo.Experiences", "DoctorId", "dbo.Doctors");
+            DropForeignKey("dbo.Educations", "DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.AppointmentSchedules", "DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.AddressMappings", "Doctor_DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.AppointmentSchedules", "StatusId", "dbo.AppointmentStatus");
@@ -429,8 +534,6 @@ namespace DPTS.Data.Migrations
             DropIndex("dbo.SentSmsHistories", new[] { "AspNetUser_Id" });
             DropIndex("dbo.SentEmailHistories", new[] { "Doctor_DoctorId" });
             DropIndex("dbo.SentEmailHistories", new[] { "AspNetUser_Id" });
-            DropIndex("dbo.ReviewComments", new[] { "Doctor_DoctorId" });
-            DropIndex("dbo.ReviewComments", new[] { "AspNetUser_Id" });
             DropIndex("dbo.DoctorNotificationSettings", new[] { "EmailCategory_Id" });
             DropIndex("dbo.DoctorNotificationSettings", new[] { "DoctorId" });
             DropIndex("dbo.DefaultNotificationSettings", new[] { "EmailCategory_Id" });
@@ -440,7 +543,13 @@ namespace DPTS.Data.Migrations
             DropIndex("dbo.SubSpecialities", new[] { "SpecialityId" });
             DropIndex("dbo.SpecialityMappings", new[] { "Speciality_Id" });
             DropIndex("dbo.SpecialityMappings", new[] { "Doctor_Id" });
+            DropIndex("dbo.SocialLinkInformations", new[] { "DoctorId" });
             DropIndex("dbo.Schedules", new[] { "DoctorId" });
+            DropIndex("dbo.PictureMappings", new[] { "PictureId" });
+            DropIndex("dbo.PictureMappings", new[] { "UserId" });
+            DropIndex("dbo.HonorsAwards", new[] { "DoctorId" });
+            DropIndex("dbo.Experiences", new[] { "DoctorId" });
+            DropIndex("dbo.Educations", new[] { "DoctorId" });
             DropIndex("dbo.Doctors", new[] { "DoctorId" });
             DropIndex("dbo.AppointmentSchedules", new[] { "StatusId" });
             DropIndex("dbo.AppointmentSchedules", new[] { "PatientId" });
@@ -451,9 +560,10 @@ namespace DPTS.Data.Migrations
             DropIndex("dbo.Addresses", new[] { "StateProvinceId" });
             DropIndex("dbo.Addresses", new[] { "CountryId" });
             DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.ZipCodes");
             DropTable("dbo.SentSmsHistories");
             DropTable("dbo.SentEmailHistories");
-            DropTable("dbo.ReviewComments");
+            DropTable("dbo.Qualifiactions");
             DropTable("dbo.DoctorNotificationSettings");
             DropTable("dbo.EmailCategories");
             DropTable("dbo.DefaultNotificationSettings");
@@ -465,7 +575,13 @@ namespace DPTS.Data.Migrations
             DropTable("dbo.SubSpecialities");
             DropTable("dbo.Specialities");
             DropTable("dbo.SpecialityMappings");
+            DropTable("dbo.SocialLinkInformations");
             DropTable("dbo.Schedules");
+            DropTable("dbo.Pictures");
+            DropTable("dbo.PictureMappings");
+            DropTable("dbo.HonorsAwards");
+            DropTable("dbo.Experiences");
+            DropTable("dbo.Educations");
             DropTable("dbo.Doctors");
             DropTable("dbo.AppointmentStatus");
             DropTable("dbo.AppointmentSchedules");
