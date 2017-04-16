@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="tg-dashboard tg-haslayout">
+                    <div class="tg-docprofilechart tg-haslayout">
+                        <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 tg-findheatlhwidth">
+                            <div class="row">
+                                <div class="tg-docinfo tg-haslayout">
+                                    <div class="tg-box">
+                                        <div class="tg-heading-border tg-small">
+                                            <h3>welcome, Demo Professional</h3>
+                                        </div>
+                                        <div class="tg-description">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodporia incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisti nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consuatag.</p>
+                                        </div>
+                                        <div class="tg-bottominfo tg-haslayout">
+                                            <div class="tg-regardsleft"> <em>Regards,</em> <strong>Medical Directory</strong> </div>
+                                            <div class="tg-regardsright"> <strong class="logo"><img src="//themographics.com/wordpress/docdirect/wp-content/uploads/2016/03/logo.png" alt="DocDirect"></strong> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 tg-expectwidth">
+                            <div class="row">
+                                <div class="tg-support">
+                                    <div class="tg-heading-border tg-small">
+                                        <h3>GET SUPPORT</h3>
+                                    </div>
+                                    <ul class="tg-doccontactinfo">
+                                        <li><i class="fa fa-map-marker"></i><address>23 Eccles Old Road, New Salford Road, Uk, M6 7AF</address></li>
+                                        <li><i class="fa fa-phone"></i><a href="tel:+44 235 8568432">+44 235 8568432</a></li>
+                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:info@docdirect.com?Subject=Hello%20again" target="_top">info@docdirect.com</a></li>
+                                        <li><i class="fa fa-fax"></i><span>+44 235 856843</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tg-graph tg-haslayout">
+                    <div class="tg-profilehits">
+                        <div class="tg-heading-border tg-small">
+                            <h3>Profile Hits</h3>
+                        </div>
+                        <canvas id="canvas" class="canvas" height="393" width="786" style="width: 786px; height: 393px;"></canvas>
+                    </div>
+                </div>
+                <div class="tg-docrank tg-haslayout">
+                    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+                        <div class="tg-costumerreview">
+                            <div class="tg-heading-border tg-small">
+                                <h3>Customer Reviews</h3>
+                            </div>
+                            <div id="tg-reviewscrol" class="tg-reviewscrol">
+                                <ul class="tg-reviews">
+                                    <li>
+                                        <div class="tg-review">
+                                            <figure class="tg-reviwer-img">
+                                                <a href="https://themographics.com/wordpress/docdirect/user/steve/"><img src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-01-1-140x89.jpg" alt="Reviewer"></a>
+                                            </figure>
+                                            <div class="tg-reviewcontet">
+                                                <div class="comment-head">
+                                                    <div class="pull-left">
+                                                        <h3>Dr Steve</h3>
+                                                    </div>
+                                                    <span>Posted on October 18, 2016 at 12:43 pm</span>
+                                                    <div class="tg-stars star-rating pull-left">
+                                                        <span style="width:80%"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="tg-description">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore...
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="tg-heading-border tg-small">
+                                <h3>Overall Rank</h3>
+                            </div>
+                            <div class="tg-ratingbox">
+                                <div class="tg-stars star-rating">
+                                    <span style="width:80%"></span>
+                                </div>
+                                <strong>very good</strong>
+                            </div>
+                            <a class="tg-btn" href="https://themographics.com/wordpress/docdirect/user/professional/">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    var lineChartData = {
+                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        datasets: [
+                            {
+                                label: "Profile Hits",
+                                fillColor: "rgba(220,220,220,0)",
+                                strokeColor: "rgba(203,202,201,1)",
+                                pointColor: "rgba(93,89,85,1)",
+                                pointStrokeColor: "rgba(238,238,238,1)",
+                                pointHighlightFill: "rgba(125,187,0,1)",
+                                pointHighlightStroke: "rgba(220,220,220,1)",
+                                data: [0, 0, 0, 0, 0, 1, 140, 411, 298, 276, 369, 319]
+                            },
+                        ]
+                    };
+                    window.onload = function () {
+                        var ctx = document.getElementById("canvas").getContext("2d");
+                        window.myLine = new Chart(ctx).Line(lineChartData, {
+                            responsive: true
+                        });
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+</main>

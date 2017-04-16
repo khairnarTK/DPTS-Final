@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Finish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="modal-dialog modal-lg tg-modalcontent" role="document">
+@using (Html.BeginForm("Finish", "Appointment", FormMethod.Post, new { id = "availableSchedule-form", @class = "appointment-form" }))
+{
+        <fieldset class="booking-model-contents">
+            <ul class="tg-navdocappointment" role="tablist">
+                <li><a href="javascript:;" class="bk-step-2">1. available schedule</a></li>
+                <li><a href="javascript:;" class="bk-step-3">2. your contact detail</a></li>
+                <li><a href="javascript:;" class="bk-step-4">3. Payment Mode</a></li>
+                <li class="active"><a href="javascript:;" class="bk-step-5">4. Finish</a></li>
+            </ul>
+            <div class="tab-content tg-appointmenttabcontent" data-id="330">
+
+                <div class="tab-pane step-five-contents" id="five" style="display: block;">
+                    <div class="bk-thanks-message">
+                        <div class="tg-message">
+                            <h2>Thank you!</h2>
+                            <div class="tg-description">
+                                <p>Thank you very much for your appointment. We have received your appointment and soon we will let you know regarding your appointment. You will receive a phone call or email regarding to your booking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tg-btnbox booking-step-button">
+                    <button type="submit" class="tg-btn bk-step-next finish-booking">Finish</button>
+                </div>
+            </div>
+        </fieldset>
+}
+</div>

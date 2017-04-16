@@ -1,0 +1,62 @@
+﻿@using FormMethod = System.Web.Mvc.FormMethod
+@model DPTS.Web.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("VisitorAccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <form action="@Url.Action("Index","Manage")" method="post" class="tg-formeditprofile tg-haslayout do-account-setitngs">
+                    @Html.HiddenFor(model => model.Id)
+                    @if(ViewBag.Alert != null)
+                    {
+
+                    }
+                    <fieldset>
+                        <div class="tg-bordertop tg-haslayout">
+                            <div class="tg-formsection">
+                                <div class="tg-heading-border tg-small">
+                                    <h3>Basic Information</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.FirstName)
+                                            @Html.EditorFor(model => model.FirstName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.FirstName)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.LastName)
+                                            @Html.EditorFor(model => model.LastName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.LastName)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Email)
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.PhoneNumber)
+                                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="tg-btn">update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

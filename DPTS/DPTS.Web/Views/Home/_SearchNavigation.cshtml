@@ -1,0 +1,106 @@
+﻿@model SearchModel
+@using DPTS.Web.Helpers
+@using DPTS.Web.Models
+@{ 
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.mobile.min.css");
+
+    Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/kendo.all.min.js");
+}
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<div class="tg-searcharea tg-haslayout">
+    <div class="container">
+        <div class="row">
+                <div class="col-md-4 col-sm-3 col-xs-12">
+                    <div class="form-group" style="margin-bottom:0">
+                        <label style="color:white">Specialies/Doctor Name</label>
+                        <input id="speciality" name="q" value="@Model.q" />
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group" style="margin-bottom:0">
+                        <label style="color:white">City/ZipCode</label>
+                        <div class="locate-me-wrap">
+                            <div id="location-pickr-map" class="elm-display-none"></div>
+                            <input type="text" autocomplete="on" id="location-address" value="@Model.geo_location" name="geo_location" placeholder="Geo location" class="form-control">
+                            @*<a href="javascript:;" class="geolocate"><img src="https://themographics.com/wordpress/docdirect/wp-content/themes/docdirect/images/geoicon.svg" width="16" height="16" class="geo-locate-me" alt="Locate me!"></a>*@
+                            @*<div class="geodistance_range elm-display-none">
+                            <div class="distance-ml">Distance in&nbsp;( Miles )<span>50</span></div>
+                            <input type="hidden" name="geo_distance" value="50" class="geo_distance" />
+                            <div class="geo_distance" id="geo_distance"></div>
+                        </div>*@
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-2 col-xs-12">
+                    <div class="form-group" style="margin-bottom:0">
+                        <label style="color:white">Consultation Fee</label><br />
+                        <span style="color:white; font-weight:bold;" id="amount"></span>
+                        <div id="docfee"></div>
+                        <input id="minfee" name="minfee" type="hidden" value="" />
+                        <input id="maxfee" name="maxfee" type="hidden" value="" />
+                    </div>
+                    <script>
+                        jQuery(document).ready(function(e) {
+                            jQuery("#amount").html("0 - 2000");
+                                            jQuery("#docfee").slider({
+                                                range: true,
+                                                min: 0,
+                                                max: 2000,
+                                                values: [0,2000],
+                                                slide: function (event, ui) {
+                                                    jQuery("#amount").html(ui.values[0] + " - " + ui.values[1]);
+                                                    jQuery("#minfee").val(ui.values[0]);
+                                                    jQuery("#maxfee").val(ui.values[1]);
+
+                                                }
+                                            });
+                                        });
+                    </script>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-4">
+                    <div class="form-group" style="margin-bottom:0">
+                        <input type="submit" id="search_banner" style="background: #7dbb00;color: white;margin-top: 11px;margin-left: 15px;" class="tg-btn search-nav" value="Search">
+                    </div>
+                </div>
+</div>
+    </div>
+</div>
+<script>
+    function getParameterByName(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    jQuery(document).ready(function (e) {
+        var myParam = getParameterByName('q');
+        jQuery("#speciality").val(myParam);
+        jQuery("#speciality").val("@Model.q");
+
+
+                    jQuery("#speciality").kendoAutoComplete({
+                        filter: "startswith", //contain
+                       // minLength: 3,
+                        placeholder: "speciality, or doctor name",
+                        //separator: ", ",
+                        dataTextField: "Title",
+                        dataSource: {
+                            type: "json",
+                            serverFiltering: false,
+                        transport: {
+                                read: {
+                                    url: "@Url.Action("Speciality_Read", "Speciality")"
+                                }
+                        }
+                    }
+                    });
+        });
+</script>

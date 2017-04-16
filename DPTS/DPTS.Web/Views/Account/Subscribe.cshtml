@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Subscribe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Subscribe</h2> 
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h1>@ViewBag.Userid</h1>
+                    <p class="lead">@ViewBag.Message</p>
+                    <p><a href="@Url.Action("Search","Home")" class="btn btn-success btn-lg">Go to Home</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

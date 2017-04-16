@@ -1,0 +1,159 @@
+﻿@using DPTS.Web.Helpers
+@model IEnumerable<DPTS.Domain.Entities.Qualifiaction>
+@{
+    ViewBag.Title = "Qualifiaction";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.common-material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.mobile.min.css");
+
+    //Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/kendo.all.min.js");
+}
+<script src="~/Scripts/kendo/2017.1.118/jquery.min.js"></script>
+<script src="~/Scripts/kendo/2017.1.118/kendo.all.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Qualifiaction</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Qualifiaction
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="qualification-grid"></div>
+                            <script>
+                           $(document).ready(function() {
+                            $("#qualification-grid").kendoGrid({
+                                dataSource: {
+                                    type: "json",
+                                    transport: {
+                                        read: {
+                                            url: "@Url.Action("Qualification_Read", "Administration")",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        create: {
+                                            url: "@Url.Action("Qualification_Add", "Administration")",
+                                            type: "POST",
+                                            dataType: "json"
+                                        },
+                                        update: {
+                                            url: "@Url.Action("Qualification_Update", "Administration")",
+                                            type: "POST",
+                                            dataType: "json"
+                                        },
+                                        destroy: {
+                                            url: "@Html.Raw(Url.Action("Qualification_Delete", "Administration"))",
+                                            type: "POST",
+                                            dataType: "json"
+                                        },
+                                        parameterMap: function(data, operation) {
+                                            if (operation != "read") {
+                                                return data;
+                                            } else {
+                                                //for some reasons only such "Filter" data be parsed
+                                                return JSON.stringify(data);
+                                            }
+                                        }
+                                    },
+                                    schema: {
+                                        data: "Data",
+                                        total: "Total",
+                                        errors: "Errors",
+                                        model: {
+                                            id: "Id",
+                                            fields: {
+                                                Name: {
+                                                    editable: true, type: "string",
+                                                    validation: {
+                                                        required: true
+                                                    }
+                                                },
+                                                DisplayOrder: { editable: true, type: "number" },
+                                                IsActive: { editable: true, type: "boolean" },
+                                                Id: { editable: false, type: "number" }
+                                            }
+                                        }
+                                    },
+                                    requestEnd: function(e) {
+                                        if (e.type == "create" || e.type == "update") {
+                                            this.read();
+                                        }
+                                    },
+                                    error: function(e) {
+                                        display_kendoui_grid_error(e);
+                                        // Cancel the changes
+                                        this.cancelChanges();
+                                    },
+                                    pageSize: 10,
+                                    serverPaging: true,
+                                    serverFiltering: true,
+                                    serverSorting: true
+                                },
+                                pageable: {
+                                    refresh: true,
+                                    pageSizes: 10
+                                },
+                                toolbar: [{ name: "create", text: "Add Qualification" }],
+                                editable: {
+                                    confirmation: "Are You Sure You Want To Delete !!",
+                                    mode: "inline"
+                                },
+                                scrollable: false,
+                                columns: [
+                                    {
+                                        field: "Name",
+                                        title: "Title",
+                                        width: 120,
+                                    },
+                                    {
+                                        field: "DisplayOrder",
+                                        title: "Display Order",
+                                        width: 80
+                                    },
+                                    {
+                                        field: "IsActive",
+                                        title: "IsActive",
+                                        width: 80,
+                                        template: '# if(IsActive) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                    }, {
+                                        command: [
+                                            {
+                                                name: "edit",
+                                                text: {
+                                                    edit: "Edit",
+                                                    update: "Update",
+                                                    cancel: "Cancel"
+                                                }
+                                            }, {
+                                                name: "destroy",
+                                                text: "Delete"
+                                            }
+                                        ],
+                                        width: 200
+                                    }
+                                ]
+                            });
+                        });
+                        
+                            </script>
+                        </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+</div>

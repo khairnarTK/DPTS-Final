@@ -1,0 +1,118 @@
+﻿@model DPTS.Web.Models.VisitorViewModel
+@{
+    ViewBag.Title = "AppointmentList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int idCount = 1;
+
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("VisitorAccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="tg-myaccount tg-haslayout privacy-settings">
+
+                    <div class="tg-heading-border tg-small">
+                        <h2>Appoinments</h2>
+                    </div>
+                    @if (Model.AppointmentSchedule.Count > 0)
+                    {
+                        <div class="privacy-wraper">
+                            <form action="#" method="post" class="tg-form-privacy">
+                                <div class="form-group">
+
+                                    @foreach (var item in Model.AppointmentSchedule)
+                                    {
+                                        idCount++;
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title" style="word-wrap: break-word;">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@idCount">
+                                                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                                                        @item.Subject
+                                                    </a>
+                                                    @{
+                                                        string statusCls = "default";
+                                                        switch (item.AppointmentStatus.Name)
+                                                        {
+                                                            case "Pending":
+                                                                statusCls = "warning";
+                                                                break;
+                                                            case "Booked":
+                                                                statusCls = "primary";
+                                                                break;
+                                                            case "Cancelled":
+                                                                statusCls = "danger";
+                                                                break;
+                                                            case "Visited":
+                                                                statusCls = "success";
+                                                                break;
+                                                            case "Failed":
+                                                                statusCls = "default";
+                                                                break;
+                                                        }
+                                                    }
+                                                    <div class="pull-right">
+                                                        <span style="width: auto; Display: inline-block;" class="label label-@statusCls">@item.AppointmentStatus.Description</span>
+                                                    </div>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-@idCount" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item"><b>Date :</b> @DateTime.Parse(item.AppointmentDate).ToLongDateString()</li>
+                                                        <li class="list-group-item"><b>Time :</b> @item.AppointmentTime</li>
+                                                        <li class="list-group-item"><b>Doctor :</b> @item.Doctor.AspNetUser.FirstName</li>
+                                                        <li class="list-group-item" style="word-wrap: break-word;"><b>Diseases :</b> @item.DiseasesDescription</li>
+                                                    </ul>
+                                                    @if (item.AppointmentStatus.Name == "Pending" || item.AppointmentStatus.Name == "Booked")
+                                                    {
+                                                        <p>
+                                                            <button type="button" onclick="cancelAppoinment(@item.Id)" class="btn btn-danger">Cancel Appoinment</button>
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>
+                                                            <button type="button" onclick="cancelAppoinment(@item.Id)" class="btn btn-danger" disabled="disabled">Cancel Appoinment</button>
+                                                        </p>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </form>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    function cancelAppoinment(id) {
+        if (confirm('Are you sure to cancel appoinment')) {
+            var postData = {
+                appoinmentId: id
+            };
+
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: '@Url.Action("CancelAppoinmant", "Visitor")',
+                data: postData,
+                dataType: 'json',
+                success: function (data) {
+                    location.href = data.redirect;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to cancel');
+                }
+            });
+        }
+    }
+</script>
+

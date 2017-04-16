@@ -1,0 +1,364 @@
+﻿@model DPTS.Web.Models.JoinUsViewModel
+@using DPTS.Web.Extensions
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>DPTS - Join Us</title>
+    <link href="~/Content/wp-content/themes/docdirect/css/bootstrap.min1bba.css" rel="stylesheet" />
+    <link href="~/Content/wp-content/themes/docdirect/css/freelancer.css" rel="stylesheet" />
+    <link href="~/Content/Admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/kendo/2017.1.118/kendo.common-material.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2017.1.118/kendo.material.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2017.1.118/kendo.material.mobile.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/fineuploader-4.2.2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.0/jquery-confirm.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/kendo/2017.1.118/jquery.min.js"></script>
+
+</head>
+<body id="page-top" class="index">
+    
+
+    <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">Doctor 365</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="@Url.Action("Login","Account")">Sign In/Join</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container" id="maincontent" tabindex="-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <h1 class="name">Get started with Doctor 365!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        @Html.Partial("Notifications")
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Join Us</h2>    
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                @using (Html.BeginForm("join-us"))
+                {
+                    @Html.AntiForgeryToken()
+                <div class="col-md-7">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                General information
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">First Name</label>
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Middle Name</label>
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @placeholder = "First Name" })
+                                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Last Name</label>
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelect1">Select Gender</label>
+                                    @Html.DropDownListFor(model => model.Gender, ViewBag.GenderList as IEnumerable<SelectListItem>, new { @class = "form-control", @placeholder = "Gender" })
+                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelect2">Date Of Birth</label>
+                                    <div class="form-group">
+                                        @Html.DatePickerDropDowns(Html.FieldNameFor(x => x.DateOfBirthDay),
+                         Html.FieldNameFor(x => x.DateOfBirthMonth),
+                         Html.FieldNameFor(x => x.DateOfBirthYear),
+                         DateTime.Now.Year - 110,
+                         DateTime.Now.Year,
+                         Model.DateOfBirthDay,
+                         Model.DateOfBirthMonth,
+                         Model.DateOfBirthYear)
+
+                                        @Html.ValidationMessageFor(model => model.DateOfBirthDay)
+                                        @Html.ValidationMessageFor(model => model.DateOfBirthMonth)
+                                        @Html.ValidationMessageFor(model => model.DateOfBirthYear)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleTextarea">Phone Number</label>
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleTextarea">Email</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Practice with
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Qualifiaction</label>
+                                    <select id="Expertise" name="Expertise" multiple="multiple" class="form-control" data-placeholder="Select qualifiaction...">
+                                        @if (Model.AvilableQualification.Any())
+                                        {
+                                            foreach (var item in Model.AvilableQualification)
+                                            {
+                                                <option>@item</option>
+                                            }
+                                        }
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.Expertise, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Speciality</label>
+                                    @Html.TextBoxFor(m => m.Subscription, new { @class = "form-control", @placeholder = "Enter Speciality" })
+                                    @Html.ValidationMessageFor(model => model.Subscription, "", new { @class = "text-danger" })
+                                </div>
+                                @*<div class="form-group">
+                                    <label for="exampleInputFile">Speciality</label>
+                                    @Html.DropDownListFor(model => model.Speciality, Model.SpecialityList, new { @class = "form-control", @placeholder = "Speciality" })
+                                    @Html.ValidationMessageFor(model => model.Speciality, "", new { @class = "text-danger" })
+                                </div>*@
+                                @*<div class="form-group">
+                                    <label for="exampleInputFile">Super Speciality</label>
+                                    <span id="speciality-loading-progress" style="display: none;" class="please-wait">Common.Wait...</span>
+                                    @Html.DropDownListFor(model => model.SubSpeciality, Model.SubSpecialityList, new { @class = "form-control", @placeholder = "Speciality" })
+                                    @Html.ValidationMessageFor(model => model.SubSpeciality, "", new { @class = "text-danger" })
+                                </div>*@
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Registration Number</label>
+                                    @Html.TextBoxFor(m => m.RegistrationNumber, new { @class = "form-control", @placeholder = "Registration Number" })
+                                    @Html.ValidationMessageFor(model => model.RegistrationNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Address
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Hospital</label>
+                                    @Html.TextBoxFor(model => model.AddressModel.Hospital, new { @class = "form-control", @placeholder = "Clinic name" })
+                                    @Html.ValidationMessageFor(model => model.AddressModel.Hospital, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Address1</label>
+                                    @Html.TextBoxFor(model => model.AddressModel.Address1, new { @class = "form-control", @placeholder = "Address line 1" })
+                                    @Html.ValidationMessageFor(model => model.AddressModel.Address1, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Address2</label>
+                                    @Html.TextBoxFor(model => model.AddressModel.Address2, new { @class = "form-control", @placeholder = "Address line 2" })
+                                    @Html.ValidationMessageFor(model => model.AddressModel.Address2, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Country</label>
+                                    @Html.DropDownListFor(model => model.AddressModel.CountryId, Model.AddressModel.AvailableCountry, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">State</label>
+                                    <span id="states-loading-progress" style="display: none;" class="please-wait">Common.Wait...</span>
+                                    @Html.DropDownListFor(model => model.AddressModel.StateProvinceId, Model.AddressModel.AvailableStateProvince, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">City</label>
+                                    @Html.TextBoxFor(model => model.AddressModel.City, new { @class = "form-control", @placeholder = "City" })
+                                    @Html.ValidationMessageFor(model => model.AddressModel.City, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Zip/Postal Code</label>
+                                    @Html.TextBoxFor(model => model.AddressModel.ZipPostalCode, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Landline Number</label>
+                                    @Html.TextBoxFor(model => model.AddressModel.LandlineNumber, new { @class = "form-control" })
+                                </div>
+                                @*<div class="form-group">
+                                    <label for="exampleInputFile">Fax Number</label>
+                                    @Html.TextBoxFor(model => model.AddressModel.FaxNumber, new { @class = "form-control" })
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Upload Picture
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.PictureId)
+                                    @Html.ValidationMessageFor(model => model.PictureId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="col-lg-8">
+                    <div class="form-group tg-checkbox">
+                        <input name="terms" type="hidden" value="0">
+                        <label>
+                            <input name="terms" id="terms" type="checkbox">
+                            I agree with the terms and conditions @Html.ActionLink("read here", "TermsConditions", null, new { target = "_blank" })
+                        </label>
+                    </div>
+                    <br />
+                    <button type="submit" id="submitJoinUs" onclick="javascript:return AcceptTermAndcondition();" class="btn btn-success btn-lg">Join</button>
+                    <input id="Reset" class="btn btn-success btn-lg" style="margin-left: 10px; background-color: #2c3e50;
+                             border-color: #2c3e50;" type="reset" value="Reset" />
+                    </div>
+                 }
+                </div>
+        </div>
+    </section>
+    <footer class="text-center">
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; DPTS 2017
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+    
+</body>
+</html>
+<script src="~/Scripts/kendo/2017.1.118/jquery.min.js"></script>
+<script src="~/Content/Admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/kendo/2017.1.118/kendo.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="~/Scripts/freelancer.min.js"></script>
+<script src="~/Content/Admin/jquery.fineuploader-4.2.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.0/jquery-confirm.min.js"></script>
+
+<script type="text/javascript">
+    
+    $(function () {
+        var expertise = $("#Expertise").kendoMultiSelect().data("kendoMultiSelect");
+
+        $("#Speciality").change(function () {
+            var selectedItem = $(this).val();
+            var ddlSubSpec = $("#SubSpeciality");
+            var specProgress = $("#speciality-loading-progress");
+            specProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.RouteUrl("GetSubSpecialityBySpeciality"))",
+                data: { "specialityId": selectedItem, "addSelectSpecItem": "true" },
+            success: function (data) {
+                ddlSubSpec.html('');
+                $.each(data, function (id, option) {
+                    ddlSubSpec.append($('<option></option>').val(option.id).html(option.name));
+                });
+                specProgress.hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Failed to retrieve sub spec.');
+                specProgress.hide();
+            }
+        });
+        });
+
+        $("#AddressModel_CountryId").change(function () {
+            var selectedItem = $(this).val();
+            var ddlStates = $("#AddressModel_StateProvinceId");
+              var statesProgress = $("#states-loading-progress");
+             statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.RouteUrl("GetStatesByCountryId"))",
+                data: { "countryId": selectedItem, "addSelectStateItem": "true" },
+              success: function (data) {
+                ddlStates.html('');
+                $.each(data, function (id, option) {
+                    ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                });
+                statesProgress.hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Failed to retrieve states.');
+                statesProgress.hide();
+            }
+        });
+        });
+    });
+
+    function AcceptTermAndcondition() {
+        if ($("#terms").is(':checked')) {
+            return true;
+        }
+        else {
+            alert("Please accept term and condition");
+            return false;
+        }
+    }
+</script>
+

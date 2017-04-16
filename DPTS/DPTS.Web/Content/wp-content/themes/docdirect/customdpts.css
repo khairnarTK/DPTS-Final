@@ -1,0 +1,117 @@
+﻿/*Responsive with custom style override*/
+
+.alert-success {
+    color: white;
+    background-color: #7dbb00;
+    border-color: #7dbb00;
+}
+.alert-danger {
+    color: white;
+    background-color: rgb(234, 77, 59);
+    border-color: rgb(234, 77, 59);
+}
+.alert{
+    border-radius:0;
+}
+.astric{
+    padding-left:5px;
+    color:red;
+}
+.ui-state-default, .ui-widget-content .ui-state-default{
+    border: 1px solid #d3d3d3;
+    background: #e6e6e6 url(images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
+    font-weight: normal;
+    color: #555;
+    width: 1.2em;
+    height: 1.2em;
+}
+.ui-slider .ui-slider-range{
+    background-image:none;
+    background-color:#7dbb00;
+}
+.tg-searcharea{
+        padding: 25px 0;
+}
+ .lst-appmt-btn{
+    font-size: 13px;
+    margin-top: 0;
+    line-height: 30px;
+    height: 37px;
+    }
+    .tg-docprofile-content .tg-description {
+    line-height: 20px;
+    padding: 5px 0 10px;
+}
+    
+    .docbox-right .fees, .doc-phone, .doc-addr {
+    line-height: 20px;
+    margin-bottom: 8px;
+    /*float:none;
+    width:30%;*/
+}
+    .icon-ic_currency:before {
+    content: '\e924';
+}
+    .docbox-right .fees .fees-amount{
+    margin-left: 4px;
+}
+    .fa-money, .fa-map-marker, .fa-phone-square{
+     left: 0;
+     position:relative; 
+     top: 0; 
+    }
+  
+    .doc-edu{
+    background-color: #f7f7f7;
+    }
+
+    /*.search-nav{
+    background: #7dbb00;
+    color: white;
+    margin-top: 11px;
+    margin-left: 15px;
+    }*/
+
+@media (max-width: 481px) {
+    #auto-search{
+        width:100%;
+    }
+    .docbox-left{
+    width: 100%;
+    }
+    .docbox-right{
+      display: inline-block;
+    width: 100%;
+    }
+}
+@media (max-width: 1000px) {
+}
+@media (min-width: 1001px) {
+    #auto-search{
+        width:50%;
+    }
+    select, .form-control, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+    {
+        height:40px;
+        margin-bottom:10px;
+        padding:10px;
+    }
+    .upload-image-button{
+        margin-bottom:10px;
+    }
+    .docbox-left{
+    width: 50%;
+    float: left;
+    }
+    .docbox-right{
+      display: inline-block;
+    float: left;
+    width: 25%;
+    }
+}
+@media (min-width: 769px) {
+}
+@media (min-width:1367px) {
+}
+
+

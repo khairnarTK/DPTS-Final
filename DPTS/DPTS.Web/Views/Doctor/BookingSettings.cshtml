@@ -1,0 +1,542 @@
+﻿
+@{
+    ViewBag.Title = "Booking Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="doc-booking-emails dr-bookings">
+                    <div class="tg-haslayout">
+                        <form action="#" name="email-settings" class="email-settings">
+                            <div class="tg-formsection">
+                                <div class="email-settings-tabs">
+                                    <div class="tg-heading-border tg-small">
+                                        <h3>General Settings</h3>
+                                    </div>
+                                    <div class="appointment-cancelled  booking-email-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Schedule Message</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p>It will be shown when customer will be on booking form availbale schedules.</p>
+                                            </div>
+                                            <div class="email-contents">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div id="wp-schedule_message-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                                                <link rel="stylesheet" id="dashicons-css" href="https://themographics.com/wordpress/docdirect/wp-includes/css/dashicons.min.css?ver=4.7" type="text/css" media="all">
+                                                                <link rel="stylesheet" id="editor-buttons-css" href="https://themographics.com/wordpress/docdirect/wp-includes/css/editor.min.css?ver=4.7" type="text/css" media="all">
+                                                                <div id="wp-schedule_message-editor-tools" class="wp-editor-tools hide-if-no-js">
+                                                                    <div class="wp-editor-tabs">
+                                                                        <button type="button" id="schedule_message-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="schedule_message">Visual</button>
+                                                                        <button type="button" id="schedule_message-html" class="wp-switch-editor switch-html" data-wp-editor-id="schedule_message">Text</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="wp-schedule_message-editor-container" class="wp-editor-container"><div id="qt_schedule_message_toolbar" class="quicktags-toolbar"><input type="button" id="qt_schedule_message_strong" class="ed_button button button-small" aria-label="Bold" value="b"><input type="button" id="qt_schedule_message_em" class="ed_button button button-small" aria-label="Italic" value="i"><input type="button" id="qt_schedule_message_link" class="ed_button button button-small" aria-label="Insert link" value="link"><input type="button" id="qt_schedule_message_block" class="ed_button button button-small" aria-label="Blockquote" value="b-quote"><input type="button" id="qt_schedule_message_del" class="ed_button button button-small" aria-label="Deleted text (strikethrough)" value="del"><input type="button" id="qt_schedule_message_ins" class="ed_button button button-small" aria-label="Inserted text" value="ins"><input type="button" id="qt_schedule_message_img" class="ed_button button button-small" aria-label="Insert image" value="img"><input type="button" id="qt_schedule_message_ul" class="ed_button button button-small" aria-label="Bulleted list" value="ul"><input type="button" id="qt_schedule_message_ol" class="ed_button button button-small" aria-label="Numbered list" value="ol"><input type="button" id="qt_schedule_message_li" class="ed_button button button-small" aria-label="List item" value="li"><input type="button" id="qt_schedule_message_code" class="ed_button button button-small" aria-label="Code" value="code"><input type="button" id="qt_schedule_message_more" class="ed_button button button-small" aria-label="Insert Read More tag" value="more"><input type="button" id="qt_schedule_message_close" class="ed_button button button-small" title="Close all open tags" value="close tags"></div><div id="mceu_15" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1" role="application" style="visibility: hidden; border-width: 1px;"><div id="mceu_15-body" class="mce-container-body mce-stack-layout"><div id="mceu_16" class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first" hidefocus="1" tabindex="-1" role="group"><div id="mceu_16-body" class="mce-container-body mce-stack-layout"><div id="mceu_17" class="mce-container mce-toolbar mce-stack-layout-item mce-first mce-last" role="toolbar"><div id="mceu_17-body" class="mce-container-body mce-flow-layout"><div id="mceu_18" class="mce-container mce-flow-layout-item mce-first mce-last mce-btn-group" role="group"><div id="mceu_18-body"><div id="mceu_0" class="mce-widget mce-btn mce-first" tabindex="-1" aria-labelledby="mceu_0" role="button" aria-label="Bold"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bold"></i></button></div><div id="mceu_1" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_1" role="button" aria-label="Italic"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-italic"></i></button></div><div id="mceu_2" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_2" role="button" aria-label="Underline"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-underline"></i></button></div><div id="mceu_3" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_3" role="button" aria-label="Blockquote"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-blockquote"></i></button></div><div id="mceu_4" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_4" role="button" aria-label="Strikethrough"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-strikethrough"></i></button></div><div id="mceu_5" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_5" role="button" aria-label="Bullet list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bullist"></i></button></div><div id="mceu_6" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_6" role="button" aria-label="Numbered list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-numlist"></i></button></div><div id="mceu_7" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_7" role="button" aria-label="Align left"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignleft"></i></button></div><div id="mceu_8" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_8" role="button" aria-label="Align center"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-aligncenter"></i></button></div><div id="mceu_9" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_9" role="button" aria-label="Align right"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignright"></i></button></div><div id="mceu_10" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_10" role="button" aria-label="Undo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-undo"></i></button></div><div id="mceu_11" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_11" role="button" aria-label="Redo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-redo"></i></button></div><div id="mceu_12" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_12" role="button" aria-label="Insert/edit link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-link"></i></button></div><div id="mceu_13" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_13" role="button" aria-label="Remove link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-unlink"></i></button></div><div id="mceu_14" class="mce-widget mce-btn mce-last" tabindex="-1" aria-labelledby="mceu_14" role="button" aria-label="Fullscreen"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-fullscreen"></i></button></div></div></div></div></div></div></div><div id="mceu_19" class="mce-edit-area mce-container mce-panel mce-stack-layout-item" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><iframe id="schedule_message_ifr" frameborder="0" allowtransparency="true" title="Rich Text Area. Press Alt-Shift-H for help." src='javascript:""' style="width: 100%; height: 300px; display: block;"></iframe></div><div id="mceu_20" class="mce-statusbar mce-container mce-panel mce-stack-layout-item mce-last" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><div id="mceu_20-body" class="mce-container-body mce-flow-layout"><div id="mceu_21" class="mce-path mce-flow-layout-item mce-first"><div role="button" class="mce-path-item mce-last" data-index="0" tabindex="-1" id="mceu_21-0" aria-level="0">p</div></div><div id="mceu_22" class="mce-flow-layout-item mce-last mce-resizehandle"><i class="mce-ico mce-i-resize"></i></div></div></div></div></div><textarea class="schedule_message wp-editor-area" style="height: 300px; display: none;" autocomplete="off" cols="40" name="schedule_message" id="schedule_message" aria-hidden="true">&lt;span style="color: #5d5955; font-family: 'Open Sans', Arial, Helvetica, sans-serif;"&gt;&lt;span style="font-size: 14px; line-height: 20px;"&gt;Consectetur adipisicing&nbsp;elit sed do eiusmod tempor incididunt ut &lt;a href="http://canhosunwahpearl.vn"&gt;sunwah pearl&lt;/a&gt; labore et dolore magna aliqua enim ad minim veniam, &lt;strong&gt;Dr. Jhon Doe&lt;/strong&gt; nostrud alitaia exercitation ullamco&lt;strong&gt; Invisalign (invisable braces)&lt;/strong&gt; dolor in reprehenderit.&lt;/span&gt;&lt;/span&gt;</textarea></div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointment-cancelled  booking-email-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Thank You Message</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p>It will be shown on booking completion.</p>
+                                            </div>
+                                            <div class="email-contents">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div id="wp-thank_you-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                                                <div id="wp-thank_you-editor-tools" class="wp-editor-tools hide-if-no-js">
+                                                                    <div class="wp-editor-tabs">
+                                                                        <button type="button" id="thank_you-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="thank_you">Visual</button>
+                                                                        <button type="button" id="thank_you-html" class="wp-switch-editor switch-html" data-wp-editor-id="thank_you">Text</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="wp-thank_you-editor-container" class="wp-editor-container"><div id="qt_thank_you_toolbar" class="quicktags-toolbar"><input type="button" id="qt_thank_you_strong" class="ed_button button button-small" aria-label="Bold" value="b"><input type="button" id="qt_thank_you_em" class="ed_button button button-small" aria-label="Italic" value="i"><input type="button" id="qt_thank_you_link" class="ed_button button button-small" aria-label="Insert link" value="link"><input type="button" id="qt_thank_you_block" class="ed_button button button-small" aria-label="Blockquote" value="b-quote"><input type="button" id="qt_thank_you_del" class="ed_button button button-small" aria-label="Deleted text (strikethrough)" value="del"><input type="button" id="qt_thank_you_ins" class="ed_button button button-small" aria-label="Inserted text" value="ins"><input type="button" id="qt_thank_you_img" class="ed_button button button-small" aria-label="Insert image" value="img"><input type="button" id="qt_thank_you_ul" class="ed_button button button-small" aria-label="Bulleted list" value="ul"><input type="button" id="qt_thank_you_ol" class="ed_button button button-small" aria-label="Numbered list" value="ol"><input type="button" id="qt_thank_you_li" class="ed_button button button-small" aria-label="List item" value="li"><input type="button" id="qt_thank_you_code" class="ed_button button button-small" aria-label="Code" value="code"><input type="button" id="qt_thank_you_more" class="ed_button button button-small" aria-label="Insert Read More tag" value="more"><input type="button" id="qt_thank_you_close" class="ed_button button button-small" title="Close all open tags" value="close tags"></div><div id="mceu_59" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1" role="application" style="visibility: hidden; border-width: 1px;"><div id="mceu_59-body" class="mce-container-body mce-stack-layout"><div id="mceu_60" class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first" hidefocus="1" tabindex="-1" role="group"><div id="mceu_60-body" class="mce-container-body mce-stack-layout"><div id="mceu_61" class="mce-container mce-toolbar mce-stack-layout-item mce-first mce-last" role="toolbar"><div id="mceu_61-body" class="mce-container-body mce-flow-layout"><div id="mceu_62" class="mce-container mce-flow-layout-item mce-first mce-last mce-btn-group" role="group"><div id="mceu_62-body"><div id="mceu_44" class="mce-widget mce-btn mce-first" tabindex="-1" aria-labelledby="mceu_44" role="button" aria-label="Bold"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bold"></i></button></div><div id="mceu_45" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_45" role="button" aria-label="Italic"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-italic"></i></button></div><div id="mceu_46" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_46" role="button" aria-label="Underline"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-underline"></i></button></div><div id="mceu_47" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_47" role="button" aria-label="Blockquote"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-blockquote"></i></button></div><div id="mceu_48" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_48" role="button" aria-label="Strikethrough"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-strikethrough"></i></button></div><div id="mceu_49" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_49" role="button" aria-label="Bullet list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bullist"></i></button></div><div id="mceu_50" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_50" role="button" aria-label="Numbered list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-numlist"></i></button></div><div id="mceu_51" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_51" role="button" aria-label="Align left"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignleft"></i></button></div><div id="mceu_52" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_52" role="button" aria-label="Align center"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-aligncenter"></i></button></div><div id="mceu_53" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_53" role="button" aria-label="Align right"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignright"></i></button></div><div id="mceu_54" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_54" role="button" aria-label="Undo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-undo"></i></button></div><div id="mceu_55" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_55" role="button" aria-label="Redo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-redo"></i></button></div><div id="mceu_56" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_56" role="button" aria-label="Insert/edit link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-link"></i></button></div><div id="mceu_57" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_57" role="button" aria-label="Remove link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-unlink"></i></button></div><div id="mceu_58" class="mce-widget mce-btn mce-last" tabindex="-1" aria-labelledby="mceu_58" role="button" aria-label="Fullscreen"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-fullscreen"></i></button></div></div></div></div></div></div></div><div id="mceu_63" class="mce-edit-area mce-container mce-panel mce-stack-layout-item" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><iframe id="thank_you_ifr" frameborder="0" allowtransparency="true" title="Rich Text Area. Press Alt-Shift-H for help." src='javascript:""' style="width: 100%; height: 300px; display: block;"></iframe></div><div id="mceu_64" class="mce-statusbar mce-container mce-panel mce-stack-layout-item mce-last" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><div id="mceu_64-body" class="mce-container-body mce-flow-layout"><div id="mceu_65" class="mce-path mce-flow-layout-item mce-first"><div role="button" class="mce-path-item mce-last" data-index="0" tabindex="-1" id="mceu_65-0" aria-level="0">p</div></div><div id="mceu_66" class="mce-flow-layout-item mce-last mce-resizehandle"><i class="mce-ico mce-i-resize"></i></div></div></div></div></div><textarea class="thank_you wp-editor-area" style="height: 300px; display: none;" autocomplete="off" cols="40" name="thank_you" id="thank_you" aria-hidden="true">Thank you very much for your appointment. We have received your appointment and soon we will let you know regarding your appointment. You will receive a phone call or email regarding to your booking.</textarea></div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tg-formsection">
+                                <div class="email-settings-tabs">
+                                    <div class="tg-heading-border tg-small">
+                                        <h3>Email Settings</h3>
+                                    </div>
+                                    <div class="email-logo tg-editimg booking-email-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Upload your email logo</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <figure class="tg-docimg">
+                                                <span class="user-email"><img width="150" src="https://themographics.com/wordpress/docdirect/wp-includes/images/media/default.png" alt="Avatar"></span>
+                                                <a href="javascript:;" class="tg-deleteimg del-email"><i class="fa fa-plus"></i></a>
+                                                <a href="javascript:;" id="upload-email" class="tg-uploadimg upload-email" style="z-index: 3;"><i class="fa fa-upload"></i></a>
+                                                <div id="plupload-container" style="position: relative;"><div id="html5_1b52hhmfu5t71j3i6ss4hpogk5_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; overflow: hidden; z-index: 2;"><input id="html5_1b52hhmfu5t71j3i6ss4hpogk5" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" accept="image/jpeg,.jpg,.jpeg,image/gif,.gif,image/png,.png"></div></div>
+                                            </figure>
+                                            <div class="tg-instructions">
+                                                <p><strong>Note:</strong>&nbsp;-- Please upload your brand logo for email, otherwise logo will be skipped.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointment-email booking-email-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Booking Confirmation</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p><strong>%customer_name%</strong>&nbsp;-- To display customer name</p>
+                                                <p><strong>%service%</strong>&nbsp;-- To display appointment service</p>
+
+                                                <p><strong>%logo%</strong>&nbsp;-- Logo</p>
+                                            </div>
+                                            <div class="email-contents">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <input type="text" name="confirmation_title" value="Your Appointment Confirmation">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div id="wp-booking_confirmed-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                                                <div id="wp-booking_confirmed-editor-container" class="wp-editor-container">
+                                                                    <div id="mceu_103" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1" role="application" style="visibility: hidden; border-width: 1px;"><div id="mceu_103-body" class="mce-container-body mce-stack-layout"><div id="mceu_104" class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first" hidefocus="1" tabindex="-1" role="group"><div id="mceu_104-body" class="mce-container-body mce-stack-layout"><div id="mceu_105" class="mce-container mce-toolbar mce-stack-layout-item mce-first mce-last" role="toolbar"><div id="mceu_105-body" class="mce-container-body mce-flow-layout"><div id="mceu_106" class="mce-container mce-flow-layout-item mce-first mce-last mce-btn-group" role="group"><div id="mceu_106-body"><div id="mceu_88" class="mce-widget mce-btn mce-first" tabindex="-1" aria-labelledby="mceu_88" role="button" aria-label="Bold"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bold"></i></button></div><div id="mceu_89" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_89" role="button" aria-label="Italic"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-italic"></i></button></div><div id="mceu_90" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_90" role="button" aria-label="Underline"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-underline"></i></button></div><div id="mceu_91" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_91" role="button" aria-label="Blockquote"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-blockquote"></i></button></div><div id="mceu_92" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_92" role="button" aria-label="Strikethrough"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-strikethrough"></i></button></div><div id="mceu_93" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_93" role="button" aria-label="Bullet list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bullist"></i></button></div><div id="mceu_94" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_94" role="button" aria-label="Numbered list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-numlist"></i></button></div><div id="mceu_95" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_95" role="button" aria-label="Align left"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignleft"></i></button></div><div id="mceu_96" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_96" role="button" aria-label="Align center"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-aligncenter"></i></button></div><div id="mceu_97" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_97" role="button" aria-label="Align right"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignright"></i></button></div><div id="mceu_98" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_98" role="button" aria-label="Undo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-undo"></i></button></div><div id="mceu_99" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_99" role="button" aria-label="Redo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-redo"></i></button></div><div id="mceu_100" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_100" role="button" aria-label="Insert/edit link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-link"></i></button></div><div id="mceu_101" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_101" role="button" aria-label="Remove link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-unlink"></i></button></div><div id="mceu_102" class="mce-widget mce-btn mce-last" tabindex="-1" aria-labelledby="mceu_102" role="button" aria-label="Fullscreen"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-fullscreen"></i></button></div></div></div></div></div></div></div><div id="mceu_107" class="mce-edit-area mce-container mce-panel mce-stack-layout-item" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><iframe id="booking_confirmed_ifr" frameborder="0" allowtransparency="true" title="Rich Text Area. Press Alt-Shift-H for help." src='javascript:""' style="width: 100%; height: 300px; display: block;"></iframe></div><div id="mceu_108" class="mce-statusbar mce-container mce-panel mce-stack-layout-item mce-last" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><div id="mceu_108-body" class="mce-container-body mce-flow-layout"><div id="mceu_109" class="mce-path mce-flow-layout-item mce-first"><div role="button" class="mce-path-item mce-last" data-index="0" tabindex="-1" id="mceu_109-0" aria-level="0">p</div></div><div id="mceu_110" class="mce-flow-layout-item mce-last mce-resizehandle"><i class="mce-ico mce-i-resize"></i></div></div></div></div></div><textarea class="booking_confirmed wp-editor-area" style="height: 300px; display: none;" autocomplete="off" cols="40" name="booking_confirmed" id="booking_confirmed" aria-hidden="true">
+                                                                        Hey %customer_name%!
+
+                                                                        This is confirmation that you have booked "%service%"
+                                                                        We will let you know regarding your booking soon.
+
+                                                                        Thank you for choosing our company.
+
+                                                                        Sincerely,
+                                                                        DocDirect Team
+                                                                        %logo%
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointment-cancelled booking-email-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Booking Cancelled</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p><strong>%customer_name%</strong>&nbsp;-- To display customer name</p>
+                                                <p><strong>%service%</strong>&nbsp;-- To display appointment service</p>
+
+                                                <p><strong>%logo%</strong>&nbsp;-- Logo</p>
+                                            </div>
+                                            <div class="email-contents">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <input type="text" name="cancelled_title" value="Your Appointment Cancelled">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div id="wp-booking_cancelled-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                                                <div id="wp-booking_cancelled-editor-container" class="wp-editor-container">
+                                                                    <div id="mceu_147" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1" role="application" style="visibility: hidden; border-width: 1px;"><div id="mceu_147-body" class="mce-container-body mce-stack-layout"><div id="mceu_148" class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first" hidefocus="1" tabindex="-1" role="group"><div id="mceu_148-body" class="mce-container-body mce-stack-layout"><div id="mceu_149" class="mce-container mce-toolbar mce-stack-layout-item mce-first mce-last" role="toolbar"><div id="mceu_149-body" class="mce-container-body mce-flow-layout"><div id="mceu_150" class="mce-container mce-flow-layout-item mce-first mce-last mce-btn-group" role="group"><div id="mceu_150-body"><div id="mceu_132" class="mce-widget mce-btn mce-first" tabindex="-1" aria-labelledby="mceu_132" role="button" aria-label="Bold"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bold"></i></button></div><div id="mceu_133" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_133" role="button" aria-label="Italic"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-italic"></i></button></div><div id="mceu_134" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_134" role="button" aria-label="Underline"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-underline"></i></button></div><div id="mceu_135" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_135" role="button" aria-label="Blockquote"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-blockquote"></i></button></div><div id="mceu_136" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_136" role="button" aria-label="Strikethrough"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-strikethrough"></i></button></div><div id="mceu_137" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_137" role="button" aria-label="Bullet list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bullist"></i></button></div><div id="mceu_138" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_138" role="button" aria-label="Numbered list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-numlist"></i></button></div><div id="mceu_139" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_139" role="button" aria-label="Align left"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignleft"></i></button></div><div id="mceu_140" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_140" role="button" aria-label="Align center"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-aligncenter"></i></button></div><div id="mceu_141" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_141" role="button" aria-label="Align right"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignright"></i></button></div><div id="mceu_142" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_142" role="button" aria-label="Undo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-undo"></i></button></div><div id="mceu_143" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_143" role="button" aria-label="Redo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-redo"></i></button></div><div id="mceu_144" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_144" role="button" aria-label="Insert/edit link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-link"></i></button></div><div id="mceu_145" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_145" role="button" aria-label="Remove link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-unlink"></i></button></div><div id="mceu_146" class="mce-widget mce-btn mce-last" tabindex="-1" aria-labelledby="mceu_146" role="button" aria-label="Fullscreen"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-fullscreen"></i></button></div></div></div></div></div></div></div><div id="mceu_151" class="mce-edit-area mce-container mce-panel mce-stack-layout-item" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><iframe id="booking_cancelled_ifr" frameborder="0" allowtransparency="true" title="Rich Text Area. Press Alt-Shift-H for help." src='javascript:""' style="width: 100%; height: 300px; display: block;"></iframe></div><div id="mceu_152" class="mce-statusbar mce-container mce-panel mce-stack-layout-item mce-last" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><div id="mceu_152-body" class="mce-container-body mce-flow-layout"><div id="mceu_153" class="mce-path mce-flow-layout-item mce-first"><div role="button" class="mce-path-item mce-last" data-index="0" tabindex="-1" id="mceu_153-0" aria-level="0">p</div></div><div id="mceu_154" class="mce-flow-layout-item mce-last mce-resizehandle"><i class="mce-ico mce-i-resize"></i></div></div></div></div></div><textarea class="booking_cancelled wp-editor-area" style="height: 300px; display: none;" autocomplete="off" cols="40" name="booking_cancelled" id="booking_cancelled" aria-hidden="true">
+                                                                        Hey %customer_name%!
+
+                                                                        This is confirmation that your booking regarding "%service%" has cancelled.
+
+                                                                        We are very sorry to process your booking right now.
+
+                                                                        Sincerely,
+                                                                        DocDirect Team
+                                                                        %logo%
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointment-cancelled  booking-email-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Booking Approved</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p><strong>%customer_name%</strong>&nbsp;-- To display customer name</p>
+                                                <p><strong>%service%</strong>&nbsp;-- To display appointment service</p>
+                                                <p><strong>%address%</strong>&nbsp;-- Your company/individual address.</p>
+                                                <p><strong>%appointment_date%</strong>&nbsp;-- Appointment Date</p>
+                                                <p><strong>%appointment_time%</strong>&nbsp;-- Appointment Time</p>
+                                                <p><strong>%logo%</strong>&nbsp;-- Logo</p>
+                                            </div>
+                                            <div class="email-contents">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <input type="text" name="approved_title" value="Hello %customer_name%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div id="wp-booking_approved-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+                                                                <div id="wp-booking_approved-editor-tools" class="wp-editor-tools hide-if-no-js">
+                                                                    <div class="wp-editor-tabs">
+                                                                        <button type="button" id="booking_approved-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="booking_approved">Visual</button>
+                                                                        <button type="button" id="booking_approved-html" class="wp-switch-editor switch-html" data-wp-editor-id="booking_approved">Text</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="wp-booking_approved-editor-container" class="wp-editor-container">
+                                                                    <div id="qt_booking_approved_toolbar" class="quicktags-toolbar"><input type="button" id="qt_booking_approved_strong" class="ed_button button button-small" aria-label="Bold" value="b"><input type="button" id="qt_booking_approved_em" class="ed_button button button-small" aria-label="Italic" value="i"><input type="button" id="qt_booking_approved_link" class="ed_button button button-small" aria-label="Insert link" value="link"><input type="button" id="qt_booking_approved_block" class="ed_button button button-small" aria-label="Blockquote" value="b-quote"><input type="button" id="qt_booking_approved_del" class="ed_button button button-small" aria-label="Deleted text (strikethrough)" value="del"><input type="button" id="qt_booking_approved_ins" class="ed_button button button-small" aria-label="Inserted text" value="ins"><input type="button" id="qt_booking_approved_img" class="ed_button button button-small" aria-label="Insert image" value="img"><input type="button" id="qt_booking_approved_ul" class="ed_button button button-small" aria-label="Bulleted list" value="ul"><input type="button" id="qt_booking_approved_ol" class="ed_button button button-small" aria-label="Numbered list" value="ol"><input type="button" id="qt_booking_approved_li" class="ed_button button button-small" aria-label="List item" value="li"><input type="button" id="qt_booking_approved_code" class="ed_button button button-small" aria-label="Code" value="code"><input type="button" id="qt_booking_approved_more" class="ed_button button button-small" aria-label="Insert Read More tag" value="more"><input type="button" id="qt_booking_approved_close" class="ed_button button button-small" title="Close all open tags" value="close tags"></div><div id="mceu_191" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1" role="application" style="visibility: hidden; border-width: 1px;"><div id="mceu_191-body" class="mce-container-body mce-stack-layout"><div id="mceu_192" class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first" hidefocus="1" tabindex="-1" role="group"><div id="mceu_192-body" class="mce-container-body mce-stack-layout"><div id="mceu_193" class="mce-container mce-toolbar mce-stack-layout-item mce-first mce-last" role="toolbar"><div id="mceu_193-body" class="mce-container-body mce-flow-layout"><div id="mceu_194" class="mce-container mce-flow-layout-item mce-first mce-last mce-btn-group" role="group"><div id="mceu_194-body"><div id="mceu_176" class="mce-widget mce-btn mce-first" tabindex="-1" aria-labelledby="mceu_176" role="button" aria-label="Bold"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bold"></i></button></div><div id="mceu_177" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_177" role="button" aria-label="Italic"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-italic"></i></button></div><div id="mceu_178" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_178" role="button" aria-label="Underline"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-underline"></i></button></div><div id="mceu_179" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_179" role="button" aria-label="Blockquote"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-blockquote"></i></button></div><div id="mceu_180" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_180" role="button" aria-label="Strikethrough"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-strikethrough"></i></button></div><div id="mceu_181" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_181" role="button" aria-label="Bullet list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bullist"></i></button></div><div id="mceu_182" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_182" role="button" aria-label="Numbered list"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-numlist"></i></button></div><div id="mceu_183" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_183" role="button" aria-label="Align left"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignleft"></i></button></div><div id="mceu_184" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_184" role="button" aria-label="Align center"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-aligncenter"></i></button></div><div id="mceu_185" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_185" role="button" aria-label="Align right"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-alignright"></i></button></div><div id="mceu_186" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_186" role="button" aria-label="Undo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-undo"></i></button></div><div id="mceu_187" class="mce-widget mce-btn mce-disabled" tabindex="-1" aria-labelledby="mceu_187" role="button" aria-label="Redo" aria-disabled="true"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-redo"></i></button></div><div id="mceu_188" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_188" role="button" aria-label="Insert/edit link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-link"></i></button></div><div id="mceu_189" class="mce-widget mce-btn" tabindex="-1" aria-labelledby="mceu_189" role="button" aria-label="Remove link"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-unlink"></i></button></div><div id="mceu_190" class="mce-widget mce-btn mce-last" tabindex="-1" aria-labelledby="mceu_190" role="button" aria-label="Fullscreen"><button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-fullscreen"></i></button></div></div></div></div></div></div></div><div id="mceu_195" class="mce-edit-area mce-container mce-panel mce-stack-layout-item" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><iframe id="booking_approved_ifr" frameborder="0" allowtransparency="true" title="Rich Text Area. Press Alt-Shift-H for help." src='javascript:""' style="width: 100%; height: 300px; display: block;"></iframe></div><div id="mceu_196" class="mce-statusbar mce-container mce-panel mce-stack-layout-item mce-last" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><div id="mceu_196-body" class="mce-container-body mce-flow-layout"><div id="mceu_197" class="mce-path mce-flow-layout-item mce-first"><div role="button" class="mce-path-item mce-last" data-index="0" tabindex="-1" id="mceu_197-0" aria-level="0">p</div></div><div id="mceu_198" class="mce-flow-layout-item mce-last mce-resizehandle"><i class="mce-ico mce-i-resize"></i></div></div></div></div></div><textarea class="booking_approved wp-editor-area" style="height: 300px; display: none;" autocomplete="off" cols="40" name="booking_approved" id="booking_approved" aria-hidden="true">
+                                                                        Hey %customer_name%!
+
+                                                                        This is confirmation that your booking regarding "%service%" has approved.
+
+                                                                        We are waiting you at "%address%" on %appointment_date% at %appointment_time%.
+
+                                                                        Sincerely,
+                                                                        DocDirect Team
+                                                                        %logo%
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tg-formsection">
+                                <div class="email-settings-tabs">
+                                    <div class="tg-heading-border tg-small">
+                                        <h3>Currency Settings</h3>
+                                    </div>
+                                    <div class="booking-email-wrap booking-currency-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Set Currency</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p>It will be used in booking payment methods.</p>
+                                            </div>
+                                            <div class="email-contents">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <select name="currency" class="chosen-select currency_symbol" style="display: none;">
+                                                                <option value="">Select Currency</option>
+                                                                <option value="USD">United States dollar-USD</option>
+                                                                <option value="AED">United Arab Emirates dirham-AED</option>
+                                                                <option value="AFN">Afghan afghani-AFN</option>
+                                                                <option value="ALL">Albanian lek-ALL</option>
+                                                                <option value="AMD">Armenian dram-AMD</option>
+                                                                <option value="ANG">Netherlands Antillean guilder-ANG</option>
+                                                                <option value="AOA">Angolan kwanza-AOA</option>
+                                                                <option value="ARS">Argentine peso-ARS</option>
+                                                                <option value="AUD">Australian dollar-AUD</option>
+                                                                <option value="AWG">Aruban florin-AWG</option>
+                                                                <option value="AZN">Azerbaijani manat-AZN</option>
+                                                                <option value="BAM">Bosnia and Herzegovina convertible mark-BAM</option>
+                                                                <option value="BBD">Barbadian dollar-BBD</option>
+                                                                <option value="BDT">Bangladeshi taka-BDT</option>
+                                                                <option value="BGN">Bulgarian lev-BGN</option>
+                                                                <option value="BHD">Bahraini dinar-BHD</option>
+                                                                <option value="BIF">Burundian franc-BIF</option>
+                                                                <option value="BMD">Bermudian dollar-BMD</option>
+                                                                <option value="BND">Brunei dollar-BND</option>
+                                                                <option value="BOB">Bolivian boliviano-BOB</option>
+                                                                <option value="BRL">Brazilian real-BRL</option>
+                                                                <option value="BSD">Bahamian dollar-BSD</option>
+                                                                <option value="BTN">Bhutanese ngultrum-BTN</option>
+                                                                <option value="BWP">Botswana pula-BWP</option>
+                                                                <option value="BYR">Belarusian ruble-BYR</option>
+                                                                <option value="BZD">Belize dollar-BZD</option>
+                                                                <option value="CAD">Canadian dollar-CAD</option>
+                                                                <option value="CDF">Congolese franc-CDF</option>
+                                                                <option value="CHF">Swiss franc-CHF</option>
+                                                                <option value="CLP">Chilean peso-CLP</option>
+                                                                <option value="CNY">Chinese yuan-CNY</option>
+                                                                <option value="COP">Colombian peso-COP</option>
+                                                                <option value="CRC">Costa Rican colón-CRC</option>
+                                                                <option value="CUC">Cuban convertible peso-CUC</option>
+                                                                <option value="CUP">Cuban peso-CUP</option>
+                                                                <option value="CVE">Cape Verdean escudo-CVE</option>
+                                                                <option value="CZK">Czech koruna-CZK</option>
+                                                                <option value="DJF">Djiboutian franc-DJF</option>
+                                                                <option value="DKK">Danish krone-DKK</option>
+                                                                <option value="DOP">Dominican peso-DOP</option>
+                                                                <option value="DZD">Algerian dinar-DZD</option>
+                                                                <option value="EEK">Estonian kroon-EEK</option>
+                                                                <option value="EGP">Egyptian pound-EGP</option>
+                                                                <option value="ERN">Eritrean nakfa-ERN</option>
+                                                                <option value="ETB">Ethiopian birr-ETB</option>
+                                                                <option value="EUR">Euro-EUR</option>
+                                                                <option value="FJD">Fijian dollar-FJD</option>
+                                                                <option value="FKP">Falkland Islands pound-FKP</option>
+                                                                <option value="GBP">British pound[C]-GBP</option>
+                                                                <option value="GEL">Georgian lari-GEL</option>
+                                                                <option value="GHS">Ghanaian cedi-GHS</option>
+                                                                <option value="GIP">Gibraltar pound-GIP</option>
+                                                                <option value="GMD">Gambian dalasi-GMD</option>
+                                                                <option value="GNF">Guinean franc-GNF</option>
+                                                                <option value="GTQ">Guatemalan quetzal-GTQ</option>
+                                                                <option value="GYD">Guyanese dollar-GYD</option>
+                                                                <option value="HKD">Hong Kong dollar-HKD</option>
+                                                                <option value="HNL">Honduran lempira-HNL</option>
+                                                                <option value="HRK">Croatian kuna-HRK</option>
+                                                                <option value="HTG">Haitian gourde-HTG</option>
+                                                                <option value="HUF">Hungarian forint-HUF</option>
+                                                                <option value="IDR">Indonesian rupiah-IDR</option>
+                                                                <option value="ILS">Israeli new sheqel-ILS</option>
+                                                                <option selected="" value="INR">Indian rupee-INR</option>
+                                                                <option value="IQD">Iraqi dinar-IQD</option>
+                                                                <option value="IRR">Iranian rial-IRR</option>
+                                                                <option value="ISK">Icelandic króna-ISK</option>
+                                                                <option value="JMD">Jamaican dollar-JMD</option>
+                                                                <option value="JOD">Jordanian dinar-JOD</option>
+                                                                <option value="JPY">Japanese yen-JPY</option>
+                                                                <option value="KES">Kenyan shilling-KES</option>
+                                                                <option value="KGS">Kyrgyzstani som-KGS</option>
+                                                                <option value="KHR">Cambodian riel-KHR</option>
+                                                                <option value="KMF">Comorian franc-KMF</option>
+                                                                <option value="KPW">North Korean won-KPW</option>
+                                                                <option value="KRW">South Korean won-KRW</option>
+                                                                <option value="KWD">Kuwaiti dinar-KWD</option>
+                                                                <option value="KYD">Cayman Islands dollar-KYD</option>
+                                                                <option value="KZT">Kazakhstani tenge-KZT</option>
+                                                                <option value="LAK">Lao kip-LAK</option>
+                                                                <option value="LBP">Lebanese pound-LBP</option>
+                                                                <option value="LKR">Sri Lankan rupee-LKR</option>
+                                                                <option value="LRD">Liberian dollar-LRD</option>
+                                                                <option value="LSL">Lesotho loti-LSL</option>
+                                                                <option value="LTL">Lithuanian litas-LTL</option>
+                                                                <option value="LVL">Latvian lats-LVL</option>
+                                                                <option value="LYD">Libyan dinar-LYD</option>
+                                                                <option value="MAD">Moroccan dirham-MAD</option>
+                                                                <option value="MDL">Moldovan leu-MDL</option>
+                                                                <option value="MGA">Malagasy ariary-MGA</option>
+                                                                <option value="MKD">Macedonian denar-MKD</option>
+                                                                <option value="MMK">Myanma kyat-MMK</option>
+                                                                <option value="MNT">Mongolian tögrög-MNT</option>
+                                                                <option value="MOP">Macanese pataca-MOP</option>
+                                                                <option value="MRO">Mauritanian ouguiya-MRO</option>
+                                                                <option value="MUR">Mauritian rupee-MUR</option>
+                                                                <option value="MVR">Maldivian rufiyaa-MVR</option>
+                                                                <option value="MWK">Malawian kwacha-MWK</option>
+                                                                <option value="MXN">Mexican peso-MXN</option>
+                                                                <option value="MYR">Malaysian ringgit-MYR</option>
+                                                                <option value="MZN">Mozambican metical-MZN</option>
+                                                                <option value="NAD">Namibian dollar-NAD</option>
+                                                                <option value="NGN">Nigerian naira-NGN</option>
+                                                                <option value="NIO">Nicaraguan córdoba-NIO</option>
+                                                                <option value="NOK">Norwegian krone-NOK</option>
+                                                                <option value="NPR">Nepalese rupee-NPR</option>
+                                                                <option value="NZD">New Zealand dollar-NZD</option>
+                                                                <option value="OMR">Omani rial-OMR</option>
+                                                                <option value="PAB">Panamanian balboa-PAB</option>
+                                                                <option value="PEN">Peruvian nuevo sol-PEN</option>
+                                                                <option value="PGK">Papua New Guinean kina-PGK</option>
+                                                                <option value="PHP">Philippine peso-PHP</option>
+                                                                <option value="PKR">Pakistani rupee-PKR</option>
+                                                                <option value="PLN">Polish złoty-PLN</option>
+                                                                <option value="PYG">Paraguayan guaraní-PYG</option>
+                                                                <option value="QAR">Qatari riyal-QAR</option>
+                                                                <option value="RON">Romanian leu-RON</option>
+                                                                <option value="RSD">Serbian dinar-RSD</option>
+                                                                <option value="RUB">Russian ruble-RUB</option>
+                                                                <option value="RWF">Rwandan franc-RWF</option>
+                                                                <option value="SAR">Saudi riyal-SAR</option>
+                                                                <option value="SBD">Solomon Islands dollar-SBD</option>
+                                                                <option value="SCR">Seychellois rupee-SCR</option>
+                                                                <option value="SDG">Sudanese pound-SDG</option>
+                                                                <option value="SEK">Swedish krona-SEK</option>
+                                                                <option value="SGD">Singapore dollar-SGD</option>
+                                                                <option value="SHP">Saint Helena pound-SHP</option>
+                                                                <option value="SLL">Sierra Leonean leone-SLL</option>
+                                                                <option value="SOS">Somali shilling-SOS</option>
+                                                                <option value="SRD">Surinamese dollar-SRD</option>
+                                                                <option value="STD">São Tomé and Príncipe dobra-STD</option>
+                                                                <option value="SVC">Salvadoran colón-SVC</option>
+                                                                <option value="SYP">Syrian pound-SYP</option>
+                                                                <option value="SZL">Swazi lilangeni-SZL</option>
+                                                                <option value="THB">Thai baht-THB</option>
+                                                                <option value="TJS">Tajikistani somoni-TJS</option>
+                                                                <option value="TMM">Turkmenistani manat-TMM</option>
+                                                                <option value="TND">Tunisian dinar-TND</option>
+                                                                <option value="TOP">Tongan paʻanga-TOP</option>
+                                                                <option value="TRY">Turkish lira-TRY</option>
+                                                                <option value="TTD">Trinidad and Tobago dollar-TTD</option>
+                                                                <option value="TWD">New Taiwan dollar-TWD</option>
+                                                                <option value="TZS">Tanzanian shilling-TZS</option>
+                                                                <option value="UAH">Ukrainian hryvnia-UAH</option>
+                                                                <option value="UGX">Ugandan shilling-UGX</option>
+                                                                <option value="UYU">Uruguayan peso-UYU</option>
+                                                                <option value="UZS">Uzbekistani som-UZS</option>
+                                                                <option value="VEF">Venezuelan bolívar-VEF</option>
+                                                                <option value="VND">Vietnamese dong-VND</option>
+                                                                <option value="VUV">Vanuatu vatu-VUV</option>
+                                                                <option value="WST">Samoan tala-WST</option>
+                                                                <option value="XAF">Central African CFA franc-XAF</option>
+                                                                <option value="XCD">East Caribbean dollar-XCD</option>
+                                                                <option value="XOF">West African CFA franc-XOF</option>
+                                                                <option value="XPF">CFP franc-XPF</option>
+                                                                <option value="YER">Yemeni rial-YER</option>
+                                                                <option value="ZAR">South African rand-ZAR</option>
+                                                                <option value="ZMK">Zambian kwacha-ZMK</option>
+                                                                <option value="ZWR">Zimbabwean dollar-ZWR</option>
+                                                            </select><div class="chosen-container chosen-container-single" style="width: 0px;" title=""><a class="chosen-single"><span>Indian rupee-INR</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <input type="text" class="currency_symbol" name="currency_symbol" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tg-formsection">
+                                <div class="email-settings-tabs">
+                                    <div class="tg-heading-border tg-small">
+                                        <h3>Payment Settings</h3>
+                                    </div>
+                                    <div class="booking-email-wrap booking-currency-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>PayPal Settings</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p>It will be used in booking payment methods.</p>
+                                            </div>
+                                            <div class="email-contents tg-form-privacy">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="tg-paypal-gateway">
+                                                                <div class="tg-iosstylcheckbox">
+                                                                    <input type="hidden" name="paypal_enable">
+                                                                    <input type="checkbox" name="paypal_enable" id="tg-paypal_enable">
+                                                                    <label for="tg-paypal_enable" class="checkbox-label" data-private="Disable" data-public="Enable"></label>
+                                                                </div>
+                                                                <span class="tg-privacy-name">PayPal</span>
+                                                                <p>Please enable PayPal gateway for booking payments.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <span class="tg-privacy-name">
+                                                                Paypal Business Email
+                                                            </span>
+                                                            <input type="text" placeholder="Paypal Business Email
+    " class="paypal_email_id" name="paypal_email_id" value="wordpress@themographics.com">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-email-wrap booking-currency-wrap">
+                                        <div class="tg-small doc-tab-link">
+                                            <h3>Stripe( Credit Cards ) Settings</h3>
+                                        </div>
+                                        <div class="tab-data">
+                                            <div class="email-params">
+                                                <p>It will be used in booking payment methods.</p>
+                                            </div>
+                                            <div class="email-contents tg-form-privacy">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="tg-paypal-gateway">
+                                                                <div class="tg-iosstylcheckbox">
+                                                                    <input type="hidden" name="stripe_enable">
+                                                                    <input type="checkbox" name="stripe_enable" id="tg-stripe_enable">
+                                                                    <label for="tg-stripe_enable" class="checkbox-label" data-private="Disable" data-public="Enable"></label>
+                                                                </div>
+                                                                <span class="tg-privacy-name">Stripe</span>
+                                                                <p>Please enable Stripe gateway for booking payments.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <span class="tg-privacy-name">Secret Key</span>
+                                                            <input type="text" placeholder="Secret Key" class="stripe_secret" name="stripe_secret" value="sk_test_GQmHllLhCKNDNx6f0T2cIfTM">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <span class="tg-privacy-name">Publishable Key</span>
+                                                            <input type="text" placeholder="Publishable Key" class="stripe_publishable" name="stripe_publishable" value="pk_test_v9JXtjELddI4r9unGBShp8TX">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+
+                                                            <span class="tg-privacy-name">Site Name</span>
+                                                            <input type="text" placeholder="Site Name" class="stripe_site" name="stripe_site" value="DocDirect Stripe Payment">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="tg-paypal-gateway">
+                                                                <span class="tg-privacy-name">Decimals</span>
+                                                                <select name="stripe_decimal" class="stripe_decimal">
+                                                                    <option value="2" selected="">2</option>
+                                                                    <option value="0">0</option>
+                                                                </select>
+                                                                <p>
+                                                                    Please check this page: <a href="https://support.stripe.com/questions/which-zero-decimal-currencies-does-stripe-support"> DECIMAL INFO </a> <br> If your currency listed in this page please use decimal number 0
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <button type="submit" class="tg-btn update-email-settings">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></main>

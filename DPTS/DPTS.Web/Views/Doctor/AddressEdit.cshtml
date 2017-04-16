@@ -1,0 +1,29 @@
+﻿@using DPTS.Web.Models
+@model AddressViewModel
+@{
+    ViewBag.Title = "AddressEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                @using (Html.BeginForm("AddressEdit", "Doctor",
+                                new { },
+                                FormMethod.Post, new { @class = "tg-formeditprofile tg-haslayout do-account-setitngs" }))
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+
+                    @Html.Partial("_CreateUpdateAddress", Model)
+
+                    <button type="submit" class="tg-btn process-account-settings">Update</button>
+                }
+            </div>
+        </div>
+    </div>
+</main>
+
+

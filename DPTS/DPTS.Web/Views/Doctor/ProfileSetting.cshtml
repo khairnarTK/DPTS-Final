@@ -1,0 +1,957 @@
+﻿@using DPTS.Web.Extensions
+@using DPTS.Web.Helpers
+@using DPTS.Web.Models
+@model DoctorProfileSettingViewModel
+@{
+    ViewBag.Title = "Profile Setting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //css part
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.common-material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.mobile.min.css");
+
+    Html.Assets().Styles.Add("/Content/tagEditor/jquery.tag-editor.css");
+
+    //js part
+    Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/jquery.min.js");
+
+    Html.Assets().Scripts.Add("/Scripts/tagEditor/jquery.tag-editor.min.js");
+
+    Html.Assets().Scripts.Add("/Scripts/tagEditor/jquery.caret.min.js");
+    Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/kendo.all.min.js");
+
+    Html.Assets().Scripts.Add("/Scripts/jquery.ui.widget.js");
+}
+@if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+{
+    <main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+    <div class="row">
+    @Html.Partial("AccountNavigation")
+    <style>
+        .progress {
+            height: 35px;
+            margin-bottom: 0;
+        }
+        li {
+        list-style: none;
+    }
+    </style>
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+    @using (Html.BeginForm("ProfileSetting", "Doctor",
+        new {},
+        FormMethod.Post, new {@class = "tg-formeditprofile tg-haslayout do-account-setitngs"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <fieldset>
+        <div class="tg-bordertop tg-haslayout">
+            <div class="tg-formsection">
+                <div class="tg-heading-border tg-small">
+                    <h3>Specialities</h3>
+                </div>
+                <div class="row">
+                    <div class="specialities-list">
+                        <ul>
+                            @foreach (var item in Model.AvailableSpeciality)
+                            {
+                                if (item.Selected == true)
+                                {
+                                    <li>
+                                        <div class="tg-checkbox user-selection">
+                                            <div class="tg-packages active-user-type specialities-type">
+                                                <input type="checkbox" checked="" name="SelectedSpeciality" value="@item.Value" id="@item.Text">
+                                                <label for="@item.Text">@item.Text</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="tg-checkbox user-selection">
+                                            <div class="tg-packages active-user-type specialities-type">
+                                                <input type="checkbox" name="SelectedSpeciality" value="@item.Value" id="@item.Text">
+                                                <label for="@item.Text">@item.Text</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tg-bordertop tg-haslayout">
+            <div class="tg-formsection">
+                <div class="tg-heading-border tg-small">
+                    <h3>Basic Information</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName)
+                            @Html.EditorFor(model => model.FirstName, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.FirstName)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">    
+                            @Html.LabelFor(model => model.LastName)
+                            @Html.EditorFor(model => model.LastName, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.LastName)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Date Of Birth</label>
+                            @Html.DatePickerDropDowns(Html.FieldNameFor(x => x.DateOfBirthDay),
+                                Html.FieldNameFor(x => x.DateOfBirthMonth),
+                                Html.FieldNameFor(x => x.DateOfBirthYear),
+                                DateTime.Now.Year - 110,
+                                DateTime.Now.Year,
+                                Model.DateOfBirthDay,
+                                Model.DateOfBirthMonth,
+                                Model.DateOfBirthYear)
+
+                            @Html.ValidationMessageFor(model => model.DateOfBirthDay)
+                            @Html.ValidationMessageFor(model => model.DateOfBirthMonth)
+                            @Html.ValidationMessageFor(model => model.DateOfBirthYear)
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Gender)
+                            @Html.DropDownListFor(model => model.Gender, ViewBag.GenderList as IEnumerable<SelectListItem>)
+                            @Html.ValidationMessageFor(model => model.Gender)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email)
+                            @Html.EditorFor(model => model.Email, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PhoneNumber)
+                            @Html.EditorFor(model => model.PhoneNumber, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RegistrationNumber)
+                            @Html.EditorFor(model => model.RegistrationNumber, new { @class = "form-control", @palceholder = "G-56707" })
+                            @Html.ValidationMessageFor(model => model.RegistrationNumber)
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ShortProfile)
+                            @Html.TextAreaFor(model => model.ShortProfile, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.ShortProfile)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tg-bordertop tg-haslayout">
+            <div class="tg-formsection">
+                <div class="tg-heading-border tg-small">
+                    <h3>Language</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Language)
+                            @Html.EditorFor(model => model.Language, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Language)
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+            <div class="tg-bordertop tg-haslayout">
+                <div class="tg-formsection">
+                    <div class="tg-heading-border tg-small">
+                        <h3>Fee &Aacute; Availability</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ConsultationFee)
+                                @Html.EditorFor(model => model.ConsultationFee, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ConsultationFee)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IsAvailability)
+                                @Html.EditorFor(model => model.IsAvailability, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IsAvailability)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="tg-bordertop tg-haslayout">
+            <div class="tg-formsection">
+                <div class="tg-heading-border tg-small">
+                    <h3>Professional Statements</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProfessionalStatements)
+                            @Html.TextAreaFor(model => model.ProfessionalStatements, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.ProfessionalStatements)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tg-bordertop tg-haslayout">
+                <div class="tg-formsection tg-videoprofile">
+                    <div class="tg-heading-border tg-small">
+                        <h3>video link</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.VideoLink)
+                                        @Html.EditorFor(model => model.VideoLink, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.VideoLink)
+                                    </div>
+                            @*<div class="form-group">
+                                <input class="form-control" name="video_url" value="https://www.youtube.com/embed/0aNNYEUARAk" type="url" placeholder="Enter Url">
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <button type="submit" class="tg-btn process-account-settings">update</button>
+
+        <div class="tg-formsection">
+            <div class="email-settings-tabs">
+                <div class="tg-heading-border tg-small">
+                    <h3>Social Media Links</h3>
+                </div>
+
+                <div class="tab-data" style="display: block;">
+                    <div id="social-media-grid"></div>
+                    <script>
+                        $(document).ready(function() {
+                            $("#social-media-grid").kendoGrid({
+                                dataSource: {
+                                    type: "json",
+                                    transport: {
+                                        read: {
+                                            url: "@Url.Action("SocialLink_Read", "Doctor", new {docterId = Model.Id})",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        create: {
+                                            url: "@Html.Raw(Url.Action("SocialLink_Add", "Doctor", new {docterId = Model.Id}))",
+                                            type: "POST",
+                                            dataType: "json"
+                                        },
+                                        update: {
+                                            url: "@Html.Raw(Url.Action("SocialLink_Update", "Doctor", new {docterId = Model.Id}))",
+                                            type: "POST",
+                                            dataType: "json"
+                                        },
+                                        destroy: {
+                                            url: "@Html.Raw(Url.Action("SocialLink_Delete", "Doctor"))",
+                                            type: "POST",
+                                            dataType: "json"
+                                        },
+                                        parameterMap: function(data, operation) {
+                                            if (operation != "read") {
+                                                return data;
+                                            } else {
+                                                //for some reasons only such "Filter" data be parsed
+                                                return JSON.stringify(data);
+                                            }
+                                        }
+                                    },
+                                    schema: {
+                                        data: "Data",
+                                        total: "Total",
+                                        errors: "Errors",
+                                        model: {
+                                            id: "Id",
+                                            fields: {
+                                                SocialType: { editable: true, type: "string" },
+                                                SocialLink: {
+                                                    editable: true, type: "string",
+                                                    validation: {
+                                                        required: true
+                                                    }
+                                                },
+                                                DisplayOrder: { editable: true, type: "number" },
+                                                IsActive: { editable: true, type: "boolean" },
+                                                Id: { editable: false, type: "number" }
+                                            }
+                                        }
+                                    },
+                                    requestEnd: function(e) {
+                                        if (e.type == "create" || e.type == "update") {
+                                            this.read();
+                                        }
+                                    },
+                                    error: function(e) {
+                                        display_kendoui_grid_error(e);
+                                        // Cancel the changes
+                                        this.cancelChanges();
+                                    },
+                                    pageSize: 5,
+                                    serverPaging: true,
+                                    serverFiltering: true,
+                                    serverSorting: true
+                                },
+                                pageable: {
+                                    refresh: true,
+                                    pageSizes: 5
+                                },
+                                toolbar: [{ name: "create", text: "Add New Record" }],
+                                editable: {
+                                    confirmation: "Are You Sure You Want To Delete !!",
+                                    mode: "inline"
+                                },
+                                scrollable: false,
+                                columns: [
+                                    {
+                                        field: "SocialType",
+                                        title: "Social Type",
+                                        width: 120,
+                                        editor: storeDropDownEditor,
+                                        // template: "#:Store#"
+                                    },
+                                    {
+                                        field: "SocialLink",
+                                        title: "Social Link",
+                                        width: 200,
+                                        template: '<a href="#=SocialLink#">#:SocialLink#</a>'
+                                    },
+                                    {
+                                        field: "DisplayOrder",
+                                        title: "Display Order",
+                                        width: 80
+                                    },
+                                    {
+                                        field: "IsActive",
+                                        title: "IsActive",
+                                        width: 80,
+                                        template: '# if(IsActive) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                    }, {
+                                        command: [
+                                            {
+                                                name: "edit",
+                                                text: {
+                                                    edit: "Edit",
+                                                    update: "Update",
+                                                    cancel: "Cancel"
+                                                }
+                                            }, {
+                                                name: "destroy",
+                                                text: "Delete"
+                                            }
+                                        ],
+                                        width: 200
+                                    }
+                                ]
+                            });
+                        });
+
+                        function storeDropDownEditor(container, options) {
+                            $('<input required  name="' + options.field + '"/>')
+                                .appendTo(container)
+                                .kendoDropDownList({
+                                    autoBind: false,
+                                    dataSource: {
+                                        data: ["Facebook", "Twitter", "Pinterest", "Instagram", "Google Plus"]
+                                    }
+                                });
+                        }
+                    </script>
+                </div>
+
+            </div>
+        </div>
+        <div class="tg-formsection">
+            <div class="email-settings-tabs">
+                <div class="tg-heading-border tg-small">
+                    <h3>Honors & Awards</h3>
+                </div>
+                <div class="tab-data" style="display: block;">
+                    <div id="honors-awards-grid"></div>
+                    <script id="popup_editor" type="text/x-kendo-template">
+                            <div class="k-edit-label">
+                                <label for="Name">Name</label>
+                            </div>
+                            <div data-container-for="Name" class="k-edit-field">
+                                <input type="text" class="k-input k-textbox" name="Name" required data-bind="value:Name">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="Description">Description</label>
+                            </div>
+                            <div data-container-for="Description" class="k-edit-field">
+                                @*<input type="text" class="k-input k-textbox" name="Description" data-bind="value:Description">*@
+                                <textarea class="k-input" name="Description" data-bind="value:Description" />
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="AwardDate">AwardDate</label>
+                            </div>
+                            <div data-container-for="AwardDate" class="k-edit-field">
+                                <input type="date" class="k-input" required name="AwardDate" data-bind="value:AwardDate">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="DisplayOrder">Display Order</label>
+                            </div>
+                            <div data-container-for="DisplayOrder" class="k-edit-field">
+                                <input type="number" class="k-input" name="DisplayOrder" data-bind="value:DisplayOrder">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="IsActive">IsActive</label>
+                            </div>
+                            <div data-container-for="IsActive" class="k-edit-field">
+                                <input type="checkbox" class="k-input" name="IsActive" data-type="boolean" data-bind="checked:IsActive">
+                            </div>
+                        </script>
+
+                    <script>
+                        $(document).ready(function() {
+                            $("#honors-awards-grid").kendoGrid({
+                                dataSource: {
+                                    type: "json",
+                                    transport: {
+                                        read: {
+                                            url: "@Url.Action("HonorsAwards_Read", "Doctor", new {docterId = Model.Id})",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        create: {
+                                            url: "@Html.Raw(Url.Action("HonorsAwards_Add", "Doctor", new {docterId = Model.Id}))",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        update: {
+                                            url: "@Html.Raw(Url.Action("HonorsAwards_Update", "Doctor", new {docterId = Model.Id}))",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        destroy: {
+                                            url: "@Html.Raw(Url.Action("HonorsAwards_Delete", "Doctor"))",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        parameterMap: function(data, operation) {
+                                            if (operation != "read") {
+                                                // return data;
+                                                return JSON.stringify({ awards: data });
+                                            } else {
+                                                //for some reasons only such "Filter" data be parsed
+                                                // return JSON.stringify(data);
+                                                return JSON.stringify({ awards: data });
+                                            }
+                                        }
+                                    },
+                                    schema: {
+                                        data: "Data",
+                                        total: "Total",
+                                        errors: "Errors",
+                                        model: {
+                                            id: "Id",
+                                            fields: {
+                                                Name: { editable: true, type: "string" },
+                                                Description: { editable: true, type: "string" },
+                                                AwardDate: { editable: true, type: "date" },
+                                                DisplayOrder: { editable: true, type: "number" },
+                                                IsActive: { editable: true, type: "boolean" },
+                                                Id: { editable: false, type: "number" }
+                                            }
+                                        }
+                                    },
+                                    requestEnd: function(e) {
+                                        if (e.type == "create" || e.type == "update") {
+                                            this.read();
+                                        }
+                                    },
+                                    error: function(e) {
+                                        display_kendoui_grid_error(e);
+                                        // Cancel the changes
+                                        this.cancelChanges();
+                                    },
+                                    pageSize: 5,
+                                    serverPaging: true,
+                                    serverFiltering: true,
+                                    serverSorting: true
+                                },
+                                pageable: {
+                                    refresh: true,
+                                    pageSizes: 5
+                                },
+                                toolbar: [{ name: "create", text: "Add Awards" }],
+                                editable: {
+                                    confirmation: "Are You Sure You Want To Delete !!",
+                                    mode: "popup",
+                                    template: kendo.template($("#popup_editor").html())
+                                },
+                                scrollable: false,
+                                columns: [
+                                    {
+                                        field: "Name",
+                                        title: "Name",
+                                        width: 120
+                                    },
+                                    //{
+                                    //    field: "Description",
+                                    //    title: "Description",
+                                    //    width: 200
+                                    //},
+                                    {
+                                        field: "AwardDate",
+                                        title: "AwardDate",
+                                        width: 200,
+                                        type: "date",
+                                        format: "{0:dd MMMM yyyy}"
+
+                                    },
+                                    {
+                                        field: "DisplayOrder",
+                                        title: "Display Order",
+                                        width: 80
+                                    },
+                                    {
+                                        field: "IsActive",
+                                        title: "IsActive",
+                                        width: 80,
+                                        template: '# if(IsActive) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                    }, {
+                                        command: [
+                                            {
+                                                name: "edit",
+                                                text: {
+                                                    edit: "Edit",
+                                                    update: "Update",
+                                                    cancel: "Cancel"
+                                                }
+                                            }, {
+                                                name: "destroy",
+                                                text: "Delete"
+                                            }
+                                        ],
+                                        width: 200
+                                    }
+                                ]
+                            });
+                        });
+
+
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="tg-formsection">
+            <div class="email-settings-tabs">
+                <div class="tg-heading-border tg-small">
+                    <h3>Education</h3>
+                </div>
+
+                <div class="tab-data" style="display: block;">
+                    <div id="education-grid"></div>
+                    <script id="popup_editor_edu" type="text/x-kendo-template">
+                            <div class="k-edit-label">
+                                <label for="Title">Title</label>
+                            </div>
+                            <div data-container-for="Title" class="k-edit-field">
+                                <input type="text" required class="k-input k-textbox" name="Title" data-bind="value:Title">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="Institute">Institute</label>
+                            </div>
+                            <div data-container-for="Institute" class="k-edit-field">
+                                <input type="text" required class="k-input k-textbox" name="Institute" data-bind="value:Institute">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="Description">Description</label>
+                            </div>
+                            <div data-container-for="Description" class="k-edit-field">
+                                @*<input type="text" class="k-input k-textbox" name="Description" data-bind="value:Description">*@
+                                <textarea class="k-input" name="Description" data-bind="value:Description" />
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="StartDate">Start Date</label>
+                            </div>
+                            <div data-container-for="StartDate" class="k-edit-field">
+                                <input type="date" required class="k-input" name="StartDate" data-bind="value:StartDate">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="EndDate">End Date</label>
+                            </div>
+                            <div data-container-for="EndDate" class="k-edit-field">
+                                <input type="date" required class="k-input" name="EndDate" data-bind="value:EndDate">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="DisplayOrder">Display Order</label>
+                            </div>
+                            <div data-container-for="DisplayOrder" class="k-edit-field">
+                                <input type="number" class="k-input" name="DisplayOrder" data-bind="value:DisplayOrder">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="IsActive">IsActive</label>
+                            </div>
+                            <div data-container-for="IsActive" class="k-edit-field">
+                                <input type="checkbox" class="k-input" name="IsActive" data-type="boolean" data-bind="checked:IsActive">
+                            </div>
+                        </script>
+                    <script>
+                        $(document).ready(function() {
+
+                            $("#education-grid").kendoGrid({
+                                dataSource: {
+                                    type: "json",
+                                    transport: {
+                                        read: {
+                                            url: "@Url.Action("Education_Read", "Doctor", new {docterId = Model.Id})",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        create: {
+                                            url: "@Html.Raw(Url.Action("Education_Add", "Doctor", new {docterId = Model.Id}))",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        update: {
+                                            url: "@Html.Raw(Url.Action("Education_Update", "Doctor", new {docterId = Model.Id}))",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        destroy: {
+                                            url: "@Html.Raw(Url.Action("Education_Delete", "Doctor"))",
+                                            type: "POST",
+                                            dataType: "json",
+                                            contentType: "application/json"
+                                        },
+                                        parameterMap: function(data, operation) {
+                                            if (operation != "read") {
+                                                return JSON.stringify({ education: data });
+                                            } else {
+                                                return JSON.stringify({ education: data });
+                                            }
+                                        }
+                                    },
+                                    schema: {
+                                        data: "Data",
+                                        total: "Total",
+                                        errors: "Errors",
+                                        model: {
+                                            id: "Id",
+                                            fields: {
+                                                Title: { editable: true, type: "string" },
+                                                Description: { editable: true, type: "string" },
+                                                Institute: { editable: true, type: "string" },
+                                                StartDate: { editable: true, type: "date" },
+                                                EndDate: { editable: true, type: "date" },
+                                                DisplayOrder: { editable: true, type: "number" },
+                                                IsActive: { editable: true, type: "boolean" },
+                                                Id: { editable: false, type: "number" }
+                                            }
+                                        }
+                                    },
+                                    requestEnd: function(e) {
+                                        if (e.type == "create" || e.type == "update") {
+                                            this.read();
+                                        }
+                                    },
+                                    error: function(e) {
+                                        display_kendoui_grid_error(e);
+                                        // Cancel the changes
+                                        this.cancelChanges();
+                                    },
+                                    pageSize: 5,
+                                    serverPaging: true,
+                                    serverFiltering: true,
+                                    serverSorting: true
+                                },
+                                pageable: {
+                                    refresh: true,
+                                    pageSizes: 5
+                                },
+                                toolbar: [{ name: "create", text: "Add Education" }],
+                                editable: {
+                                    confirmation: "Are You Sure You Want To Delete !!",
+                                    mode: "popup",
+                                    template: kendo.template($("#popup_editor_edu").html())
+                                },
+                                scrollable: false,
+                                columns: [
+                                    {
+                                        field: "Title",
+                                        title: "Degree/Education",
+                                        width: 200
+                                    },
+                                    {
+                                        field: "Institute",
+                                        title: "Institute",
+                                        width: 200
+                                    },
+                                    {
+                                        field: "StartDate",
+                                        title: "Year",
+                                        width: 200,
+                                        type: "date",
+                                        template: '#= kendo.toString(StartDate, "MMMM yyyy") # - #= kendo.toString(EndDate, "MMMM yyyy") #'
+
+                                    },
+                                    {
+                                        field: "DisplayOrder",
+                                        title: "Display Order",
+                                        width: 80
+                                    },
+                                    {
+                                        field: "IsActive",
+                                        title: "IsActive",
+                                        width: 80,
+                                        template: '# if(IsActive) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                    }, {
+                                        command: [
+                                            {
+                                                name: "edit",
+                                                text: {
+                                                    edit: "Edit",
+                                                    update: "Update",
+                                                    cancel: "Cancel"
+                                                }
+                                            }, {
+                                                name: "destroy",
+                                                text: "Delete"
+                                            }
+                                        ],
+                                        width: 200
+                                    }
+                                ]
+                            });
+                        });
+
+
+                    </script>
+                </div>
+
+            </div>
+        </div>
+        <div class="tg-formsection">
+                <div class="email-settings-tabs">
+                    <div class="tg-heading-border tg-small">
+                        <h3>Experience </h3>
+                    </div>
+
+                    <div class="tab-data" style="display: block;">
+                        <div id="experience-grid"></div>
+                        <script id="popup_editor_expr" type="text/x-kendo-template">
+                            <div class="k-edit-label">
+                                <label for="Title">Title</label>
+                            </div>
+                            <div data-container-for="Title" class="k-edit-field">
+                                <input type="text" required class="k-input k-textbox" name="Title" data-bind="value:Title">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="Institute">Organization</label>
+                            </div>
+                            <div data-container-for="Organization" class="k-edit-field">
+                                <input type="text" required class="k-input k-textbox" name="Organization" data-bind="value:Organization">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="Description">Description</label>
+                            </div>
+                            <div data-container-for="Description" class="k-edit-field">
+                                @*<input type="text" class="k-input k-textbox" name="Description" data-bind="value:Description">*@
+                                <textarea class="k-input" name="Description" data-bind="value:Description" />
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="StartDate">Start Date</label>
+                            </div>
+                            <div data-container-for="StartDate" class="k-edit-field">
+                                <input type="date" required class="k-input" name="StartDate" data-bind="value:StartDate">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="EndDate">End Date</label>
+                            </div>
+                            <div data-container-for="EndDate" class="k-edit-field">
+                                <input type="date" required class="k-input" name="EndDate" data-bind="value:EndDate">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="DisplayOrder">Display Order</label>
+                            </div>
+                            <div data-container-for="DisplayOrder" class="k-edit-field">
+                                <input type="number" class="k-input" name="DisplayOrder" data-bind="value:DisplayOrder">
+                            </div>
+                            <div class="k-edit-label">
+                                <label for="IsActive">IsActive</label>
+                            </div>
+                            <div data-container-for="IsActive" class="k-edit-field">
+                                <input type="checkbox" class="k-input" name="IsActive" data-type="boolean" data-bind="checked:IsActive">
+                            </div>
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+
+                                $("#experience-grid").kendoGrid({
+                                    dataSource: {
+                                        type: "json",
+                                        transport: {
+                                            read: {
+                                                url: "@Url.Action("Experience_Read", "Doctor",new { docterId = Model.Id })",
+                                                type: "POST",
+                                                dataType: "json",
+                                                contentType: "application/json"
+                                            },
+                                            create: {
+                                                url: "@Html.Raw(Url.Action("Experience_Add", "Doctor", new { docterId = Model.Id }))",
+                                                type: "POST",
+                                                dataType: "json",
+                                                contentType: "application/json"
+                                            },
+                                            update: {
+                                                url: "@Html.Raw(Url.Action("Experience_Update", "Doctor", new { docterId = Model.Id }))",
+                                                type: "POST",
+                                                dataType: "json",
+                                                contentType: "application/json"
+                                            },
+                                            destroy: {
+                                                url: "@Html.Raw(Url.Action("Experience_Delete", "Doctor"))",
+                                                type: "POST",
+                                                dataType: "json",
+                                                contentType: "application/json"
+                                            },
+                                            parameterMap: function (data, operation) {
+                                                if (operation != "read") {
+                                                    return JSON.stringify({ experience: data });
+                                                } else {
+                                                    return JSON.stringify({ experience: data });
+                                                }
+                                            }
+                                        },
+                                        schema: {
+                                            data: "Data",
+                                            total: "Total",
+                                            errors: "Errors",
+                                            model: {
+                                                id: "Id",
+                                                fields: {
+                                                    Title: { editable: true, type: "string" },
+                                                    Description: { editable: true, type: "string" },
+                                                    Organization: { editable: true, type: "string" },
+                                                    StartDate: { editable: true, type: "date" },
+                                                    EndDate: { editable: true, type: "date" },
+                                                    DisplayOrder: { editable: true, type: "number" },
+                                                    IsActive: { editable: true, type: "boolean" },
+                                                    Id: { editable: false, type: "number" }
+                                                }
+                                            }
+                                        },
+                                        requestEnd: function (e) {
+                                            if (e.type == "create" || e.type == "update") {
+                                                this.read();
+                                            }
+                                        },
+                                        error: function (e) {
+                                            display_kendoui_grid_error(e);
+                                            // Cancel the changes
+                                            this.cancelChanges();
+                                        },
+                                        pageSize: 5,
+                                        serverPaging: true,
+                                        serverFiltering: true,
+                                        serverSorting: true
+                                    },
+                                    pageable: {
+                                        refresh: true,
+                                        pageSizes: 5
+                                    },
+                                    toolbar: [{ name: "create", text: "Add Experience" }],
+                                    editable: {
+                                        confirmation: "Are You Sure You Want To Delete !!",
+                                        mode: "popup",
+                                        template: kendo.template($("#popup_editor_expr").html())
+                                    },
+                                    scrollable: false,
+                                    columns: [
+                                        {
+                                            field: "Title",
+                                            title: "Experience Title",
+                                            width: 200
+                                        },
+                                        {
+                                            field: "Organization",
+                                            title: "Organization",
+                                            width: 200
+                                        },
+                                        {
+                                            field: "StartDate",
+                                            title: "Year",
+                                            width: 200,
+                                            type: "date",
+                                            format: "{0:dd MMMM yyyy}",
+                                            template: '#= kendo.toString(StartDate, "MMMM yyyy") # - #= kendo.toString(EndDate, "MMMM yyyy") #'
+                                        },
+                                        {
+                                            field: "DisplayOrder",
+                                            title: "Display Order",
+                                            width: 80
+                                        },
+                                        {
+                                            field: "IsActive",
+                                            title: "IsActive",
+                                            width: 80,
+                                            template: '# if(IsActive) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                        }, {
+                                            command: [
+                                                {
+                                                    name: "edit",
+                                                    text: {
+                                                        edit: "Edit",
+                                                        update: "Update",
+                                                        cancel: "Cancel"
+                                                    }
+                                                }, {
+                                                    name: "destroy",
+                                                    text: "Delete"
+                                                }
+                                            ],
+                                            width: 200
+                                        }
+                                    ]
+                                });
+                            });
+
+</script>
+
+                    </div>
+
+                </div>
+            </div>
+        
+        </fieldset>
+    }
+    </div>
+    </div>
+    </div>
+    </main>
+}

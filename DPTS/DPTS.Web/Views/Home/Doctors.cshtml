@@ -1,0 +1,131 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<TempDoctorViewModel>
+@using DPTS.Web.Models
+@{
+    ViewBag.Title = "Doctors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int ind = 0;
+}
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <form>
+                        @Html.Partial("_SearchNavigation", (SearchModel)ViewBag.SearchModel)
+                        <div class="col-md-8 col-sm-12 col-xs-12 pull-right">
+                            <div class="tg-doctors-list tg-haslayout">
+
+
+                                <div class="tg-view tg-list-view" style="border-bottom: none">
+                                    <div class="row">
+                                        <ul class="shops-list">
+                                            @foreach (var item in Model)
+                                            {
+                                                <li class="shops-item visible" style="list-style: none;" data-ind="@(ind++)">
+                                                    @{
+                                                        string picturePath = "/Content/wp-content/themes/docdirect/images/user365x365.jpg";
+                                                        string profilePicPath = Server.MapPath("~/Uploads/" + item.Doctors.Doctorid + "_profile.jpg");
+                                                        if (File.Exists(profilePicPath))
+                                                        {
+                                                            picturePath = "../../Uploads/" + item.Doctors.Doctorid + "_profile.jpg";
+                                                        }
+                                                    }
+
+                                                    <article class="tg-doctor-profile user-330">
+                                                        <div class="tg-box">
+                                                            <figure class="tg-docprofile-img">
+                                                                <a href="@Url.Action("DoctorDetails", "Doctor", new {doctorId = item.Doctors.Doctorid})" class="list-avatar"><img src="@picturePath"></a>
+                                                                @*<a class="tg-dislike" href="javascript:;"><i class="fa fa-heart"></i></a>*@
+                                                                <div class="feature-rating user-star-rating">
+                                                                                                                                        @*<span class="tg-stars star-rating">
+                                                        <span style="width:80%"></span>
+                                                    </span>
+                                                    <em>4.0<sub>/5</sub></em>*@
+                                                                    <a class="tg-btn tg-btn-lg make-appointment-btn" style="font-size: 13px" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new {doctorId = item.Doctors.Doctorid}))">MAKE AN APPOINTMENT!</a>
+                                                                </div>
+                                                            </figure>
+                                                            <div class="tg-docprofile-content">
+                                                                <div class="tg-heading-border tg-small" style="margin: 0">
+                                                                    <h3><a href="@Url.Action("DoctorDetails", "Doctor", new {doctorId = item.Doctors.Doctorid})">Dr. @item.Doctors.AspNetUser.FirstName @item.Doctors.AspNetUser.LastName</a>
+                                                                    </h3>
+                                                                </div>
+                                                                <div class="tg-description">
+                                                                    @*<div class="distance-line">
+                                                                        <label class="distance-label">Distance from your location:</label>
+                                                                        <span class="distance-value">@item.Distance.ToString("0.0")</span>
+                                                                    </div>*@
+
+                                                                    @*<br/>
+                                                                    <a class="show-directions" href="javascript:;"><i class="fa fa-compass" aria-hidden="true"></i> Show Directions</a>*@
+                                                                </div>
+                                                                <div class="short-description">
+                                                                    <ul class="tg-doccontactinfo">
+                                                                        @if (!string.IsNullOrWhiteSpace(item.Doctors.Qualifications))
+                                                                        {
+                                                                            <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><span><b>@item.Doctors.Qualifications.ToUpper()</b></span></li>
+                                                                        }
+                                                                        @if (item.Doctors.YearsOfExperience > 0)
+                                                                        {
+                                                                            <li><i class="fa fa-flask" aria-hidden="true"></i><span><b>@item.Doctors.YearsOfExperience</b> years experience</span></li>
+                                                                        }
+                                                                        @if (item.Doctors.YearsOfExperience > 0 || !string.IsNullOrWhiteSpace(item.Doctors.Qualifications))
+                                                                        {
+                                                                            <li><hr/></li>
+                                                                        }
+                                                                        @{
+                                                                            var addr = item.Address;
+                                                                            if (addr != null)
+                                                                            {
+                                                                                <li>
+                                                                                    <input type="hidden" class="shop-coordinates" data-latitude="@addr.Latitude" data-longitude="@addr.Longitude" data-shop-title="Dr @item.Doctors.AspNetUser.FirstName @item.Doctors.AspNetUser.LastName" value="1"/>
+
+                                                                                    <i class="fa fa-map-marker"></i><address>
+                                                                                        <p>
+                                                                                            @addr.Address1, @addr.City
+                                                                                        </p>
+                                                                                    </address>
+                                                                                </li>
+                                                                                if (!string.IsNullOrWhiteSpace(addr.FaxNumber))
+                                                                                {
+                                                                                    <li><i class="fa fa-fax"></i><span>@addr.FaxNumber</span></li>
+                                                                                }
+                                                                                if (!string.IsNullOrWhiteSpace(addr.Website))
+                                                                                {
+                                                                                    <li><i class="fa fa-link"></i><a href="@addr.Website">@addr.Website</a></li>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        @if (!string.IsNullOrWhiteSpace(item.Doctors.AspNetUser.PhoneNumber))
+                                                                        {
+                                                                            <li><i class="fa fa-phone"></i><span>@item.Doctors.AspNetUser.PhoneNumber</span></li>
+                                                                        }
+
+                                                                        @if (!string.IsNullOrWhiteSpace(item.Doctors.AspNetUser.Email))
+                                                                        {
+                                                                            <li><i class="fa fa-envelope-o"></i><a href="#">@item.Doctors.AspNetUser.Email</a></li>
+                                                                        }
+
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+                                @Html.PagedListPager(Model, page => Url.Action("Doctors", new {page}))
+                            </div>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

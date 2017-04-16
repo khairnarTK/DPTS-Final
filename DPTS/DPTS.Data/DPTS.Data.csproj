@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29514E8E-FDC6-44C8-8A0A-B45EC060C272}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DPTS.Data</RootNamespace>
+    <AssemblyName>DPTS.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\DPTSDbContext.cs" />
+    <Compile Include="IdentityEntities\User.cs" />
+    <Compile Include="Migrations\201702020854305_InitialMigration.cs" />
+    <Compile Include="Migrations\201702020854305_InitialMigration.Designer.cs">
+      <DependentUpon>201702020854305_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702021649475_createZipCodeTable.cs" />
+    <Compile Include="Migrations\201702021649475_createZipCodeTable.Designer.cs">
+      <DependentUpon>201702021649475_createZipCodeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702090207407_CreateSocialLinksInfo.cs" />
+    <Compile Include="Migrations\201702090207407_CreateSocialLinksInfo.Designer.cs">
+      <DependentUpon>201702090207407_CreateSocialLinksInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702170452230_AddHonorsAwardsTbl.cs" />
+    <Compile Include="Migrations\201702170452230_AddHonorsAwardsTbl.Designer.cs">
+      <DependentUpon>201702170452230_AddHonorsAwardsTbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702170507144_UpdateHonorsAwardsTbl.cs" />
+    <Compile Include="Migrations\201702170507144_UpdateHonorsAwardsTbl.Designer.cs">
+      <DependentUpon>201702170507144_UpdateHonorsAwardsTbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702171707310_AddEducationTable.cs" />
+    <Compile Include="Migrations\201702171707310_AddEducationTable.Designer.cs">
+      <DependentUpon>201702171707310_AddEducationTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702171841149_AddExperienceTable.cs" />
+    <Compile Include="Migrations\201702171841149_AddExperienceTable.Designer.cs">
+      <DependentUpon>201702171841149_AddExperienceTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702171945261_UpdateDoctorTable.cs" />
+    <Compile Include="Migrations\201702171945261_UpdateDoctorTable.Designer.cs">
+      <DependentUpon>201702171945261_UpdateDoctorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702172023478_UpdateDoctorTable1.cs" />
+    <Compile Include="Migrations\201702172023478_UpdateDoctorTable1.Designer.cs">
+      <DependentUpon>201702172023478_UpdateDoctorTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702191730513_updateDocTable.cs" />
+    <Compile Include="Migrations\201702191730513_updateDocTable.Designer.cs">
+      <DependentUpon>201702191730513_updateDocTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702280524565_CreateReviewComments.cs" />
+    <Compile Include="Migrations\201702280524565_CreateReviewComments.Designer.cs">
+      <DependentUpon>201702280524565_CreateReviewComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703030551207_createPictureAndMapping.cs" />
+    <Compile Include="Migrations\201703030551207_createPictureAndMapping.Designer.cs">
+      <DependentUpon>201703030551207_createPictureAndMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703191510148_UpdateDocTable1.cs" />
+    <Compile Include="Migrations\201703191510148_UpdateDocTable1.Designer.cs">
+      <DependentUpon>201703191510148_UpdateDocTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703232040469_UpdateSpecailtyMapTable.cs" />
+    <Compile Include="Migrations\201703232040469_UpdateSpecailtyMapTable.Designer.cs">
+      <DependentUpon>201703232040469_UpdateSpecailtyMapTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703250510541_updatedoctortablemiddlename.cs" />
+    <Compile Include="Migrations\201703250510541_updatedoctortablemiddlename.Designer.cs">
+      <DependentUpon>201703250510541_updatedoctortablemiddlename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704120139259_CreateReatingAndReview.cs" />
+    <Compile Include="Migrations\201704120139259_CreateReatingAndReview.Designer.cs">
+      <DependentUpon>201704120139259_CreateReatingAndReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DPTS.Domain\DPTS.Domain.csproj">
+      <Project>{087ef4a4-1e44-4087-8e62-76aa1e4d2e53}</Project>
+      <Name>DPTS.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702020854305_InitialMigration.resx">
+      <DependentUpon>201702020854305_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702021649475_createZipCodeTable.resx">
+      <DependentUpon>201702021649475_createZipCodeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702090207407_CreateSocialLinksInfo.resx">
+      <DependentUpon>201702090207407_CreateSocialLinksInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702170452230_AddHonorsAwardsTbl.resx">
+      <DependentUpon>201702170452230_AddHonorsAwardsTbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702170507144_UpdateHonorsAwardsTbl.resx">
+      <DependentUpon>201702170507144_UpdateHonorsAwardsTbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702171707310_AddEducationTable.resx">
+      <DependentUpon>201702171707310_AddEducationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702171841149_AddExperienceTable.resx">
+      <DependentUpon>201702171841149_AddExperienceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702171945261_UpdateDoctorTable.resx">
+      <DependentUpon>201702171945261_UpdateDoctorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702172023478_UpdateDoctorTable1.resx">
+      <DependentUpon>201702172023478_UpdateDoctorTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702191730513_updateDocTable.resx">
+      <DependentUpon>201702191730513_updateDocTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702280524565_CreateReviewComments.resx">
+      <DependentUpon>201702280524565_CreateReviewComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703030551207_createPictureAndMapping.resx">
+      <DependentUpon>201703030551207_createPictureAndMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191510148_UpdateDocTable1.resx">
+      <DependentUpon>201703191510148_UpdateDocTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703232040469_UpdateSpecailtyMapTable.resx">
+      <DependentUpon>201703232040469_UpdateSpecailtyMapTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703250510541_updatedoctortablemiddlename.resx">
+      <DependentUpon>201703250510541_updatedoctortablemiddlename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704120139259_CreateReatingAndReview.resx">
+      <DependentUpon>201704120139259_CreateReatingAndReview.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

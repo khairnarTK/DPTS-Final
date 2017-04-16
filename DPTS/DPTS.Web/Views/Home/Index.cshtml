@@ -1,0 +1,159 @@
+﻿@using DPTS.Web.Helpers
+@using DPTS.Web.Models
+@model SearchModel
+@{
+    ViewBag.Title = "DPTS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //css part
+    Html.Assets().Styles.Add("/Content/wp-content/themes/docdirect/css/owl.carousel1bba.css");
+
+    //js part
+
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.common-material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.mobile.min.css");
+
+    Html.Assets().Scripts.Add("/Content/wp-content/themes/docdirect/js/owl.carousel1bba.js");
+    Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/kendo.all.min.js");
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <section class="tg-main-section haslayout  stretch_section_contents_corner stretch_section stretch_data" style="margin-top:-100px;padding-top:0px;padding-bottom:0px;background-repeat:no-repeat;background-position:0% 100%; background-size: cover;">
+        <div class="builder-items">
+            <div class="col-xs-12 col-md-12 builder-column ">
+                <div class="tg-banner-holder">
+                    <div class="tg-banner-content">
+                        <div class="container">
+                            <div class="tg-heading-border">
+                                <h1><span>find your nearest</span><div class="dynamic-title">Doctor</div></h1>
+                            </div>
+                            @Html.Action("SearchBox", "Home")
+                        </div>
+                    </div>
+                    <div id="searchbanner-" class="tg-homeslidertwo">
+                        <div class="item">
+                            <figure>
+                                <img src="~/Content/wp-content/uploads/2016/08/banner-img1.jpg" alt="Search">
+                            </figure>
+                        </div>
+                        <div class="item">
+                            <figure>
+                                <img src="~/Content/wp-content/uploads/2016/08/banner-img2.jpg" alt="Search">
+                            </figure>
+                        </div>
+                        <div class="item">
+                            <figure>
+                                <img src="~/Content/wp-content/uploads/2016/08/banner-img3.jpg" alt="Search">
+                            </figure>
+                        </div>
+                    </div>
+                    <script>
+		jQuery(document).ready(function(e) {
+            jQuery("#searchbanner-").owlCarousel({
+				paginationSpeed : 400,
+				slideSpeed : 300,
+				autoPlay : true,
+				singleItem:true,
+				navigation : true,
+				navigationText: [
+					"<i class='tg-prev fa fa-angle-left'></i>",
+					"<i class='tg-next fa fa-angle-right'></i>"
+				]
+			});
+        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="main-page-wrapper tg-haslayout">
+                <div class="fw-page-builder-content">
+
+                    <section class="tg-main-section haslayout  stretch_section" style="margin-top: 40px">
+                        <div class="builder-items">
+                            <div class="col-xs-12 col-md-12 builder-column ">
+                                <div class="sc-services">
+                                    <div class="col-sm-10 col-sm-offset-1 col-xs-12">
+                                        <div class="tg-theme-heading">
+                                            <h2>WHAT TO EXPECT</h2>
+                                            <span class="tg-roundbox"></span>
+                                            <div class="tg-description">
+                                                <p>In just three simple steps, DocDirect will help you find your nearest healthcare setting without having to signup. We aim to facilitate you in finding your right doctor with just three clicks without having to ask around or wander to find your nearest healthcare facility.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tg-search-categories">
+                                        <div class="row">
+                                            <div class="col-sm-4 col-xs-12 tg-expectwidth">
+                                                <div class="tg-search-category">
+                                                    <div class="tg-displaytable">
+
+                                                        <div class="tg-displaytablecell">
+                                                            <div class="tg-box">
+                                                                <a href="#">
+                                                                    <h3>find your doctor</h3></a>
+                                                                <i class="icon-stethoscope"></i>
+                                                                <a href="#"><span class="tg-show"><em class="icon-add"></em></span></a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-xs-12 tg-expectwidth">
+                                                <div class="tg-search-category">
+                                                    <div class="tg-displaytable">
+
+                                                        <div class="tg-displaytablecell">
+                                                            <div class="tg-box">
+                                                                <a href="#">
+                                                                    <h3>NEAREST HOSPITAL</h3></a>
+                                                                <i class="icon-Hospitalmedicalsignalofacrossinacircle"></i>
+                                                                <a href="#"><span class="tg-show"><em class="icon-add"></em></span></a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-xs-12 tg-expectwidth">
+                                                <div class="tg-search-category">
+                                                    <div class="tg-displaytable">
+
+                                                        <div class="tg-displaytablecell">
+                                                            <div class="tg-box">
+                                                                <a href="#">
+                                                                    <h3>NEAREST PHARMACY</h3></a>
+                                                                <i class="icon-capsules"></i>
+                                                                <a href="#"><span class="tg-show"><em class="icon-add"></em></span></a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                    <section class="tg-main-section haslayout  stretch_section" style="background-image: url(&quot;https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/08/bgparallax-03.jpg&quot;); padding: 50px 366.5px; background-repeat: no-repeat; background-position: 0% 100%; background-size: cover; position: relative; left: -366.5px; box-sizing: border-box; width: 1903px;">
+                        <div class="builder-items">
+                            <div class="col-xs-12 col-md-12 builder-column ">
+                                <div class="tg-buynowbox">
+                                    <h3 style="color:#5d5955">Book health appointments in seconds.</h3>
+                                    <a class="tg-btn" style="color:#5d5955" href="@Url.Action("Register","Account")">Register Today</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

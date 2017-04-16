@@ -1,0 +1,89 @@
+﻿@model IEnumerable<SheduleViewModel>
+@using DPTS.Web.Models
+@{
+    ViewBag.Title = "My Schedules";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="tg-docschedule tg-haslayout">
+                    <div class="tg-heading-border tg-small">
+                        <h3>update Schedule</h3>
+                    </div>
+                    <p><strong>Note: Leave fields empty to show  day closed.</strong></p>
+@using (Html.BeginForm("DoctorSchedules", "Doctor", FormMethod.Post, new {id = "form-docschedule", @class = "form-docschedule"}))
+{
+        <fieldset class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>@item.Day</label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class='input-group date' id='s_@item.Day.ToLower()'>
+                                    <input type='text' name="@item.Day.ToLower()_start" class="form-control schedule-pickrs" value="@item.StartTime" placeholder="start time"/>
+                                    <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                        </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class='input-group date' id='e_@item.Day.ToLower()'>
+                                    <input type='text' name="@item.Day.ToLower()_end" class="form-control schedule-pickrs" value="@item.EndTime" placeholder="end time"/>
+                                    <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                        </span>
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                                    <input type="text" name="schedules[sun_end]" value="@item.EndTime" class="form-control schedule-pickr" placeholder="end time">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            }
+                <button type="submit" class="tg-btn pull-left">update</button>
+        </fieldset>
+}
+</div>
+<script>
+	//jQuery(document).ready(function(e) {
+    //    //Time Picker
+	//	jQuery('.schedule-pickr').datetimepicker({
+	//	    datepicker: false,
+	//	    ampm: true,
+	//	    format: 'g:i A',
+	//	    hours12: true
+	//	});
+    //});
+
+    jQuery(document).ready(function (e) {
+        //Time Picker
+        jQuery('.schedule-pickrs').datetimepicker({
+            datepicker: false,
+            format: 'H:i'
+        });
+    });
+    //$(function () {
+    //    $('.schedule-pickrs').datetimepicker({
+    //        datepicker: false,
+    //        format: 'H:i'
+    //    });
+    //});
+</script>
+            </div>
+        </div>
+    </div>
+</main>

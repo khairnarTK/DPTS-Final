@@ -1,0 +1,26 @@
+﻿@using PagedList
+@using DPTS.Web.Models
+@model  IPagedList<TempDoctorViewModel>
+
+<div class="tg-postionabsulote">
+    <div class="col-md-5 col-sm-12 col-xs-12 tg-divheight pull-left">
+        <div class="row tg-divheight">
+            @if (Model.Any())
+            {
+                <div class="tg-mapbox">
+                    <div id="map_canvas" class="tg-location-map tg-haslayout"></div>
+                    <input type="hidden" class="shop-resources"
+                           data-youarehere="You are here"
+                           data-accuracy="Accuracy"
+                           data-geolocationnotsupported="Geolocation is not supported by your browser."
+                           data-units="Metric" data-googleapikey="AIzaSyDvanm9mpt0gdHXeUTLbmedVCYU8OKNS3U" data-mapstyles="" value="1" />
+                </div>
+            }
+            else
+            {
+                <div id="gmap-noresult">No Record Found.</div>
+            }
+        </div>
+
+    </div>
+</div>

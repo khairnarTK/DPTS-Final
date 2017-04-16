@@ -1,0 +1,114 @@
+﻿@using PagedList
+@using DPTS.Web.Models
+@model  IPagedList<TempDoctorViewModel>
+    @{ 
+        int ind = 0;
+        string picturePath = "/Content/wp-content/themes/docdirect/images/user365x365.jpg";
+    }
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<div class="tg-view tg-list-view" style="border-bottom: none">
+    <div class="row">
+        <ul class="shops-list">
+            @foreach (var item in Model)
+            {
+                <li class="shops-item" style="list-style: none;" data-ind="@(ind++)">
+                    <article class="tg-doctor-profile user-330">
+                        <div class="tg-box">
+                            <figure class="tg-docprofile-img">
+                                <a href="@Url.Action("DoctorDetails", "Doctor", new {doctorId = item.Doctors.DoctorId})" class="list-avatar">
+                                    <img src="@picturePath">
+                                </a>
+                            </figure>
+                            <div class="docbox-left">
+
+                                <div class="tg-docprofile-content">
+                                    <div class="tg-heading-border tg-small" style="margin: 0">
+                                        <h3>
+                                            <a href="@Url.Action("DoctorDetails", "Doctor", new {doctorId = item.Doctors.DoctorId})">Dr. @item.Doctors.AspNetUser.FirstName @item.Doctors.AspNetUser.LastName</a>
+                                        </h3>
+                                    </div>
+                                    <div class="tg-description">
+                                        <div class="doc-edu">
+                                        @if (!string.IsNullOrWhiteSpace(item.Qualification))
+                                        {
+                                                    <span>
+                                                        <b>@item.Qualification</b>
+                                                    </span>
+                                        }
+                                        </div>
+                                        <div class="doc-expr">
+                                         @if (!string.IsNullOrWhiteSpace(item.YearOfExperience) && item.YearOfExperience !="0")
+                                        {
+                                                <span>@item.YearOfExperience years experience</span>
+                                        }
+                                        </div>
+                                    @if (!string.IsNullOrWhiteSpace(item.ListSpecialities))
+                                    {
+                                                <span>
+                                                    <b>@item.ListSpecialities</b>
+                                                </span>
+                                    }
+
+                                    </div>
+                                    <div class="short-description">
+                                        @{
+                                            var addr = item.Address;
+                                            if (addr != null)
+                                            {
+                                                <input type="hidden" class="shop-coordinates" data-latitude="@addr.Latitude" data-longitude="@addr.Longitude" data-shop-title="Dr @item.Doctors.AspNetUser.FirstName @item.Doctors.AspNetUser.LastName" value="1" />
+                                            }
+                                            
+                                            <a class="tg-btn tg-btn-lg make-appointment-btn lst-appmt-btn" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new {doctorId = item.Doctors.DoctorId}))">MAKE AN APPOINTMENT!</a>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="docbox-right">
+                            @if (item.Doctors.IsAvailability)
+                            {
+                                <span>
+                                    <img src="~/Content/wp-content/themes/docdirect/images/icon24.png" width="50" />
+                                </span>
+                            }
+                                
+                                @if(item.Doctors.ConsultationFee > 0)
+                                {
+                                    <p class="fees">
+                                        <span class="fees-amount">
+                                            <i class="fa fa-money" aria-hidden="true"></i>
+                                            INR @item.Doctors.ConsultationFee
+                                        </span>
+                                    </p>
+                                }
+                                
+                                        @if (!string.IsNullOrWhiteSpace(item.Doctors.AspNetUser.PhoneNumber))
+                                        {
+                                            <p class="doc-phone">
+                                                <span class="fees-amount">
+                                                    <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                                    @item.Doctors.AspNetUser.PhoneNumber
+                                                </span>
+                                            </p>
+                                        }
+                                                                       
+                                            @if (!string.IsNullOrWhiteSpace(item.AddressLine))
+                                            {
+                                                    <p class="doc-addr">
+                                                         <span class="fees-amount">
+                                                             <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                              @item.AddressLine
+                                                          </span>
+                                                    </p>
+                                            }
+
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                 }
+        </ul>
+    </div>
+</div>
+

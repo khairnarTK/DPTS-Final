@@ -1,0 +1,35 @@
+﻿@using PagedList
+@model IPagedList<TempDoctorViewModel>
+@using DPTS.Web.Models
+@{
+    ViewBag.Title = "Search | DPTS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var SearchModel = (SearchModel)ViewBag.SearchModel;
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "searchResult",
+        // Confirm = "Are you sure to start search?",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "loader"
+    };
+    
+}
+@using (Ajax.BeginForm("_DoctorBox", options))
+{
+    @Html.Partial("_SearchNavigation", SearchModel)
+    
+    <div id="searchResult">
+        @*<div id="divLoading">
+        </div>*@
+        @if (ViewBag.IsHomePageSearch)
+        {
+            @Html.Partial("_DoctorBoxForHomePage", Model);
+        }
+        else
+        {
+            @Html.Action("_DoctorBox")
+        }
+    </div>
+}
+

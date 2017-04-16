@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "PrivacySettings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="tg-myaccount tg-haslayout privacy-settings">
+                    <div class="tg-heading-border tg-small">
+                        <h2>Privacy Settings</h2>
+                    </div>
+                    <div class="privacy-wraper">
+                        <form action="#" method="post" class="tg-form-privacy">
+                            <div class="form-group">
+                                <div class="tg-privacy">
+                                    <div class="tg-iosstylcheckbox">
+                                        <input type="hidden" name="privacy[appointments]">
+                                        <input type="checkbox" class="privacy-switch" checked="" name="privacy[appointments]" id="tg-appointment">
+                                        <label for="tg-appointment" class="checkbox-label" data-private="Private" data-public="Public"></label>
+                                    </div>
+                                    <span class="tg-privacy-name">Bookings</span>
+                                    <p>Make the appointment/bookings form visible on my public profile</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="tg-privacy">
+                                    <div class="tg-iosstylcheckbox">
+                                        <input type="hidden" name="privacy[phone]">
+                                        <input type="checkbox" class="privacy-switch" checked="" name="privacy[phone]" id="tg-phone">
+                                        <label for="tg-phone" class="checkbox-label" data-private="Private" data-public="Public"></label>
+                                    </div>
+                                    <span class="tg-privacy-name">Phone Number</span>
+                                    <p>Make the phone visible on my public profile</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="tg-privacy">
+                                    <div class="tg-iosstylcheckbox">
+                                        <input type="hidden" name="privacy[email]">
+                                        <input type="checkbox" class="privacy-switch" checked="" name="privacy[email]" id="tg-email">
+                                        <label for="tg-email" class="checkbox-label" data-private="Private" data-public="Public"></label>
+                                    </div>
+                                    <span class="tg-privacy-name">Email</span>
+                                    <p>Make the email address visible on my public profile</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="tg-privacy">
+                                    <div class="tg-iosstylcheckbox">
+                                        <input type="hidden" name="privacy[contact_form]">
+                                        <input type="checkbox" class="privacy-switch" checked="" name="privacy[contact_form]" id="tg-contact_form">
+                                        <label for="tg-contact_form" class="checkbox-label" data-private="Private" data-public="Public"></label>
+                                    </div>
+                                    <span class="tg-privacy-name">Contact Form</span>
+                                    <p>Make the contact form visible on my public profile</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </main>
+

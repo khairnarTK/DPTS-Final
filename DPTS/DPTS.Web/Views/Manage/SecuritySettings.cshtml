@@ -1,0 +1,51 @@
+﻿@model DPTS.Web.Models.ChangePasswordViewModel
+@{
+    ViewBag.Title = "Security Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="tg-myaccount tg-haslayout">
+                    <div class="tg-refinesearcharea">
+                        <div class="tg-heading-border tg-small">
+                            <h2>change password</h2>
+                        </div>
+                        @using (Html.BeginForm("SecuritySettings", "Manage", FormMethod.Post, new { @class = "form-resetpassword tg-haslayout", role = "form" }))
+                        {
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+                            <fieldset>
+                              <div class="row">
+                                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.OldPassword)
+                                                                    @Html.EditorFor(model => model.OldPassword, new { @class = "form-control" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.NewPassword)
+                                                                    @Html.EditorFor(model => model.NewPassword, new { @class = "form-control" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                   @Html.LabelFor(model => model.ConfirmPassword)
+                                                                @Html.EditorFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                <button type="submit" class="tg-btn">update</button>
+                                                            </div>
+                                                        </div>
+                            </fieldset>
+                        }
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </main>

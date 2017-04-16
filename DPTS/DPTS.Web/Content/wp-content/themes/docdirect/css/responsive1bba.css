@@ -1,0 +1,898 @@
+@media (max-width:1366px){
+	.tg-postionabsulote > div {padding: 0 108px 0 0;}
+}
+@media (max-width:1200px){
+	.form-searchdoctors h1 {
+		font-size: 45px;
+		line-height: 45px;
+	}
+	.form-searchdoctors h1 span {
+		font-size: 75px;
+		line-height: 80px;
+	}
+	.tg-postionabsulote > div {padding: 0 120px 0 0;}
+}
+@media (max-width:1199px){
+	.tg-tabs-nav li a {padding: 18px 10px 10px 35px;}
+	.tg-search-category {height: 400px; margin:0 0 30px;}
+	.tg-areuadoctor .tg-img {margin: 19.8% 0 0;}
+	.tg-areuadoctor .tg-contentbox h2{
+		font-size: 34px;
+		line-height: 24px;
+	}
+	.tg-login-logout > li{padding:0 0 15px 20px;}
+	.tg-login-logout > li > a:after{display:none;}
+	.tg-healthcareonthego .tg-contentbox h2{
+		font-size: 28px;
+		line-height: 30px;
+	}
+	.tg-healthcareonthego .tg-btns a {
+		min-width: 160px;
+		padding: 0;
+	}
+	.tg-healthcareonthego .tg-contentbox{padding-bottom: 75px;}
+	.tg-healthcareonthego .frame-img,
+	.tg-healthcareonthego .tg-img {padding-top: 43px;}
+	.tg-post-detail .tg-post .tg-tags .tg-tag,
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata{
+		font-size: 13px;
+		line-height: 16px;
+	}
+	.tg-post-detail .tg-post .tg-tags .tg-tag li + li::after {top: 30%;}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata {left: 2%}
+	.tg-post .tg-description blockquote {padding: 60px 80px;}
+	.tg-author-content h3 {margin: 5px 0 0;}
+	.tg-packages{padding: 30px 15px;}
+	.tg-packages strong {
+		font-size: 70px;
+		line-height: 70px;
+	}
+	.tg-doctor-detail .tg-docprofile-content{width: 100%;}
+	.tg-doctor-detail figure{
+		-moz-border-bottom-colors: #ddd;
+		-moz-border-left-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-top-colors: none;
+		border-color: -moz-use-text-color #ddd -moz-use-text-color -moz-use-text-color;
+		border-image: none;
+		border-style: none solid solid none;
+		border-width: 0 1px 1px 0;
+		position: relative;
+		width: auto;
+	}
+	.tg-dashboard .tg-docinfo .tg-box{padding: 21px;}
+	.tg-postionabsulote > div {padding: 0 90px 0 0;}
+	.tg-packages strong i{
+		font-size: 38px;
+		line-height: 42px;
+	}
+	.tg-listsorttype ul{padding: 0;}
+	.tg-listsorttype ul li a{padding: 0 10px;}
+	.tg-blog-list .tg-post .tg-feature-img{width: 100%;}
+	.tg-blog-list .tg-post .tg-feature-img img{width: 100%;}
+	.tg-blog-list .tg-contentbox{width: 100%;}
+	.tg-blog-grid .tg-contentbox .tg-description {padding: 0 0 5px;}
+	.tg-blog-grid .tg-contentbox .tg-heading-border.tg-small{margin: 0 0 10px;}
+	.tg-blog-grid .tg-contentbox .tg-metadata li{
+		float: left;
+		width: 100%;
+	}
+	.tg-otherphotos .tg-heading-border.tg-small::after{width: 170px;}
+	.tg-editprofile .tg-editimg{padding: 21px;}
+	#tg-photoscroll{margin: 0 0 1px;}
+	.tg-uploadtips .tg-description,
+	.tg-uploadtips h4{margin: 0 0 10px;}
+	.tg-reactivate .tg-btn{padding: 0 15px;}
+	.tg-doccontactinfo li address {max-width: 260px;}
+	.tg-grid-view .tg-doccontactinfo li address {max-width: 210px;}
+	.tg-refinesearcharea fieldset .tg-btn:first-child{ margin:0 0 20px;}
+	.tg-refinesearcharea fieldset .tg-btn{ width:100%;}
+	.tg-grid-view .tg-doctor-profile{
+		width:49.5%;
+		float:none;
+		margin:0;
+		display:inline-block;
+		vertical-align:top;
+	}
+	.tg-post .tg-post-img img,
+	.tg-post .tg-feature-img img{
+		width: 100%;
+		height:auto;
+		display:block;
+	}
+	.tg-blog-list .tg-contentbox{ height:auto;}
+	.left-without-map .tg-grid-view article.tg-doctor-profile{width:33.03%;}
+	/*--New Pages--*/
+	.tg-topbar .tg-login-logout{padding:13px 0;}
+	.tg-banner-holder .tg-searcharea-v2 .tg-searchform select{padding:0 10px;}
+	.tg-banner-holder .tg-searcharea-v2 .tg-searchform .select:after{right:10px;}
+	.tg-homeslidertwo.owl-theme .owl-pagination{bottom:30px;}
+	.tg-videobox:before {width: 435px;}
+	.tg-videobox:after{height:335px;}
+	.tg-aboutus.tg-healthcareonthego .tg-contentbox{padding:0;}
+	.tg-aboutus.tg-healthcareonthego ul{padding:0 0 20px;}
+	.tg-counter-facts .tg-counterarea .tg-counter{margin:15px 0;}
+	.tg-facts{margin:15px 0 0 0;}
+	.tg-healthcareonthego .tg-btns a {
+		min-width: 160px;
+		padding: 0;
+	}
+	.tg-doctor-detail figure.tg-docprofile-img{
+		width:100%;
+		border:0;
+		margin:0 auto;
+		text-align:center;
+		border-bottom:1px solid #ddd;
+	}
+	.tg-doctor-detail figure.tg-docprofile-img img{
+		width:auto;
+		margin:0 auto;
+	}
+	.tg-doctor-detail figure figcaption .tg-btn.tg-btn-lg{ width:auto;}
+	.tg-rightcol,
+	.tg-leftcol{ width:100%;}
+}
+@media (max-width:1024px){}
+@media (max-width:991px){
+	#header .logo {
+		display: block;
+		float: none;
+		margin: 0 auto;
+		padding: 35px 0 20px;
+		width: 20%;
+	}
+	.tg-nav{float: none;}
+	.tg-nav ul li {padding: 25px 20px 40px;}
+	.tg-nav ul li::after {top: 42%;}
+	.tg-searcharea .tg-searchform .tg-btn{padding: 0;}
+	.tg-search-category .tg-box {padding: 0 40px;}
+	.tg-areuadoctor .tg-contentbox{padding: 90px 0 0;}
+	.frame-img,
+	.tg-areuadoctor .tg-img{
+		width: 100%;
+		margin: 10% 0 0;
+	}
+	.form-searchdoctors h1{margin-top: 30px;}
+	.frame-img img{ display:block;}
+	.frame-img img,
+	.tg-areuadoctor .tg-img img{
+		width: auto;
+		margin: 0 auto;
+	}
+	.tg-healthcareonthego .tg-contentbox h2 {
+		font-size: 40px;
+		line-height: 30px;
+	}
+	.tg-healthcareonthego .tg-img{width: 100%;}
+	.tg-healthcareonthego .tg-img img{
+		width: auto;
+		margin: 0 auto;
+	}
+	.tg-otherphotos .tg-otherimg {width: 418px;}
+	.tg-patientfeedback .tg-patient-pic{
+		width: 100%;
+		float: none;
+		margin: 0 0 20px;
+	}
+	.tg-patientfeedback .tg-patient-pic img{
+		width: auto;
+		margin: 0 auto;
+		display: block;
+	}
+	.tg-post .tg-description blockquote {padding: 60px 40px;}
+	.comment{padding: 20px;}
+	#comments .comment-head .tg-btn{margin: 0 0 10px;}
+	.comment-box span{
+		font-size: 13px;
+		line-height: 14px;
+	}
+	/*.canvas{height: 200px !important;}*/
+	.tg-costumerreview{margin: 0 -15px;}
+	.tg-docrank a{
+		margin: 0 0 30px;
+		float: left;
+	}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata{
+		width: 100%;
+		float: left;
+		left: 0;
+		bottom: 20%;
+		text-align: center;
+	}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata li{
+		width: 32%;
+		float: none;
+		text-align: left;
+		display: inline-block;
+	}
+	.tg-post-detail .tg-post .tg-tags{
+		width: 100%;
+		text-align: center;
+		right: 0;
+	}
+	.tg-patientfeedback .tg-patient-message{width: 100%;}
+	.tg-findbycategory ul li{width: 50%;}
+	.tg-info address{width: 90%;}
+	.tg-footercol{margin: 0 0 30px;}
+	.tg-tabwidet-content{padding: 10px;}
+	.tg-widget-map a{width: 85%;}
+	.tg-listsorttype ul{
+		padding: 0;
+		width: auto;
+		margin: 0 0 10px;
+	}
+	.tg-blog-grid .tg-contentbox .tg-metadata{width: 100%;}
+	.tg-listsorttype ul li:first-child{padding-left: 0;}
+	.tg-listsorttype ul li a {padding: 0 14px;}
+	.tg-listsorttype strong{margin: 0 0 10px;}
+	.tg-search-category .tg-box {padding: 0 30px;}
+	.tg-404 figure{margin: 0 0 60px;}
+	.tg-404 figure img{
+		width: auto;
+		float: none;
+		margin: 0 auto;
+	}
+	#comming-countdown li{margin: 0 8px;}
+	.tg-packages{margin: 0 0 30px;}
+	.form-docschedule label{padding: 0;}
+	.tg-reactivate > div{width: 100%;}
+	.tg-myaccount .tg-reactivate .tg-btn.tg-btn-lg{margin: 0 0 10px;}
+	.tg-deleteaccount .form-deleteaccount .form-group{margin: 0 0 15px;}
+	.tg-postionabsulote{
+		height: 500px;
+		margin: -100px 0 30px;
+		position: relative;
+	}
+	.tg-postionabsulote > div{padding: 0;}
+	.tg-doctor-detail .tg-docprofile-content{width: auto;}
+	.tg-doctor-detail figure{
+		-moz-border-bottom-colors: none;
+		-moz-border-left-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-top-colors: none;
+		border-color: -moz-use-text-color #ddd -moz-use-text-color -moz-use-text-color;
+		border-image: none;
+		border-style: none solid none none;
+		border-width: 0 1px 0 0;
+		position: relative;
+		width: auto;
+	}
+	.tg-doctor-detail .tg-docprofile-content .tg-heading-border.tg-small{margin: 0 0 17px;}
+	.tg-doctor-detail2 .tg-docprofile-content{width: 100%;}
+	.tg-doctor-detail2 figure{
+		-moz-border-bottom-colors: #ddd;
+		-moz-border-left-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-top-colors: none;
+		border-color: -moz-use-text-color #ddd -moz-use-text-color -moz-use-text-color;
+		border-image: none;
+		border-style: none none solid none;
+		border-width: 0 0 1px 0;
+		position: relative;
+		width: 100%;
+	}
+	.tg-doctor-detail2 figure img{width: 100%;}
+	#comments ul .children {padding: 30px 0 0 50px;}
+	.left-without-map .tg-grid-view article.tg-doctor-profile{width:49.7%;}
+	/*--New Pages--*/
+	.tg-banner-holder .tg-banner-content {margin: -175px 0 0;}
+	.tg-banner-holder .tg-heading-border h1 {
+		font-size: 70px;
+		line-height: 55px;
+	}
+	.tg-banner-holder .tg-heading-border h1 span {
+		font-size: 30px;
+		line-height: 45px;
+	}
+	.tg-banner-holder .tg-searcharea-v2 .form-group {width: 50%;}
+	.tg-banner-holder .tg-heading-border:after {
+		width: 230px;
+		margin: 0 0 0 -115px;
+	}
+	.tg-banner-holder .tg-heading-border{
+		margin:0 0 20px;
+		padding:0 0 20px;
+	}
+	.tg-banner-holder .tg-searcharea-v2 .tg-searchform .form-group:last-child{width:100%;}
+	.tg-homeslidertwo.owl-theme .owl-prev,
+	.tg-homeslidertwo.owl-theme .owl-next {
+		height: 40px !important;
+		line-height: 40px;
+		width: 40px !important;
+	}
+	.tg-features-listing > li{width:50%;}
+	.tg-topbar .tg-info{
+		width:100%;
+		text-align:center;
+	}
+	.tg-topbar .tg-info li{width:100%;}
+	.tg-topbar .tg-info li:after{display:none;}
+	.tg-topbar .tg-login-logout:before{
+		content: '';
+		height: 100%;
+		right: 100%;
+		position: absolute;
+		top: 0;
+		width: 99999px;
+	}
+	.tg-videobox{margin:40px 0 0 0;}
+	.tg-member .tg-contentbox h2 {
+		font-size: 16px;
+		line-height: 16px;
+	}
+	.tg-member .tg-contentbox h2 span {
+		font-size: 12px;
+		line-height: 12px;
+	}
+	.tg-videobox:before {width: 695px;}
+	.tg-videobox:after {height: 515px;}
+	.tg-appointmenttime .tg-doctimeslot {
+		width:33.33%;
+		min-width: 190px;
+	}
+	.tg-subdoccategoties{ margin:60px 0 0;}
+	.tg-navdocappointment{padding:30px 15px 15px;}
+	.tg-navdocappointment li{
+		width:50%;
+		float:left;
+		display:block;
+		padding:0 15px 15px;
+	}
+	.tg-timeslots .form-group{ width:50%;}
+	.tg-leftcol li{ width:50%;}
+	.tg-editimg-banner .tg-docimg,
+	.tg-editimg-avatar .tg-docimg{width:100%;}
+	.tg-userbanner-content h1{
+		font-size: 36px;
+    	line-height: 30px;
+	}
+}
+@media (max-width:900px){
+	.tg-postionabsulote > div {padding:0;}
+	/*--New Pages--*/
+	.tg-homeslidertwo.owl-theme .owl-prev,
+	.tg-homeslidertwo.owl-theme .owl-next {top: 38%;}
+	.tg-homeslidertwo .item figure img{
+		max-width:none;
+		width:auto;
+	}
+}
+@media (max-width:850px){
+	.tg-appointmenttime .tg-doctimeslot {
+		width:50%;
+		min-width: 190px;
+	}
+}
+@media (max-width:767px){
+	#header .logo {
+		width: auto;
+		float: left;
+		margin: 0;
+		padding: 35px 0;
+	}
+	.tg-nav{
+		width:auto;
+		position:static;
+	}
+	.tg-nav .navbar-header{
+		float: right;
+		padding: 33px 0;
+		position: relative;
+	}
+	.navbar-header .navbar-toggle .icon-bar{background: #fff;}
+	.navbar-header .navbar-toggle{margin: 0;}
+	#tg-navigation {
+		width:100%;
+		position: absolute;
+		z-index: 5;
+		right: 0;
+		top: 100%;
+		overflow: visible;
+	}
+	.tg-nav ul li{padding: 20px;}
+	.tg-nav ul li:nth-child(6) a i{display: none;}
+	.tg-nav ul li span{display: block;}
+	.tg-nav ul li ul li a:hover{color: #505050;}
+	.tg-nav ul {
+		width:auto;
+		float:none;
+		margin:0 -15px;
+		background: #f7f7f7;
+		color: #505050;
+		overflow:hidden;
+		position:relative;
+		z-index: 100;
+		border-top:2px solid ;
+	}
+	.tg-nav ul li:last-child,
+	.tg-nav ul li{
+		display: block;
+		width: 100%;
+		text-align:left;
+		padding:10px 15px;
+	}
+	.tg-nav ul li + li{border-top: 1px solid #ddd;}
+	.tg-nav ul li:after{ display:none;}
+	.tg-nav ul li a{position:relative;}
+	.tg-nav ul li ul{
+		width:100%;
+		float:left;
+		margin:10px 0 0 0;
+		position:static;
+		display:none;
+		z-index:101 !important;
+	}
+	.tg-nav ul li:hover ul{display:block;}
+	.tg-nav ul li ul li{ padding:0 !important;}
+	.tg-nav ul li ul li a{
+		color:#5d5955;
+		padding:0 15px;
+		line-height:40px;
+	}
+	.tg-nav ul li a{
+		color: #505050;
+		display: block;
+	}
+	.tg-nav ul li:last-child a i:first-child{display: none;}
+	.tg-nav ul li:last-child a i:last-child{
+		display: block;
+		font-style: normal;
+	}
+	.tg-nav ul li > ul > li{border:0;}
+	.tg-nav ul > li.menu-item-has-children > a:after{
+		position:absolute;
+		content:'\f107';
+		right:20px;
+		top:0;
+		font-size:13px;
+		line-height:20px;
+		color:#8b8b8b;
+		font-family:'FontAwesome';
+	}
+	.tg-login-logout li {padding: 30px 20px 34px;}
+	.tg-login-logout > li > a{padding:0;}
+	.tg-tabs-nav li label .tg-category{ display:none;}
+	.tg-tabs-nav li label {padding: 15px 15px 15px 30px;}
+	.tg-listsorttype ul{
+		padding: 0;
+		width: auto;
+		margin: 0 ;
+	}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata {
+		width: auto;
+		float: left;
+		left: 2%;
+		bottom: 4%;
+	}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata li{
+		width: auto;
+		float: left;
+	}
+	.tg-post-detail .tg-post .tg-tags{width: auto;}
+	.tg-tabs-nav li a .tg-category{display: none;}
+	.tg-doctors-list .tg-btnarea{margin: 0 0 30px;}
+	.tg-tabwidet-content{padding: 30px;}
+	.tg-commingsoon-content h1 {
+		font-size: 45px;
+		line-height: 35px;
+	}
+	.tg-searchform > div:nth-child(1) .form-group{margin: 0 0 20px;}
+	.tg-postionabsulote > div {padding: 0 15px 0 0;}
+	.tg-commingsoon-content h2 {
+		font-size: 28px;
+		line-height: 31px;
+	}
+	.tg-docrank{margin: 0 0 30px;}
+	.tg-dashboard-widget{margin-bottom: 0;}
+	#comming-countdown li{width: 120px;}
+	.tg-pagination{margin: 0 0 30px;}
+	.tg-doctors-list .form-refinesearch .tg-btn{width: 100%;}
+	.tg-doctors-list .form-refinesearch .tg-btn-reset{
+		width: 100%;
+		margin: 16px auto;
+		float: none;
+		display: block;
+	}
+	.tg-doctor-detail figure{
+		-moz-border-bottom-colors: #ddd;
+		-moz-border-left-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-top-colors: none;
+		border-color: -moz-use-text-color #ddd -moz-use-text-color -moz-use-text-color;
+		border-image: none;
+		border-style: none solid solid none;
+		border-width: 0 1px 1px 0;
+		position: relative;
+		width: auto;
+	}
+	.tg-doctor-detail .tg-docprofile-content{width: 100%;}
+	.tg-formeditprofile .tg-btn{margin: 0 0 30px;}
+	.form-docschedule .tg-btn{
+		float: left;
+		margin: 0 0 30px;
+	}
+	.tg-deleteaccount{margin: 0 0 30px;}
+	.tg-search-category{margin: 0 0 30px;}
+	.tg-contactus .tg-refinesearcharea{margin-top: -30px;}
+	.tg-doclisthead .form-group{ margin-bottom:20px;}
+	.tg-doclisthead .form-group div div:last-child{ margin:0;}
+	.tg-post .tg-description blockquote {
+		padding: 60px 0 40px;
+		font-size:17px;
+		line-height:20px;
+	}
+	.dashboard-sidebar{ padding:60px 0 0;}
+	.left-without-map .tg-grid-view article.tg-doctor-profile{width:49.7%;}
+	.sc-dir-types .specialities-list ul li{ width:100%;}
+	/*--New Pages--*/
+	.tg-videobox{width:100%;}
+	.tg-videobox:before,
+	.tg-videobox:after{display:none;}
+	.tg-aboutus.tg-healthcareonthego .tg-heading-border h2,
+	.tg-counter-facts .tg-heading-border h2,
+	.tg-team-members .tg-theme-heading h2 {
+		font-size: 22px;
+		line-height: 20px;
+	}
+	.tg-teams-member .tg-member{margin:15px 0;}
+	.tg-navdocappointment{ padding:30px 15px 10px;}
+	.tg-navdocappointment li{
+		width: 33.33%;
+		display: block;
+		float: left;
+		margin: 0 0 20px;
+	}
+	.tg-modalcontent .form-group{width:100%;}
+	.tg-appointmenttime .tg-dayname{width:100%;}
+	.tg-appointmenttime .tg-timeslots{
+		clear:both;
+		margin:0 -10px;
+		padding:30px 0 0;
+	}
+	.tg-appointmenttime .tg-doctimeslot{ padding:0 10px;}
+	.tg-message{ padding:0 15px;}
+	.tg-subdoccategoties .tg-editcategory .form-group{
+		width:100%;
+		padding:0 !important;
+	}
+	.tg-dayname{
+		width:100%;
+		margin:0 0 30px;
+	}
+	.tg-timeslots{
+		width:auto;
+		float:none;
+		clear:both;
+		margin:0 -10px;
+	}
+	.custom-time-periods .tg-timeslots{ padding:0 10px;}
+	.tg-userbanner .tg-userbanner-content{ display:block;}
+	.tg-userdetail{ margin:-40px 0 0;}
+	.tg-userdetail .tg-userbanner-content{ display:none;}
+	.tg-section-map{ margin:0;}
+	.tg-userbanner-content h1{
+		font-size: 18px;
+    	line-height: 18px;
+	}
+}
+@media (max-width:680px){
+	.tg-listsorttype ul li a {
+		padding: 0 10px;
+		margin: 0 0 20px;
+	}
+	.tg-blog-grid .tg-contentbox .tg-metadata li {
+		float: left;
+		width: auto;
+		margin: 0;
+	}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata {
+		width: 100%;
+		float: left;
+		text-align: center;
+		left: 0;
+		bottom: 15%;
+	}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata li {
+		float: left;
+		text-align: center;
+		width: 50%;
+	}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata li:first-child{text-align: right;}
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata li:last-child{text-align: left;}
+	.tg-post-detail .tg-post .tg-tags {width: 100%;}
+}
+@media (max-width:640px){
+	.form-searchdoctors h1 {
+		font-size: 40px;
+		line-height: 40px;
+	}
+	.form-searchdoctors h1 span {
+		font-size: 65px;
+		line-height: 70px;
+	}
+	.tg-search-category .tg-box {padding: 0 18px;}
+	.tg-blog-grid .tg-metadata{left: 1%;}
+	.tg-blog-grid .tg-metadata li{
+		width: 100%;
+		float: left;
+		margin: 0 0 5px;
+		text-align: center;
+	}
+	.tg-doccontactinfo li address {max-width: 250px;}
+	.tg-grid-view .tg-doccontactinfo li address {max-width: 190px;}
+}
+@media (max-width:639px){
+	.tg-contactus .tg-heading-border.tg-small::after{width: 150px;}
+	.tg-grid-view .tg-doctor-profile .tg-docprofile-content{padding: 15px;}
+}
+@media (max-width:568px){
+	.tg-tabs-nav li a {padding: 18px 10px 10px 15px;}
+	.form-searchdoctors h1 {
+		font-size: 35px;
+		line-height: 35px;
+	}
+	.form-searchdoctors h1 span {
+		font-size: 60px;
+		line-height: 65px;
+	}
+	.tg-search-categories .tg-search-category{margin: 15px 0;}
+	.tg-patientfeedback .tg-patient-pic{
+		float: left;
+		width: auto;
+		margin: 0 30px 0 0;
+	}
+	.tg-contactus .tg-heading-border.tg-small h2 {
+		font-size: 15px;
+		line-height: 15px;
+	}
+	.tg-theme-heading h2 {
+		font-size: 25px;
+		line-height: 25px;
+	}
+	.tg-healthcareonthego .tg-contentbox h2 {
+		font-size: 25px;
+		line-height: 15px;
+	}
+	.tg-areuadoctor .tg-contentbox h2 {
+		font-size: 25px;
+		line-height: 15px;
+	}
+	.tg-areuadoctor .tg-contentbox .tg-heading-border h3 {
+		font-size: 15px;
+		line-height: 15px;
+	}
+	.tg-patientfeedback .tg-patient-message{width: auto;}
+	.tg-findbycategory ul li {width: 33.33%;}
+	#comming-countdown li {
+		width: 170px;
+		margin: 8px;
+	}
+	.tg-blog-grid .tg-feature-img img{width: 100%;}
+	.tg-blog-grid .tg-metadata{
+		width: 100%;
+		left: 4%;
+	}
+	.tg-blog-grid .tg-metadata li{
+		float: none;
+		width: auto;
+	}
+	.tg-bloggridwidth,
+	.tg-feedbackwidht,
+	.tg-findheatlhwidth,
+	.tg-expectwidth,
+	.tg-packageswidth{width: 100% !important;}
+	.tg-doccontactinfo li address {max-width: 180px;}
+	.left-without-map .tg-grid-view article.tg-doctor-profile{width:49.6%;}
+	
+	/*--New Pages--*/
+	.tg-features-listing > li{width:100%;}
+}
+@media (max-width:567px){
+	.tg-refinesearcharea [class^="col-"],
+	.tg-refinesearcharea [class*="col-"]{ width:100%;}
+	.tg-doctors-list .tg-box .tg-docprofile-content{ width:100%;}
+	.tg-list-view .tg-box figure{
+		width:100%;
+		margin:0 0 30px;
+	}
+	.tg-grid-view .tg-doctor-profile{width: 100%;}
+	.tg-grid-view .tg-doccontactinfo li address {max-width: 300px;}
+	.left-without-map .tg-grid-view article.tg-doctor-profile{width:100%;}
+}
+@media (max-width:480px){
+	.tg-healthcareonthego .tg-contentbox h2 {
+		font-size: 30px;
+		line-height: 20px;
+	}
+	.tg-blog-grid .tg-post .tg-feature-img img{width: 100%;}
+	.tg-blog-grid .tg-post .tg-metadata{
+		width: 100%;
+		left: 5%;
+	}
+	.tg-blog-grid .tg-post .tg-metadata li{
+		width: 50%;
+		float: none;
+	}
+	.tg-patientfeedback .tg-patient-pic{margin: 0 0 30px;}
+	.tg-findbycategory ul li{width: 50%;}
+	.tg-patientfeedback .tg-patient-message{width: 100%;}
+	.tg-commingsoon-content h1 {
+		font-size: 35px;
+		line-height: 25px;
+	}
+	.tg-commingsoon-content h2 {
+		font-size: 19px;
+		line-height: 21px;
+	}
+	#comming-countdown li {width: 130px;}
+	.tg-listsorttype ul li a {padding: 0 8px;}
+	.tg-doctors-list .form-refinesearch .tg-btn{width: 100%;}
+	.tg-healthcareonthego .tg-btns a {
+		min-width: 140px;
+		margin: 0 15px 0 0 ;
+	}
+	.tg-otherphotos .tg-otherimg {width: 396px;}
+	.tg-doctors-list .form-refinesearch .tg-btn-reset {
+		float: none;
+		margin: 16px auto;
+		display: block;
+	}
+	.tg-btnwidth{width: 100% !important;}
+}
+@media (max-width:479px){
+	.tg-post-detail .tg-post .tg-post-img .tg-metadata{bottom: 20%;}
+	.tg-post-detail .tg-post .tg-tags .tg-tag li {padding: 0 6px;}
+	.tg-bottominfo .tg-regardsleft{margin: 0 0 20px;}
+	.tg-bottominfo .tg-regardsleft,
+	.tg-bottominfo .tg-regardsright{width: 100%;}
+	.tg-otherphotos .tg-otherimg {width: auto;}
+	.tg-uploadtips{width: 100%;}
+	.tg-editimg figure{
+		width: 100%;
+		margin: 0 0 30px;
+	}
+	.doc-menu{
+		width:100%;
+		float:left;
+	}
+	.tg-login-logout li{
+		padding:0 0 15px;
+	}
+	.tg-docavailability {
+		float: none !important;
+		text-align: center;
+		width: 100%;
+	}
+	.form-docschedule .tg-btn {
+		width: auto;
+		float: none !important;
+		display: block;
+		margin: 0 auto 30px;
+	}
+	.tg-grid-view .tg-doccontactinfo li address {max-width: 270px;}
+	#comments ul .children {padding: 30px 0 0 20px;}
+	.tg-author-img{
+		width:100px;
+		float:none;
+		margin:0 auto 20px;
+	}
+	.tg-author-img a{ display:block;}
+	.comment-box{
+		width:100%;
+		float:left;
+	}
+	.tg-modal-content{
+		width:100%;
+		float:left;
+		left:0;
+		margin:0;
+	}
+	.tg-modal-content .form-group.tg-checkbox label{
+		width:100%;
+		margin-bottom:10px;
+		text-align:left;
+	}
+	.tg-modal-content .tg-forgot-password{
+		width:100%;
+		text-align:right;
+	}
+	.tg-form-signup .user-selection label{
+		width:100%;
+	}
+	.tg-form-modal .form-group .tg-radiobox{
+		width:100%;
+		margin:0 0 10px;
+		padding:0;
+	}
+	.tg-form-modal .form-group .tg-radiobox:first-child{padding:0;}
+	.left-without-map .tg-grid-view article.tg-doctor-profile{width:100%;}
+	/*--New Pages--*/
+	.tg-banner-holder .tg-searcharea-v2 .form-group{width:100%;}
+	.tg-homeslidertwo .item figure img {height: 600px;}
+	.tg-banner-holder .tg-banner-content {margin: -240px 0 0;}
+	.tg-homeslidertwo.owl-theme .owl-prev,
+	.tg-homeslidertwo.owl-theme .owl-next {display:none !important;}
+	.tg-banner-holder .tg-heading-border h1 {
+		font-size: 50px;
+		line-height: 35px;
+	}
+	.tg-banner-holder .tg-heading-border h1 span {
+		font-size: 20px;
+		line-height: 25px;
+	}
+	.tg-banner-holder .tg-heading-border:after{
+		width:180px;
+		margin:0 0 0 -90px
+	}
+	.tg-topbar .tg-login-logout ul li{padding:0 5px;}
+	.tg-topbar .tg-login-logout ul li:after{left:-3px;}
+	.tg-homesliderthree .tg-searcharea-v2{left:0;}
+	.tg-features-listing > li{width:100%;}
+	.tg-videobox:before {width: 270px;}
+	.tg-videobox::after {height: 195px;}
+	.tg-aboutus .tg-contentbox .tg-btn {margin: 0 5px 0 0;}
+	.tg-navdocappointment li,
+	.tg-modalcontent .tg-btnbox .tg-btn,
+	.tg-appointmenttime .tg-doctimeslot{width: 100%;}
+	.tg-modalcontent .tg-btnbox .tg-btn + .tg-btn{ margin:30px 0 0 ;}
+	.tg-appointmenttable{overflow:auto;}
+	.tg-appointmenttable table.table{width:450px;}
+	.tg-editimg-banner,
+	.tg-editimg-avatar{
+		width:100%;
+		padding:0;
+	}
+	.tg-editimg-avatar{ margin:0 0 30px;}
+	.tg-averagerating{ width:100%; margin:0 0 30px;}
+	.tg-userskill{
+		padding:0;
+		width:100%;
+		float:left;
+	}
+	.tg-reviewcontet{
+		padding:30px 0 0;
+		width: 100%;
+	}
+}
+@media (max-width:360px){
+	.form-searchdoctors h1 {
+		font-size: 25px;
+		line-height: 25px;
+	}
+	.form-searchdoctors h1 span {
+		font-size: 40px;
+		line-height: 45px;
+	}
+	.tg-theme-heading h2{
+		font-size: 25px;
+		line-height: 20px;
+	}
+	.tg-healthcareonthego .tg-contentbox h2 {
+		font-size: 22px;
+		line-height: 15px;
+	}
+	.tg-areuadoctor .tg-contentbox h2 {
+		font-size: 25px;
+		line-height: 20px;
+	}
+	.tg-findbycategory ul li{width: 100%;}
+	.tg-healthcareonthego .tg-btns a {
+		min-width: 135px;
+		margin:0 7px 0 0;
+	}
+	.tg-patientfeedback .tg-patient-message{width: 100%;}
+	.tg-findbycategory ul li{width: 50%;}
+	.tg-commingsoon-content h1 {
+		font-size: 26px;
+		line-height: 15px;
+	}
+	.tg-commingsoon-content h2 {
+		font-size: 15px;
+		line-height: 18px;
+	}
+	.tg-serviceprice {padding: 0 15px;}
+	.tg-timeslots .form-group{ width:100%;}
+	.custom-slots-action button{ width:100%;}
+	.custom-slots-action button:last-child{ margin:30px 0 0;}
+}
+@media (max-width:320px){.tg-grid-view .tg-doccontactinfo li address {max-width: 230px;}}

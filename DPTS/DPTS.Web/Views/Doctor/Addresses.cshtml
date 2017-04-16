@@ -1,0 +1,87 @@
+﻿@using DPTS.Web.Models
+@model IEnumerable<AddressViewModel>
+@{
+    ViewBag.Title = "Addresses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="tg-myaccount tg-haslayout privacy-settings">
+
+                    <div class="tg-heading-border tg-small">
+                        <h2>Address</h2>
+                    </div>
+                    <div class="pull-right">
+                        <a id="search_banner" class="tg-btn tg-btn-lg bk-add-category-item" href="@Url.Action("AddressAdd","Doctor")">Add Address</a>
+                    </div>
+                    @if (Model.Any())
+                    {
+                        <div class="privacy-wraper">
+                            <form action="#" method="post" class="tg-form-privacy">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="form-group">
+                                        <div class="tg-privacy">
+                                            <div class="tg-iosstylcheckbox">
+                                                <span class="tg-catelinks">
+                                                    <a href="@Url.Action("AddressEdit","Doctor",new { Id = item.Id})" class="bk-edit-service"><i class="fa fa-edit"></i></a>
+                                                    <a href="#" onclick="deletecustomeraddress(@(item.Id))" data-type="db-delete" class="bk-delete-service"><i class="fa fa-trash-o"></i></a>
+                                                </span>
+                                            </div>
+                                            <span class="tg-privacy-name">@item.Hospital</span>
+                                            <hr />
+                                            @if (!string.IsNullOrWhiteSpace(item.Address1))
+                                            {
+                                                <p>@item.Address1</p>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(item.Address2))
+                                            {
+                                                <p>@item.Address2</p>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(item.City))
+                                            {
+                                                <p>@item.City - @item.ZipPostalCode, @item.CountryName, @item.StateName</p>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+
+                            </form>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    function deletecustomeraddress(addressId) {
+        if (confirm('Are you sure to delete')) {
+            var postData = {
+                addressId: addressId
+            };
+            // addAntiForgeryToken(postData);
+
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: '@Url.Action("AddressDelete", "Doctor")',
+                data: postData,
+                dataType: 'json',
+                success: function (data) {
+                    location.href = data.redirect;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to delete');
+                }
+            });
+        }
+    }
+</script>

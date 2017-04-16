@@ -1,0 +1,179 @@
+﻿@using DPTS.Web.Helpers
+@model DPTS.Web.Models.AppointmentScheduleViewModel
+@{
+    ViewBag.Title = "ReScheduling";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //js part
+    Html.Assets().Scripts.Add("/Content/wp-content/themes/docdirect/js/sticky_message1bba.js");
+    Html.Assets().Scripts.Add("/Scripts/ReScheduling.js");
+}
+<style>
+    .info-patient-row{
+            border-bottom: 2px solid white;
+    }
+    .n-title{
+    background-color: #23b123;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    }
+    .colr{
+        background-color:#8a6d3b !important;
+    }
+</style>
+<div class="modal-dialog modal-lg tg-modalcontent" role="document">
+    <form action="#" method="post" class="appointment-form">
+        <fieldset class="booking-model-contents">
+            <ul class="tg-navdocappointment" role="tablist">
+                <li class="active"><a href="javascript:;" class="bk-step-1">1. available schedule</a></li>
+                <li class=""><a href="javascript:;" class="bk-step-2">2. Confirm</a></li>
+            </ul>
+            
+
+            <div class="tab-content tg-appointmenttabcontent" data-id="332">
+                @if (Model != null)
+                {
+                    <input type="hidden" id="booking_date" name="booking_date" class="booking_date">
+                    <input type="hidden" id="BookingId" name="BookingId" value="@Model.AppointmentSchedule.Id">
+                    <input type="hidden" id="PatientId" name="PatientId" value="@Model.AppointmentSchedule.PatientId">
+                    <input type="hidden" id="DotorId" name="DoctorId" value="@Model.doctorId">
+                <div class="tab-pane step-one-contents" id="one" style="display: block;">
+                    <div class="bk-booking-schedules">
+                        
+                        <div class="tg-appointmenttime">
+                            <div class="tg-dayname booking-pickr">
+                                <strong></strong>
+                            </div>
+                            <div class="tg-timeslots step-one-slots">
+                                <div class="tg-timeslotswrapper">
+                                    @foreach (var slot in Model.ScheduleSlotModel)
+                                    {
+                                        if (slot.IsBooked)
+                                        {
+                                            <div class="tg-doctimeslot tg-booked">
+                                                <div class="tg-box">
+                                                    <div class="tg-radio">
+                                                        <input id="@slot.Slot" value="@slot.Slot" type="radio" name="slottime" disabled>
+                                                        <label for="@slot.Slot">@slot.Slot</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="tg-doctimeslot tg-available">
+                                                <div class="tg-box">
+                                                    <div class="tg-radio">
+                                                        <input id="@slot.Slot" value="@slot.Slot" type="radio" name="slottime">
+                                                        <label for="@slot.Slot">@slot.Slot</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                <br />
+                                @if (Model.AppointmentSchedule != null)
+                                {
+                                    
+                                   <br />
+                                   <br />
+                                    <table style="background-color: #d2d2d2;margin-bottom:0;">
+                                        <tr>
+                                            <td colspan="2" style="background:#7dbb00"><b>Patient Previous Appoinment</b></td>
+                                        </tr>
+                                        <tr class="info-patient-row">
+                                            <td class="text-left"><b>Patient Name</b></td>
+                                            <td class="text-left">@Model.AppointmentSchedule.AspNetUser.FirstName @Model.AppointmentSchedule.AspNetUser.LastName</td>
+                                        </tr>
+                                        <tr class="info-patient-row">
+                                            <td class="text-left"><b>Date</b></td>
+                                            <td class="text-left">@Model.AppointmentSchedule.AppointmentDate</td>
+                                        </tr>
+                                        <tr class="info-patient-row">
+                                            <td class="text-left"><b>Time</b></td>
+                                            <td class="text-left">@Model.AppointmentSchedule.AppointmentTime</td>
+                                        </tr>
+                                        <tr class="info-patient-row">
+                                            <td class="text-left"><b>Current Status</b></td>
+                                            <td class="text-left">@Model.AppointmentSchedule.AppointmentStatus.Description</td>
+                                        </tr>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane step-two-contents" id="two" style="display: none;">
+                    <div class="bk-thanks-message">
+                        <div class="tg-message">
+                            <h2>Verify Reschedule!</h2>
+                            <div class="tg-description">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="panel panel-green">
+                                            <div class="panel-heading n-title colr" style="background-color: orange">
+                                                Previous Appoinment
+                                            </div>
+                                            <div class="panel-body">
+                                                <table>
+                                                    <tr>
+                                                        <td><b>Date</b></td>
+                                                        <td>@Model.AppointmentSchedule.AppointmentDate</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Time</b></td>
+                                                        <td>@Model.AppointmentSchedule.AppointmentTime</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status</b></td>
+                                                        <td>@Model.AppointmentSchedule.AppointmentStatus.Description</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.col-lg-4 -->
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="panel panel-yellow">
+                                            <div class="panel-heading n-title">
+                                                New Appoinment
+                                            </div>
+                                            <div class="panel-body">
+                                                <table>
+                                                    <tr>
+                                                        <td><b>Date</b></td>
+                                                        <td id="nDate">@Model.AppointmentSchedule.AppointmentDate</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Time</b></td>
+                                                        <td id="nTime">@Model.AppointmentSchedule.AppointmentTime</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Status</b></td>
+                                                        <td><b>Booked</b></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.col-lg-4 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tg-btnbox booking-step-button">
+                    <button type="button" class="tg-btn bk-step-prev">Previous</button>
+                    <button type="button" class="tg-btn bk-step-next">next</button>
+                </div>
+                }else
+                {
+                    <p>Somthing went wrong !!!</p>
+                }
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+

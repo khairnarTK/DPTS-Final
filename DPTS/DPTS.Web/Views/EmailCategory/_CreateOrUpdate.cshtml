@@ -1,0 +1,43 @@
+﻿@using DPTS.Web.Models
+@model EmailCategoryViewModel
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form role="form">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name)
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                      
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DisplayOrder)
+                            @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DisplayOrder)
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Published)
+                            @Html.EditorFor(model => model.Published)
+                            @Html.ValidationMessageFor(model => model.Published)
+                        </div>
+                        @if (Model.Id > 0)
+                        {
+                            <div class="form-group">
+                                    @Html.LabelFor(model => model.DateUpdated)
+                                    @Html.DisplayFor(model => model.DateCreated)
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

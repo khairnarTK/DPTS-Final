@@ -1,0 +1,28 @@
+﻿@using DPTS.Web.Helpers
+@model DPTS.Web.Models.DoctorPictureModel
+@{
+    ViewBag.Title = "Pictures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.common-material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.mobile.min.css");
+    //js part
+    Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/jquery.min.js");
+    Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/kendo.all.min.js");
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                <div class="tg-dashboard tg-haslayout">
+                    <div class="tg-docprofilechart tg-haslayout">
+                        @Html.Partial("_CreateOrUpdate.Pictures", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

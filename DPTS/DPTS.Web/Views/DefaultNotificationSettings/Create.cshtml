@@ -1,0 +1,25 @@
+﻿@using DPTS.Web.Models
+@model DefaultNotificationSettingsViewModel
+@{
+    ViewBag.Title = "add - Default Notification Settings";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Add New</h1>
+            <div class="pull-right" style="margin-top:-68px">
+                <button type="submit" name="save" class="btn bg-blue" style="background-color:#0073b7;color:white">
+                    <i class="fa fa-floppy-o"></i>
+                    Save
+                </button>
+            </div>
+           @Html.ActionLink("Back to List", "List")
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    @Html.Partial("_CreateOrUpdate", Model)
+}

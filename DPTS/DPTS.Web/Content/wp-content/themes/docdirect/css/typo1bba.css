@@ -1,0 +1,181 @@
+/*---Typo---*/
+.tg-subheader-section{
+	padding: 75px 0 0;
+	position: relative;
+	z-index: 10;
+}
+.tg-main-section{ padding:80px 0; width:100%; float:left;}
+.main-page-wrapper{}
+.tg-inner-content {}
+.stretch_section_contents_corner .builder-column{ 
+	padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.builder-items{ float:left; width:100%;}
+.main-page-wrapper .tg-main-section:nth-child(1),
+.fw-page-builder-content .tg-main-section:nth-child(1) {padding: 0px 0px 80px 0px;}
+
+.tgm-demo-style{display: block; margin: 0.5em 0.5em 0 0; clear: both;}
+.tgm-p-style{ float: right; padding: 0em 1.5em 0.5em 0;}
+.tgm-version{min-width: 32px; text-align: right; float: right;}
+.tgm-minimum-requirement{min-width: 32px; text-align: right; float: right;}
+.elm-display-none{ display:none;}
+.img-column.column-widget{ padding:0;}
+.portfolio-media i{ position:absolute; top:10px; right:10px; font-size:15px; color:#fff;}
+.tg-product-detail .tg-saletag{left:15px;}
+.tg-product-tabs #comments{ padding:0; margin:0;}
+.tg-product-tabs #comment .tg-border{ width:100%;}
+.tg-product-tabs #comments{ border:none;}
+.tg-product-tabs .commentlist{ overflow:visible;}
+.appointment_wrap .form-action{ position:relative;}
+.appointment_wrap .form-action i{ 
+	position: absolute;
+    top: 16px;
+    left: 118px;
+}
+.sticky-post-wrap{
+	position: absolute;
+    right: 20px;
+	top: 20px;
+    background: #7dbb00;
+    color: #FFF;
+    padding: 5px 15px;
+}
+.sticky-post-wrap .tg-featuretext{ padding-right:5px;}
+.service-list{ width:100%; float:left;}
+.fw-page-builder-content .container-fluid{ padding:0; margin:0}
+.theme-notification.alert{
+	display: block;
+    float: left;
+    width: 100%;
+    background: none;
+    border-radius: 0;
+    border: 2px solid;
+}
+/* =WordPress Core
+-------------------------------------------------------------- */
+.wp-caption .wp-caption-text,
+.entry-caption,
+.gallery-caption {
+    font-size: 15px;
+    font-weight: 300;
+}
+.sticky{}
+.bypostauthor{}
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: left;
+}
+aside .wp-caption{ max-width: 100%;}
+aside .wp-caption img{ margin: 0 0 10px;}
+.wp-caption.aligncenter, .wp-caption.alignnone{
+    overflow:hidden;
+    margin:0 0 40px;
+}
+.tg-post-content .wp-caption.aligncenter{
+    float:none;
+}
+.tg-post-content .wp-caption.alignright{
+    float:right;
+}
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+    float:none;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000; /* Above WP toolbar. */
+}
+/* =WordPress Core End*/

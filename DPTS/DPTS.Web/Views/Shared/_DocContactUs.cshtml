@@ -1,0 +1,61 @@
+﻿@model DPTS.Web.Models.ContactUsViewModel
+<div id="loading-area" class="load" style="display:none;">
+    <div class='alert alert-info'><strong>Sending...</strong></div>
+</div>
+<div id="message-area"></div>
+    <div class="tg-usercontatnow">
+    <h3>contact now</h3>
+    <div class="tg-widgetcontent doc-contact">
+        <form class="contact_form tg-usercontactform" action="/Account/DoctorContact" method="post">
+            @Html.HiddenFor(model => model.DocEmail)
+            <fieldset>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Name, new { @class = "form-control", @placeholder = "Name" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.PhoneNumber, new { @class = "form-control", @placeholder = "Phone" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Subject, new { @class = "form-control", @placeholder = "Subject" })
+                            @Html.ValidationMessageFor(model => model.Subject)
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @placeholder = "Message" })
+                            @Html.ValidationMessageFor(model => model.Message)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <button class="tg-btn contact_me" type="submit">Send</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    function HideForm() {
+        //When the form is submitted, we hide the form
+        $("#form-area").hide();
+    }
+    function ShowFailure() {
+        //In the case that the AJAX call fails to communicate with the server
+        //(e.g. the user's internet connection cuts out), we should display a message to that effect
+        $('#message-area').html("<div class='alert alert-danger'><strong>Error!</strong>The server could not be contacted and your message has not been sent. Please check your internet connection and try again later.</div>");
+    }
+</script>

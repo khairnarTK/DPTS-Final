@@ -1,0 +1,72 @@
+﻿@*@model IEnumerable<dpts.portal.Database.AspNetUser>
+
+@{
+    ViewBag.Title = "Manage Users";
+}
+<h2>
+    <i class="fa fa-users"></i> @ViewBag.Title.
+</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table-striped" style="min-width: 100%;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.AccessFailedCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessFailedCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                <a href="/UserManager/Edit?id=@item.id" class="btn btn-default"><i class="fa fa-pencil"></i> Edit</a>
+                
+                <a href="/UserManager/Delete?id=@item.id" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+            </td>
+        </tr>
+        }
+
+        </table>
+    </div>
+</div>
+<style>
+    th {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    td {
+        padding: 10px;
+        margin: 10px;
+    }
+</style>*@

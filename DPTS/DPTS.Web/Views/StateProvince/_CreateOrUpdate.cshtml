@@ -1,0 +1,45 @@
+﻿@using DPTS.Web.Models
+@model StateProvinceViewModel
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form role="form">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name)
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CountryId)
+                            @Html.DropDownListFor(model => model.CountryId, Model.AvailableCountry,new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Abbreviation)
+                            @Html.EditorFor(model => model.Abbreviation, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DisplayOrder)
+                            @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Published)
+                            @Html.EditorFor(model => model.Published, new { @class = "form-control" })
+                        </div>
+                        @if (Model.Id > 0)
+                        {
+                            <div class="form-group">
+                                    @Html.LabelFor(model => model.DateUpdated)
+                                    @Html.DisplayFor(model => model.DateCreated)
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

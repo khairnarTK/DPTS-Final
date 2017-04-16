@@ -1,0 +1,205 @@
+﻿@using DPTS.Web.Models
+@model DoctorPictureModel
+
+<div class="panel-group">
+    @if (!string.IsNullOrWhiteSpace(Model.DoctorId))
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div id="doctorpictures-grid"></div>
+
+                <script>
+                    $(document).ready(function() {
+                        $("#doctorpictures-grid").kendoGrid({
+                            dataSource: {
+                                type: "json",
+                                transport: {
+                                    read: {
+                                        url: "@Html.Raw(Url.Action("DoctorPictureList", "Doctor", new {doctorId = Model.DoctorId}))",
+                                        type: "POST",
+                                        dataType: "json"
+                                    },
+                                    update: {
+                                        url: "@Html.Raw(Url.Action("DoctorPictureUpdate", "Doctor"))",
+                                        type: "POST",
+                                        dataType: "json"
+                                    },
+                                    destroy: {
+                                        url: "@Html.Raw(Url.Action("DoctorPictureDelete", "Doctor"))",
+                                        type: "POST",
+                                        dataType: "json"
+                                    }
+                                },
+                                schema: {
+                                    data: "Data",
+                                    total: "Total",
+                                    errors: "Errors",
+                                    model: {
+                                        id: "Id",
+                                        fields: {
+                                            PictureUrl: { editable: false, type: "string" },
+                                            DisplayOrder: { editable: true, type: "number" },
+                                            OverrideAltAttribute: { editable: true, type: "string" },
+                                            OverrideTitleAttribute: { editable: true, type: "string" }
+                                        }
+                                    }
+                                },
+                                requestEnd: function(e) {
+                                    if (e.type == "update") {
+                                        this.read();
+                                    }
+                                },
+                                error: function(e) {
+                                    display_kendoui_grid_error(e);
+                                    // Cancel the changes
+                                    this.cancelChanges();
+                                },
+                                serverPaging: true,
+                                serverFiltering: true,
+                                serverSorting: true
+                            },
+                            pageable: {
+                                refresh: true,
+                                numeric: false,
+                                previousNext: false,
+                                info: false
+                            },
+                            editable: {
+                                confirmation: "DeleteConfirmation",
+                                mode: "inline"
+                            },
+                            scrollable: false,
+                            columns: [
+                            {
+                                field: "PictureUrl",
+                                title: "Picture",
+                                template: '<a href="#=PictureUrl#" target="_blank"><img alt="#=PictureId#" src="#=PictureUrl#" width="150" /></a>',
+                                width: 200
+                            }, {
+                                field: "DisplayOrder",
+                                title: "DisplayOrder",
+                                //integer format
+                                format: "{0:0}",
+                                width: 150
+                            }, {
+                                field: "OverrideAltAttribute",
+                                title: "Alt",
+                                width: 200
+                            }, {
+                                field: "OverrideTitleAttribute",
+                                title: "Title",
+                                width: 200
+                            }, {
+                                command: [
+                                {
+                                    name: "edit",
+                                    text: {
+                                        edit: "Edit",
+                                        update: "Update",
+                                        cancel: "Cancel"
+                                    }
+                                }, {
+                                    name: "destroy",
+                                    text: "Delete"
+                                }
+                                ],
+                                width: 200
+                            }
+                            ]
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Add a new picture
+            </div>
+            <div class="panel-body">
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#addDoctorPicture').click(function() {
+                            var pictureId = $("#PictureId").val();
+                            var overrideAltAttribute = $("#OverrideAltAttribute").val();
+                            var overrideTitleAttribute = $("#OverrideTitleAttribute").val();
+                            var displayOrder = $("#DisplayOrder").val();
+
+                            if (pictureId == 0) {
+                                alert('Upload picture first');
+                                return;
+                            }
+
+                            $('#addDoctorPicture').attr('disabled', true);
+
+                            var postData = {
+                                pictureId: pictureId,
+                                displayOrder: displayOrder,
+                                overrideAltAttribute: overrideAltAttribute,
+                                overrideTitleAttribute: overrideTitleAttribute,
+                                doctorId: "@Model.DoctorId"
+                                };
+
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: "@(Url.Action("DoctorPictureAdd", "Doctor"))",
+                                data: postData,
+                                success: function(data) {
+                                    var grid = $("#doctorpictures-grid");
+                                    grid.data('kendoGrid').dataSource.read();
+                                    $('#addDoctorPicture').attr('disabled', false);
+                                },
+                                error: function(xhr, ajaxOptions, thrownError) {
+                                    alert('Failed to add doctor picture.');
+                                    $('#addDoctorPicture').attr('disabled', false);
+                                }
+                            });
+                        });
+                    });
+                </script>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PictureId)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.PictureId)
+                        @Html.ValidationMessageFor(model => model.PictureId)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OverrideAltAttribute)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.OverrideAltAttribute)
+                        @Html.ValidationMessageFor(model => model.OverrideAltAttribute)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OverrideTitleAttribute)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.OverrideTitleAttribute)
+                        @Html.ValidationMessageFor(model => model.OverrideTitleAttribute)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.DisplayOrder)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.DisplayOrder)
+                        @Html.ValidationMessageFor(model => model.DisplayOrder)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <button type="button" id="addDoctorPicture" class="btn btn-primary">Add Picture</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

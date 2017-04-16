@@ -1,0 +1,46 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model  IPagedList<TempDoctorViewModel>
+@using DPTS.Web.Models
+@{
+    var SearchModel = (SearchModel)ViewBag.SearchModel;
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "searchResult",
+        //  Confirm = "Are you sure to start search?",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "loader"
+    };
+}
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvanm9mpt0gdHXeUTLbmedVCYU8OKNS3U&#038;libraries=places&callback=initializeMap" type="text/javascript"></script>*@
+<script src="/Scripts/searchdoc.js" type="text/javascript"></script>
+<main id="main" class="tg-page-wrapper tg-haslayout">
+
+    @Html.Partial("_MapforResult",Model)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12 pull-right">
+                <div class="tg-doctors-list tg-haslayout left-with-map">
+
+                    @if (Model.Any())
+                    {
+                        @Html.Partial("_BoxforDoctor", Model)
+                        @Html.PagedListPager(Model, page => Url.Action("_DoctorBox", new
+                        {
+                            page = page,
+                            q = SearchModel.q,
+                            geo_location = SearchModel.geo_location,
+                            maxfee = SearchModel.maxfee,
+                            minfee = SearchModel.minfee
+                        }),
+                           PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(options))
+                     }
+                     else
+                     {
+                          <p>No Record Found !!</p>
+                     }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

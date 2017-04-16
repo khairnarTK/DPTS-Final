@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{087EF4A4-1E44-4087-8E62-76AA1E4D2E53}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DPTS.Domain</RootNamespace>
+    <AssemblyName>DPTS.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Address\IAddressService.cs" />
+    <Compile Include="Core\Appointment\IAppointmentService.cs" />
+    <Compile Include="Core\Common\IPictureService.cs" />
+    <Compile Include="Core\Common\IQualifiactionService.cs" />
+    <Compile Include="Core\ExportImport\IImportManager.cs" />
+    <Compile Include="Core\IPagedList.cs" />
+    <Compile Include="Core\Notification\IDoctorNotificationSettingsService.cs" />
+    <Compile Include="Core\Notification\ISentEmailHistoryService.cs" />
+    <Compile Include="Core\Notification\ISentSmsHistoryService.cs" />
+    <Compile Include="Core\Notification\IEmailCategoryService.cs" />
+    <Compile Include="Core\Country\ICountryService.cs" />
+    <Compile Include="Core\Doctors\IDoctorService.cs" />
+    <Compile Include="Core\ReviewComments\IReviewComments.cs" />
+    <Compile Include="Core\Speciality\ISpecialityService.cs" />
+    <Compile Include="Core\IRepository.cs" />
+    <Compile Include="Core\Notification\IDefaultNotificationSettingsService.cs" />
+    <Compile Include="Core\StateProvince\IStateProvinceService.cs" />
+    <Compile Include="Core\SubSpeciality\ISubSpecialityService.cs" />
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\AddressMapping.cs" />
+    <Compile Include="Entities\AppointmentSchedule.cs" />
+    <Compile Include="Entities\AppointmentStatus.cs" />
+    <Compile Include="Entities\AspNetRole.cs" />
+    <Compile Include="Entities\AspNetUser.cs" />
+    <Compile Include="Entities\AspNetUserClaim.cs" />
+    <Compile Include="Entities\AspNetUserLogin.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\BaseEntityWithDateTime.cs" />
+    <Compile Include="Entities\DoctorReviewHelpfulness.cs" />
+    <Compile Include="Entities\Education.cs" />
+    <Compile Include="Entities\Experience.cs" />
+    <Compile Include="Entities\HonorsAwards.cs" />
+    <Compile Include="Entities\Notification\DoctorNotificationSettings.cs" />
+    <Compile Include="Entities\Notification\EmailCategory.cs" />
+    <Compile Include="Entities\Notification\SentEmailHistory.cs" />
+    <Compile Include="Entities\Picture.cs" />
+    <Compile Include="Entities\PictureMapping.cs" />
+    <Compile Include="Entities\PictureType.cs" />
+    <Compile Include="Entities\DoctorReview.cs" />
+    <Compile Include="Entities\Qualifiaction.cs" />
+    <Compile Include="Entities\ReviewComments.cs" />
+    <Compile Include="Entities\Notification\SentSmsHistory.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Doctor.cs" />
+    <Compile Include="Entities\Schedule.cs" />
+    <Compile Include="Entities\SocialLinkInformation.cs" />
+    <Compile Include="Entities\SpecialityMapping.cs" />
+    <Compile Include="Entities\Gender.cs" />
+    <Compile Include="Entities\Speciality.cs" />
+    <Compile Include="Entities\Notification\DefaultNotificationSettings.cs" />
+    <Compile Include="Entities\StateProvince.cs" />
+    <Compile Include="Entities\SubSpeciality.cs" />
+    <Compile Include="Entities\ZipCodes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

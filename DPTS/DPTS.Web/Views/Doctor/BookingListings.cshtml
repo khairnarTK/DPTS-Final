@@ -1,0 +1,151 @@
+﻿@model DPTS.Web.Models.DoctorScheduleListingViewModel
+@using DPTS.Web.Helpers
+@{
+    ViewBag.Title = "Booking Listings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.Assets().Styles.Add("https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.0/jquery-confirm.min.css");
+
+    Html.Assets().Scripts.Add("https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.0/jquery-confirm.min.js");
+    Html.Assets().Scripts.Add("/Scripts/bookings.js");
+}
+
+<style>
+    .tg-btncheck.appointment-actioned {
+        cursor: pointer;
+    }
+</style>
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("AccountNavigation")
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+
+                <div class="doc-booking-listings dr-bookings">
+                    <div class="tg-dashboard tg-docappointmentlisting tg-haslayout">
+                        <div class="tg-heading-border tg-small">
+                            <h3>Appointments</h3>
+                        </div>
+@using (Html.BeginForm("BookingListings", "Doctor", FormMethod.Get, new { id = "form-appoinmentlist", @class = "tg-formappointmentsearch" }))
+{
+                            <fieldset>
+                                <h4>Search Here:</h4>
+                                <div class="form-group">
+                                    <input type="text" class="form-control booking-search-date" value="@Model.ByDate" name="ByDate" placeholder="Search by date">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </fieldset>
+}
+                        <div class="tg-appointmenttable">
+                            <table class="table">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Subject</th>
+                                        <th>Phone</th>
+                                        <th>More Detail</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if (Model.AppointmentSchedule.Count > 0)
+    {
+        foreach (var item in Model.AppointmentSchedule)
+        {
+            string fullName = item.AspNetUser.FirstName + " " + item.AspNetUser.LastName;
+                                        <tr class="booking-odd booking-1883">
+                                            <td data-name="id">@fullName</td>
+                                            <td data-name="subject">@item.Subject</td>
+                                            <td data-name="phone">@item.AspNetUser.PhoneNumber</td>
+                                            <td data-name="notes"><a class="get-detail" href="javascript:;"><i class="fa fa-sticky-note-o"></i></a></td>
+                                            <td>
+                                                @if (item.AppointmentStatus.Name.Equals("Pending"))
+                                                {
+                                                    <a class="tg-btncheck appointment-actioned fa fa-check" style="background: cornflowerblue" onclick="approveAppoinment(@item.Id, 'approve')" href="javascript:;">Approved</a>
+                                                    @*<a class="tg-btncheck appointment-actioned fa fa-retweet" style="background: blueviolet" onclick="approveAppoinment(@item.Id, 'approve')" href="javascript:;">ReScheduling</a>*@
+                                                    <a class="tg-btncheck appointment-actioned fa fa-retweet" style="background: blueviolet" href="@Url.Action("ReScheduling", "Appointment", new RouteValueDictionary(new { doctorId = ViewBag.DoctorId, bookingId = item.Id, userId = item.PatientId}))">ReScheduling</a>
+                                                    <a class="tg-btncheck appointment-actioned fa fa-times" style="background: crimson" onclick="approveAppoinment(@item.Id, 'cancel')" href="javascript:;">Cancel</a>
+                                                    }
+                                                else if (item.AppointmentStatus.Name.Equals("Booked"))
+                                                {
+                                                    @*<a class="tg-btncheck appointment-actioned fa fa-check" style="background: crimson" onclick="approveAppoinment(@item.id, 'cancel')" href="javascript:;">Cancel</a>*@
+                                                    <a class="tg-btncheck appointment-actioned fa fa-check" style="background: green" onclick="approveAppoinment(@item.Id, 'visit')" href="javascript:;">Visited</a>
+                                                    <a class="tg-btncheck appointment-actioned fa fa-times" style="background: crimson" onclick="approveAppoinment(@item.Id, 'failed')" href="javascript:;">Fail to Visit</a>
+                                                }
+                                                else if (item.AppointmentStatus.Name.Equals("Cancelled"))
+                                                {
+                                                    <span style="width: auto; Display: inline-block;" class="label label-danger">@item.AppointmentStatus.Name</span>
+                                                }
+                                                else if (item.AppointmentStatus.Name.Equals("Visited"))
+                                                {
+                                                    <span style="width: auto; Display: inline-block;" class="label label-success">@item.AppointmentStatus.Name</span>
+                                                }
+                                                else if (item.AppointmentStatus.Name.Equals("Failed"))
+                                                {
+                                                    <span style="width: auto; Display: inline-block;" class="label label-danger">@item.AppointmentStatus.Name</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr class="tg-appointmentdetail bk-elm-hide">
+                                            <td colspan="6">
+                                                <div class="appointment-data-wrap">
+                                                    <ul class="tg-leftcol">
+                                                        <li>
+                                                            <strong>Patient id:</strong>
+                                                            <span>@item.PatientId</span>
+                                                        </li>
+                                                        <li> <strong>Phone:</strong> <span>@item.AspNetUser.PhoneNumber</span> </li>
+                                                        <li> <strong>Email:</strong> <span>@item.AspNetUser.Email</span> </li>
+                                                        <li>
+                                                            <strong>Appointment date:</strong>
+                                                            <span>@DateTime.Parse(item.AppointmentDate).ToLongDateString()</span>
+                                                        </li>
+                                                        <li>
+                                                            <strong>Meeting Time:</strong>
+                                                            <span>@item.AppointmentTime</span>
+                                                        </li>
+                                                        <li>
+                                                            <strong>status:</strong>
+                                                            <span>@item.AppointmentStatus.Description</span>
+                                                        </li>
+                                                        <li>
+                                                            <strong>Payment Type:</strong>
+                                                            <span>Payment On Arival</span>
+                                                        </li>
+                                                        @*<li>
+                                                            <strong>Appointment Fee:</strong>
+                                                            <span>INR256</span>
+                                                        </li>*@
+                                                        @*<li>
+                                                            <strong>Payment Status:</strong>
+                                                            <span>Pending</span>
+                                                        </li>*@
+                                                    </ul>
+                                                    <div class="tg-rightcol">
+                                                        <strong>notes:</strong>
+                                                        <div class="tg-description">
+                                                            <p>@item.DiseasesDescription</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                                </tbody>
+                            </table>
+                            @*<div class="col-md-xs-12">
+                                <div class="tg-pagination"><ul><li><a class="active" href="javascript:;">1</a></li><li><a href="#"><i class="fa fa-angle-right"></i></a></li></ul></div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <script type="text/template" id="tmpl-status-approved">
+                    <a class="tg-btncheck appointment-actioned fa fa-check" href="javascript:;">Approved</a>
+                </script>
+            </div>
+        </div>
+    </div>
+</main>
+
+

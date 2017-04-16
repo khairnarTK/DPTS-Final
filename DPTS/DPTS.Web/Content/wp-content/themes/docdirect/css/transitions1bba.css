@@ -1,0 +1,216 @@
+*:after,
+*:before,
+p a,
+a,
+.tg-btn,
+.form-control,
+.tg-nav ul li a,
+.tg-nav ul li ul,
+.tg-nav ul li ul li:after,
+.tg-modaltabs-nav li,
+.tg-modaltabs-nav li a,
+.tg-category-name,
+.tg-tabs-nav li label:after,
+.tg-tabs-nav li label:before,
+.tg-search-category,
+.tg-patientfeedback,
+.tg-patientfeedback:before,
+.tg-patientfeedback:after,
+.tg-patient-message,
+.tg-description,
+.tg-description p,
+.tg-findbycategory,
+.tg-findbycategory ul li,
+.tg-btn:after,
+.tg-findbycategory ul li:after,
+.tg-widget ul li .tg-docinfo a,
+.tg-widget ul li a,
+.tg-img-hover,
+.tg-widget ul li,
+.tg-widget ul li:after,
+.tg-nav .navbar-collapse.in ul,
+.tg-listing-views li a,
+.tg-widget ul li a i,
+.tg-packages,
+.tg-packages h2,
+.tg-packages h3,
+.tg-packages strong,
+.tg-packages strong i,
+.tg-packages p,
+.tg-pagination ul li:first-child:after,
+.tg-pagination ul li:last-child:before,
+.tg-packages .tg-stars i,
+.tg-blog-grid .tg-contentbox,
+.tg-blog-grid .tg-post .tg-contentbox h3 a,
+.tg-packages .tg-featuredicon,
+.tg-packages .tg-stars i,
+.tg-packages .tg-featuredicon em,
+.tg-addfield button span,
+.tg-packages ul li,
+.tg-education-detail tbody tr .tg-table-hover,
+.tg-education-detail tbody tr td,
+.tg-schedule-slider .owl-controls.clickable .owl-next,
+.tg-schedule-slider .owl-controls.clickable .owl-prev,
+.tg-doceducation .tg-findbycategory ul li a,
+.tg-doceducation .tg-findbycategory ul li a:after,
+.tg-login-logout li a,
+.tg-login-logout li ul,
+#confirmBox .button,
+.chosen-container-multi .chosen-choices li.search-choice,
+.catagories-types .tg-packages a,
+.tg-navdocappointment li a,
+.tg-subdoccategory,
+.tg-doccategory,
+.tg-catename,
+.tg-serviceprice,
+.tg-doctimeslot .tg-title,
+.tg-doctimeslot .tg-box,
+.tg-appointmenttable .table > tbody tr,
+.tg-appointmenttable .table > tbody tr td,
+.tg-btncheck,
+.tg-featureverified li,
+.tg-featureverified li a,
+.tg-usercontact ul li a em,
+.tg-usercontact ul li a i,
+.tg-userschedule ul li span,
+.tg-userschedule ul li em,
+.tg-userphotogallery ul li figure figcaption,
+.tg-reviewlisting li,
+.tg-userrating li label
+{
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+.tg-blog-list .tg-post .tg-feature-img img{
+	-webkit-transition: all 3000ms ease-in-out;
+	-moz-transition: all 3000ms ease-in-out;
+	-ms-transition: all 3000ms ease-in-out;
+	-o-transition: all 3000ms ease-in-out;
+	transition: all 3000ms ease-in-out;
+}
+.owl-origin {
+	-webkit-perspective-origin : 50%;
+	-moz-perspective-origin : 50%;
+	-webkit-perspective: 1200px;
+	-moz-perspective : 1200px;
+	perspective : 1200px;
+}
+/* fade */
+.owl-fade-out {
+	z-index: 10;
+	-webkit-animation: fadeOut .7s both ease;
+	-moz-animation: fadeOut .7s both ease;
+	animation: fadeOut .7s both ease;
+}
+.owl-fade-in {
+	-webkit-animation: fadeIn .7s both ease;
+	-moz-animation: fadeIn .7s both ease;
+	animation: fadeIn .7s both ease;
+}
+/* backSlide */
+.owl-backSlide-out {
+	-webkit-animation: backSlideOut 1s both ease;
+	-moz-animation: backSlideOut 1s both ease;
+	animation: backSlideOut 1s both ease;
+}
+.owl-backSlide-in {
+	-webkit-animation: backSlideIn 1s both ease;
+	-moz-animation: backSlideIn 1s both ease;
+	animation: backSlideIn 1s both ease;
+}
+/* goDown */
+.owl-goDown-out {
+	-webkit-animation: scaleToFade .7s ease both;
+	-moz-animation: scaleToFade .7s ease both;
+	animation: scaleToFade .7s ease both;
+}
+.owl-goDown-in {
+	-webkit-animation: goDown .6s ease both;
+	-moz-animation: goDown .6s ease both;
+	animation: goDown .6s ease both;
+}
+/* scaleUp */
+.owl-fadeUp-in {
+	-webkit-animation: scaleUpFrom .5s ease both;
+	-moz-animation: scaleUpFrom .5s ease both;
+	animation: scaleUpFrom .5s ease both;
+}
+.owl-fadeUp-out {
+	-webkit-animation: scaleUpTo .5s ease both;
+	-moz-animation: scaleUpTo .5s ease both;
+	animation: scaleUpTo .5s ease both;
+}
+/* Keyframes */
+/*empty*/
+@-webkit-keyframes empty {0% {opacity: 1}}
+@-moz-keyframes empty {0% {opacity: 1}}
+@keyframes empty {0% {opacity: 1}}
+@-webkit-keyframes fadeIn {
+	0% { opacity:0; }
+	100% { opacity:1; }
+}
+@-moz-keyframes fadeIn {
+	0% { opacity:0; }
+	100% { opacity:1; }
+}
+@keyframes fadeIn {
+	0% { opacity:0; }
+	100% { opacity:1; }
+}
+@-webkit-keyframes fadeOut {
+	0% { opacity:1; }
+	100% { opacity:0; }
+}
+@-moz-keyframes fadeOut {
+	0% { opacity:1; }
+	100% { opacity:0; }
+}
+@keyframes fadeOut {
+	0% { opacity:1; }
+	100% { opacity:0; }
+}
+@-webkit-keyframes backSlideOut {
+	25% { opacity: .5; -webkit-transform: translateZ(-500px); }
+	75% { opacity: .5; -webkit-transform: translateZ(-500px) translateX(-200%); }
+	100% { opacity: .5; -webkit-transform: translateZ(-500px) translateX(-200%); }
+}
+@-moz-keyframes backSlideOut {
+	25% { opacity: .5; -moz-transform: translateZ(-500px); }
+	75% { opacity: .5; -moz-transform: translateZ(-500px) translateX(-200%); }
+	100% { opacity: .5; -moz-transform: translateZ(-500px) translateX(-200%); }
+}
+@keyframes backSlideOut {
+	25% { opacity: .5; transform: translateZ(-500px); }
+	75% { opacity: .5; transform: translateZ(-500px) translateX(-200%); }
+	100% { opacity: .5; transform: translateZ(-500px) translateX(-200%); }
+}
+@-webkit-keyframes backSlideIn {
+	0%, 25% { opacity: .5; -webkit-transform: translateZ(-500px) translateX(200%); }
+	75% { opacity: .5; -webkit-transform: translateZ(-500px); }
+	100% { opacity: 1; -webkit-transform: translateZ(0) translateX(0); }
+}
+@-moz-keyframes backSlideIn {
+	0%, 25% { opacity: .5; -moz-transform: translateZ(-500px) translateX(200%); }
+	75% { opacity: .5; -moz-transform: translateZ(-500px); }
+	100% { opacity: 1; -moz-transform: translateZ(0) translateX(0); }
+}
+@keyframes backSlideIn {
+	0%, 25% { opacity: .5; transform: translateZ(-500px) translateX(200%); }
+	75% { opacity: .5; transform: translateZ(-500px); }
+	100% { opacity: 1; transform: translateZ(0) translateX(0); }
+}
+@-webkit-keyframes scaleToFade {to { opacity: 0; -webkit-transform: scale(.8); }}
+@-moz-keyframes scaleToFade {to { opacity: 0; -moz-transform: scale(.8); }}
+@keyframes scaleToFade {to { opacity: 0; transform: scale(.8); }}
+@-webkit-keyframes goDown {from { -webkit-transform: translateY(-100%); }}
+@-moz-keyframes goDown {from { -moz-transform: translateY(-100%); }}
+@keyframes goDown {from { transform: translateY(-100%); }}
+@-webkit-keyframes scaleUpFrom {from { opacity: 0; -webkit-transform: scale(1.5); }}
+@-moz-keyframes scaleUpFrom {from { opacity: 0; -moz-transform: scale(1.5); }}
+@keyframes scaleUpFrom {from { opacity: 0; transform: scale(1.5); }}
+@-webkit-keyframes scaleUpTo {to { opacity: 0; -webkit-transform: scale(1.5); }}
+@-moz-keyframes scaleUpTo {to { opacity: 0; -moz-transform: scale(1.5); }}
+@keyframes scaleUpTo {to { opacity: 0; transform: scale(1.5); }}

@@ -1,0 +1,40 @@
+﻿@if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+{
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+    <aside id="tg-sidebar" class="dashboard-sidebar">
+        <div class="tg-widget tg-widget-doctor">
+            <figure class="tg-docprofile-img">
+                <figcaption>
+                    <h4></h4>
+                </figcaption>
+                <a><img id="profile-picture" src="~/Content/wp-content/themes/docdirect/images/user365x365.jpg?1488562998634" alt="Avatar"></a>
+            </figure>
+        </div>
+        <div class="tg-widget tg-widget-accordions">
+            <h3>Dashboard</h3>
+            <ul class="docdirect-menu">
+                @*<li class="active"><a href="@Url.Action("Info", "Doctor")">My Profile</a></li>*@
+                <li class=""><a href="@Url.Action("ProfileSetting", "Doctor")">Profile Settings</a></li>
+                <li class=""><a href="@Url.Action("Addresses", "Doctor")">Addresses</a></li>
+                <li class=""><a href="@Url.Action("DoctorShowcasePictures", "Doctor")">Pictures</a></li>
+                @*<li class=""><a href="@Url.Action("Favourites", "Doctor")">Favourites</a></li>*@
+                @*<li class=""><a href="@Url.Action("InvoicesPackages", "Doctor")">Invoices &amp; Packages</a></li>*@
+                <li class=""><a href="@Url.Action("DoctorSchedules", "Doctor")">Booking Schedules</a></li>
+                @*<li class=""><a href="@Url.Action("BookingListings", "Doctor")">Booking Listings</a></li>*@
+                @*<li class=""><a href="@Url.Action("BookingSchedules", "Doctor")">Booking Schedules</a></li>*@
+                @*<li class=""><a href="@Url.Action("BookingSettings", "Doctor")">Booking Settings</a></li>*@
+                <li class=""><a href="@Url.Action("SecuritySettings", "Manage")">Security Settings</a></li>
+                @*<li class=""><a href="@Url.Action("PrivacySettings", "Doctor")">Privacy Settings</a></li>*@
+                <li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-in"></i>Logout</a>
+                    }
+                </li>
+            </ul>
+        </div>
+    </aside>
+</div>
+
+}

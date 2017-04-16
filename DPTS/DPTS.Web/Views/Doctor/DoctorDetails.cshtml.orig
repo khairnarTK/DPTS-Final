@@ -1,0 +1,710 @@
+﻿@model DPTS.Web.Models.DoctorViewModel
+    @using DPTS.Domain.Entities;
+@{
+    ViewBag.Title = "DoctorDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Address addr = Model.Addresses.FirstOrDefault();
+}
+
+<main id="main" class="tg-page-wrapper tg-haslayout">
+<<<<<<< HEAD
+    <div id="tg-userbanner" class="tg-userbanner tg-haslayout parallax-window" data-appear-top-offset="600" data-parallax="scroll" data-image-src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/10/DOCTOR.jpg">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="tg-userdetail appointment-enabled">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <aside id="tg-sidebar" class="tg-sidebar">
+                        <div class="tg-widget tg-widgetuserdetail">
+                            <figure class="tg-userimg">
+                                @{
+                                    string picturePath = "/Content/wp-content/themes/docdirect/images/user365x365.jpg";
+                                    string profilePicPath = Server.MapPath("~/Uploads/" + Model.Id + "_profile.jpg");
+                                    if (File.Exists(profilePicPath))
+                                    {
+                                        picturePath = "../../Uploads/" + Model.Id + "_profile.jpg";
+                                    }
+                                }
+                                <img src="@picturePath" alt="Dr. Steve">
+                                @*<figcaption>
+                                        <ul class="tg-featureverified">
+                                            <li class="tg-featuresicon"><a href="javascript:;"><i class="fa fa-bolt"></i><span>featured</span></a></li>
+                                            <li class="tg-varified"><a href="javascript:;"><i class="fa fa-shield"></i><span>Verified</span></a></li>
+
+                                        </ul>
+                                    </figcaption>*@
+                            </figure>
+                            <div class="tg-usercontactinfo">
+                                <h3>Contact Details</h3>
+                                @{
+
+                                    var addr = Model.Addresses.FirstOrDefault();
+                                    if (addr != null)
+                                    {
+                                        <ul class="tg-doccontactinfo">
+                                            <li> <i class="fa fa-map-marker"></i> <address>@addr.Address1, @addr.City, @addr.StateProvince.Name, @addr.Country.Name</address> </li>
+                                            @if (!string.IsNullOrWhiteSpace(Model.Email))
+                                            {
+                                                <li><i class="fa fa-envelope-o"></i><a href="#">@Model.Email</a></li>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(Model.MobileNumber))
+                                            {
+                                                <li> <i class="fa fa-phone"></i> <span>@Model.MobileNumber</span> </li>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(addr.FaxNumber))
+                                            {
+                                                <li><i class="fa fa-fax"></i><span>@addr.FaxNumber</span></li>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(addr.Website))
+                                            {
+                                                <li><i class="fa fa-link"></i><a href="@addr.Website" target="_blank">@addr.Website</a></li>
+                                            }
+                                        </ul>
+                                    }
+=======
+<div id="tg-userbanner" class="tg-userbanner tg-haslayout parallax-window" data-appear-top-offset="600" data-parallax="scroll">
+</div>
+<div class="container">
+<div class="row">
+<div class="tg-userdetail appointment-enabled">
+<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <aside id="tg-sidebar" class="tg-sidebar">
+        <div class="tg-widget tg-widgetuserdetail">
+            <figure class="tg-userimg">
+                @{
+                    string picturePath = "/Content/wp-content/themes/docdirect/images/user365x365.jpg";
+                    string profilePicPath = Server.MapPath("~/Uploads/" + Model.Id + "_profile.jpg");
+                    if (File.Exists(profilePicPath))
+                    {
+                        picturePath = "../../Uploads/" + Model.Id + "_profile.jpg";
+                    }
+                }
+                <img src="@picturePath" alt="">
+                @*<figcaption>
+                                    <ul class="tg-featureverified">
+                                        <li class="tg-featuresicon"><a href="javascript:;"><i class="fa fa-bolt"></i><span>featured</span></a></li>
+                                        <li class="tg-varified"><a href="javascript:;"><i class="fa fa-shield"></i><span>Verified</span></a></li>
+
+                                    </ul>
+                                </figcaption>*@
+            </figure>
+            <div class="tg-usercontactinfo">
+                <h3>Contact Details</h3>
+                @{
+                    if (addr != null)
+                    {
+                        <ul class="tg-doccontactinfo">
+                            <li> <i class="fa fa-map-marker"></i> <address>@addr.Address1, @addr.City, @addr.StateProvince.Name, @addr.Country.Name</address> </li>
+                            @if (!string.IsNullOrWhiteSpace(Model.Email))
+                            {
+                                <li><i class="fa fa-envelope-o"></i><a href="#">@Model.Email</a></li>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.MobileNumber))
+                            {
+                                <li> <i class="fa fa-phone"></i> <span>@Model.MobileNumber</span> </li>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(addr.FaxNumber))
+                            {
+                                <li><i class="fa fa-fax"></i><span>@addr.FaxNumber</span></li>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(addr.Website))
+                            {
+                                <li><i class="fa fa-link"></i><a href="@addr.Website" target="_blank">@addr.Website</a></li>
+                            }
+                        </ul>
+                    }
+                }
+                <ul class="tg-socialicon-v2">
+                    
+                    @if (Model.doctor.SocialLinkInformation.Any())
+                    {
+                        foreach (var item in Model.doctor.SocialLinkInformation)
+                        {
+                            if (item.SocialType.Equals("Google Plus"))
+                            {
+                                <li class="tg-googleplus"><a href="@item.SocialLink"><i class="fa fa-google-plus"></i></a></li>
+                            }
+                            else
+                            {
+                                <li class="tg-@item.SocialType.ToLower().Trim()"><a href="@item.SocialLink"><i class="fa fa-@item.SocialType.ToLower().Trim()"></i></a></li>
+
+                            }
+                        }
+                    }
+                </ul>
+                @if (addr != null)
+                {
+                <a class="tg-btn tg-btn-lg" href="http://maps.google.com/maps?saddr=&amp;daddr=@addr.Address1, @addr.City, @addr.StateProvince.Name, @addr.ZipPostalCode" target="_blank">get directions</a>
+                }
+                <div class="tg-userschedule">
+                    <h3>Schedule</h3>
+                    <ul>
+                        @if (Model.Schedule.Any())
+                        {
+                            foreach (var sch in Model.Schedule)
+                            {
+                                var startTime = DateTime.Parse(sch.StartTime).ToString("hh:mm tt");
+                                var endTime = DateTime.Parse(sch.EndTime).ToString("hh:mm tt");
+                                string todayDay = DateTime.UtcNow.ToString("dddd");
+                                if (sch.Day.Equals(todayDay))
+                                {
+                                    <li class="current"><a href="javascript:;" data-type="@startTime - @endTime"><span>@sch.Day</span><em>@startTime - @endTime</em></a></li>
+>>>>>>> f0ae659b28cea4f568d6c4c485b7e1589a348f7b
+                                }
+                                <ul class="tg-socialicon-v2">
+                                    @if (Model.doctor.SocialLinkInformation.Any())
+                                    {
+                                        foreach (var item in Model.doctor.SocialLinkInformation)
+                                        {
+                                            if (item.SocialType.Equals("Google Plus"))
+                                            {
+                                                <li class="tg-googleplus"><a href="@item.SocialLink"><i class="fa fa-google-plus"></i></a></li>
+                                            }
+                                            else
+                                            {
+                                                <li class="tg-@item.SocialType.ToLower().Trim()"><a href="@item.SocialLink"><i class="fa fa-@item.SocialType.ToLower().Trim()"></i></a></li>
+
+                                            }
+                                        }
+                                    }
+                                </ul>
+                                <a class="tg-btn tg-btn-lg" href="http://maps.google.com/maps?saddr=&amp;daddr=@addr.Address1, @addr.City, @addr.StateProvince.Name, @addr.ZipPostalCode" target="_blank">get directions</a>
+                                <div class="tg-userschedule">
+                                    <h3>Schedule</h3>
+                                    <ul>
+                                        @if (Model.Schedule.Any())
+                                        {
+                                            foreach (var sch in Model.Schedule)
+                                            {
+                                                var startTime = DateTime.Parse(sch.StartTime).ToString("hh:mm tt");
+                                                var endTime = DateTime.Parse(sch.EndTime).ToString("hh:mm tt");
+                                                string todayDay = DateTime.UtcNow.ToString("dddd");
+                                                if (sch.Day.Equals(todayDay))
+                                                {
+                                                    <li class="current"><a href="javascript:;" data-type="@startTime - @endTime"><span>@sch.Day</span><em>@startTime - @endTime</em></a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li class=""><a href="javascript:;" data-type="@startTime - @endTime"><span>@sch.Day</span><em>@startTime - @endTime</em></a></li>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <p>No Schedule !!</p>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                @*<div class="tg-usercontatnow">
+                                        <h3>contact now</h3>
+                                        <div class="tg-widgetcontent doc-contact">
+                                            <form class="contact_form tg-usercontactform">
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input type="text" name="username" placeholder="Name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input type="email" name="useremail" placeholder="Email" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input type="text" name="userphone" placeholder="Number" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input type="text" name="usersubject" placeholder="Subject" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <textarea name="user_description" placeholder="Message" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <input type="hidden" name="email_to" value="etwordpress01@gmail.com" class="form-control">
+                                                            <button class="tg-btn contact_me" type="submit">Send</button>
+                                                            <input type="hidden" id="user_security" name="user_security" value="7db056b229"><input type="hidden" name="_wp_http_referer" value="/wordpress/docdirect/doctor/steve/">
+                                                        </div>
+                                                    </div>
+<<<<<<< HEAD
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                        @*<div class="claim-box">
+                                <a class="tg-btn tg-btn-lg" data-toggle="modal" data-target=".tg-user-modal" href="javascript:;">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                    Claim This User
+                                </a>
+                            </div>*@
+                    </aside>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                    <div class="tg-haslayout">
+                        <div class="tg-userbanner-content">
+                            <h1>Dr @Model.FirstName @Model.LastName</h1>
+                            <span>Doctor</span>
+                            @*<ul class="tg-likestars">
+                                    <li>
+                                        <div class="feature-rating user-star-rating">
+                                            <span class="tg-stars star-rating">
+                                                <span style="width: 80%"></span>
+                                            </span>
+
+                                            <em>4.0<sub>/5</sub></em>
+                                        </div>
+                                    </li>
+                                    <li><a class="tg-like add-to-fav" data-wl_id="330" href="javascript:;"><i class="fa fa-heart"></i></a></li>
+                                    <li><span>1272&nbsp;view(s)</span></li>
+                                </ul>*@
+                            @if (Model.Schedule.Any())
+                            {
+                                <a class="tg-btn tg-btn-lg make-appointment-btn" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new { doctorId = Model.Id }))">MAKE AN APPOINTMENT!</a>
+                            }
+                        </div>
+=======
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <input type="hidden" name="email_to" value="etwordpress01@gmail.com" class="form-control">
+                                                        <button class="tg-btn contact_me" type="submit">Send</button>
+                                                        <input type="hidden" id="user_security" name="user_security" value="7db056b229"><input type="hidden" name="_wp_http_referer" value="/wordpress/docdirect/doctor/steve/">
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>*@
+            </div>
+        </div>
+        @*<div class="claim-box">
+                            <a class="tg-btn tg-btn-lg" data-toggle="modal" data-target=".tg-user-modal" href="javascript:;">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                Claim This User
+                            </a>
+                        </div>*@
+    </aside>
+</div>
+<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+<div class="tg-haslayout">
+<div class="tg-userbanner-content">
+    <h1>Dr @Model.FirstName @Model.LastName</h1>
+    <span>Doctor</span>
+    @if (Model.Schedule.Any())
+    {
+        <a class="tg-btn tg-btn-lg make-appointment-btn" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new {doctorId = Model.Id}))">MAKE AN APPOINTMENT!</a>
+    }
+</div>
+
+<div class="tg-section-map">
+@*<div id="map_canvas" class="tg-location-map tg-haslayout" style="position: relative; overflow: hidden;">
+                                <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                                    <div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
+                                        <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;">
+                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: 190px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 190px; top: 154px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 446px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 446px; top: 154px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -66px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -66px; top: 154px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 702px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 702px; top: 154px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 190px; top: -102px;"><canvas draggable="false" height="256" width="256" style="user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 190px; top: 154px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 446px; top: -102px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 446px; top: 154px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -66px; top: -102px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -66px; top: 154px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 702px; top: -102px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 702px; top: 154px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="position: absolute; left: 190px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1022!3i681!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=65959" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 190px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1022!3i680!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=15992" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 446px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1023!3i681!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=9771" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 702px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1024!3i681!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=84654" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -66px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1021!3i681!4i256!2m3!1e0!2sm!3i371051711!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=25707" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -66px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1021!3i680!4i256!2m3!1e0!2sm!3i371051711!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=106811" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 702px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1024!3i680!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=34687" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 446px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1023!3i680!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=90875" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);">
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"><div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;">
+                                                    <div class="infoBox" style="position: absolute; visibility: visible; width: 340px; left: 488.938px; bottom: -165.489px;">
+                                                        <img src="http://www.google.com/intl/en_us/mapfiles/close.gif" align="right" style=" position: relative; cursor: pointer; margin: 2px;"><div class="directory-detail">
+                                                            <div class="tg-mapmarker">
+                                                                <figure><img width="60" heigt="60" src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-01-1-150x150.jpg" alt="User"></figure><div class="tg-mapmarkercontent">
+                                                                    <h3><a href="https://themographics.com/wordpress/docdirect/doctor/steve/">Dr Steve</a></h3><span>Doctor</span><ul class="tg-likestars">
+                                                                        <li>
+                                                                            <div class="feature-rating user-star-rating">
+                                                                                <span class="tg-stars star-rating">
+                                                                                    <span style="width:80%"></span>
+                                                                                </span>
+>>>>>>> f0ae659b28cea4f568d6c4c485b7e1589a348f7b
+
+                        <div class="tg-section-map">
+                            @*<div id="map_canvas" class="tg-location-map tg-haslayout" style="position: relative; overflow: hidden;">
+                                                <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                                                    <div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
+                                                        <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;">
+                                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: 190px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 190px; top: 154px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 446px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 446px; top: 154px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -66px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -66px; top: 154px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 702px; top: -102px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 702px; top: 154px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 190px; top: -102px;"><canvas draggable="false" height="256" width="256" style="user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 190px; top: 154px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 446px; top: -102px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 446px; top: 154px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -66px; top: -102px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -66px; top: 154px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 702px; top: -102px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 702px; top: 154px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="position: absolute; left: 190px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1022!3i681!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=65959" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 190px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1022!3i680!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=15992" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 446px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1023!3i681!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=9771" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 702px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1024!3i681!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=84654" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -66px; top: 154px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1021!3i681!4i256!2m3!1e0!2sm!3i371051711!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=25707" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -66px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1021!3i680!4i256!2m3!1e0!2sm!3i371051711!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=106811" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 702px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1024!3i680!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=34687" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 446px; top: -102px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i11!2i1023!3i680!4i256!2m3!1e0!2sm!3i371051903!3m14!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHMuZTpnfHAudjpzaW1wbGlmaWVkfHAuaDojZmYwMDAw!4e0&amp;token=90875" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);">
+                                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"><div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;">
+                                                                    <div class="infoBox" style="position: absolute; visibility: visible; width: 340px; left: 488.938px; bottom: -165.489px;">
+                                                                        <img src="http://www.google.com/intl/en_us/mapfiles/close.gif" align="right" style=" position: relative; cursor: pointer; margin: 2px;"><div class="directory-detail">
+                                                                            <div class="tg-mapmarker">
+                                                                                <figure><img width="60" heigt="60" src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-01-1-150x150.jpg" alt="User"></figure><div class="tg-mapmarkercontent">
+                                                                                    <h3><a href="https://themographics.com/wordpress/docdirect/doctor/steve/">Dr Steve</a></h3><span>Doctor</span><ul class="tg-likestars">
+                                                                                        <li>
+                                                                                            <div class="feature-rating user-star-rating">
+                                                                                                <span class="tg-stars star-rating">
+                                                                                                    <span style="width:80%"></span>
+                                                                                                </span>
+
+                                                                                            </div>
+                                                                                        </li>
+                                                                                        <li><a class="tg-like add-to-fav" data-wl_id="330" href="javascript:;"><i class="fa fa-heart"></i></a></li>
+                                                                                        <li>1272&nbsp;view(s)</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="map-controls">
+                                                <span id="doc-mapplus"><i class="fa fa-plus"></i></span>
+                                                <span id="doc-mapminus"><i class="fa fa-minus"></i></span>
+                                                <span id="doc-lock"><i class="fa fa-lock"></i></span>
+                                            </div>
+                                            <script>
+                                jQuery(document).ready(function() {
+                                    docdirect_init_detail_map_script({"status":"found","users_list":[{"latitude":"51.510243","longitude":"-0.19093","title":"Dr.Steve","name":"Dr Steve","email":"etwordpress01@gmail.com","phone_number":"54 235 856843","address":"154 Bayswater Rd, London W2 4HP, UK","group":"","icon":"\/\/themographics.com\/wordpress\/docdirect\/wp-content\/uploads\/2016\/04\/02.png","html":{"content":"<div class=\"tg-mapmarker\"><figure><img width=\"60\" heigt=\"60\" src=\"https:\/\/themographics.com\/wordpress\/docdirect\/wp-content\/uploads\/2016\/04\/img-01-1-150x150.jpg\" alt=\"User\"><\/figure><div class=\"tg-mapmarkercontent\"><h3><a href=\"https:\/\/themographics.com\/wordpress\/docdirect\/doctor\/steve\/\">Dr Steve<\/a><\/h3><span>Doctor<\/span><ul class=\"tg-likestars\"><li>        <div class=\"feature-rating user-star-rating\">\r\n            <span class=\"tg-stars star-rating\">\r\n                <span style=\"width:80%\"><\/span>\r\n            <\/span>\r\n            \r\n                    <\/div>\r\n        <\/li><li><a class=\"tg-like add-to-fav\" data-wl_id=\"330\" href=\"javascript:;\"><i class=\"fa fa-heart\"><\/i><\/a><\/li><li>1272&nbsp;view(s)<\/li><\/ul><\/div>"}}]});
+                                });
+                                            </script>
+                                        </div>*@
+                            <div class="tg-aboutuser">
+                                <div class="tg-userheading">
+                                    <h2>About&nbsp;Dr @Model.FirstName</h2>
+
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(Model.doctor.ShortProfile))
+                                {
+                                    <div class="tg-description">
+                                        <p>@Model.doctor.ShortProfile</p>
+                                    </div>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(Model.doctor.ProfessionalStatements))
+                                {
+                                    <div class="professional-statements">
+                                        @Html.Raw(HttpUtility.HtmlDecode(Model.doctor.ProfessionalStatements))
+                                    </div>
+                                }
+
+                            </div>
+                            <!--Languages-->
+                            @if (!string.IsNullOrWhiteSpace(Model.doctor.Language))
+                            {
+                                string[] lgs = Model.doctor.Language.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                                <div class="tg-honourawards tg-listview-v3 user-section-style">
+                                    <div class="tg-userheading">
+                                        <h2>Languages</h2>
+                                    </div>
+                                    <div class="tg-doctor-profile">
+                                        <ul class="tg-tags">
+                                            @foreach (var lg in lgs)
+                                            {
+                                                <li><a href="javascript:;" class="tg-btn">@lg</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                            <!--Specialities-->
+                            @if (Model.Specialitys.Any())
+                            {
+                                <div class="tg-honourawards tg-listview-v3 user-section-style">
+                                    <div class="tg-userheading">
+                                        <h2>Specialties</h2>
+                                    </div>
+                                    <div class="tg-doctor-profile">
+                                        <ul class="tg-tags">
+                                            @foreach (var sp in Model.Specialitys)
+                {
+                                                <li><a href="javascript:;" class="tg-btn">@sp.Title</a></li>
+                                            }
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            }
+                            <!--Experience-->
+                            @if (Model.doctor.Experience.Any())
+                            {
+                                <div class="tg-userexperience">
+                                    <div class="tg-userheading">
+                                        <h2><i class="fa fa-briefcase"></i>Experience</h2>
+                                    </div>
+                                    <ul>
+                                        @foreach (var expr in Model.doctor.Experience)
+                                        {
+                                            <li>
+                                                <div class="tg-dotstyletitle">
+                                                    <h3>@expr.Title&nbsp;&nbsp;(@expr.StartDate.ToString("MMMM, yyyy")&nbsp;-&nbsp;@expr.EndDate.ToString("MMMM, yyyy"))</h3>
+                                                    <span>@expr.Organization</span>
+                                                </div>
+                                                <div class="tg-description">
+                                                    <p>@expr.Description</p>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+
+                            <!--Education-->
+                            @if (Model.doctor.Education.Any())
+                            {
+                                <div class="tg-userexperience tg-userqualification">
+                                    <div class="tg-userheading">
+                                        <h2><i class="fa fa-graduation-cap"></i>Education</h2>
+                                    </div>
+                                    <ul>
+                                        @foreach (var edu in Model.doctor.Education)
+                                        {
+                                            <li>
+                                                <div class="tg-dotstyletitle">
+                                                    <h3>
+                                                        @edu.Title<strong>&nbsp;&nbsp;</strong>(@edu.StartDate.ToString("MMMM, yyyyy") &nbsp;-&nbsp;@edu.EndDate.ToString("MMMM, yyyyy"))
+                                                    </h3>
+                                                    <span>@edu.Institute</span>
+                                                </div>
+                                                <div class="tg-description">
+                                                    <p>
+                                                        @edu.Description
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+
+                            <!--Awards-->
+                            @if (Model.doctor.HonorsAwards.Any())
+                            {
+                                <div class="tg-userexperience tg-honourawards">
+                                    <div class="tg-userheading">
+                                        <h2>
+                                            <i class="fa fa-trophy"></i>Honours &amp; Awards
+                                        </h2>
+                                    </div>
+                                    <ul>
+                                        @foreach (var awd in Model.doctor.HonorsAwards)
+                {
+                                            <li>
+                                                <div class="tg-dotstyletitle">
+                                                    <h3>@awd.Name &nbsp;&nbsp;(@awd.AwardDate.ToString("MMMM, yyyy"))</h3>
+                                                </div>
+                                                <div class="tg-description">
+                                                    <p>
+                                                        @awd.AwardDate
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            }
+                            <!--Video URL-->
+                            @if (!string.IsNullOrWhiteSpace(Model.doctor.VideoLink))
+                            {
+                                <div class="tg-presentationvideo">
+                                    <div class="tg-userheading">
+                                        <h2>Presentation Video</h2>
+                                    </div>
+                                    <div class="video"><iframe width="368" height="200" src="@Model.doctor.VideoLink" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>
+                                </div>
+                            }
+
+
+                            <!--Video URL-->
+                            @*<div class="tg-userphotogallery">
+                                    <div class="tg-userheading">
+                                        <h2>Photo Gallery</h2>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <figure>
+                                                <a href="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-10.jpg" data-rel="prettyPhoto[iframe]" rel="prettyPhoto[iframe]">
+                                                    <img src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-10-150x150.jpg" alt="img-10">
+                                                    <figcaption><span class="icon-add"></span></figcaption>
+                                                </a>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <a href="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-09.jpg" data-rel="prettyPhoto[iframe]" rel="prettyPhoto[iframe]">
+                                                    <img src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-09-150x150.jpg" alt="img-09">
+                                                    <figcaption><span class="icon-add"></span></figcaption>
+                                                </a>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <a href="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-08.jpg" data-rel="prettyPhoto[iframe]" rel="prettyPhoto[iframe]">
+                                                    <img src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-08-150x150.jpg" alt="img-08">
+                                                    <figcaption><span class="icon-add"></span></figcaption>
+                                                </a>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <a href="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-07.jpg" data-rel="prettyPhoto[iframe]" rel="prettyPhoto[iframe]">
+                                                    <img src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-07-150x150.jpg" alt="img-07">
+                                                    <figcaption><span class="icon-add"></span></figcaption>
+                                                </a>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <a href="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-06.jpg" data-rel="prettyPhoto[iframe]" rel="prettyPhoto[iframe]">
+                                                    <img src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-06-150x150.jpg" alt="img-06">
+                                                    <figcaption><span class="icon-add"></span></figcaption>
+                                                </a>
+                                            </figure>
+                                        </li>
+                                    </ul>
+                                </div>*@
+
+                            <!--Reviews-->
+                            <div class="tg-userreviews">
+                                <div class="tg-userheading">
+                                    <h2>@Model.listReviewComments.Count &nbsp;&nbsp;Review(s)</h2>
+                                    @*<h2>1&nbsp;&nbsp;Review(s)</h2>
+                                        <h2>1&nbsp;&nbsp;Review(s)</h2>*@
+                                </div>
+                                <div class="tg-ratingbox">
+                                    <div class="tg-averagerating">
+                                        <h3>Average Rating</h3>
+                                        <em>4.0</em>
+                                        <span class="tg-stars">
+                                            <div class="feature-rating user-star-rating">
+                                                <span class="tg-stars star-rating">
+                                                    <span style="width:80%"></span>
+                                                </span>
+
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div id="tg-userskill" class="tg-userskill">
+                                        <div class="tg-skill">
+                                            <span class="tg-skillname">1 Stars</span>
+                                            <span class="tg-skillpercentage">0%</span>
+                                            <div class="tg-skillbox">
+                                                <div class="tg-skillholder" data-percent="0%">
+                                                    <div class="tg-skillbar"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tg-skill">
+                                            <span class="tg-skillname">2 Stars</span>
+                                            <span class="tg-skillpercentage">0%</span>
+                                            <div class="tg-skillbox">
+                                                <div class="tg-skillholder" data-percent="0%">
+                                                    <div class="tg-skillbar"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tg-skill">
+                                            <span class="tg-skillname">3 Stars</span>
+                                            <span class="tg-skillpercentage">0%</span>
+                                            <div class="tg-skillbox">
+                                                <div class="tg-skillholder" data-percent="0%">
+                                                    <div class="tg-skillbar"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tg-skill">
+                                            <span class="tg-skillname">4 Stars</span>
+                                            <span class="tg-skillpercentage">80%</span>
+                                            <div class="tg-skillbox">
+                                                <div class="tg-skillholder" data-percent="80%">
+                                                    <div class="tg-skillbar" style="width:80%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tg-skill">
+                                            <span class="tg-skillname">5 Stars</span>
+                                            <span class="tg-skillpercentage">0%</span>
+                                            <div class="tg-skillbox">
+                                                <div class="tg-skillholder" data-percent="0%">
+                                                    <div class="tg-skillbar"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="tg-reviewlisting">
+                                    @foreach (var item in Model.listReviewComments)
+                                    {
+                                        <li>
+
+                                            <div class="tg-review">
+                                                <figure class="tg-reviewimg">
+                                                    <a href="https://themographics.com/wordpress/docdirect/clinic/express-care/"><img src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/6-1-150x150.jpg" alt="Reviewer"></a>
+                                                </figure>
+
+
+                                                <div class="tg-reviewcontet">
+
+                                                    <div class="tg-reviewhead">
+                                                        <div class="tg-reviewheadleft">
+                                                            @*<h3><a href="https://themographics.com/wordpress/docdirect/clinic/express-care/">Express Care Clinics</a></h3>*@
+                                                            <h3>@item.CommentOwnerUser</h3>
+                                                            <span>@item.DateCreated</span>
+                                                        </div>
+                                                        <div class="tg-reviewheadright tg-stars star-rating">
+                                                            <span style="width:@item.Rating%"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tg-description">
+                                                        <p>@item.Comment</p>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                                @if (Model.doctor.DoctorId != ViewBag.User)
+                                {
+                                    <div class="tg-leaveyourreview">
+                                        <div class="tg-userheading">
+                                            <h2>Leave Your Review</h2>
+                                        </div>
+
+                                        @using (Html.BeginForm("SaveReivewComment", "Doctor", FormMethod.Post))
+                                        {
+                                            <div class="form-group">
+
+                                                <select name="starrating" class="form-control">
+                                                    <option value="20">1 Star</option>
+                                                    <option value="40">2 Star</option>
+                                                    <option value="60">3 Star</option>
+                                                    <option value="80">4 Star</option>
+                                                    <option value="100">5 Star</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <input type='text' name="UserComment" class="form-control" placeholder="Type our comment" required />
+                                            </div>
+
+
+                                            <button type="submit" class="tg-btn process-account-settings">Submit</button>
+                                        }
+
+
+                                        <span>
+                                            @*<a href="javascript:;" class="tg-btn" data-toggle="modal" data-target=".tg-user-modal">Submit</a>*@
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

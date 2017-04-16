@@ -1,0 +1,164 @@
+﻿@using reCaptcha;
+@using DPTS.Web.Helpers
+@model DPTS.Web.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Sign Up";
+    Html.Assets().Styles.Add("/Content/wp-content/themes/docdirect/css/intlTelInput.css");
+    Html.Assets().Scripts.Add("https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js");
+    Html.Assets().Scripts.Add("/Scripts/intlTelInput.js");
+}
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3" style="box-shadow: 0 0 20px 0 rgba(0,0,0,.2), 0 5px 5px 0 rgba(0,0,0,.24);">
+                <ul class="tg-modaltabs-nav" role="tablist">
+                    <li role="presentation" class=""><a href="@Url.Action("Login","Account")">Sign In</a></li>
+                    <li role="presentation" class="active"><a href="#tg-signup-formarea" aria-controls="tg-signup-formarea" role="tab" data-toggle="tab" aria-expanded="true">Sign Up</a></li>
+                </ul>
+                <div class="tab-content tg-haslayout">
+                    <div role="tabpanel" class="tab-pane tg-haslayout active" id="tg-signup-formarea">
+                        @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "tg-form-modal tg-form-signup do-registration-form", role = "form" }))
+                        {
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="tg-radiobox user-selection active-user-type active">
+                                        <input type="radio" checked="checked" name="UserType" value="professional" id="professional">
+                                        <label for="professional">Professional</label>
+                                    </div>
+                                    <div class="tg-radiobox user-selection active-user-type visitor-type active">
+                                        <input type="radio" name="UserType" value="visitor" id="visitor">
+                                        <label for="visitor">Visitor</label>
+                                    </div>
+                                </div>
+                                <div class="form-group user-types">
+                                    @Html.DropDownListFor(model => model.Role, Model.UserRoleList)
+                                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <input id="PhoneNumber" name="PhoneNumber" type="tel">
+                                    <span id="valid-msg" class="hide" style="color:forestgreen">✓ Valid</span>
+                                    <span id="error-msg" class="hide" style="color:red">Invalid number</span>
+                                    @*@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })*@
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password" })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" id="reg-num-doc">
+                                    @Html.PasswordFor(m => m.RegistrationNumber, new { @class = "form-control", @placeholder = "Registration Number" })
+                                    @Html.ValidationMessageFor(model => model.RegistrationNumber, "", new { @class = "text-danger" })
+                                </div>
+                                @*<div class="form-group">
+                                    <input id="phone" type="tel">
+                                    @Html.ValidationMessageFor(model => model.RegistrationNumber, "", new { @class = "text-danger" })
+                                </div>*@
+                                <div class="form-group tg-checkbox">
+                                    <input name="terms" type="hidden" value="0">
+                                    <label>
+                                        <input name="terms" id="terms" class="form-control" type="checkbox">
+                                        I agree with the terms and conditions @Html.ActionLink("read here", "TermsConditions",null,new { target = "_blank" })
+                                    </label>
+                                </div>
+                                <div class="domain-captcha">
+                                    @ReCaptcha.GetHtml(@ViewBag.publicKey)
+                                    @*@if (ViewBag.RecaptchaLastErrors != null)
+                                    {
+                                        <div>Oops! Invalid Captcha</div>
+                                    }*@
+                                </div>
+                                <input type="submit" class="tg-btn tg-btn-lg  do-register-button" onclick="javascript:return AcceptTermAndcondition();" value="Register" />
+                            </fieldset>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@Scripts.Render("~/bundles/jquery")
+<script type='text/javascript'>
+    if ($("#professional").is(":checked")) {
+        $("#Role").show();
+        $("#RegistrationNumber").show();
+    }
+    $(function () {
+        $("input[name='UserType']").click(function () {
+            if ($("#professional").is(":checked")) {
+                $("#Role").show();
+                $("#RegistrationNumber").show();
+            } else {
+                $("#Role").hide();
+                $("#RegistrationNumber").hide();
+            }
+        });
+        $("#PhoneNumber").on("countrychange", function (e, countryData) {
+              $("#PhoneNumber").val(countryData.dialCode);
+            //alert(countryData.dialCode);
+        });
+
+        var telInput = $("#PhoneNumber"),
+          errorMsg = $("#error-msg"),
+          validMsg = $("#valid-msg");
+
+        // initialise plugin
+        telInput.intlTelInput({
+            preferredCountries: ["us", "in"],
+            utilsScript: "/Scripts/utils.js"
+        });
+
+        var reset = function () {
+            telInput.removeClass("error");
+            errorMsg.addClass("hide");
+            validMsg.addClass("hide");
+        };
+
+        // on blur: validate
+        telInput.blur(function () {
+            reset();
+            if ($.trim(telInput.val())) {
+                if (telInput.intlTelInput("isValidNumber")) {
+                    validMsg.removeClass("hide");
+                } else {
+                    telInput.addClass("error");
+                    errorMsg.removeClass("hide");
+                }
+            }
+        });
+
+        // on keyup / change flag: reset
+        telInput.on("keyup change", reset);
+    });
+    function AcceptTermAndcondition() {
+        if ($("#terms").is(':checked')) {
+            return true;
+        }
+        else {
+            alert("Please accept term and condition");
+            return false;
+        }
+    }
+</script>
+
+
+
+

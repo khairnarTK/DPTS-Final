@@ -1,0 +1,58 @@
+﻿@model DPTS.Web.Models.AppointmentScheduleViewModel
+@{
+    ViewBag.Title = "AvailableSchedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="modal-dialog modal-lg tg-modalcontent" role="document">
+@using (Html.BeginForm("AvailableSchedule", "Appointment", FormMethod.Post, new { id = "availableSchedule-form", @class = "appointment-form" }))
+{
+        <fieldset class="booking-model-contents">
+            <ul class="tg-navdocappointment" role="tablist">
+                <li class="active"><a href="javascript:;" class="bk-step-2">1. available schedule</a></li>
+                <li><a href="javascript:;" class="bk-step-3">2. your contact detail</a></li>
+                <li><a href="javascript:;" class="bk-step-4">3. Payment Mode</a></li>
+                <li><a href="javascript:;" class="bk-step-5">4. Finish</a></li>
+            </ul>
+            <div class="tab-content tg-appointmenttabcontent" data-id="330">
+                @if (Model != null)
+                {
+                    <div class="tab-pane step-two-contents" id="two" style="display: block;">
+                        <input type="hidden" id="doctorId" name="doctorid" value="@Model.doctorId">
+                        <div class="bk-booking-schedules">
+                            <div class="tg-appointmenttime">
+                                <div class="clearfix"></div>
+                                <div class="tg-dayname booking-pickr">
+                                    <strong>Jan 17, Tuesday</strong>
+                                    <input type="hidden" name="booking_date" class="booking_date" value="2017-01-16">
+                                </div>
+                                <div class="tg-timeslots step-two-slots">
+                                    <div class="tg-timeslotswrapper">
+                                        @foreach (var morn in Model.Afternoon)
+                                        {
+                                            <div class="tg-doctimeslot tg-available">
+                                                <div class="tg-box">
+                                                    <div class="tg-radio">
+                                                        <input id="@morn.Slot" value="@morn.Slot" type="radio" name="slottime">
+                                                        <label for="@morn.Slot">@morn.Slot</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="tg-btnbox booking-step-button">
+                    <button type="submit" name="Command" value="next" class="tg-btn bk-step-next">next</button>
+                </div>
+                }else
+                {
+                    <p>Schedule Not Found</p>
+                }
+            </div>
+        </fieldset>
+}
+</div>
+
+

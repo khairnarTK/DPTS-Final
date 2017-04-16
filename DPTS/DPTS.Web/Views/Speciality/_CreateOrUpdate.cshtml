@@ -1,0 +1,45 @@
+﻿@model DPTS.Domain.Entities.Speciality
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form role="form">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title)
+                            <input class="form-control" id="Title" name="Title" value="@Model.Title">
+                            @Html.ValidationMessageFor(model => model.Title)
+                            <p class="help-block">Enter here doctor speciality.</p>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DisplayOrder)
+                            <input type="number" class="form-control" id="DisplayOrder" name="DisplayOrder" value="@Model.DisplayOrder">
+                            @Html.ValidationMessageFor(model => model.DisplayOrder)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsActive)
+                            @Html.EditorFor(model => model.IsActive)
+                            @Html.ValidationMessageFor(model => model.DisplayOrder)
+                        </div>
+                        @if (Model.Id > 0)
+                        {
+                            <div class="form-group">
+                                    @Html.LabelFor(model => model.DateUpdated)
+                                    @Html.DisplayFor(model => model.DateCreated)
+                            </div>
+                        }
+                    </form>
+                </div>
+                <!-- /.col-lg-6 (nested) -->
+            </div>
+            <!-- /.row (nested) -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+
