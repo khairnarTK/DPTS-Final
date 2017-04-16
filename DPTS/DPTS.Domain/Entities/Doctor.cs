@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Security.AccessControl;
 
 namespace DPTS.Domain.Entities
 {
@@ -18,6 +17,7 @@ namespace DPTS.Domain.Entities
             Education =new HashSet<Education>();
             Experience = new HashSet<Experience>();
             PictureMapping = new HashSet<PictureMapping>();
+            DoctorReview = new HashSet<DoctorReview>();
         }
 
         public Guid DoctorGuid { get; set; }
@@ -76,5 +76,7 @@ namespace DPTS.Domain.Entities
         public virtual ICollection<Experience> Experience { get; set; }
 
         public virtual ICollection<PictureMapping> PictureMapping { get; set; }
+
+        public virtual ICollection<DoctorReview> DoctorReview { get; set; }
     }
 }

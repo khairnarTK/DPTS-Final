@@ -68,12 +68,14 @@
     <Compile Include="Entities\AspNetUserLogin.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\BaseEntityWithDateTime.cs" />
+    <Compile Include="Entities\DoctorReview.cs" />
     <Compile Include="Entities\Education.cs" />
     <Compile Include="Entities\Experience.cs" />
     <Compile Include="Entities\HonorsAwards.cs" />
     <Compile Include="Entities\Notification\DoctorNotificationSettings.cs" />
     <Compile Include="Entities\Notification\EmailCategory.cs" />
     <Compile Include="Entities\Notification\SentEmailHistory.cs" />
+    <Compile Include="Entities\PatientReviewHelpfulness.cs" />
     <Compile Include="Entities\Picture.cs" />
     <Compile Include="Entities\PictureMapping.cs" />
     <Compile Include="Entities\PictureType.cs" />

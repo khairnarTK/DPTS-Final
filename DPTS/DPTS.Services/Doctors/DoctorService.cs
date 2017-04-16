@@ -26,6 +26,7 @@ namespace DPTS.Services.Doctors
         private readonly IAddressService _addressService;
         private readonly DPTSDbContext _context;
         private readonly IRepository<PictureMapping> _pictureMapRepository;
+        private readonly IRepository<DoctorReview> _doctorReviewRepository;
 
         #endregion
 
@@ -41,7 +42,8 @@ namespace DPTS.Services.Doctors
             IRepository<HonorsAwards> honorsAwardsRepository,
             IRepository<Education> educationRepository,
             IRepository<Experience> experienceRepository,
-            IRepository<PictureMapping> pictureMapRepository)
+            IRepository<PictureMapping> pictureMapRepository,
+            IRepository<DoctorReview> doctorReviewRepository)
         {
             _doctorRepository = doctorRepository;
             _specialityRepository = specialityRepository;
@@ -56,6 +58,7 @@ namespace DPTS.Services.Doctors
             _experienceRepository = experienceRepository;
             _context = new DPTSDbContext();
             _pictureMapRepository = pictureMapRepository;
+            _doctorReviewRepository=doctorReviewRepository;
         }
         #endregion
 
@@ -750,6 +753,110 @@ namespace DPTS.Services.Doctors
 
         #endregion
 
-        
+        #region Product reviews
+
+        /// <summary>
+        /// get all doctor reviews
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <param name="approved"></param>
+        /// <param name="fromUtc"></param>
+        /// <param name="toUtc"></param>
+        /// <param name="message"></param>
+        /// <param name="doctorId"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public virtual IPagedList<DoctorReview> GetAlldoctorReviews(string patientId, bool? approved,
+            DateTime? fromUtc = null, DateTime? toUtc = null,
+            string message = null, string doctorId = null,
+            int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var query = _doctorReviewRepository.Table;
+            if (approved.HasValue)
+                query = query.Where(pr => pr.IsApproved == approved);
+            if (!string.IsNullOrWhiteSpace(patientId))
+                query = query.Where(pr => pr.PatientId == patientId);
+            if (fromUtc.HasValue)
+                query = query.Where(pr => fromUtc.Value <= pr.CreatedOnUtc);
+            if (toUtc.HasValue)
+                query = query.Where(pr => toUtc.Value >= pr.CreatedOnUtc);
+            if (!String.IsNullOrEmpty(message))
+                query = query.Where(pr => pr.Title.Contains(message) || pr.ReviewText.Contains(message));
+            if (string.IsNullOrWhiteSpace(doctorId))
+                query = query.Where(pr => pr.DoctorId == doctorId);
+           
+            query = query.OrderBy(pr => pr.CreatedOnUtc).ThenBy(pr => pr.Id);
+
+            var doctorReviews = new PagedList<DoctorReview>(query, pageIndex, pageSize);
+
+            return doctorReviews;
+        }
+
+        /// <summary>
+        /// Gets doctor review
+        /// </summary>
+        /// <param name="doctorReviewId">Doctor review identifier</param>
+        /// <returns>Doctor review</returns>
+        public virtual DoctorReview GetDoctorReviewById(int doctorReviewId)
+        {
+            if (doctorReviewId == 0)
+                return null;
+
+            return _doctorReviewRepository.GetById(doctorReviewId);
+        }
+
+        /// <summary>
+        /// Get doctor reviews by identifiers
+        /// </summary>
+        /// <param name="doctorReviewIds">Doctor review identifiers</param>
+        /// <returns>Product reviews</returns>
+        public virtual IList<DoctorReview> GetDoctorReviewsByIds(int[] doctorReviewIds)
+        {
+            if (doctorReviewIds == null || doctorReviewIds.Length == 0)
+                return new List<DoctorReview>();
+
+            var query = from pr in _doctorReviewRepository.Table
+                        where doctorReviewIds.Contains(pr.Id)
+                        select pr;
+            var doctorReviews = query.ToList();
+            //sort by passed identifiers
+            var sortedDoctortReviews = new List<DoctorReview>();
+            foreach (int id in doctorReviewIds)
+            {
+                var productReview = doctorReviews.Find(x => x.Id == id);
+                if (productReview != null)
+                    sortedDoctortReviews.Add(productReview);
+            }
+            return sortedDoctortReviews;
+        }
+
+        /// <summary>
+        /// Deletes a doctor review
+        /// </summary>
+        /// <param name="doctorReview">Doctor review</param>
+        public virtual void DeleteDoctorReview(DoctorReview doctorReview)
+        {
+            if (doctorReview == null)
+                throw new ArgumentNullException("doctorReview");
+
+            _doctorReviewRepository.Delete(doctorReview);
+        }
+
+        /// <summary>
+        /// Deletes doctor reviews
+        /// </summary>
+        /// <param name="doctorReviews">Doctor reviews</param>
+        public virtual void DeleteDoctorReviews(IList<DoctorReview> doctorReviews)
+        {
+            if (doctorReviews == null)
+                throw new ArgumentNullException("doctorReviews");
+
+            _doctorReviewRepository.Delete(doctorReviews);
+        }
+
+        #endregion
+
+
     }
 }

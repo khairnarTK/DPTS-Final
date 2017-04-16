@@ -130,29 +130,51 @@ namespace DPTS.Domain.Core.Doctors
         void DeleteDoctorPicture(PictureMapping docPicture);
         #endregion
 
-        //#region Doctor reviews
+        #region Product reviews
 
-        //IPagedList<DoctorReview> GetAllProductReviews(string visitorId, bool? approved,
-        //    DateTime? fromUtc = null, DateTime? toUtc = null,
-        //    string message = null, int storeId = 0, string doctorId = null,
-        //    int pageIndex = 0, int pageSize = int.MaxValue);
+        /// <summary>
+        /// get all doctor reviews
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <param name="approved"></param>
+        /// <param name="fromUtc"></param>
+        /// <param name="toUtc"></param>
+        /// <param name="message"></param>
+        /// <param name="doctorId"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        IPagedList<DoctorReview> GetAlldoctorReviews(string patientId, bool? approved,
+            DateTime? fromUtc = null, DateTime? toUtc = null,
+            string message = null, string doctorId = null,
+            int pageIndex = 0, int pageSize = int.MaxValue);
 
-        //DoctorReview GetDoctorReviewById(int doctorReviewId);
+        /// <summary>
+        /// Gets doctor review
+        /// </summary>
+        /// <param name="doctorReviewId">Doctor review identifier</param>
+        /// <returns>Doctor review</returns>
+        DoctorReview GetDoctorReviewById(int doctorReviewId);
 
-        //IList<DoctorReview> GetDoctorReviewsByIds(int[] doctorReviewIds);
+        /// <summary>
+        /// Get doctor reviews by identifiers
+        /// </summary>
+        /// <param name="doctorReviewIds">Doctor review identifiers</param>
+        /// <returns>Product reviews</returns>
+        IList<DoctorReview> GetDoctorReviewsByIds(int[] doctorReviewIds);
 
-        ///// <summary>
-        ///// Deletes a doctor review
-        ///// </summary>
-        ///// <param name="productReview">Product review</param>
-        //void DeleteDoctorReview(DoctorReview productReview);
+        /// <summary>
+        /// Deletes a doctor review
+        /// </summary>
+        /// <param name="doctorReview">Doctor review</param>
+        void DeleteDoctorReview(DoctorReview doctorReview);
 
-        ///// <summary>
-        ///// Deletes doctor reviews
-        ///// </summary>
-        ///// <param name="productReviews">Product reviews</param>
-        //void DeleteDoctorReviews(IList<DoctorReview> doctorReviews);
+        /// <summary>
+        /// Deletes product reviews
+        /// </summary>
+        /// <param name="doctorReviews">Doctor reviews</param>
+        void DeleteDoctorReviews(IList<DoctorReview> doctorReviews);
 
-        //#endregion
+        #endregion
     }
 }
