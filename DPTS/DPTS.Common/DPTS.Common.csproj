@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HTML\HtmlHelper.cs" />
     <Compile Include="Kendoui\DataSourceRequest.cs" />
     <Compile Include="Kendoui\DataSourceResult.cs" />
     <Compile Include="QrCodeGenerator.cs" />

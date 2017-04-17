@@ -130,7 +130,7 @@ namespace DPTS.Domain.Core.Doctors
         void DeleteDoctorPicture(PictureMapping docPicture);
         #endregion
 
-        #region Product reviews
+        #region Doctor reviews
 
         /// <summary>
         /// get all doctor reviews
@@ -175,6 +175,10 @@ namespace DPTS.Domain.Core.Doctors
         /// <param name="doctorReviews">Doctor reviews</param>
         void DeleteDoctorReviews(IList<DoctorReview> doctorReviews);
 
+        void UpdateDoctorReviewTotals(Doctor doctor);
+
+
         #endregion
+
     }
 }

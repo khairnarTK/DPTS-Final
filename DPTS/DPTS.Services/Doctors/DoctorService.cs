@@ -756,6 +756,41 @@ namespace DPTS.Services.Doctors
         #region Product reviews
 
         /// <summary>
+        /// Update doctor review totals
+        /// </summary>
+        /// <param name="product">Doctor</param>
+        public virtual void UpdateDoctorReviewTotals(Doctor doctor)
+        {
+            if (doctor == null)
+                throw new ArgumentNullException("doctor");
+
+            int approvedRatingSum = 0;
+            int notApprovedRatingSum = 0;
+            int approvedTotalReviews = 0;
+            int notApprovedTotalReviews = 0;
+            var reviews = doctor.DoctorReview;
+            foreach (var pr in reviews)
+            {
+                if (pr.IsApproved)
+                {
+                    approvedRatingSum += pr.Rating;
+                    approvedTotalReviews++;
+                }
+                else
+                {
+                    notApprovedRatingSum += pr.Rating;
+                    notApprovedTotalReviews++;
+                }
+            }
+
+            doctor.ApprovedRatingSum = approvedRatingSum;
+            doctor.NotApprovedRatingSum = notApprovedRatingSum;
+            doctor.ApprovedTotalReviews = approvedTotalReviews;
+            doctor.NotApprovedTotalReviews = notApprovedTotalReviews;
+            UpdateDoctor(doctor);
+        }
+
+        /// <summary>
         /// get all doctor reviews
         /// </summary>
         /// <param name="patientId"></param>

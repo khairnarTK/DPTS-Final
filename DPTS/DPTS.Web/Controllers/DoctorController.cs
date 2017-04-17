@@ -21,6 +21,7 @@ using DPTS.EmailSmsNotifications.IServices;
 using DPTS.EmailSmsNotifications.ServiceModels;
 using DPTS.Data.Context;
 using System.Threading.Tasks;
+using DPTS.Web.AppInfra;
 
 namespace DPTS.Web.Controllers
 {
@@ -38,6 +39,7 @@ namespace DPTS.Web.Controllers
         private readonly IPictureService _pictureService;
         private ISmsNotificationService _smsService;
         private readonly DPTSDbContext context;
+        private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
         #endregion
 
         #region Contructor
@@ -1785,6 +1787,270 @@ namespace DPTS.Web.Controllers
 
             return new NullJsonResult();
         }
+        #endregion
+
+        #region Temp Review
+        [NonAction]
+        protected virtual void PrepareDoctorReviewsModel(DoctorReviewsModel model, Doctor doctor)
+        {
+            if (doctor == null)
+                throw new ArgumentNullException("doctor");
+
+            if (model == null)
+                throw new ArgumentNullException("model");
+
+            model.DoctorId = doctor.DoctorId;
+            model.DoctorName = doctor.AspNetUser.FirstName;
+           // model.ProductSeName = product.GetSeName();
+
+            var doctorReviews = doctor.DoctorReview.Where(pr => pr.IsApproved).OrderBy(pr => pr.CreatedOnUtc);
+            foreach (var pr in doctorReviews)
+            {
+                var patient = pr.Patient;
+                model.Items.Add(new DoctorReviewModel
+                {
+                    Id = pr.Id,
+                    PatientId = pr.PatientId,
+                    PatientName = patient.FirstName,
+                  //  AllowViewingProfiles = _customerSettings.AllowViewingProfiles && customer != null && !customer.IsGuest(),
+                    Title = pr.Title,
+                    ReviewText = pr.ReviewText,
+                    Rating = pr.Rating,
+                    Helpfulness = new DoctorReviewHelpfulnessModel
+                    {
+                        DoctorReviewId = pr.Id,
+                        HelpfulYesTotal = pr.HelpfulYesTotal,
+                        HelpfulNoTotal = pr.HelpfulNoTotal,
+                    },
+                    WrittenOnStr = ConvertToUserTime(pr.CreatedOnUtc, DateTimeKind.Utc).ToString("g"),
+                });
+            }
+
+            model.AddDoctorReview.CanCurrentPatientLeaveReview = true;//_catalogSettings.AllowAnonymousUsersToReviewProduct || !_workContext.CurrentCustomer.IsGuest();
+           // model.AddDoctorReview.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnProductReviewPage;
+        }
+        public virtual DateTime ConvertToUserTime(DateTime dt, DateTimeKind sourceDateTimeKind)
+        {
+            dt = DateTime.SpecifyKind(dt, sourceDateTimeKind);
+            return TimeZoneInfo.ConvertTime(dt, INDIAN_ZONE);
+        }
+        #endregion
+
+        #region Product reviews
+
+        public ActionResult DoctorReviews(string doctorId)
+        {
+            var doctor = _doctorService.GetDoctorbyId(doctorId);
+            if (doctor == null || doctor.Deleted)
+                return RedirectToRoute("HomePage");
+
+            var model = new DoctorReviewsModel();
+            PrepareDoctorReviewsModel(model, doctor);
+            //only registered users can leave reviews
+            //if (_workContext.CurrentCustomer.IsGuest() && !_catalogSettings.AllowAnonymousUsersToReviewProduct)
+            //    ModelState.AddModelError("", _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
+            //default value
+            model.AddDoctorReview.Rating = 0;
+            return View(model);
+        }
+
+        [HttpPost, ActionName("DoctorReviews")]
+        //[FormValueRequired("add-review")]
+        public ActionResult ProductReviewsAdd(string productId, DoctorReviewsModel model)
+        {
+            var doctor = _doctorService.GetDoctorbyId(productId);
+            if (doctor == null || doctor.Deleted)
+                return RedirectToRoute("HomePage");
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                ModelState.AddModelError("", "Reviews.OnlyRegisteredUsersCanWriteReviews");
+            }
+
+            if (ModelState.IsValid)
+            {
+                //save review
+                int rating = model.AddDoctorReview.Rating;
+                if (rating < 1 || rating > 5)
+                    rating = 0;
+                bool isApproved = true;//!_catalogSettings.ProductReviewsMustBeApproved;
+
+                var doctorReview = new DoctorReview
+                {
+                    DoctorId = doctor.DoctorId,
+                    PatientId = User.Identity.GetUserId(),
+                    Title = model.AddDoctorReview.Title,
+                    ReviewText = model.AddDoctorReview.ReviewText,
+                    Rating = rating,
+                    HelpfulYesTotal = 0,
+                    HelpfulNoTotal = 0,
+                    IsApproved = isApproved,
+                    CreatedOnUtc = DateTime.UtcNow,
+                };
+                doctor.DoctorReview.Add(doctorReview);
+                _doctorService.UpdateDoctor(doctor);
+
+                //update doctor totals
+                _doctorService.UpdateDoctorReviewTotals(doctor);
+
+                //notify store owner
+                //if (_catalogSettings.NotifyStoreOwnerAboutNewProductReviews)
+                //    _workflowMessageService.SendProductReviewNotificationMessage(productReview, _localizationSettings.DefaultAdminLanguageId);
+
+                //activity log
+              //  _customerActivityService.InsertActivity("PublicStore.AddProductReview", _localizationService.GetResource("ActivityLog.PublicStore.AddProductReview"), product.Name);
+
+                //raise event
+                //if (doctorReview.IsApproved)
+                //    _eventPublisher.Publish(new ProductReviewApprovedEvent(productReview));
+
+                PrepareDoctorReviewsModel(model, doctor);
+                model.AddDoctorReview.Title = null;
+                model.AddDoctorReview.ReviewText = null;
+
+                model.AddDoctorReview.SuccessfullyAdded = true;
+                if (!isApproved)
+                    model.AddDoctorReview.Result = "Reviews.SeeAfterApproving";
+                else
+                    model.AddDoctorReview.Result = "Reviews.SuccessfullyAdded";
+
+                return View(model);
+            }
+
+            //If we got this far, something failed, redisplay form
+            PrepareDoctorReviewsModel(model, doctor);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SetProductReviewHelpfulness(int doctorReviewId, bool washelpful)
+        {
+            var doctorReview = _doctorService.GetDoctorReviewById(doctorReviewId);
+            if (doctorReview == null)
+                throw new ArgumentException("No doctor review found with the specified id");
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json(new
+                {
+                    Result = "Reviews.Helpfulness.OnlyRegistered",
+                    TotalYes = doctorReview.HelpfulYesTotal,
+                    TotalNo = doctorReview.HelpfulNoTotal
+                });
+            }
+
+            //customers aren't allowed to vote for their own reviews
+            if (doctorReview.PatientId == User.Identity.GetUserId())
+            {
+                return Json(new
+                {
+                    Result = "Reviews.Helpfulness.YourOwnReview",
+                    TotalYes = doctorReview.HelpfulYesTotal,
+                    TotalNo = doctorReview.HelpfulNoTotal
+                });
+            }
+
+            //delete previous helpfulness
+            var prh = doctorReview.PatientReviewHelpfulnessEntries
+                .FirstOrDefault(x => x.PatientId == User.Identity.GetUserId());
+            if (prh != null)
+            {
+                //existing one
+                prh.WasHelpful = washelpful;
+            }
+            else
+            {
+                //insert new helpfulness
+                prh = new PatientReviewHelpfulness
+                {
+                    DoctorReviewId = doctorReview.Id,
+                    PatientId = User.Identity.GetUserId(),
+                    WasHelpful = washelpful,
+                };
+                doctorReview.PatientReviewHelpfulnessEntries.Add(prh);
+            }
+            _doctorService.UpdateDoctor(doctorReview.Doctor);
+
+            //new totals
+            doctorReview.HelpfulYesTotal = doctorReview.PatientReviewHelpfulnessEntries.Count(x => x.WasHelpful);
+            doctorReview.HelpfulNoTotal = doctorReview.PatientReviewHelpfulnessEntries.Count(x => !x.WasHelpful);
+            _doctorService.UpdateDoctor(doctorReview.Doctor);
+
+            return Json(new
+            {
+                Result = "Reviews.Helpfulness.SuccessfullyVoted",
+                TotalYes = doctorReview.HelpfulYesTotal,
+                TotalNo = doctorReview.HelpfulNoTotal
+            });
+        }
+
+        public ActionResult PatientDoctorReviews(int? page)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return new HttpUnauthorizedResult();
+
+            //if (!_catalogSettings.ShowProductReviewsTabOnAccountPage)
+            //{
+            //    return RedirectToRoute("CustomerInfo");
+            //}
+
+            var pageSize = 10;//_catalogSettings.ProductReviewsPageSizeOnAccountPage;
+            int pageIndex = 0;
+
+            if (page > 0)
+            {
+                pageIndex = page.Value - 1;
+            }
+
+            var list = _doctorService.GetAlldoctorReviews(User.Identity.GetUserId(), null,
+                            pageIndex: pageIndex, pageSize: pageSize);
+
+            var doctorReviews = new List<PatientDoctorReviewModel>();
+
+            foreach (var review in list)
+            {
+                var doctor = review.Doctor;
+                var doctorReviewModel = new PatientDoctorReviewModel
+                {
+                    Title = review.Title,
+                    DoctorId = doctor.Id,
+                    DoctorName = doctor.AspNetUser.FirstName,
+                   // DoctorSeName = doctor.GetSeName(),
+                    Rating = review.Rating,
+                    ReviewText = review.ReviewText,
+                    WrittenOnStr =
+                        ConvertToUserTime(doctor.DateCreated, DateTimeKind.Utc).ToString("g")
+                };
+
+                //if (_catalogSettings.ProductReviewsMustBeApproved)
+                //{
+                //    productReviewModel.ApprovalStatus = review.IsApproved
+                //        ? _localizationService.GetResource("Account.CustomerProductReviews.ApprovalStatus.Approved")
+                //        : _localizationService.GetResource("Account.CustomerProductReviews.ApprovalStatus.Pending");
+                //}
+                doctorReviews.Add(doctorReviewModel);
+            }
+
+            var pagerModel = new PagerModel
+            {
+                PageSize = list.PageSize,
+                TotalRecords = list.TotalCount,
+                PageIndex = list.PageIndex,
+                ShowTotalSummary = false,
+                RouteActionName = "PatientDoctorReviewsPaged",
+                UseRouteLinks = true,
+                RouteValues = new PatientDoctorReviewsModel.PatientDoctorReviewsRouteValues { page = pageIndex }
+            };
+
+            var model = new PatientDoctorReviewsModel
+            {
+                DoctorReviews = doctorReviews,
+                PagerModel = pagerModel
+            };
+
+            return View(model);
+        }
+
         #endregion
 
 

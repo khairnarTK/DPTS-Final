@@ -372,6 +372,7 @@
     <Compile Include="AppFilters\LogApplicationAttribute.cs" />
     <Compile Include="AppInfra\Constants.cs" />
     <Compile Include="AppInfra\Enum.cs" />
+    <Compile Include="AppInfra\PagerModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -410,6 +411,7 @@
     <Compile Include="Models\AppointmentScheduleViewModel.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\DeleteConfirmationModel.cs" />
+    <Compile Include="Models\DoctorOverviewModel.cs" />
     <Compile Include="Models\DoctorPictureModel.cs" />
     <Compile Include="Models\DoctorScheduleListingViewModel.cs" />
     <Compile Include="Models\EmailCategoryViewModel.cs" />
@@ -420,7 +422,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JoinUsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PatientDoctorReviewModel.cs" />
     <Compile Include="Models\PictureModel.cs" />
+    <Compile Include="Models\DoctorReviewsModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SheduleViewModel.cs" />
@@ -2136,6 +2140,9 @@
     <Content Include="Views\Account\TermsConditions.cshtml" />
     <Content Include="Views\Shared\_DocContactUs.cshtml" />
     <Content Include="Views\Administration\QualifiactionList.cshtml" />
+    <Content Include="Views\Doctor\DoctorReviews.cshtml" />
+    <Content Include="Views\Doctor\_DoctorReviewHelpfulness.cshtml" />
+    <Content Include="Views\Doctor\_DoctorReviewOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

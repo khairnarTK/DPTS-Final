@@ -57,6 +57,23 @@ namespace DPTS.Domain.Entities
 
         public bool IsAvailability { get; set; }
 
+        /// <summary>
+        /// Gets or sets the rating sum (approved reviews)
+        /// </summary>
+        public int ApprovedRatingSum { get; set; }
+        /// <summary>
+        /// Gets or sets the rating sum (not approved reviews)
+        /// </summary>
+        public int NotApprovedRatingSum { get; set; }
+        /// <summary>
+        /// Gets or sets the total rating votes (approved reviews)
+        /// </summary>
+        public int ApprovedTotalReviews { get; set; }
+        /// <summary>
+        /// Gets or sets the total rating votes (not approved reviews)
+        /// </summary>
+        public int NotApprovedTotalReviews { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
 
         public virtual ICollection<SpecialityMapping> SpecialityMapping { get; set; }
