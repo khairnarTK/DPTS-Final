@@ -14,6 +14,12 @@ namespace DPTS.Web
                 "{controller}/{action}",
                 new {controller = "Home", action = "Index"}
                 );
+
+            routes.MapRoute("HomePage",
+                            "",
+                            new { controller = "Home", action = "Index" },
+                            new[] { "DPTS.Web.Controllers" });
+
             //get state list by country ID  (AJAX link)
             routes.MapRoute("GetStatesByCountryId",
                 "Doctor/GetStatesByCountryId/",
@@ -31,6 +37,21 @@ namespace DPTS.Web
                 "appoinment/{doctorId}",
                 new {controller = "Appointment", action = "AppointmentSchedule", doctorId = UrlParameter.Optional}
                 );
+
+            //reviews
+            routes.MapRoute("DoctorReviews",
+                            "doctorreviews/{doctorId}",
+                            new { controller = "Doctor", action = "DoctorReviews" },
+                            new[] { "DPTS.Web.Controllers" });
+            routes.MapRoute("PatientProductReviews",
+                            "patient/doctorreviews",
+                            new { controller = "Doctor", action = "PatientDoctorReviews" },
+                            new[] { "DPTS.Web.Controllers" });
+            routes.MapRoute("PatientDoctorReviewsPaged",
+                            "patient/doctorreviews/page/{page}",
+                            new { controller = "Doctor", action = "PatientDoctorReviews" },
+                            new { page = @"\d+" },
+                            new[] { "DPTS.Web.Controllers" });
 
             //routes.MapRoute(
             //    "ContactUs",

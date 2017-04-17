@@ -1208,6 +1208,42 @@ namespace DPTS.Web.Controllers
         #endregion
 
         #region Details
+        protected virtual DoctorReviewOverviewModel PrepareDoctorReviewOverviewModel(Doctor doctor)
+        {
+            var doctorReview =new DoctorReviewOverviewModel();
+
+            //if (_catalogSettings.ShowDoctorReviewsPerStore)
+            //{
+            //   // string cacheKey = string.Format(ModelCacheEventConsumer.Doctor_REVIEWS_MODEL_KEY, Doctor.Id, _storeContext.CurrentStore.Id);
+
+            //    doctorReview = _cacheManager.Get(cacheKey, () =>
+            //    {
+            //        return new DoctorReviewOverviewModel
+            //        {
+            //            RatingSum = Doctor.DoctorReviews
+            //                    .Where(pr => pr.IsApproved && pr.StoreId == _storeContext.CurrentStore.Id)
+            //                    .Sum(pr => pr.Rating),
+            //            TotalReviews = Doctor
+            //                    .DoctorReviews
+            //                    .Count(pr => pr.IsApproved && pr.StoreId == _storeContext.CurrentStore.Id)
+            //        };
+            //    });
+            //}
+            //else
+            //{
+                doctorReview = new DoctorReviewOverviewModel()
+                {
+                    RatingSum = doctor.ApprovedRatingSum,
+                    TotalReviews = doctor.ApprovedTotalReviews
+                };
+           // }
+            if (doctorReview != null)
+            {
+                doctorReview.DoctorId = doctor.Id;
+              //  doctorReview.AllowCustomerReviews = doctor.AllowCustomerReviews;
+            }
+            return doctorReview;
+        }
 
         public ActionResult DoctorDetails(string doctorId)
         {
@@ -1259,6 +1295,9 @@ namespace DPTS.Web.Controllers
                 model.AddPictureModel = defaultPictureModel;
                 model.DoctorPictureModels = pictureModels;
                 #endregion
+
+                //review
+                model.DoctorReviewOverview = PrepareDoctorReviewOverviewModel(doctor);
 
                 TempData["CommentForId"] = doctorId;
                 ViewBag.User = User.Identity.GetUserId();

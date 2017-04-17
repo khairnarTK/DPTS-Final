@@ -5,9 +5,16 @@ using System.Web.Mvc;
 
 namespace DPTS.Web.Models
 {
-    //public class DoctorReviewsModel
-    //{
-    //}
+    public partial class DoctorReviewOverviewModel : BaseEntity
+    {
+        public int DoctorId { get; set; }
+
+        public int RatingSum { get; set; }
+
+        public int TotalReviews { get; set; }
+
+        public bool AllowPatientReviews { get; set; }
+    }
     public partial class DoctorReviewsModel : BaseEntity
     {
         public DoctorReviewsModel()

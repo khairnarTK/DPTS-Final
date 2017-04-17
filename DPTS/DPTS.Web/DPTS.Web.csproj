@@ -411,7 +411,6 @@
     <Compile Include="Models\AppointmentScheduleViewModel.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\DeleteConfirmationModel.cs" />
-    <Compile Include="Models\DoctorOverviewModel.cs" />
     <Compile Include="Models\DoctorPictureModel.cs" />
     <Compile Include="Models\DoctorScheduleListingViewModel.cs" />
     <Compile Include="Models\EmailCategoryViewModel.cs" />
