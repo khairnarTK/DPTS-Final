@@ -7,6 +7,25 @@
         ratingPercent = ((Model.RatingSum * 100) / Model.TotalReviews) / 5;
     }
 }
+<style>
+    .product-reviews-overview {
+    margin: 0 0 25px;
+    color: #444; 
+}
+    .product-review-box {
+    display: inline-block;
+    margin: 0 0 8px;
+}
+    .product-review-box .rating {
+    width: 95px;
+    height: 14px;
+    background: url(https://signaturethings.com/Themes/SignatureThings/Content/images/rating1.png) repeat-x;
+}
+    .product-review-box .rating div {
+    height: 14px;
+    background: url(https://signaturethings.com/Themes/SignatureThings/Content/images/rating2.png) repeat-x;
+}
+</style>
 @if (Model.AllowPatientReviews)
 {
     <div class="product-reviews-overview" @if (Model.TotalReviews > 0) { <text> itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" </text> }>
@@ -33,7 +52,7 @@
         else
         {
             <div class="product-no-reviews">
-                <a href="@Url.RouteUrl("DoctorReviews", new { doctorId = Model.DoctorId })">Reviews.Overview.First</a>
+                <a href="@Url.Action("DoctorReviews", "Doctor", new {doctorId = Model.DoctorId})">Reviews.Overview.First</a>
             </div>
         }
     </div>

@@ -53,7 +53,7 @@
                             <div class="review-rating">
                                 @Html.LabelFor(model => model.AddDoctorReview.Rating, ":")
                                 <ul>
-                                    <li class="label first">@T("Reviews.Fields.Rating.Bad")</li>
+                                    <li class="label first">Reviews.Fields.Rating.Bad</li>
                                     <li class="rating-options">
                                         @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "1", new { id = "addproductrating_1" })
                                         @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "2", new { id = "addproductrating_2" })
@@ -61,7 +61,7 @@
                                         @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "4", new { id = "addproductrating_4" })
                                         @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "5", new { id = "addproductrating_5" })
                                     </li>
-                                    <li class="label last">@T("Reviews.Fields.Rating.Excellent")</li>
+                                    <li class="label last">Reviews.Fields.Rating.Excellent</li>
                                 </ul>
                             </div>
                             @*@if (Model.AddDoctorReview.DisplayCaptcha)
@@ -121,7 +121,7 @@
                                     <span>@review.WrittenOnStr</span>
                                 </span>
                             </div>
-                            @Html.Partial("_ProductReviewHelpfulness", review.Helpfulness, new ViewDataDictionary())
+                            @Html.Partial("_DoctorReviewHelpfulness", review.Helpfulness, new ViewDataDictionary())
                         </div>
                     </div>
                 }

@@ -7,7 +7,7 @@ namespace DPTS.Web.Models
 {
     public partial class DoctorReviewOverviewModel : BaseEntity
     {
-        public int DoctorId { get; set; }
+        public string DoctorId { get; set; }
 
         public int RatingSum { get; set; }
 

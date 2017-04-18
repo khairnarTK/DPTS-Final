@@ -41,7 +41,7 @@ namespace DPTS.Web
             //reviews
             routes.MapRoute("DoctorReviews",
                             "doctorreviews/{doctorId}",
-                            new { controller = "Doctor", action = "DoctorReviews" },
+                            new { controller = "Doctor", action = "DoctorReviews", doctorId = UrlParameter.Optional },
                             new[] { "DPTS.Web.Controllers" });
             routes.MapRoute("PatientProductReviews",
                             "patient/doctorreviews",
@@ -52,6 +52,11 @@ namespace DPTS.Web
                             new { controller = "Doctor", action = "PatientDoctorReviews" },
                             new { page = @"\d+" },
                             new[] { "DPTS.Web.Controllers" });
+
+            routes.MapRoute("SetDoctorReviewHelpfulness",
+                          "setdoctorreviewhelpfulness",
+                          new { controller = "Doctor", action = "SetDoctorReviewHelpfulness" },
+                          new[] { "DPTS.Web.Controllers" });
 
             //routes.MapRoute(
             //    "ContactUs",

@@ -1239,8 +1239,8 @@ namespace DPTS.Web.Controllers
            // }
             if (doctorReview != null)
             {
-                doctorReview.DoctorId = doctor.Id;
-              //  doctorReview.AllowCustomerReviews = doctor.AllowCustomerReviews;
+                doctorReview.DoctorId = doctor.DoctorId;
+                doctorReview.AllowPatientReviews = true;//doctor.AllowCustomerReviews;
             }
             return doctorReview;
         }
@@ -1895,9 +1895,9 @@ namespace DPTS.Web.Controllers
 
         [HttpPost, ActionName("DoctorReviews")]
         //[FormValueRequired("add-review")]
-        public ActionResult ProductReviewsAdd(string productId, DoctorReviewsModel model)
+        public ActionResult ProductReviewsAdd(string doctorId, DoctorReviewsModel model)
         {
-            var doctor = _doctorService.GetDoctorbyId(productId);
+            var doctor = _doctorService.GetDoctorbyId(doctorId);
             if (doctor == null || doctor.Deleted)
                 return RedirectToRoute("HomePage");
 
@@ -1962,7 +1962,7 @@ namespace DPTS.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SetProductReviewHelpfulness(int doctorReviewId, bool washelpful)
+        public ActionResult SetDoctorReviewHelpfulness(int doctorReviewId, bool washelpful)
         {
             var doctorReview = _doctorService.GetDoctorReviewById(doctorReviewId);
             if (doctorReview == null)
