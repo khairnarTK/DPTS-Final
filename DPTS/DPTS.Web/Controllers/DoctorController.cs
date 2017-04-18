@@ -1308,7 +1308,6 @@ namespace DPTS.Web.Controllers
 
         #endregion
 
-
         #region Social Links
 
         [HttpPost]
@@ -1903,7 +1902,7 @@ namespace DPTS.Web.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
-                ModelState.AddModelError("", "Reviews.OnlyRegisteredUsersCanWriteReviews");
+                ModelState.AddModelError("", "only registered users can add reviews");
             }
 
             if (ModelState.IsValid)
@@ -1972,7 +1971,7 @@ namespace DPTS.Web.Controllers
             {
                 return Json(new
                 {
-                    Result = "Reviews.Helpfulness.OnlyRegistered",
+                    Result = "Only registered user can vote",
                     TotalYes = doctorReview.HelpfulYesTotal,
                     TotalNo = doctorReview.HelpfulNoTotal
                 });
@@ -1983,7 +1982,7 @@ namespace DPTS.Web.Controllers
             {
                 return Json(new
                 {
-                    Result = "Reviews.Helpfulness.YourOwnReview",
+                    Result = "Not allowed to vote your own review",
                     TotalYes = doctorReview.HelpfulYesTotal,
                     TotalNo = doctorReview.HelpfulNoTotal
                 });

@@ -55,8 +55,7 @@ namespace DPTS.Web
 
             routes.MapRoute("SetDoctorReviewHelpfulness",
                           "setdoctorreviewhelpfulness",
-                          new { controller = "Doctor", action = "SetDoctorReviewHelpfulness" },
-                          new[] { "DPTS.Web.Controllers" });
+                          new { controller = "Doctor", action = "SetDoctorReviewHelpfulness" });
 
             //routes.MapRoute(
             //    "ContactUs",

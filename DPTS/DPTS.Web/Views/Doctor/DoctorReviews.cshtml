@@ -4,128 +4,123 @@
     ViewBag.Title = "DoctorReviews";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@{
-    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
 
-    //title
-    Html.AddTitleParts(Model.ProductName);
-    Html.AddTitleParts(T("PageTitle.ProductReviews").Text);
-    //page class
-    Html.AppendPageCssClassParts("html-product-reviews-page");
-}*@
-<div class="page product-reviews-page">
-    <div class="page-title">
-        <h1>Review for @*<a href="@Url.RouteUrl("Product", new { SeName = Model.ProductSeName })">@Model.ProductName</a>*@</h1>
-    </div>
-    <div class="page-body">
-        @if (Model.AddDoctorReview.SuccessfullyAdded)
-        {
-            <div class="result">
-                @Model.AddDoctorReview.Result
-            </div>
-        }
-        else
-        {
-            <div class="write-review" id="review-form">
-                <div class="title">
-                    <strong>Reviews.Write</strong>
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-3" style="box-shadow: 0 0 20px 0 rgba(0,0,0,.2), 0 5px 5px 0 rgba(0,0,0,.24);">
+                <div class="page-title" style="text-align: center;">
+                    <h3>Review for "<a href="@Url.Action("DoctorDetails","Doctor", new { doctorId = Model.DoctorId })">Dr. @Model.DoctorName</a>"</h3>
                 </div>
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    var validationSummary = Html.ValidationSummary(true);
-                    if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
-                    {
-                        <div class="message-error">@validationSummary</div>
-                    }
-                    <div class="fieldset">
-                        <div class="form-fields">
-                            <div class="inputs">
-                                @Html.LabelFor(model => model.AddDoctorReview.Title,":")
-                                @Html.TextBoxFor(model => model.AddDoctorReview.Title, Model.AddDoctorReview.CanCurrentPatientLeaveReview ? (object)(new { @class = "review-title" }) : (object)(new { @class = "review-title", disabled = "disabled" }))
-                                @Html.ValidationMessageFor(model => model.AddDoctorReview.Title)
-                            </div>
-                            <div class="inputs">
-                                @Html.LabelFor(model => model.AddDoctorReview.ReviewText, ":")
-                                @Html.TextAreaFor(model => model.AddDoctorReview.ReviewText, Model.AddDoctorReview.CanCurrentPatientLeaveReview ? (object)(new { @class = "review-text" }) : (object)(new { @class = "review-text", disabled = "disabled" }))
-                                @Html.ValidationMessageFor(model => model.AddDoctorReview.ReviewText)
-                            </div>
-                            <div class="review-rating">
-                                @Html.LabelFor(model => model.AddDoctorReview.Rating, ":")
-                                <ul>
-                                    <li class="label first">Reviews.Fields.Rating.Bad</li>
-                                    <li class="rating-options">
-                                        @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "1", new { id = "addproductrating_1" })
-                                        @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "2", new { id = "addproductrating_2" })
-                                        @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "3", new { id = "addproductrating_3" })
-                                        @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "4", new { id = "addproductrating_4" })
-                                        @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "5", new { id = "addproductrating_5" })
-                                    </li>
-                                    <li class="label last">Reviews.Fields.Rating.Excellent</li>
-                                </ul>
-                            </div>
-                            @*@if (Model.AddDoctorReview.DisplayCaptcha)
-                            {
-                                <div class="captcha-box">
-                                    @Html.Raw(Html.GenerateCaptcha())
-                                </div>
-                            }*@
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <input type="submit" name="add-review" class="button-1 write-product-review-button" value="Reviews.SubmitButton" />
-                    </div>
-                }
-            </div>
-        }
-        @if (Model.Items.Count > 0)
-        {
-            <div class="product-review-list">
-                <div class="title">
-                    <strong>"Reviews.ExistingReviews"</strong>
-                </div>
-                @foreach (var review in Model.Items)
-                {
-                    int ratingPercent = review.Rating * 20;
-                    <div class="product-review-item">
-                        <div class="review-item-head">
-                            <div class="review-title">
-                                <strong>@review.Title</strong>
-                            </div>
-                            <div class="product-review-box">
-                                <div class="rating">
-                                    <div style="width: @(ratingPercent)%">
+                <div class="tab-content tg-haslayout">
+                    <div role="tabpanel" class="tab-pane tg-haslayout active" id="tg-signup-formarea">
+                            <fieldset>
+
+                                @if (Model.AddDoctorReview.SuccessfullyAdded)
+                                {
+                                    <div class="result">
+                                        @Model.AddDoctorReview.Result
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <div class="review-text">
-                                @Html.Raw(review.ReviewText)
-                            </div>
-                            <div class="review-info">
-                                <span class="user">
-                                    <label>Reviews.From</label>
-                                    @if (review.AllowViewingProfiles)
-                                    {
-                                        <a href="@Url.RouteUrl("CustomerProfile", new { id = review.PatientId })">@(review.PatientName)</a>
-                                    }
-                                    else
-                                    {
-                                        @review.PatientName
-                                    }
-                                </span>
-                                <span class="separator">|</span>
-                                <span class="date">
-                                    <label>Reviews.Date</label>
-                                    <span>@review.WrittenOnStr</span>
-                                </span>
-                            </div>
-                            @Html.Partial("_DoctorReviewHelpfulness", review.Helpfulness, new ViewDataDictionary())
-                        </div>
+                                }
+                                else
+                                {
+                                    <div class="write-review" id="review-form">
+                                        <div class="title">
+                                            <strong>Write your own review</strong>
+                                        </div>
+                                        @using (Html.BeginForm())
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            var validationSummary = Html.ValidationSummary(true);
+                                            if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+                                            {
+                                                <div class="message-error">@validationSummary</div>
+                                            }
+                                            <div class="fieldset">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.AddDoctorReview.Title, new { @class = "form-control", @placeholder = "Title" })
+                                                    @Html.ValidationMessageFor(model => model.AddDoctorReview.Title, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.AddDoctorReview.ReviewText, new { @class = "form-control", @placeholder = "Review Text" })
+                                                    @Html.ValidationMessageFor(model => model.AddDoctorReview.ReviewText, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="review-rating">
+                                                    Rating :
+                                                    <ul>
+                                                        <li class="label first"style="color:red">Bad</li>
+                                                        <li class="rating-options">
+                                                            @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "1", new { id = "addproductrating_1" })
+                                                            @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "2", new { id = "addproductrating_2" })
+                                                            @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "3", new { id = "addproductrating_3" })
+                                                            @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "4", new { id = "addproductrating_4" })
+                                                            @Html.RadioButtonFor(model => model.AddDoctorReview.Rating, "5", new { id = "addproductrating_5" })
+                                                        </li>
+                                                        <li class="label last" style="color:forestgreen">Excellent</li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="buttons"style="text-align: center;margin: 30px 0 30px;">
+                                                <input type="submit" name="add-review" class="tg-btn contact_now" value="Submit Review" />
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                @if (Model.Items.Count > 0)
+                                {
+                                    <div class="product-review-list">
+                                        <div class="title">
+                                            <strong>Existing reviews</strong>
+                                        </div>
+                                        @foreach (var review in Model.Items)
+                                         {
+                                            int ratingPercent = review.Rating * 20;
+                                            <div class="product-review-item">
+                                                <div class="review-item-head">
+                                                    <div class="review-title">
+                                                        <strong>@review.Title</strong>
+                                                    </div>
+                                                    <div class="product-review-box">
+                                                        <div class="rating">
+                                                            <div style="width: @(ratingPercent)%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-content">
+                                                    <div class="review-text">
+                                                        @Html.Raw(review.ReviewText)
+                                                    </div>
+                                                    <div class="review-info">
+                                                        <span class="user">
+                                                            <label>From</label>
+                                                            @if (review.AllowViewingProfiles)
+                                                            {
+                                                                <a href="@Url.RouteUrl("CustomerProfile", new { id = review.PatientId })">@(review.PatientName)</a>
+                                                            }
+                                                            else
+                                                            {
+                                                                @review.PatientName
+                                                            }
+                                                        </span>
+                                                        <span class="separator">|</span>
+                                                        <span class="date">
+                                                            <label>Date</label>
+                                                            <span>@review.WrittenOnStr</span>
+                                                        </span>
+                                                    </div>
+                                                    @Html.Partial("_DoctorReviewHelpfulness", review.Helpfulness, new ViewDataDictionary())
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                @*<input type="submit" class="tg-btn tg-btn-lg  do-register-button" onclick="javascript:return AcceptTermAndcondition();" value="Register" />*@
+                            </fieldset>
                     </div>
-                }
+                </div>
             </div>
-        }
+        </div>
     </div>
-</div>
+</main>

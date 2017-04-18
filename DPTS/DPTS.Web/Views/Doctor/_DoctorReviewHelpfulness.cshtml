@@ -2,7 +2,7 @@
 @model DoctorReviewHelpfulnessModel
 
 <div class="product-review-helpfulness">
-    <span class="question">Reviews.Helpfulness.WasHelpful?</span>
+    <span class="question">Was this review helpful?</span>
     <span class="vote-options">
         <span id="vote-yes-@(Model.DoctorReviewId)" class="vote">Yes</span>
         <span id="vote-no-@(Model.DoctorReviewId)" class="vote">No</span>
@@ -27,7 +27,7 @@
                 $.ajax({
                     cache: false,
                     type: "POST",
-                    url: "@(Url.RouteUrl("SetDoctorReviewHelpfulness"))",
+                    url: "@(Url.Action("SetDoctorReviewHelpfulness","Doctor"))",
                     data: { "DoctorReviewId": @(Model.DoctorReviewId), "washelpful": wasHelpful },
                     success: function (data) {
                          $("#helpfulness-vote-yes-@(Model.DoctorReviewId)").html(data.TotalYes);

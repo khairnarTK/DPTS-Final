@@ -8,23 +8,7 @@
     }
 }
 <style>
-    .product-reviews-overview {
-    margin: 0 0 25px;
-    color: #444; 
-}
-    .product-review-box {
-    display: inline-block;
-    margin: 0 0 8px;
-}
-    .product-review-box .rating {
-    width: 95px;
-    height: 14px;
-    background: url(https://signaturethings.com/Themes/SignatureThings/Content/images/rating1.png) repeat-x;
-}
-    .product-review-box .rating div {
-    height: 14px;
-    background: url(https://signaturethings.com/Themes/SignatureThings/Content/images/rating2.png) repeat-x;
-}
+ 
 </style>
 @if (Model.AllowPatientReviews)
 {
@@ -39,10 +23,10 @@
         @if (Model.TotalReviews > 0)
         {
             <div class="product-review-links">
-                <a href="@Url.RouteUrl("DoctorReviews", new { doctorId = Model.DoctorId })">
+                <a href="@Url.Action("DoctorReviews","Doctor", new { doctorId = Model.DoctorId })">
                     @Model.TotalReviews
-                Reviews.Overview.Reviews
-            </a> <span class="separator">|</span> <a href="@Url.RouteUrl("DoctorReviews", new { doctorId = Model.DoctorId })">Reviews.Overview.AddNew</a>
+                Reviews(S)
+            </a> <span class="separator">|</span> <a href="@Url.Action("DoctorReviews","Doctor", new { doctorId = Model.DoctorId })">Add your review</a>
         </div>
             @*hidden microdata info*@
         decimal ratingValue = ratingPercent / (decimal)20;

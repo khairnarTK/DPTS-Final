@@ -533,6 +533,8 @@
     <Content Include="Content\wp-content\themes\docdirect\images\flags.png" />
     <Content Include="Content\wp-content\themes\docdirect\images\icon24.png" />
     <Content Include="Content\wp-content\themes\docdirect\images\mimg.png" />
+    <Content Include="Content\wp-content\themes\docdirect\images\rating1.png" />
+    <Content Include="Content\wp-content\themes\docdirect\images\rating2.png" />
     <Content Include="Content\wp-content\themes\docdirect\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\wp-content\uploads\2016\12\02.png" />
     <Content Include="Scripts\contact_me.js" />

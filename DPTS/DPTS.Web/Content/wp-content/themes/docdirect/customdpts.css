@@ -64,13 +64,100 @@
     .doc-edu{
     background-color: #f7f7f7;
     }
+    .write-review{
+       background: #eee;
+       padding: 20px;
+    }
+    .write-review .title{
+            padding: 0 0 15px;
+    margin: 10px 0 15px 0;
+    border-bottom: 1px solid;
+    text-align: center;
+    font-size: 20px;
+    }
+    .write-review .review-rating {
+    text-align: center;
+}
+    .write-review .review-rating ul {
+    font-size: 0;
+    vertical-align: middle;
+}
+    .write-review .review-rating li {
+    display: inline-block;
+    margin: 0 5px;
+    cursor: default;
+    vertical-align: middle;
+    font-size: 14px;
+    height: 17px;
+}
+    .write-review .review-rating li.rating-options {
+    padding-top: 2px;
+}
+    .write-review .review-rating li.rating-options input {
+    vertical-align: baseline;
+}
+    .product-review-list {
+    overflow: hidden;
+}
+    .product-reviews-page .title {
+    margin: 0 0 20px;
+    font-size: 20px;
+    color: #444;
+}
+    .product-review-item {
+    margin: 0 0 40px;
+}
+    .product-review-item .review-item-head {
+    border-top: 1px solid #ddd;
+    overflow: hidden;
+    background-color: #f6f6f6;
+    padding: 10px;
+}
+    .product-review-box .rating {
+    width: 95px;
+    height: 14px;
+    background: url(../docdirect/images/rating1.png) repeat-x;
+}
 
-    /*.search-nav{
-    background: #7dbb00;
-    color: white;
-    margin-top: 11px;
-    margin-left: 15px;
-    }*/
+        .product-review-box .rating div {
+            height: 14px;
+            background: url(../docdirect/images/rating2.png) repeat-x;
+        }
+.product-review-list .title{
+    text-align:center;
+    margin:10px;
+    font-size:20px;
+}
+.product-review-helpfulness .question {
+    margin: 0 5px 0 0;
+    font-style: italic;
+}
+.product-review-helpfulness .vote {
+    display: inline-block;
+    padding: 0 5px;
+    color: #4ab2f1;
+    cursor: pointer;
+}
+   .product-reviews-overview {
+    margin: 0 0 25px;
+    color: #444; 
+}
+    .product-review-box {
+    display: inline-block;
+    margin: 10px 0 8px;
+}
+    .product-review-links{
+        text-decoration:underline;
+    }
+    .product-review-box .rating {
+    width: 95px;
+    height: 14px;
+    background: url(../docdirect/images/rating1.png) repeat-x;
+}
+    .product-review-box .rating div {
+    height: 14px;
+    background: url(../docdirect/images/rating2.png) repeat-x;
+}
 
 @media (max-width: 481px) {
     #auto-search{
@@ -87,6 +174,9 @@
 @media (max-width: 1000px) {
 }
 @media (min-width: 1001px) {
+    .product-review-item .review-title {
+    max-width: 850px;
+}
     #auto-search{
         width:50%;
     }
@@ -110,8 +200,20 @@
     }
 }
 @media (min-width: 769px) {
+    .product-review-item .review-title {
+    float: left;
+    max-width: 600px;
+}
+    .product-review-item .product-review-box {
+    float: right;
+}
+    .product-review-item .product-review-box {
+    margin: 3px 0 0;
+}
 }
 @media (min-width:1367px) {
 }
+
+
 
 
