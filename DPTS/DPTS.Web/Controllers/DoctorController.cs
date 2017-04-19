@@ -1874,7 +1874,7 @@ namespace DPTS.Web.Controllers
         }
         #endregion
 
-        #region Product reviews
+        #region Doctor reviews
 
         public ActionResult DoctorReviews(string doctorId)
         {
@@ -1894,7 +1894,7 @@ namespace DPTS.Web.Controllers
 
         [HttpPost, ActionName("DoctorReviews")]
         //[FormValueRequired("add-review")]
-        public ActionResult ProductReviewsAdd(string doctorId, DoctorReviewsModel model)
+        public ActionResult DoctorReviewsAdd(string doctorId, DoctorReviewsModel model)
         {
             var doctor = _doctorService.GetDoctorbyId(doctorId);
             if (doctor == null || doctor.Deleted)

@@ -12,6 +12,22 @@
         <ul class="shops-list">
             @foreach (var item in Model)
             {
+                int ratingPercent = 0;
+                if (item.ReviewOverviewModel.TotalReviews != 0)
+                {
+                    ratingPercent = ((item.ReviewOverviewModel.RatingSum * 100) / item.ReviewOverviewModel.TotalReviews) / 5;
+                }
+
+                @*<div class="product-rating-box" title="@string.Format("TotalReviews", item.ReviewOverviewModel.TotalReviews)">
+                    <div class="rating">
+                        <div style="width: @(ratingPercent)%">
+                        </div>
+                    </div>
+                </div>*@
+
+               
+
+
                 <li class="shops-item" style="list-style: none;" data-ind="@(ind++)">
                     <article class="tg-doctor-profile user-330">
                         <div class="tg-box">
@@ -19,6 +35,13 @@
                                 <a href="@Url.Action("DoctorDetails", "Doctor", new {doctorId = item.Doctors.DoctorId})" class="list-avatar">
                                     <img src="@picturePath">
                                 </a>
+                                <div class="feature-rating user-star-rating">
+                                    <span class="tg-stars star-rating">
+                                        <span style="width: @(ratingPercent)%"></span>
+                                    </span>
+
+                                    <em>@item.ReviewOverviewModel.TotalReviews<sub>/5</sub></em>
+                                </div>
                             </figure>
                             <div class="docbox-left">
 
@@ -107,7 +130,7 @@
                         </div>
                     </article>
                 </li>
-                 }
+            }
         </ul>
     </div>
 </div>

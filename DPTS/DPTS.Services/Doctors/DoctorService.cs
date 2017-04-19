@@ -807,19 +807,19 @@ namespace DPTS.Services.Doctors
             string message = null, string doctorId = null,
             int pageIndex = 0, int pageSize = int.MaxValue)
         {
-            var query = _doctorReviewRepository.Table;
-            if (approved.HasValue)
-                query = query.Where(pr => pr.IsApproved == approved);
-            if (!string.IsNullOrWhiteSpace(patientId))
-                query = query.Where(pr => pr.PatientId == patientId);
-            if (fromUtc.HasValue)
-                query = query.Where(pr => fromUtc.Value <= pr.CreatedOnUtc);
-            if (toUtc.HasValue)
-                query = query.Where(pr => toUtc.Value >= pr.CreatedOnUtc);
-            if (!String.IsNullOrEmpty(message))
-                query = query.Where(pr => pr.Title.Contains(message) || pr.ReviewText.Contains(message));
-            if (string.IsNullOrWhiteSpace(doctorId))
-                query = query.Where(pr => pr.DoctorId == doctorId);
+            var query = _doctorReviewRepository.TableNoTracking;
+            //if (approved.HasValue)
+            //    query = query.Where(pr => pr.IsApproved == approved);
+            //if (!string.IsNullOrWhiteSpace(patientId))
+            //    query = query.Where(pr => pr.PatientId == patientId);
+            //if (fromUtc.HasValue)
+            //    query = query.Where(pr => fromUtc.Value <= pr.CreatedOnUtc);
+            //if (toUtc.HasValue)
+            //    query = query.Where(pr => toUtc.Value >= pr.CreatedOnUtc);
+            //if (!String.IsNullOrEmpty(message))
+            //    query = query.Where(pr => pr.Title.Contains(message) || pr.ReviewText.Contains(message));
+            //if (string.IsNullOrWhiteSpace(doctorId))
+            //    query = query.Where(pr => pr.DoctorId == doctorId);
            
             query = query.OrderBy(pr => pr.CreatedOnUtc).ThenBy(pr => pr.Id);
 
@@ -864,6 +864,26 @@ namespace DPTS.Services.Doctors
                     sortedDoctortReviews.Add(productReview);
             }
             return sortedDoctortReviews;
+        }
+
+        public virtual IList<Doctor> GetDoctorsByIds(string[] doctorIds)
+        {
+            if (doctorIds == null || doctorIds.Length == 0)
+                return new List<Doctor>();
+
+            var query = from p in _doctorRepository.Table
+                        where doctorIds.Contains(p.DoctorId)
+                        select p;
+            var doctors = query.ToList();
+            //sort by passed identifiers
+            var sortedDoctors = new List<Doctor>();
+            foreach (string id in doctorIds)
+            {
+                var doctor = doctors.Find(x => x.DoctorId == id);
+                if (doctor != null)
+                    sortedDoctors.Add(doctor);
+            }
+            return sortedDoctors;
         }
 
         /// <summary>

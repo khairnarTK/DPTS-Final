@@ -9,9 +9,9 @@ namespace DPTS.Web.Models
         {
             Doctors = new Doctor();
             Address = new Address();
-          //  Specialities = new List<Speciality>();
+            ReviewOverviewModel = new DoctorReviewOverviewModel();
         }
-      //  public IList<Speciality> Specialities { get; set; }
+
         public Doctor Doctors { get; set; }
         public Domain.Entities.Address Address { get; set; }
         public double Distance { get; set; }
@@ -19,5 +19,7 @@ namespace DPTS.Web.Models
         public string YearOfExperience { get; set; }
         public string Qualification { get; set; }
         public string ListSpecialities { get; set; }
+
+        public DoctorReviewOverviewModel ReviewOverviewModel { get; set; }
     }
 }

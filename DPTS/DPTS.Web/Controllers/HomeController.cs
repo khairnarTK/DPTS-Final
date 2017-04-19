@@ -262,7 +262,8 @@ namespace DPTS.Web.Controllers
                     AddressLine = GetAddressline(_addressService.GetAllAddressByUser(doc.DoctorId).FirstOrDefault()),
                     YearOfExperience = GetTotalExperience(doc.Experience),
                     Qualification = GetQualification(doc.Education),
-                    ListSpecialities = GetSpecialities(_specialityService.GetDoctorSpecilities(doc.DoctorId))
+                    ListSpecialities = GetSpecialities(_specialityService.GetDoctorSpecilities(doc.DoctorId)),
+                    ReviewOverviewModel = PrepareDoctorReviewOverviewModel(doc)
                 }).ToList();
             }
 
@@ -271,6 +272,22 @@ namespace DPTS.Web.Controllers
             ViewBag.SearchModel = PrepareSearchModel(model);
             ViewBag.IsHomePageSearch = false;
             return PartialView(pageDoctors);
+        }
+
+        public static DoctorReviewOverviewModel PrepareDoctorReviewOverviewModel(Doctor doctor)
+        {
+            DoctorReviewOverviewModel doctorReview;
+            doctorReview = new DoctorReviewOverviewModel()
+                {
+                    RatingSum = doctor.ApprovedRatingSum,
+                    TotalReviews = doctor.ApprovedTotalReviews
+                };
+            if (doctorReview != null)
+            {
+                doctorReview.DoctorId = doctor.DoctorId;
+                doctorReview.AllowPatientReviews = true;
+            }
+            return doctorReview;
         }
 
         [ValidateInput(false)]
@@ -322,7 +339,8 @@ namespace DPTS.Web.Controllers
                     AddressLine = GetAddressline(_addressService.GetAllAddressByUser(doc.DoctorId).FirstOrDefault()),
                     YearOfExperience = GetTotalExperience(doc.Experience),
                     Qualification = GetQualification(doc.Education),
-                    ListSpecialities = GetSpecialities(_specialityService.GetDoctorSpecilities(doc.DoctorId))
+                    ListSpecialities = GetSpecialities(_specialityService.GetDoctorSpecilities(doc.DoctorId)),
+                    ReviewOverviewModel = PrepareDoctorReviewOverviewModel(doc)
                 }).ToList();
             }
 

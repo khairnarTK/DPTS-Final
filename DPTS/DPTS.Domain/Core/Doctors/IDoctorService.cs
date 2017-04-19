@@ -164,6 +164,13 @@ namespace DPTS.Domain.Core.Doctors
         IList<DoctorReview> GetDoctorReviewsByIds(int[] doctorReviewIds);
 
         /// <summary>
+        /// get doctor by ids
+        /// </summary>
+        /// <param name="doctorIds"></param>
+        /// <returns></returns>
+        IList<Doctor> GetDoctorsByIds(string[] doctorIds);
+
+        /// <summary>
         /// Deletes a doctor review
         /// </summary>
         /// <param name="doctorReview">Doctor review</param>

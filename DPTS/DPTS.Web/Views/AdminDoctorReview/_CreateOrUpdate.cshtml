@@ -1,0 +1,75 @@
+﻿@model DPTS.Web.Models.AdminDocorReviewModel
+
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<div class="content">
+    <div class="form-horizontal">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.DoctorName)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ActionLink(Model.DoctorName, "DoctorDetails", "Doctor", new { id = Model.DoctorId }, new { })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PatientInfo)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.PatientInfo)
+                            @*@Html.ActionLink(Model.PatientInfo, "Edit", "Account", new { id = Model.CustomerId }, new { })*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Title)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Title)
+                            @Html.ValidationMessageFor(model => model.Title)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ReviewText)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.ReviewText)
+                            @Html.ValidationMessageFor(model => model.ReviewText)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Rating)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.Rating)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.IsApproved)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.IsApproved)
+                            @Html.ValidationMessageFor(model => model.IsApproved)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.CreatedOn)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.CreatedOn)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
