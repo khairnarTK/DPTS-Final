@@ -1838,8 +1838,7 @@ namespace DPTS.Web.Controllers
                 throw new ArgumentNullException("model");
 
             model.DoctorId = doctor.DoctorId;
-            model.DoctorName = doctor.AspNetUser.FirstName;
-           // model.ProductSeName = product.GetSeName();
+            model.DoctorName ="Dr. "+ doctor.AspNetUser.FirstName + " "+ doctor.AspNetUser.LastName;
 
             var doctorReviews = doctor.DoctorReview.Where(pr => pr.IsApproved).OrderBy(pr => pr.CreatedOnUtc);
             foreach (var pr in doctorReviews)
@@ -1849,8 +1848,7 @@ namespace DPTS.Web.Controllers
                 {
                     Id = pr.Id,
                     PatientId = pr.PatientId,
-                    PatientName = patient.FirstName,
-                  //  AllowViewingProfiles = _customerSettings.AllowViewingProfiles && customer != null && !customer.IsGuest(),
+                    PatientName = (patient == null) ? string.Empty : patient.FirstName,
                     Title = pr.Title,
                     ReviewText = pr.ReviewText,
                     Rating = pr.Rating,
@@ -1863,9 +1861,7 @@ namespace DPTS.Web.Controllers
                     WrittenOnStr = ConvertToUserTime(pr.CreatedOnUtc, DateTimeKind.Utc).ToString("g"),
                 });
             }
-
-            model.AddDoctorReview.CanCurrentPatientLeaveReview = true;//_catalogSettings.AllowAnonymousUsersToReviewProduct || !_workContext.CurrentCustomer.IsGuest();
-           // model.AddDoctorReview.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnProductReviewPage;
+            model.AddDoctorReview.CanCurrentPatientLeaveReview = true;
         }
         public virtual DateTime ConvertToUserTime(DateTime dt, DateTimeKind sourceDateTimeKind)
         {
@@ -1875,7 +1871,6 @@ namespace DPTS.Web.Controllers
         #endregion
 
         #region Doctor reviews
-
         public ActionResult DoctorReviews(string doctorId)
         {
             var doctor = _doctorService.GetDoctorbyId(doctorId);
@@ -1884,16 +1879,11 @@ namespace DPTS.Web.Controllers
 
             var model = new DoctorReviewsModel();
             PrepareDoctorReviewsModel(model, doctor);
-            //only registered users can leave reviews
-            //if (_workContext.CurrentCustomer.IsGuest() && !_catalogSettings.AllowAnonymousUsersToReviewProduct)
-            //    ModelState.AddModelError("", _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
-            //default value
             model.AddDoctorReview.Rating = 0;
             return View(model);
         }
 
         [HttpPost, ActionName("DoctorReviews")]
-        //[FormValueRequired("add-review")]
         public ActionResult DoctorReviewsAdd(string doctorId, DoctorReviewsModel model)
         {
             var doctor = _doctorService.GetDoctorbyId(doctorId);
@@ -1902,7 +1892,7 @@ namespace DPTS.Web.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
-                ModelState.AddModelError("", "only registered users can add reviews");
+                ModelState.AddModelError("", "Only registered users can add reviews");
             }
 
             if (ModelState.IsValid)
@@ -1911,7 +1901,7 @@ namespace DPTS.Web.Controllers
                 int rating = model.AddDoctorReview.Rating;
                 if (rating < 1 || rating > 5)
                     rating = 0;
-                bool isApproved = true;//!_catalogSettings.ProductReviewsMustBeApproved;
+                bool isApproved = false;//!_catalogSettings.ProductReviewsMustBeApproved;
 
                 var doctorReview = new DoctorReview
                 {
@@ -1931,26 +1921,15 @@ namespace DPTS.Web.Controllers
                 //update doctor totals
                 _doctorService.UpdateDoctorReviewTotals(doctor);
 
-                //notify store owner
-                //if (_catalogSettings.NotifyStoreOwnerAboutNewProductReviews)
-                //    _workflowMessageService.SendProductReviewNotificationMessage(productReview, _localizationSettings.DefaultAdminLanguageId);
-
-                //activity log
-              //  _customerActivityService.InsertActivity("PublicStore.AddProductReview", _localizationService.GetResource("ActivityLog.PublicStore.AddProductReview"), product.Name);
-
-                //raise event
-                //if (doctorReview.IsApproved)
-                //    _eventPublisher.Publish(new ProductReviewApprovedEvent(productReview));
-
                 PrepareDoctorReviewsModel(model, doctor);
                 model.AddDoctorReview.Title = null;
                 model.AddDoctorReview.ReviewText = null;
 
                 model.AddDoctorReview.SuccessfullyAdded = true;
                 if (!isApproved)
-                    model.AddDoctorReview.Result = "Reviews.SeeAfterApproving";
+                    model.AddDoctorReview.Result = "Review see after approving";
                 else
-                    model.AddDoctorReview.Result = "Reviews.SuccessfullyAdded";
+                    model.AddDoctorReview.Result = "Review successfully added";
 
                 return View(model);
             }
