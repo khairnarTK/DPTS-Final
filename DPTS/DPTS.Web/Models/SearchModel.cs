@@ -28,6 +28,8 @@ namespace DPTS.Web.Models
 
         public decimal maxfee { get; set; }
 
+        public string SortBy { get; set; }
+
         //public string lat { get; set; }
         //public string lng { get; set; }
 

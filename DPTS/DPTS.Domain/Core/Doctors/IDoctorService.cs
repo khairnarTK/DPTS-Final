@@ -53,7 +53,7 @@ namespace DPTS.Domain.Core.Doctors
         /// <param name="maxFee"></param>
         /// <param name="minFee"></param>
         /// <returns></returns>
-        IList<Doctor> SearchDoctor(int page, int itemsPerPage, out int totalCount, string zipcode = null, int specialityId = 0, string searchByName = null, decimal maxFee = 0, decimal minFee = 0);
+        IList<Doctor> SearchDoctor(int page, int itemsPerPage, out int totalCount, string zipcode = null, int specialityId = 0, string searchByName = null, decimal maxFee = 0, decimal minFee = 0,string SortBy = "all");
 
         /// <summary>
         /// Paging with get all doctors

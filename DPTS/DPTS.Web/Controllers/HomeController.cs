@@ -251,7 +251,9 @@ namespace DPTS.Web.Controllers
                 specialityId: specilityId,
                 searchByName: searchByName,
                 maxFee: model.maxfee,
-                minFee: model.minfee);
+                minFee: model.minfee,
+                SortBy:model.SortBy
+                );
 
             if (data != null)
             {

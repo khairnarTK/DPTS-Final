@@ -363,8 +363,6 @@ namespace DPTS.Services.Doctors
                         select p;
             }
 
-            
-
             var pageQuery =  query.OrderBy(d => d.DateUpdated)
                 .Skip(itemsPerPage * page).Take(itemsPerPage)
                          .ToList();
@@ -379,7 +377,8 @@ namespace DPTS.Services.Doctors
             int specialityId = 0,
             string searchByName = null,
             decimal maxFee = 0,
-            decimal minFee = 0)
+            decimal minFee = 0,
+            string SortBy = "all")
         {
             IList<int> addressIds = null;
             var query = from d in _doctorRepository.Table
@@ -503,20 +502,26 @@ namespace DPTS.Services.Doctors
                         where fullName.Contains(searchByName)
                         select p;
             }
-
-            if(maxFee > 0)
+            if (maxFee > 0)
             {
-
                 //(p => p.Age >= r2.Min && p.Age <= r2.Max);
                 query = from p in query
                         where (p.ConsultationFee >= minFee && p.ConsultationFee <= maxFee)
                         select p;
             }
-
-            var pageQuery = query.OrderBy(d => d.DateUpdated)
+            var pageQuery = new List<Doctor>();
+            if(SortBy.Equals("mostpopuler"))
+            {
+                pageQuery = query.OrderByDescending(d => d.ApprovedTotalReviews)
                 .Skip(itemsPerPage * page).Take(itemsPerPage)
                          .ToList();
-
+            }
+            else
+            {
+                pageQuery = query.OrderBy(d => d.DateUpdated)
+                .Skip(itemsPerPage * page).Take(itemsPerPage)
+                         .ToList();
+            }
 
             totalCount = query.Count();
             return pageQuery;
