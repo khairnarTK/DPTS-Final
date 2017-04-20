@@ -43,6 +43,8 @@ namespace DPTS.Web.Models
 
         public string ReviewText { get; set; }
 
+        public string ReplyText { get; set; }
+
         public int Rating { get; set; }
 
         public DoctorReviewHelpfulnessModel Helpfulness { get; set; }

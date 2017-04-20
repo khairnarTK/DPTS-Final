@@ -33,92 +33,6 @@
 <div class="content">
     <div class="form-horizontal">
         <div class="panel-group">
-            <div class="panel panel-default panel-search">
-                <div class="panel-body">
-                    <div class="row">
-                        @*<div class="col-md-6">
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    @Html.LabelFor(model => model.CreatedOnFrom)
-                                </div>
-                                <div class="col-md-8">
-                                    @Html.NopEditorFor(model => model.CreatedOnFrom)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.CreatedOnTo)
-                                </div>
-                                <div class="col-md-8">
-                                    @Html.NopEditorFor(model => model.CreatedOnTo)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.SearchText)
-                                </div>
-                                <div class="col-md-8">
-                                    @Html.NopEditorFor(model => model.SearchText)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.SearchProductId)
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="search-product-name" autocomplete="off" />
-                                    <script type="text/javascript">
-                                    $(document).ready(function() {
-                                        $('#search-product-name').autocomplete({
-                                            delay: 500,
-                                            minLength: 3,
-                                            source: '@(Url.Action("ProductSearchAutoComplete"))',
-                                            select: function(event, ui) {
-                                                $('#@Html.FieldIdFor(model => model.SearchProductId)').val(ui.item.productid);
-                                                $('#search-product-friendly-name').text(ui.item.label);
-                                                $('#search-product-clear').show();
-                                                return false;
-                                            }
-                                        });
-                                    });
-                                    </script>
-
-                                    <span id="search-product-friendly-name"></span>
-                                    <button type="button" id="search-product-clear" class="btn bg-gray" style="display: none; margin-top: 5px;">@T("Admin.Common.Clear")</button>
-                                    @Html.TextBoxFor(model => model.SearchProductId, new { autocomplete = "off", style = "display:none;" })
-
-                                    <script>
-                                    //remove button
-                                    $('#search-product-clear').click(function() {
-                                        $('#@Html.FieldIdFor(model => model.SearchProductId)').val('0');
-                                        $('#search-product-friendly-name').text('');
-                                        $('#search-product-clear').hide();
-                                        return false;
-                                    });
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="form-group" @(Model.AvailableStores.SelectionIsNotPossible() ? Html.Raw("style=\"display:none\"") : null)>
-                                <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.SearchStoreId)
-                                </div>
-                                <div class="col-md-8">
-                                    @Html.NopDropDownListFor(model => model.SearchStoreId, Model.AvailableStores)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <button type="button" id="search-productreviews" class="btn btn-primary btn-search">
-                                        <i class="fa fa-search"></i>
-                                        @T("Admin.Common.Search")
-                                    </button>
-                                </div>
-                            </div>
-                        </div>*@
-                    </div>
-                </div>
-            </div>
-
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div id="doctorreviews-grid"></div>
@@ -236,23 +150,27 @@
                                     selectedIds: selectedIds
                                 };
                                 //addAntiForgeryToken(postData);
-
-                                $.ajax({
-                                    cache: false,
-                                    type: "POST",
-                                    url: "@(Url.Action("ApproveSelected", "AdminDoctorReview"))",
-                                    data: postData,
-                                    complete: function(data) {
-                                        //reload grid
-                                        var grid = $('#doctorreviews-grid').data('kendoGrid');
-                                        grid.dataSource.read();
-                                    },
-                                    error: function(xhr, ajaxOptions, thrownError) {
-                                        alert(thrownError);
-                                    },
-                                    traditional: true
-                                });
-                                return false;
+                                var r = confirm("Are you sure to approve!");
+                                if (r == true) {
+                                    $.ajax({
+                                        cache: false,
+                                        type: "POST",
+                                        url: "@(Url.Action("ApproveSelected", "AdminDoctorReview"))",
+                                        data: postData,
+                                        complete: function (data) {
+                                            //reload grid
+                                            alert("Review approve successfully.");
+                                            var grid = $('#doctorreviews-grid').data('kendoGrid');
+                                            grid.dataSource.read();
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            alert(thrownError);
+                                        },
+                                        traditional: true
+                                    });
+                                } else {
+                                    return false;
+                                }
                             });
 
                             //"disapprove selected" button
@@ -263,40 +181,51 @@
                                     selectedIds: selectedIds
                                 };
                                 //addAntiForgeryToken(postData);
-
-                                $.ajax({
-                                    cache: false,
-                                    type: "POST",
-                                    url: "@(Url.Action("DisapproveSelected", "AdminDoctorReview"))",
-                                    data: postData,
-                                    complete: function(data) {
-                                        //reload grid
-                                        var grid = $('#doctorreviews-grid').data('kendoGrid');
-                                        grid.dataSource.read();
-                                    },
-                                    error: function(xhr, ajaxOptions, thrownError) {
-                                        alert(thrownError);
-                                    },
-                                    traditional: true
-                                });
-                                return false;
+                                var r = confirm("Are you sure to dis-approve!");
+                                if (r == true) {
+                                    $.ajax({
+                                        cache: false,
+                                        type: "POST",
+                                        url: "@(Url.Action("DisapproveSelected", "AdminDoctorReview"))",
+                                        data: postData,
+                                        complete: function (data) {
+                                            //reload grid
+                                            alert("Review disapprove successfully.");
+                                            var grid = $('#doctorreviews-grid').data('kendoGrid');
+                                            grid.dataSource.read();
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            alert(thrownError);
+                                        },
+                                        traditional: true
+                                    });
+                                } else {
+                                    return false;
+                                }
                             });
 
                             //"delete selected" button
                             $('#delete-selected').click(function(e) {
                                 e.preventDefault();
-
                                 var postData = {
                                     selectedIds: selectedIds
                                 };
-                                //addAntiForgeryToken(postData);
+                                if (postData == undefined || postData.length == 0)
+                                {
+                                    alert("select review for delete");
+                                    return false;
+                                }
 
-                                $.ajax({
-                                    cache: false,
-                                    type: "POST",
-                                    url: "@(Url.Action("DeleteSelected", "AdminDoctorReview"))",
-                                    data: postData,
-                                    complete: function(data) {
+                                var r = confirm("Are you sure to delete!");
+                                if (r == true) {
+                                    //addAntiForgeryToken(postData);
+                                    $.ajax({
+                                        cache: false,
+                                        type: "POST",
+                                        url: "@(Url.Action("DeleteSelected", "AdminDoctorReview"))",
+                                        data: postData,
+                                        complete: function (data) {
+                                            alert("Selected review deleted successfully.");
                                         //reload grid
                                         var grid = $('#doctorreviews-grid').data('kendoGrid');
                                         grid.dataSource.read();
@@ -306,7 +235,9 @@
                                     },
                                     traditional: true
                                 });
-                                return false;
+                                } else {
+                                    return false;
+                                }
                             });
 
 
@@ -362,7 +293,7 @@
 
                         function updateMasterCheckbox() {
                             var numChkBoxes = $('#doctorreviews-grid input[type=checkbox][id!=mastercheckbox]').length;
-                            var numChkBoxesChecked = $('#productreviews-grid input[type=checkbox][id!=mastercheckbox]:checked').length;
+                            var numChkBoxesChecked = $('#doctorreviews-grid input[type=checkbox][id!=mastercheckbox]:checked').length;
                             $('#mastercheckbox').attr('checked', numChkBoxes == numChkBoxesChecked && numChkBoxes > 0);
                         }
 

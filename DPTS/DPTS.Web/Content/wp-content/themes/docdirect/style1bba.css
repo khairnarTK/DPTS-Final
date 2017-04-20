@@ -8155,7 +8155,7 @@ select option:disabled {
 .feature-rating.user-star-rating{
 	float:left;
 	width:100%;
-	padding:7px 10px 7px;
+	/*padding:7px 10px 7px;*/
 	background:#fff;
 	text-align:center;
 	box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.20);

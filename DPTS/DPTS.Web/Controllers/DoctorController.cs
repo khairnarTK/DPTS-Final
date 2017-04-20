@@ -1852,6 +1852,7 @@ namespace DPTS.Web.Controllers
                     Title = pr.Title,
                     ReviewText = pr.ReviewText,
                     Rating = pr.Rating,
+                    ReplyText = pr.ReplyText,
                     Helpfulness = new DoctorReviewHelpfulnessModel
                     {
                         DoctorReviewId = pr.Id,
@@ -1950,7 +1951,7 @@ namespace DPTS.Web.Controllers
             {
                 return Json(new
                 {
-                    Result = "Only registered user can vote",
+                    Result = "Only registered users can set review helpfulness",
                     TotalYes = doctorReview.HelpfulYesTotal,
                     TotalNo = doctorReview.HelpfulNoTotal
                 });
@@ -1961,7 +1962,7 @@ namespace DPTS.Web.Controllers
             {
                 return Json(new
                 {
-                    Result = "Not allowed to vote your own review",
+                    Result = "You cannot vote for your own review",
                     TotalYes = doctorReview.HelpfulYesTotal,
                     TotalNo = doctorReview.HelpfulNoTotal
                 });
@@ -1995,7 +1996,7 @@ namespace DPTS.Web.Controllers
 
             return Json(new
             {
-                Result = "Reviews.Helpfulness.SuccessfullyVoted",
+                Result = "Successfully voted",
                 TotalYes = doctorReview.HelpfulYesTotal,
                 TotalNo = doctorReview.HelpfulNoTotal
             });
@@ -2006,12 +2007,7 @@ namespace DPTS.Web.Controllers
             if (!User.Identity.IsAuthenticated)
                 return new HttpUnauthorizedResult();
 
-            //if (!_catalogSettings.ShowProductReviewsTabOnAccountPage)
-            //{
-            //    return RedirectToRoute("CustomerInfo");
-            //}
-
-            var pageSize = 10;//_catalogSettings.ProductReviewsPageSizeOnAccountPage;
+            var pageSize = 10;
             int pageIndex = 0;
 
             if (page > 0)
@@ -2039,12 +2035,6 @@ namespace DPTS.Web.Controllers
                         ConvertToUserTime(doctor.DateCreated, DateTimeKind.Utc).ToString("g")
                 };
 
-                //if (_catalogSettings.ProductReviewsMustBeApproved)
-                //{
-                //    productReviewModel.ApprovalStatus = review.IsApproved
-                //        ? _localizationService.GetResource("Account.CustomerProductReviews.ApprovalStatus.Approved")
-                //        : _localizationService.GetResource("Account.CustomerProductReviews.ApprovalStatus.Pending");
-                //}
                 doctorReviews.Add(doctorReviewModel);
             }
 
@@ -2069,8 +2059,5 @@ namespace DPTS.Web.Controllers
         }
 
         #endregion
-
-
-
     }
 }

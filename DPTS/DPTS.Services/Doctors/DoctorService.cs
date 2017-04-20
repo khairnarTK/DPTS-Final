@@ -821,7 +821,7 @@ namespace DPTS.Services.Doctors
             //if (string.IsNullOrWhiteSpace(doctorId))
             //    query = query.Where(pr => pr.DoctorId == doctorId);
            
-            query = query.OrderBy(pr => pr.CreatedOnUtc).ThenBy(pr => pr.Id);
+            query = query.OrderByDescending(pr => pr.CreatedOnUtc).ThenBy(pr => pr.Id);
 
             var doctorReviews = new PagedList<DoctorReview>(query, pageIndex, pageSize);
 
@@ -896,6 +896,14 @@ namespace DPTS.Services.Doctors
                 throw new ArgumentNullException("doctorReview");
 
             _doctorReviewRepository.Delete(doctorReview);
+        }
+
+        public virtual void UpdateDoctorReview(DoctorReview doctorReview)
+        {
+            if (doctorReview == null)
+                throw new ArgumentNullException("doctorReview");
+
+            _doctorReviewRepository.Update(doctorReview);
         }
 
         /// <summary>

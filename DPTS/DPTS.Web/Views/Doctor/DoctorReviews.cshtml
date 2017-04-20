@@ -10,15 +10,14 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-3" style="box-shadow: 0 0 20px 0 rgba(0,0,0,.2), 0 5px 5px 0 rgba(0,0,0,.24);">
                 <div class="page-title" style="text-align: center;">
-                    <h3>Review for "<a href="@Url.Action("DoctorDetails","Doctor", new { doctorId = Model.DoctorId })">Dr. @Model.DoctorName</a>"</h3>
+                    <h3>Review for "<a href="@Url.Action("DoctorDetails","Doctor", new { doctorId = Model.DoctorId })">@Model.DoctorName</a>"</h3>
                 </div>
-                <div class="tab-content tg-haslayout">
+                <div class="tab-content tg-haslayout" style="margin-bottom:10px">
                     <div role="tabpanel" class="tab-pane tg-haslayout active" id="tg-signup-formarea">
                             <fieldset>
-
                                 @if (Model.AddDoctorReview.SuccessfullyAdded)
                                 {
-                                    <div class="result">
+                                    <div class="result" style="font-size: 15px;font-weight: 700;">
                                         @Model.AddDoctorReview.Result
                                     </div>
                                 }
@@ -111,6 +110,17 @@
                                                         </span>
                                                     </div>
                                                     @Html.Partial("_DoctorReviewHelpfulness", review.Helpfulness, new ViewDataDictionary())
+                                                    @if (!String.IsNullOrEmpty(review.ReplyText))
+                                                    {
+                                                        <div class="reply">
+                                                            <div class="reply-header">
+                                                               Reply by Admin
+                                                            </div>
+                                                            <div class="reply-text">
+                                                                @Html.Raw(review.ReplyText)
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </div>
                                             </div>
                                         }

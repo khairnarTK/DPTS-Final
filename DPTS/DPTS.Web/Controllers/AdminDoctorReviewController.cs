@@ -46,11 +46,14 @@ namespace DPTS.Web.Controllers
 
             model.Id = doctorReview.Id;
             model.DoctorId = doctorReview.DoctorId;
-            model.DoctorName = doctorReview.Doctor.AspNetUser.FirstName;
+            model.DoctorName = "Dr."+ doctorReview.Doctor.AspNetUser.FirstName+ " "+ doctorReview.Doctor.AspNetUser.LastName;
             model.PatientId = doctorReview.PatientId;
             var patient = doctorReview.Patient;
+
+            model.PatientInfo = (patient != null) ? patient.FirstName + " " + patient.LastName : "None";
            // model.PatientInfo = patient.IsRegistered() ? patient.Email : _localizationService.GetResource("Admin.Customers.Guest");
             model.Rating = doctorReview.Rating;
+            model.ReplyText = doctorReview.ReplyText;
             model.CreatedOn = ConvertToUserTime(doctorReview.CreatedOnUtc, DateTimeKind.Utc);
             if (!excludeProperties)
             {
@@ -80,15 +83,6 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public ActionResult List(DataSourceRequest command)
         {
-            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageProductReviews))
-            //    return AccessDeniedView();
-
-            //DateTime? createdOnFromValue = (model.CreatedOnFrom == null) ? null
-            //                : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.CreatedOnFrom.Value, _dateTimeHelper.CurrentTimeZone);
-
-            //DateTime? createdToFromValue = (model.CreatedOnTo == null) ? null
-            //                : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.CreatedOnTo.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
-
             var productReviews = _doctorService.GetAlldoctorReviews(null,null);
             var gridModel = new DataSourceResult
             {
@@ -108,12 +102,8 @@ namespace DPTS.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageProductReviews))
-            //    return AccessDeniedView();
-
             var doctorReview = _doctorService.GetDoctorReviewById(id);
             if (doctorReview == null)
-                //No product review found with the specified id
                 return RedirectToAction("List");
 
             var model = new AdminDocorReviewModel();
@@ -124,9 +114,6 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public ActionResult Edit(AdminDocorReviewModel model)
         {
-            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageProductReviews))
-            //    return AccessDeniedView();
-
             var doctorReview = _doctorService.GetDoctorReviewById(model.Id);
             if (doctorReview == null)
                 //No product review found with the specified id
@@ -137,12 +124,13 @@ namespace DPTS.Web.Controllers
                 doctorReview.Title = model.Title;
                 doctorReview.ReviewText = model.ReviewText;
                 doctorReview.IsApproved = model.IsApproved;
-                _doctorService.UpdateDoctor(doctorReview.Doctor);
+                doctorReview.ReplyText = model.ReplyText;
+                _doctorService.UpdateDoctorReview(doctorReview);
 
                 //update product totals
                 _doctorService.UpdateDoctorReviewTotals(doctorReview.Doctor);
 
-                SuccessNotification("Doctor Review Successfully updated");
+                SuccessNotification("Review updated Successfully.");
 
                 return RedirectToAction("List");
             }
@@ -157,9 +145,6 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageProductReviews))
-            //    return AccessDeniedView();
-
             var doctorReview = _doctorService.GetDoctorReviewById(id);
             if (doctorReview == null)
                 //No product review found with the specified id
@@ -177,9 +162,6 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public ActionResult ApproveSelected(ICollection<int> selectedIds)
         {
-            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageProductReviews))
-            //    return AccessDeniedView();
-
             if (selectedIds != null)
             {
                 var doctorReviews = _doctorService.GetDoctorReviewsByIds(selectedIds.ToArray());
@@ -187,14 +169,9 @@ namespace DPTS.Web.Controllers
                 {
                     var previousIsApproved = doctorReview.IsApproved;
                     doctorReview.IsApproved = true;
-                    _doctorService.UpdateDoctor(doctorReview.Doctor);
+                    _doctorService.UpdateDoctorReview(doctorReview);
                     //update product totals
                     _doctorService.UpdateDoctorReviewTotals(doctorReview.Doctor);
-
-
-                    //raise event (only if it wasn't approved before)
-                    //if (!previousIsApproved)
-                    //    _eventPublisher.Publish(new doctorReviewApprovedEvent(doctorReview));
                 }
             }
 
@@ -204,16 +181,13 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public ActionResult DisapproveSelected(ICollection<int> selectedIds)
         {
-            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageProductReviews))
-            //    return AccessDeniedView();
-
             if (selectedIds != null)
             {
                 var doctorReviews = _doctorService.GetDoctorReviewsByIds(selectedIds.ToArray());
                 foreach (var doctorReview in doctorReviews)
                 {
                     doctorReview.IsApproved = false;
-                    _doctorService.UpdateDoctor(doctorReview.Doctor);
+                    _doctorService.UpdateDoctorReview(doctorReview);
                     //update product totals
                     _doctorService.UpdateDoctorReviewTotals(doctorReview.Doctor);
                 }

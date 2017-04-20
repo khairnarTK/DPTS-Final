@@ -9,20 +9,16 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="content-header clearfix">
-        <h1 class="pull-left">
+    <div class="row">
+        <h3 class="pull-left">
             Edit Review
             <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink("Back To List", "List")</small>
-        </h1>
+        </h3>
         <div class="pull-right">
             <button type="submit" name="save" class="btn bg-blue">
                 <i class="fa fa-floppy-o"></i>
                Save
             </button>
-            @*<button type="submit" name="save-continue" class="btn bg-blue">
-                <i class="fa fa-floppy-o"></i>
-                @T("Admin.Common.SaveContinue")
-            </button>*@
             <span id="productreview-delete" class="btn bg-red">
                 <i class="fa fa-trash-o"></i>
                Delete
@@ -31,4 +27,5 @@
     </div>
     @Html.Partial("_CreateOrUpdate", Model)
 }
-@*@Html.DeleteConfirmation("productreview-delete")*@
+
+

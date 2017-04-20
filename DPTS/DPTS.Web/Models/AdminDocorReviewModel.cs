@@ -15,24 +15,28 @@ namespace DPTS.Web.Models
 
         [DisplayName("Patient")]
         public string PatientId { get; set; }
-        [DisplayName("Admin.Catalog.ProductReviews.Fields.Customer")]
+        [DisplayName("Visitor Name")]
         public string PatientInfo { get; set; }
 
         [AllowHtml]
-        [DisplayName("Title")]
+        [DisplayName("Review Title")]
         public string Title { get; set; }
 
         [AllowHtml]
-        [DisplayName("ReviewText")]
+        [DisplayName("Review Text")]
         public string ReviewText { get; set; }
 
-        [DisplayName("Admin.Catalog.ProductReviews.Fields.Rating")]
+        [DisplayName("Rating")]
         public int Rating { get; set; }
 
-        [DisplayName("Admin.Catalog.ProductReviews.Fields.IsApproved")]
+        [DisplayName("IsApproved")]
         public bool IsApproved { get; set; }
 
-        [DisplayName("Admin.Catalog.ProductReviews.Fields.CreatedOn")]
+        [DisplayName("Created On")]
         public DateTime CreatedOn { get; set; }
+
+        [AllowHtml]
+        [DisplayName("Reply Text")]
+        public string ReplyText { get; set; }
     }
 }
