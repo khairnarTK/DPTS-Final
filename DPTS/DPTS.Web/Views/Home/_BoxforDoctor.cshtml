@@ -17,17 +17,12 @@
                 {
                     ratingPercent = ((item.ReviewOverviewModel.RatingSum * 100) / item.ReviewOverviewModel.TotalReviews) / 5;
                 }
-
                 @*<div class="product-rating-box" title="@string.Format("TotalReviews", item.ReviewOverviewModel.TotalReviews)">
                     <div class="rating">
                         <div style="width: @(ratingPercent)%">
                         </div>
                     </div>
                 </div>*@
-
-               
-
-
                 <li class="shops-item" style="list-style: none;" data-ind="@(ind++)">
                     <article class="tg-doctor-profile user-330">
                         <div class="tg-box">
@@ -72,7 +67,6 @@
                                                     <b>@item.ListSpecialities</b>
                                                 </span>
                                     }
-
                                     </div>
                                     <div class="short-description">
                                         @{
@@ -81,10 +75,8 @@
                                             {
                                                 <input type="hidden" class="shop-coordinates" data-latitude="@addr.Latitude" data-longitude="@addr.Longitude" data-shop-title="Dr @item.Doctors.AspNetUser.FirstName @item.Doctors.AspNetUser.LastName" value="1" />
                                             }
-                                            
                                             <a class="tg-btn tg-btn-lg make-appointment-btn lst-appmt-btn" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new {doctorId = item.Doctors.DoctorId}))">MAKE AN APPOINTMENT!</a>
                                         }
-
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +87,6 @@
                                     <img src="~/Content/wp-content/themes/docdirect/images/icon24.png" width="50" />
                                 </span>
                             }
-                                
                                 @if(item.Doctors.ConsultationFee > 0)
                                 {
                                     <p class="fees">
@@ -105,7 +96,6 @@
                                         </span>
                                     </p>
                                 }
-                                
                                         @if (!string.IsNullOrWhiteSpace(item.Doctors.AspNetUser.PhoneNumber))
                                         {
                                             <p class="doc-phone">
@@ -115,7 +105,6 @@
                                                 </span>
                                             </p>
                                         }
-                                                                       
                                             @if (!string.IsNullOrWhiteSpace(item.AddressLine))
                                             {
                                                     <p class="doc-addr">
@@ -125,7 +114,6 @@
                                                           </span>
                                                     </p>
                                             }
-
                             </div>
                         </div>
                     </article>

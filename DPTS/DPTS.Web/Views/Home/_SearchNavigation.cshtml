@@ -4,11 +4,10 @@
 @{ 
     Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.min.css");
     Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.mobile.min.css");
-
     Html.Assets().Scripts.Add("/Scripts/kendo/2017.1.118/kendo.all.min.js");
 }
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <div class="tg-searcharea tg-haslayout">
     <div class="container">
         <div class="row">
@@ -18,7 +17,7 @@
                         <input id="speciality" name="q" value="@Model.q" />
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-2 col-sm-3 col-xs-12">
                     <div class="form-group" style="margin-bottom:0">
                         <label style="color:white">City/ZipCode</label>
                         <div class="locate-me-wrap">
@@ -34,7 +33,16 @@
 
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-2 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group" style="margin-bottom:0">
+                    <label style="color:white">Sort By</label><br />
+                    <select name="SortBy">
+                        <option value="all">All</option>
+                        <option value="mostpopuler">Most Populer</option>
+                    </select>
+                </div>
+            </div>
+                <div class="col-md-2 col-sm-2 col-xs-12">
                     <div class="form-group" style="margin-bottom:0">
                         <label style="color:white">Consultation Fee</label><br />
                         <span style="color:white; font-weight:bold;" id="amount"></span>
@@ -60,22 +68,12 @@
                                         });
                     </script>
                 </div>
-            <div class="col-md-3 col-sm-2 col-xs-12">
-                <div class="form-group" style="margin-bottom:0">
-                    <label style="color:white">Sort By</label><br />
-                    <select name="SortBy">
-                        <option value="all">All</option>
-                        <option value="mostpopuler">Most Populer</option>
-                    </select>
-                </div>
-            </div>
-
                 <div class="col-md-2 col-sm-2 col-xs-4">
                     <div class="form-group" style="margin-bottom:0">
                         <input type="submit" id="search_banner" style="background: #7dbb00;color: white;margin-top: 11px;margin-left: 15px;" class="tg-btn search-nav" value="Search">
                     </div>
                 </div>
-</div>
+          </div>
     </div>
 </div>
 <script>
@@ -94,8 +92,6 @@
         var myParam = getParameterByName('q');
         jQuery("#speciality").val(myParam);
         jQuery("#speciality").val("@Model.q");
-
-
                     jQuery("#speciality").kendoAutoComplete({
                         filter: "startswith", //contain
                        // minLength: 3,
