@@ -24,34 +24,34 @@ namespace DPTS.Web
         {
         }
 
-        //protected void Application_Error(object sender, EventArgs e)
-        //{
-        //    //  var ex = Server.GetLastError();
-        //    // Log application level exceptions
-        //}
+        ////protected void Application_Error(object sender, EventArgs e)
+        ////{
+        ////    var ex = Server.GetLastError();
+        ////    // Log application level exceptions
+        ////}
 
 
-        //protected void Application_EndRequest()
-        //{
-        //    if (Context.Response.StatusCode != 200 && Context.Response.StatusCode != 302 &&
-        //        Context.Response.StatusCode != 400)
-        //    {
-        //        switch (Context.Response.StatusCode)
-        //        {
-        //            case 404:
-        //                Response.Clear();
-        //                HttpContext.Current.Response.Redirect("~/Error/PageNotFound");
-        //                break;
-        //            case 500:
-        //                Response.Clear();
-        //                HttpContext.Current.Response.Redirect("~/Error/ServerError");
-        //                break;
-        //            default:
-        //                Response.Clear();
-        //                HttpContext.Current.Response.Redirect("~/Error/BadRequest");
-        //                break;
-        //        }
-        //    }
-        //}
+        ////protected void Application_EndRequest()
+        ////{
+        ////    if (Context.Response.StatusCode != 200 && Context.Response.StatusCode != 302 &&
+        ////        Context.Response.StatusCode != 400)
+        ////    {
+        ////        switch (Context.Response.StatusCode)
+        ////        {
+        ////            case 404:
+        ////                Response.Clear();
+        ////                HttpContext.Current.Response.Redirect("~/Error/PageNotFound");
+        ////                break;
+        ////            case 500:
+        ////                Response.Clear();
+        ////                HttpContext.Current.Response.Redirect("~/Error/ServerError");
+        ////                break;
+        ////            default:
+        ////                Response.Clear();
+        ////                HttpContext.Current.Response.Redirect("~/Error/BadRequest");
+        ////                break;
+        ////        }
+        ////    }
+        ////}
     }
 }

@@ -27,6 +27,7 @@ namespace DPTS.Services.Doctors
         private readonly DPTSDbContext _context;
         private readonly IRepository<PictureMapping> _pictureMapRepository;
         private readonly IRepository<DoctorReview> _doctorReviewRepository;
+        private readonly IRepository<PatientReviewHelpfulness> _helpfulnessRepository;
 
         #endregion
 
@@ -43,7 +44,8 @@ namespace DPTS.Services.Doctors
             IRepository<Education> educationRepository,
             IRepository<Experience> experienceRepository,
             IRepository<PictureMapping> pictureMapRepository,
-            IRepository<DoctorReview> doctorReviewRepository)
+            IRepository<DoctorReview> doctorReviewRepository,
+            IRepository<PatientReviewHelpfulness> helpfulnessRepository)
         {
             _doctorRepository = doctorRepository;
             _specialityRepository = specialityRepository;
@@ -59,6 +61,7 @@ namespace DPTS.Services.Doctors
             _context = new DPTSDbContext();
             _pictureMapRepository = pictureMapRepository;
             _doctorReviewRepository=doctorReviewRepository;
+            _helpfulnessRepository = helpfulnessRepository;
         }
         #endregion
 
@@ -787,12 +790,13 @@ namespace DPTS.Services.Doctors
                     notApprovedTotalReviews++;
                 }
             }
+            var model = _doctorRepository.GetById(doctor.DoctorId);
 
-            doctor.ApprovedRatingSum = approvedRatingSum;
-            doctor.NotApprovedRatingSum = notApprovedRatingSum;
-            doctor.ApprovedTotalReviews = approvedTotalReviews;
-            doctor.NotApprovedTotalReviews = notApprovedTotalReviews;
-            UpdateDoctor(doctor);
+            model.ApprovedRatingSum = approvedRatingSum;
+            model.NotApprovedRatingSum = notApprovedRatingSum;
+            model.ApprovedTotalReviews = approvedTotalReviews;
+            model.NotApprovedTotalReviews = notApprovedTotalReviews;
+            UpdateDoctor(model);
         }
 
         /// <summary>
@@ -923,6 +927,13 @@ namespace DPTS.Services.Doctors
             _doctorReviewRepository.Delete(doctorReviews);
         }
 
+        public void AddPatientReviewHelpfulness(PatientReviewHelpfulness patientReviewHelpfulness)
+        {
+            if (patientReviewHelpfulness == null)
+                throw new ArgumentNullException("patientReviewHelpfulness");
+
+            _helpfulnessRepository.Insert(patientReviewHelpfulness);
+        }
         #endregion
 
 

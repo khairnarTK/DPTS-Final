@@ -40,6 +40,8 @@ namespace DPTS.Data.Context
         public virtual DbSet<Qualifiaction> Qualifiaction { get; set; }
         public virtual DbSet<DoctorReview> DoctorReview { get; set; }
         public virtual DbSet<PatientReviewHelpfulness> PatientReviewHelpfulness { get; set; }
+        public virtual DbSet<BlogPost> BlogPost { get; set; }
+        public virtual DbSet<BlogComment> BlogComment { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

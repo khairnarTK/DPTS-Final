@@ -77,7 +77,7 @@
                                             }
                                             @if (!string.IsNullOrWhiteSpace(addr.Website))
                                             {
-                                                <li><i class="fa fa-link"></i><a href="@addr.Website" target="_blank">@addr.Website</a></li>
+                                                <li><i class="fa fa-link"></i><a style="word-wrap: break-word;" href="@addr.Website" target="_blank">@addr.Website</a></li>
                                             }
                                         </ul>
                                     }
@@ -322,7 +322,12 @@
                                     <div class="tg-userheading">
                                         <h2>Presentation Video</h2>
                                     </div>
-                                    <div class="video"><iframe width="368" height="200" src="@Model.doctor.VideoLink" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>
+                                    <div class="video">
+                                        <div class="video-container">
+                                        <iframe width="853" height="480" src="@Model.doctor.VideoLink" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+
+                                    </div>
                                 </div>
                             }
                          @if (Model.DoctorPictureModels.Any() && Model.DoctorPictureModels != null)

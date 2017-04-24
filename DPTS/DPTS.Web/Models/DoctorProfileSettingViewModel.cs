@@ -74,6 +74,7 @@ namespace DPTS.Web.Models
         /// <summary>
         /// Video Link
         /// </summary>
+        [Display(Name = "Note: add only embed url https://www.youtube.com/embed/z9Ul9ccDOqE)")]
         public string VideoLink { get; set; }
 
         public DateTime DateCreated { get; set; }

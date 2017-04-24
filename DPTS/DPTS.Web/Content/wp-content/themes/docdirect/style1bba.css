@@ -1,12 +1,10 @@
 /*
-Theme Name: DocDirect
-Theme URI: http://docdirect.themographics.com/
-Author: Themographic
-Author URI: http://themographics.com/
-Description: DocDirect is a purpose built Directory WordPress template for health care profession. It is designed in a way that it could be used for any directory as it has all the features a directory website may need (and many more!). The current template has been designed with a directory for healthcare establishments in mind. The user can search for Doctors, Hospitals and Pharmacies and also filter them according to their specialties thanks to the unique scrolling search category design. The template is highly elaborate in functionalities and will serve as a perfect directory system with detailed dashboards for service providers outlining their rankings, feedback and number of hits on their profile by users visiting the website in real time. DocDirect also allows for the service providers to subscribe to the website’s advertisement program which allows for them to be featured on top of any relevant search results and in suggestions by the website. Special care has been taken in designing so as to make it general and usable for any other business categories in addition to healthcare providers. The inner pages are carefully designed to provide all the essential information any directory business would need.
+Theme Name: DPTS
+Author: DPTS
+Description: DPTS is a purpose built Directory WordPress template for health care profession. It is designed in a way that it could be used for any directory as it has all the features a directory website may need (and many more!). The current template has been designed with a directory for healthcare establishments in mind. The user can search for Doctors, Hospitals and Pharmacies and also filter them according to their specialties thanks to the unique scrolling search category design. The template is highly elaborate in functionalities and will serve as a perfect directory system with detailed dashboards for service providers outlining their rankings, feedback and number of hits on their profile by users visiting the website in real time. DocDirect also allows for the service providers to subscribe to the website’s advertisement program which allows for them to be featured on top of any relevant search results and in suggestions by the website. Special care has been taken in designing so as to make it general and usable for any other business categories in addition to healthcare providers. The inner pages are carefully designed to provide all the essential information any directory business would need.
 Version: 3.5
 Tags: one-column, two-columns, right-sidebar,sticky-post,theme-options, custom-background, custom-menu, editor-style, featured-images, threaded-comments, translation-ready, footer-widgets
-Text Domain: docdirect
+Text Domain: DPTS
 Domain Path: /languages
 License:
 License URI:
@@ -392,9 +390,12 @@ address { font-style: italic; }
 	z-index: -1;
 }
 button.tg-btn,
-input[type="submit"].tg-btn{background: none;}
+input[type="submit"].tg-btn{    background-color: #006699;
+    border: none;
+    color:white;
+}
 .tg-btn:hover,
-.tg-btn.active{color: #fff !important;}
+.tg-btn.active{color: #fff !important; opacity: 0.8;}
 .tg-btn-lg{ width: 100%;}
 .tg-socialicon{text-align:center;}
 .tg-socialicon li{
@@ -1061,7 +1062,7 @@ form fieldset .form-group.tg-checkbox input.form-control[type='checkbox'] {
 .tg-nav #tg-navigation > ul > li:last-child:after{display: none;}
 .tg-nav ul li a{
 	display: block;
-	color: #5d5955;
+	color: black;
 	line-height: inherit;
 }
 .tg-nav ul li:last-child a i:first-child{display: block;}
@@ -1724,7 +1725,7 @@ body.tg-comming-soon #main{
 .tg-threecolumn{
 	width: 100%;
 	float: left;
-	background: #272727;
+	background: #006699;
 	border-top: 5px solid;
 	padding: 70px 0;
 }
@@ -1904,9 +1905,10 @@ body.tg-comming-soon #main{
 .tg-widget ul li .tg-docinfo a{color: #fff;}
 .tg-widget ul li .tg-docinfo a:hover{text-decoration: none;}
 .tg-footerbar{
-	background: #434343;
-	padding: 20px 0;
+	background: #006699;
+	padding: 10px 0;
 	text-align: center;
+    border-top: 1px dotted white; 
 }
 .tg-copyrights p{
 	margin: 0;
@@ -1956,12 +1958,14 @@ body.tg-comming-soon #main{
 			Inner Pages Banner Style
 ============================================= */
 .tg-innerbanner,
-.tg-inner-header{/*background: #f7f7f7;*/}
+.tg-inner-header{background: #ffc202;    
+    box-shadow: 0 1px 5px #9e2826;}
 .tg-inner-header .tg-navigationarea{
 	width: 100%;
 	float: left;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 3px solid #9b0000;
 	text-align: right;
+    
 }
 .tg-innerbanner .tg-searcharea{background:none; }
 .tg-innerbanner .tg-searcharea .tg-btn.tg-advance-search{ border-color: #5d5955;}
@@ -6272,7 +6276,8 @@ div.docdirect-loader-wrap {
     display: inline-block;
     padding: 10px;
     vertical-align: middle;
-	background: rgba(93, 89, 85, 0.40);
+	/*background: rgba(93, 89, 85, 0.40);*/
+    background: rgb(255, 194, 2);
 	margin: 0 -2px;
 }
 .tg-banner-holder .tg-searcharea-v2 .tg-searchform select{
@@ -9241,7 +9246,7 @@ select option:disabled {
     line-height: 47px;
 }
 .appointment-enabled .tg-section-map{
-	margin:120px 0 0 !important;
+	margin:80px 0 0 !important;
 }
 
 .appointment-disabled .tg-section-map{

@@ -3,7 +3,7 @@
 @model  IPagedList<TempDoctorViewModel>
     @{ 
         int ind = 0;
-        string picturePath = "/Content/wp-content/themes/docdirect/images/user365x365.jpg";
+       // string picturePath = "/Content/wp-content/themes/docdirect/images/user365x365.jpg";
     }
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
@@ -28,7 +28,7 @@
                         <div class="tg-box">
                             <figure class="tg-docprofile-img">
                                 <a href="@Url.Action("DoctorDetails", "Doctor", new {doctorId = item.Doctors.DoctorId})" class="list-avatar">
-                                    <img src="@picturePath">
+                                    <img src="@item.AddPictureModel.ImageUrl">
                                 </a>
                                 <div class="feature-rating user-star-rating">
                                     <span class="tg-stars star-rating">

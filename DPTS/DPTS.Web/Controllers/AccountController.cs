@@ -242,7 +242,7 @@ namespace DPTS.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     await UserManager.SendEmailAsync(user.Id, model.Subject, model.Message);
-                    SuccessNotification("Email send successfully. we i'll contact you soon.");
+                    SuccessNotification("Email send successfully. we will contact you soon.");
                 }
                 return RedirectToAction("DoctorDetails", "Doctor", new { doctorId = user.Id });
             }
@@ -360,34 +360,6 @@ namespace DPTS.Web.Controllers
                             SendOtp(model.PhoneNumber);
                             TempData["regmodel"] = model;
                             return RedirectToAction("ConfirmRegistration", "Account");
-                            //var user = new ApplicationUser
-                            //{
-                            //    UserName = model.Email,
-                            //    Email = model.Email,
-                            //    LastName = model.LastName,
-                            //    FirstName = model.FirstName,
-                            //    LastIpAddress = "192.168.225.1",
-                            //    IsEmailUnsubscribed = false,
-                            //    IsPhoneNumberUnsubscribed = true,
-                            //    LastLoginDateUtc = DateTime.UtcNow,
-                            //    CreatedOnUtc = DateTime.UtcNow,
-                            //    PhoneNumber = model.PhoneNumber,
-                            //    TwoFactorEnabled = true
-                            //};
-                            //var result = await UserManager.CreateAsync(user, model.Password);
-                            //if (result.Succeeded)
-                            //{
-                            //    if (model.UserType.ToLower() == "professional")
-                            //    {
-                            //        await this.UserManager.AddToRoleAsync(user.Id, model.Role);
-                            //        var doctor = new Doctor { DoctorId = user.Id, RegistrationNumber = model.RegistrationNumber };
-                            //        _doctorService.AddDoctor(doctor);
-                            //    }
-
-                            //    await SignInManager.SignInAsync(user, false, false);
-
-                            //    return RedirectToAction("Index", "Home");
-                            //}
                         }
                     }
                     else
@@ -398,14 +370,10 @@ namespace DPTS.Web.Controllers
                         if (!IsEmailExits(model.Email))
                             ErrorNotification("Email already exists.");
                     }
-
                 }
                 var capErr = ReCaptcha.GetLastErrors(this.HttpContext);
                 if (capErr != null)
                     ErrorNotification("Oops!! Invalid Captcha.");
-
-
-
 
                 ViewBag.publicKey = ConfigurationManager.AppSettings["ReCaptcha:SiteKey"];
                 model.UserRoleList = GetUserTypeList();
@@ -429,7 +397,7 @@ namespace DPTS.Web.Controllers
             Session["otp"] = _smsService.GenerateOTP();
             sms.message = "Doctor365 verification code: " + Session["otp"] + "." +
                           "Pls do not share with anyone. It is valid for 10 minutes.";
-            _smsService.SendSms(sms);
+           // _smsService.SendSms(sms);
         }
 
         [HttpGet]
@@ -440,7 +408,7 @@ namespace DPTS.Web.Controllers
             ConfirmRegisterViewModel model = new ConfirmRegisterViewModel
             {
                 RegistrationDetails = regModel,
-              //  ConfirmOtp = Session["otp"].ToString()
+                ConfirmOtp = Session["otp"].ToString()
             };
             //if u want to otp then comment follws line
             return View(model);
@@ -477,7 +445,7 @@ namespace DPTS.Web.Controllers
                         TwoFactorEnabled = true
                     };
                     var result = await UserManager.CreateAsync(user, model.RegistrationDetails.Password);
-                    if (result.Succeeded)
+                    if (result.Succeeded)   
                     {
                         if (model.RegistrationDetails.UserType.ToLowerInvariant() == "professional")
                         {

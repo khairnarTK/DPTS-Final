@@ -86,8 +86,8 @@ p a,
 .tg-userschedule ul li.current a,
 .tg-userschedule ul li.current a span,
 .tg-userschedule ul li.current a em,
-.tg-usercontactinfo .tg-doccontactinfo li:last-child a{color: #7dbb00;}
-.tg-doctor-detail2 .tg-findbycategory ul li a:hover{color: #7dbb00 !important;}
+.tg-usercontactinfo .tg-doccontactinfo li:last-child a{color: #ffc202;}
+.tg-doctor-detail2 .tg-findbycategory ul li a:hover{color: #ffc202 !important;}
 /* =============================================
 			Theme Background Color
 ============================================= */
@@ -156,14 +156,14 @@ p a,
 .tg-userrating li:hover label,
 .tg-radio input[type="radio"]:checked + label,
 .tg-userrating li:after
-{background:#7dbb00;}
+{background:#9b0000;}
 {background:rgba(125, 187, 0, 0.9);}
 .tg-featureverified li.tg-varified a{background:#10a64a;}
 
 .chosen-container-multi .chosen-choices li.search-choice:hover,
 .tg-banner-holder .tg-searcharea-v2 .tg-searchform .tg-btn{
-	border-color:#7dbb00 !important;
-	background:#7dbb00 !important;
+	border-color:#006699 !important;
+	background:#006699 !important;
 }
 /* =============================================
 			Theme Border Color
@@ -188,12 +188,13 @@ p a,
 .tg-radio input[type="radio"] + label,
 .tg-radio input[type="radio"]:checked + label,
 .tg-mapmarker figure
-{border-color: #7dbb00;}
+{border-color: #ffc202 ;}
 .tg-map-marker .tg-docimg .tg-show,
-.tg-docimg .tg-uploadimg{border-bottom-color: #7dbb00;}
+.tg-docimg .tg-uploadimg{border-bottom-color: #006699 ;}
 .tg-login-logout li ul,
-.tg-nav ul{border-top-color: #7dbb00 !important;}
+.tg-nav ul{border-top-color: #9b0000 !important;}
 
 .tg-appointmenttime .tg-doctimeslot .tg-box,
-.tg-appointmenttime .tg-doctimeslot.tg-available .tg-box:hover{border-color: #7dbb00;}
-.tg-docimg .tg-uploadimg{border-bottom-color: #7dbb00;}
+.tg-appointmenttime .tg-doctimeslot.tg-available .tg-box:hover{border-color: #9b0000;}
+.tg-docimg .tg-uploadimg{border-bottom-color: #9b0000;}
+.tg-login-logout > li > a:hover, .tg-nav .navbar-collapse ul li a:hover{color:black}

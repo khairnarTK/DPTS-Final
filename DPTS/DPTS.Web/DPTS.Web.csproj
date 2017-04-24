@@ -381,6 +381,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminBlogController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -408,6 +409,7 @@
     <Compile Include="Helpers\AssetsHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressViewModel.cs" />
+    <Compile Include="Models\AdminBlogPostModel.cs" />
     <Compile Include="Models\AdminDocorReviewModel.cs" />
     <Compile Include="Models\AppointmentScheduleViewModel.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
@@ -466,6 +468,7 @@
     <Content Include="Content\images\thumbs\0000035_100.png" />
     <Content Include="Content\images\thumbs\0000041_100.jpeg" />
     <Content Include="Content\joinus.png" />
+    <Content Include="Content\wp-content\themes\docdirect\css\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\wp-content\themes\docdirect\css\intlTelInput.css" />
     <Content Include="Content\kendo\2017.1.118\fonts\DejaVu\LICENSE.txt" />
     <Content Include="Content\kendo\2017.1.118\fonts\glyphs\KendoUIGlyphs.svg" />
@@ -537,6 +540,7 @@
     <Content Include="Content\wp-content\themes\docdirect\images\rating1.png" />
     <Content Include="Content\wp-content\themes\docdirect\images\rating2.png" />
     <Content Include="Content\wp-content\themes\docdirect\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\wp-content\themes\docdirect\images\ui-bg_glass_75_e6e6e6_1x400.png" />
     <Content Include="Content\wp-content\uploads\2016\12\02.png" />
     <Content Include="Scripts\contact_me.js" />
     <Content Include="Scripts\docdirect_functions.js" />
@@ -753,9 +757,6 @@
     <Content Include="Content\wp-content\uploads\2016\08\banner-img3.jpg" />
     <Content Include="Content\wp-content\uploads\2016\08\bgparallax-03.jpg" />
     <Content Include="Content\wp-content\uploads\2016\08\bgparallax-04.jpg" />
-    <Content Include="Content\wp-content\uploads\2016\08\img-01.jpg" />
-    <Content Include="Content\wp-content\uploads\2016\08\img-02.jpg" />
-    <Content Include="Content\wp-content\uploads\2016\08\img-03-1.jpg" />
     <Content Include="Content\wp-content\uploads\2016\10\BLOOD-BANK.jpg" />
     <Content Include="Content\wp-content\uploads\2016\10\CLINIC.jpg" />
     <Content Include="Content\wp-content\uploads\2016\10\DOCTOR-150x150.jpg" />
@@ -2152,6 +2153,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\thumbs\000\" />
     <Folder Include="Content\wp-content\plugins\unyson\framework\extensions\shortcodes\shortcodes\button\static\css\" />
+    <Folder Include="Views\AdminBlog\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Picture\" />
   </ItemGroup>

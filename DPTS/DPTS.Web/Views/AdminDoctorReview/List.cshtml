@@ -9,7 +9,6 @@
 }
 <script src="~/Scripts/kendo/2017.1.118/jquery.min.js"></script>
 <script src="~/Scripts/kendo/2017.1.118/kendo.all.min.js"></script>
-
 <div class="content-header clearfix">
     <h1 class="pull-left">
         Doctor Review's
@@ -83,12 +82,12 @@
                                         field: "DoctorName",
                                         title: "Doctor",
                                         width: 200,
-                                        template: '<a href="@Url.Content("~/Admin/Product/Edit/")#=DoctorId#">#:DoctorName#</a>'
+                                       // template: '<a href="@Url.Content("~/Admin/Product/Edit/")#=DoctorId#">#:DoctorName#</a>'
                                     }, {
                                         field: "PatientId",
                                         title: "Patient",
                                         width: 200,
-                                        template: '<a href="@Url.Content("~/Admin/Customer/Edit/")#=PatientId#">#:PatientInfo#</a>'
+                                        template: '#:PatientInfo#'
                                     }, {
                                         field: "Title",
                                         title: "Title",
@@ -149,7 +148,7 @@
                                 var postData = {
                                     selectedIds: selectedIds
                                 };
-                                //addAntiForgeryToken(postData);
+                               // addAntiForgeryToken(postData);
                                 var r = confirm("Are you sure to approve!");
                                 if (r == true) {
                                     $.ajax({
@@ -180,7 +179,7 @@
                                 var postData = {
                                     selectedIds: selectedIds
                                 };
-                                //addAntiForgeryToken(postData);
+                               // addAntiForgeryToken(postData);
                                 var r = confirm("Are you sure to dis-approve!");
                                 if (r == true) {
                                     $.ajax({
@@ -218,7 +217,7 @@
 
                                 var r = confirm("Are you sure to delete!");
                                 if (r == true) {
-                                    //addAntiForgeryToken(postData);
+                                   // addAntiForgeryToken(postData);
                                     $.ajax({
                                         cache: false,
                                         type: "POST",

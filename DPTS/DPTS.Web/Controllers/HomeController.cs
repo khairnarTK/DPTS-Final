@@ -13,6 +13,7 @@ using DPTS.Domain.Core.Country;
 using DPTS.Domain.Core.StateProvince;
 using DPTS.Data.Context;
 using System;
+using DPTS.Domain.Common;
 
 namespace DPTS.Web.Controllers
 {
@@ -28,6 +29,7 @@ namespace DPTS.Web.Controllers
         private ApplicationUserManager _userManager;
         private ApplicationDbContext context;
         private readonly DPTSDbContext _context;
+        private readonly IPictureService _pictureService;
 
         #endregion
 
@@ -37,7 +39,8 @@ namespace DPTS.Web.Controllers
             IDoctorService doctorService,
             IAddressService addressService,
             ICountryService countryService,
-            IStateProvinceService stateService)
+            IStateProvinceService stateService,
+            IPictureService pictureService)
         {
             _specialityService = specialityService;
             _doctorService = doctorService;
@@ -47,6 +50,7 @@ namespace DPTS.Web.Controllers
             _countryService = countryService;
             _stateService = stateService;
             _context = new DPTSDbContext();
+            _pictureService = pictureService;
         }
 
         #endregion
@@ -63,6 +67,21 @@ namespace DPTS.Web.Controllers
                 q = model.q
             };
             return searchModel;
+        }
+        public PictureModel GetProfilePicture(string doctorId)
+        {
+            var pictures = _pictureService.GetPicturesByUserId(doctorId);
+            var defaultPicture = pictures.FirstOrDefault();
+            var defaultPictureModel = new PictureModel
+            {
+                ImageUrl = (defaultPicture == null) ? "/Content/wp-content/themes/docdirect/images/user365x365.jpg" :
+                _pictureService.GetPictureUrl(defaultPicture, 365, false),
+                FullSizeImageUrl = (defaultPicture == null) ? "/Content/wp-content/themes/docdirect/images/user365x365.jpg" :
+                _pictureService.GetPictureUrl(defaultPicture, 0, false),
+                Title = "",
+                AlternateText = "",
+            };
+            return defaultPictureModel;
         }
 
         [NonAction]
@@ -265,7 +284,8 @@ namespace DPTS.Web.Controllers
                     YearOfExperience = GetTotalExperience(doc.Experience),
                     Qualification = GetQualification(doc.Education),
                     ListSpecialities = GetSpecialities(_specialityService.GetDoctorSpecilities(doc.DoctorId)),
-                    ReviewOverviewModel = PrepareDoctorReviewOverviewModel(doc)
+                    ReviewOverviewModel = PrepareDoctorReviewOverviewModel(doc),
+                    AddPictureModel = GetProfilePicture(doc.DoctorId)
                 }).ToList();
             }
 
@@ -342,7 +362,8 @@ namespace DPTS.Web.Controllers
                     YearOfExperience = GetTotalExperience(doc.Experience),
                     Qualification = GetQualification(doc.Education),
                     ListSpecialities = GetSpecialities(_specialityService.GetDoctorSpecilities(doc.DoctorId)),
-                    ReviewOverviewModel = PrepareDoctorReviewOverviewModel(doc)
+                    ReviewOverviewModel = PrepareDoctorReviewOverviewModel(doc),
+                    AddPictureModel =GetProfilePicture(doc.DoctorId)
                 }).ToList();
             }
 

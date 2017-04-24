@@ -14,6 +14,8 @@ namespace DPTS.Web.Controllers
         //{
         //    _smsService = smsService;
         //}
+        private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+
         public class RolesAttribute : AuthorizeAttribute
         {
             public RolesAttribute(params string[] roles)
@@ -40,7 +42,12 @@ namespace DPTS.Web.Controllers
         {
             return id != 0;
         }
-       
+        public virtual DateTime ConvertToUserTime(DateTime dt, DateTimeKind sourceDateTimeKind)
+        {
+            dt = DateTime.SpecifyKind(dt, sourceDateTimeKind);
+            return TimeZoneInfo.ConvertTime(dt, INDIAN_ZONE);
+        }
+
         /// <summary>
         /// Render partial view to string
         /// </summary>

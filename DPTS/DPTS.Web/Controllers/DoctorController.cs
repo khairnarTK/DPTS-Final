@@ -20,7 +20,6 @@ using DPTS.Domain.Common;
 using DPTS.EmailSmsNotifications.IServices;
 using DPTS.EmailSmsNotifications.ServiceModels;
 using DPTS.Data.Context;
-using System.Threading.Tasks;
 using DPTS.Web.AppInfra;
 
 namespace DPTS.Web.Controllers
@@ -39,7 +38,7 @@ namespace DPTS.Web.Controllers
         private readonly IPictureService _pictureService;
         private ISmsNotificationService _smsService;
         private readonly DPTSDbContext context;
-        private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+       // private ApplicationUserManager _userManager;
         #endregion
 
         #region Contructor
@@ -49,6 +48,7 @@ namespace DPTS.Web.Controllers
             IAddressService addressService, IAppointmentService scheduleService,
             IPictureService pictureService,
             ISmsNotificationService smsService)
+          //  ApplicationUserManager userManager)
         {
             _doctorService = doctorService;
             _context = new ApplicationDbContext();
@@ -60,11 +60,18 @@ namespace DPTS.Web.Controllers
             _pictureService = pictureService;
             _smsService = smsService;
             context = new DPTSDbContext();
+           // _userManager = userManager;
+            
         }
 
         #endregion
 
         #region Utilities
+        //public ApplicationUserManager UserManager
+        //{
+        //    get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        //    private set { _userManager = value; }
+        //}
 
         [NonAction]
         public ApplicationUser GetUserById(string userId)
@@ -334,6 +341,7 @@ namespace DPTS.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult ProfileSetting(DoctorProfileSettingViewModel model)
         {
             try
@@ -1211,32 +1219,11 @@ namespace DPTS.Web.Controllers
         protected virtual DoctorReviewOverviewModel PrepareDoctorReviewOverviewModel(Doctor doctor)
         {
             var doctorReview =new DoctorReviewOverviewModel();
-
-            //if (_catalogSettings.ShowDoctorReviewsPerStore)
-            //{
-            //   // string cacheKey = string.Format(ModelCacheEventConsumer.Doctor_REVIEWS_MODEL_KEY, Doctor.Id, _storeContext.CurrentStore.Id);
-
-            //    doctorReview = _cacheManager.Get(cacheKey, () =>
-            //    {
-            //        return new DoctorReviewOverviewModel
-            //        {
-            //            RatingSum = Doctor.DoctorReviews
-            //                    .Where(pr => pr.IsApproved && pr.StoreId == _storeContext.CurrentStore.Id)
-            //                    .Sum(pr => pr.Rating),
-            //            TotalReviews = Doctor
-            //                    .DoctorReviews
-            //                    .Count(pr => pr.IsApproved && pr.StoreId == _storeContext.CurrentStore.Id)
-            //        };
-            //    });
-            //}
-            //else
-            //{
                 doctorReview = new DoctorReviewOverviewModel()
                 {
                     RatingSum = doctor.ApprovedRatingSum,
                     TotalReviews = doctor.ApprovedTotalReviews
                 };
-           // }
             if (doctorReview != null)
             {
                 doctorReview.DoctorId = doctor.DoctorId;
@@ -1864,11 +1851,6 @@ namespace DPTS.Web.Controllers
             }
             model.AddDoctorReview.CanCurrentPatientLeaveReview = true;
         }
-        public virtual DateTime ConvertToUserTime(DateTime dt, DateTimeKind sourceDateTimeKind)
-        {
-            dt = DateTime.SpecifyKind(dt, sourceDateTimeKind);
-            return TimeZoneInfo.ConvertTime(dt, INDIAN_ZONE);
-        }
         #endregion
 
         #region Doctor reviews
@@ -1927,6 +1909,18 @@ namespace DPTS.Web.Controllers
                 model.AddDoctorReview.ReviewText = null;
 
                 model.AddDoctorReview.SuccessfullyAdded = true;
+
+                //Send sms for doctor
+                //try
+                //{
+                //    string subject = "New Review -" + model.AddDoctorReview.Title;
+                //    string body = "Hello Dr." + doctor.AspNetUser.FirstName + ",";
+                //    body += "you got new review please check.,";
+                //    body += "go to :";
+                //    SendOtp(doctor.AspNetUser.PhoneNumber, body);
+                //}
+                //catch { }
+
                 if (!isApproved)
                     model.AddDoctorReview.Result = "Review see after approving";
                 else
@@ -1985,14 +1979,15 @@ namespace DPTS.Web.Controllers
                     PatientId = User.Identity.GetUserId(),
                     WasHelpful = washelpful,
                 };
-                doctorReview.PatientReviewHelpfulnessEntries.Add(prh);
+                // doctorReview.PatientReviewHelpfulnessEntries.Add(prh);
+                _doctorService.AddPatientReviewHelpfulness(prh);
             }
-            _doctorService.UpdateDoctor(doctorReview.Doctor);
+           // _doctorService.UpdateDoctor(doctorReview.Doctor);
 
             //new totals
             doctorReview.HelpfulYesTotal = doctorReview.PatientReviewHelpfulnessEntries.Count(x => x.WasHelpful);
             doctorReview.HelpfulNoTotal = doctorReview.PatientReviewHelpfulnessEntries.Count(x => !x.WasHelpful);
-            _doctorService.UpdateDoctor(doctorReview.Doctor);
+            _doctorService.UpdateDoctorReview(doctorReview);
 
             return Json(new
             {

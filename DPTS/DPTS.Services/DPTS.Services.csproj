@@ -102,6 +102,8 @@
   <ItemGroup>
     <Compile Include="Address\AddressService.cs" />
     <Compile Include="Appointment\AppointmentService.cs" />
+    <Compile Include="BlogExtensions.cs" />
+    <Compile Include="Blog\BlogService.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="Common\PictureService.cs" />
     <Compile Include="Common\QualifiactionService.cs" />

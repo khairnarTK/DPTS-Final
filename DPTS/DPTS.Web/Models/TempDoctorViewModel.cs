@@ -10,6 +10,7 @@ namespace DPTS.Web.Models
             Doctors = new Doctor();
             Address = new Address();
             ReviewOverviewModel = new DoctorReviewOverviewModel();
+            AddPictureModel = new PictureModel();
         }
 
         public Doctor Doctors { get; set; }
@@ -19,7 +20,7 @@ namespace DPTS.Web.Models
         public string YearOfExperience { get; set; }
         public string Qualification { get; set; }
         public string ListSpecialities { get; set; }
-
+        public PictureModel AddPictureModel { get; set; }
         public DoctorReviewOverviewModel ReviewOverviewModel { get; set; }
     }
 }

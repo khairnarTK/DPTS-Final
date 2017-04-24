@@ -186,6 +186,8 @@ namespace DPTS.Domain.Core.Doctors
 
         void UpdateDoctorReview(DoctorReview doctorReview);
 
+        void AddPatientReviewHelpfulness(PatientReviewHelpfulness patientReviewHelpfulness);
+
 
         #endregion
 

@@ -37,6 +37,7 @@ namespace DPTS.Web
     using Domain.Common;
     using Services.Common;
     using Domain.Core.Common;
+    using Controllers;
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();

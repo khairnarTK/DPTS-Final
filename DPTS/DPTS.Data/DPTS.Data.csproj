@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201704171403364_test.Designer.cs">
       <DependentUpon>201704171403364_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704230518014_CreateBlog.cs" />
+    <Compile Include="Migrations\201704230518014_CreateBlog.Designer.cs">
+      <DependentUpon>201704230518014_CreateBlog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704171403364_test.resx">
       <DependentUpon>201704171403364_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704230518014_CreateBlog.resx">
+      <DependentUpon>201704230518014_CreateBlog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

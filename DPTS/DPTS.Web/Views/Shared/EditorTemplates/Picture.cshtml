@@ -76,7 +76,7 @@
         </ul>
     </div>
 </script>
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
         $("#@(clientId)").fineUploader({
             request: {
@@ -86,17 +86,40 @@
             multiple: false
         }).on("complete", function(event, id, name, responseJSON, xhr) {
             if (responseJSON.success) {
-                $.alert({
-                    title: 'Success!',
-                    content: 'Picture uploaded successfully.',
-                });
-               // $("#@(clientId + "image")").html("<p>Picture uploaded successfully.</p>");
-                //.html("<img src='" + responseJSON.imageUrl + "'/>");
+                //$.alert({
+                //    title: 'Success!',
+                //    content: 'Picture uploaded successfully.',
+                //});
+                $("#@(clientId + "image")").html("<p>Picture uploaded successfully.</p>");
+                .html("<img src='" + responseJSON.imageUrl + "'/>");
                 $("#@(clientId + "value") input").val(responseJSON.pictureId);
                 $("#@(clientId + "remove")").show();
             }
         });
 
+        $("#@(clientId + "remove")").click(function(e) {
+            $("#@(clientId + "image")").html("<img src='../Content/wp-content/themes/docdirect/images/user150x150.jpg'/>");
+            $("#@(clientId + "value") input").val(0);
+            $(this).hide();
+        });
+    });
+</script>*@
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#@(clientId)").fineUploader({
+            request: {
+                endpoint: '@(Url.Content("~/Picture/AsyncUpload"))'
+            },
+            template: "@(clientId)-qq-template",
+            multiple: false
+        }).on("complete", function(event, id, name, responseJSON, xhr) {
+            if (responseJSON.success) {
+                $("#@(clientId + "image")").html("<img src='" + responseJSON.imageUrl + "'/>");
+                $("#@(clientId + "value") input").val(responseJSON.pictureId);
+                $("#@(clientId + "remove")").show();
+            }
+        });
         $("#@(clientId + "remove")").click(function(e) {
             $("#@(clientId + "image")").html("<img src='../Content/wp-content/themes/docdirect/images/user150x150.jpg'/>");
             $("#@(clientId + "value") input").val(0);
