@@ -115,7 +115,7 @@ namespace DPTS.Domain.Common
         /// <param name="storeId">Store identifier; pass 0 to load all records</param>
         /// <param name="isApproved">A value indicating whether to count only approved or not approved comments; pass null to get number of all comments</param>
         /// <returns>Number of blog comments</returns>
-        int GetBlogCommentsCount(BlogPost blogPost, int storeId = 0, bool? isApproved = null);
+        int GetBlogCommentsCount(BlogPost blogPost, bool? isApproved = null);
 
         /// <summary>
         /// Deletes a blog comment

@@ -47,6 +47,16 @@ namespace DPTS.Web.Controllers
             dt = DateTime.SpecifyKind(dt, sourceDateTimeKind);
             return TimeZoneInfo.ConvertTime(dt, INDIAN_ZONE);
         }
+        public virtual DateTime ConvertToUtcTime(DateTime dt, TimeZoneInfo sourceTimeZone)
+        {
+            if (sourceTimeZone.IsInvalidTime(dt))
+            {
+                //could not convert
+                return dt;
+            }
+
+            return TimeZoneInfo.ConvertTimeToUtc(dt, sourceTimeZone);
+        }
 
         /// <summary>
         /// Render partial view to string

@@ -38,6 +38,8 @@ namespace DPTS.Web
     using Services.Common;
     using Domain.Core.Common;
     using Controllers;
+    using Services.Blog;
+
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
@@ -103,11 +105,7 @@ namespace DPTS.Web
             kernel.Bind<IImportManager>().To<ImportManager>();
             kernel.Bind<IPictureService>().To<PictureService>();
             kernel.Bind<IQualifiactionService>().To<QualifiactionService>();
-            //kernel.Bind<ApplicationSignInManager>().To<ApplicationSignInManager>();
-            //kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
-            //kernel.Bind<UserManager<ApplicationUser>>().ToSelf();
-            //kernel.Bind<IAuthenticationManager>().ToMethod(c =>
-            //        HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
+            kernel.Bind<IBlogService>().To<BlogService>();
 
         }
     }

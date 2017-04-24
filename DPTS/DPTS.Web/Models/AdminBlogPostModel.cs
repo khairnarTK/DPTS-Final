@@ -9,17 +9,11 @@ using System.Web.Mvc;
 
 namespace DPTS.Web.Models
 {
-    public class AdminBlogPostModel
-    {
-    }
     public partial class AdminBlogPostModel : BaseEntity
     {
         public AdminBlogPostModel()
         {
-            AvailableLanguages = new List<SelectListItem>();
-
-            SelectedStoreIds = new List<int>();
-            AvailableStores = new List<SelectListItem>();
+           
         }
 
         [DisplayName("Title")]

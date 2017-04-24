@@ -1,27 +1,29 @@
 ﻿using DPTS.Common.Kendoui;
 using DPTS.Domain.Common;
 using DPTS.Domain.Entities;
+using DPTS.Services;
+using DPTS.Web.AppInfra;
 using DPTS.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DPTS.Web.Controllers
 {
-    public partial class BlogController : BaseController
+    public partial class AdminBlogController : BaseController
     {
         #region Fields
 
         private readonly IBlogService _blogService;
         // private readonly IUrlRecordService _urlRecordService;
+        private static TimeZoneInfo INDIAN_ZONE_C = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
 
         #endregion
 
         #region Ctor
 
-        public BlogController(IBlogService blogService)
+        public AdminBlogController(IBlogService blogService)
         {
             this._blogService = blogService;
         }
@@ -179,55 +181,48 @@ namespace DPTS.Web.Controllers
         public virtual ActionResult Comments(int? filterByBlogPostId)
         {
             ViewBag.FilterByBlogPostId = filterByBlogPostId;
-            var model = new BlogCommentListModel();
+            var model = new AdminBlogCommentListModel();
 
             //"approved" property
             //0 - all
             //1 - approved only
             //2 - disapproved only
-            model.AvailableApprovedOptions.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.ContentManagement.Blog.Comments.List.SearchApproved.All"), Value = "0" });
-            model.AvailableApprovedOptions.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.ContentManagement.Blog.Comments.List.SearchApproved.ApprovedOnly"), Value = "1" });
-            model.AvailableApprovedOptions.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.ContentManagement.Blog.Comments.List.SearchApproved.DisapprovedOnly"), Value = "2" });
+            model.AvailableApprovedOptions.Add(new SelectListItem { Text = "All", Value = "0" });
+            model.AvailableApprovedOptions.Add(new SelectListItem { Text = "Approved", Value = "1" });
+            model.AvailableApprovedOptions.Add(new SelectListItem { Text = "Disapproved", Value = "2" });
 
             return View(model);
         }
 
         [HttpPost]
-        public virtual ActionResult Comments(int? filterByBlogPostId, DataSourceRequest command, BlogCommentListModel model)
+        public virtual ActionResult Comments(int? filterByBlogPostId, DataSourceRequest command, AdminBlogCommentListModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBlog))
-                return AccessDeniedKendoGridJson();
-
             var createdOnFromValue = model.CreatedOnFrom == null ? null
-                            : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.CreatedOnFrom.Value, _dateTimeHelper.CurrentTimeZone);
+                            : (DateTime?)ConvertToUtcTime(model.CreatedOnFrom.Value, INDIAN_ZONE_C);
 
             var createdOnToValue = model.CreatedOnTo == null ? null
-                            : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.CreatedOnTo.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
+                            : (DateTime?)ConvertToUtcTime(model.CreatedOnTo.Value, INDIAN_ZONE_C).AddDays(1);
 
             bool? approved = null;
             if (model.SearchApprovedId > 0)
                 approved = model.SearchApprovedId == 1;
 
-            var comments = _blogService.GetAllComments(0, 0, filterByBlogPostId, approved, createdOnFromValue, createdOnToValue, model.SearchText);
-
-            var storeNames = _storeService.GetAllStores().ToDictionary(store => store.Id, store => store.Name);
+            var comments = _blogService.GetAllComments(null,filterByBlogPostId, approved, createdOnFromValue, createdOnToValue, model.SearchText);
 
             var gridModel = new DataSourceResult
             {
                 Data = comments.PagedForCommand(command).Select(blogComment =>
                 {
-                    var commentModel = new BlogCommentModel();
+                    var commentModel = new AdminBlogCommentModel();
                     commentModel.Id = blogComment.Id;
                     commentModel.BlogPostId = blogComment.BlogPostId;
                     commentModel.BlogPostTitle = blogComment.BlogPost.Title;
-                    commentModel.CustomerId = blogComment.CustomerId;
-                    var customer = blogComment.Customer;
-                    commentModel.CustomerInfo = customer.IsRegistered() ? customer.Email : _localizationService.GetResource("Admin.Customers.Guest");
-                    commentModel.CreatedOn = _dateTimeHelper.ConvertToUserTime(blogComment.CreatedOnUtc, DateTimeKind.Utc);
-                    commentModel.Comment = Core.Html.HtmlHelper.FormatText(blogComment.CommentText, false, true, false, false, false, false);
+                    commentModel.VisitorId = blogComment.VisitorId;
+                    var customer = blogComment.Visitor;
+                    commentModel.VisitorInfo = (customer != null) ? customer.Email : string.Empty;
+                    commentModel.CreatedOn = ConvertToUserTime(blogComment.CreatedOnUtc, DateTimeKind.Utc);
+                    commentModel.Comment = blogComment.CommentText;
                     commentModel.IsApproved = blogComment.IsApproved;
-                    commentModel.StoreId = blogComment.StoreId;
-                    commentModel.StoreName = storeNames.ContainsKey(blogComment.StoreId) ? storeNames[blogComment.StoreId] : "Deleted";
 
                     return commentModel;
                 }),
@@ -237,11 +232,8 @@ namespace DPTS.Web.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult CommentUpdate(BlogCommentModel model)
+        public virtual ActionResult CommentUpdate(AdminBlogCommentModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBlog))
-                return AccessDeniedView();
-
             var comment = _blogService.GetBlogCommentById(model.Id);
             if (comment == null)
                 throw new ArgumentException("No comment found with the specified id");
@@ -251,21 +243,11 @@ namespace DPTS.Web.Controllers
             comment.IsApproved = model.IsApproved;
             _blogService.UpdateBlogPost(comment.BlogPost);
 
-            //raise event (only if it wasn't approved before and is approved now)
-            if (!previousIsApproved && comment.IsApproved)
-                _eventPublisher.Publish(new BlogCommentApprovedEvent(comment));
-
-            //activity log
-            _customerActivityService.InsertActivity("EditBlogComment", _localizationService.GetResource("ActivityLog.EditBlogComment"), model.Id);
-
             return new NullJsonResult();
         }
 
         public virtual ActionResult CommentDelete(int id)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBlog))
-                return AccessDeniedView();
-
             var comment = _blogService.GetBlogCommentById(id);
             if (comment == null)
                 throw new ArgumentException("No comment found with the specified id");
@@ -273,29 +255,18 @@ namespace DPTS.Web.Controllers
             var blogPost = comment.BlogPost;
             _blogService.DeleteBlogComment(comment);
 
-            //activity log
-            _customerActivityService.InsertActivity("DeleteBlogPostComment", _localizationService.GetResource("ActivityLog.DeleteBlogPostComment"), blogPost.Id);
-
             return new NullJsonResult();
         }
 
         [HttpPost]
         public virtual ActionResult DeleteSelectedComments(ICollection<int> selectedIds)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBlog))
-                return AccessDeniedView();
-
             if (selectedIds != null)
             {
                 var comments = _blogService.GetBlogCommentsByIds(selectedIds.ToArray());
                 var blogPosts = _blogService.GetBlogPostsByIds(comments.Select(p => p.BlogPostId).Distinct().ToArray());
 
                 _blogService.DeleteBlogComments(comments);
-                //activity log
-                foreach (var blogComment in comments)
-                {
-                    _customerActivityService.InsertActivity("DeleteBlogPostComment", _localizationService.GetResource("ActivityLog.DeleteBlogPostComment"), blogComment.Id);
-                }
             }
 
             return Json(new { Result = true });
@@ -304,9 +275,6 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public virtual ActionResult ApproveSelected(ICollection<int> selectedIds)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBlog))
-                return AccessDeniedView();
-
             if (selectedIds != null)
             {
                 //filter not approved comments
@@ -317,11 +285,6 @@ namespace DPTS.Web.Controllers
                     blogComment.IsApproved = true;
                     _blogService.UpdateBlogPost(blogComment.BlogPost);
 
-                    //raise event 
-                    _eventPublisher.Publish(new BlogCommentApprovedEvent(blogComment));
-
-                    //activity log
-                    _customerActivityService.InsertActivity("EditBlogComment", _localizationService.GetResource("ActivityLog.EditBlogComment"), blogComment.Id);
                 }
             }
 
@@ -331,9 +294,6 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public virtual ActionResult DisapproveSelected(ICollection<int> selectedIds)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBlog))
-                return AccessDeniedView();
-
             if (selectedIds != null)
             {
                 //filter approved comments
@@ -343,9 +303,6 @@ namespace DPTS.Web.Controllers
                 {
                     blogComment.IsApproved = false;
                     _blogService.UpdateBlogPost(blogComment.BlogPost);
-
-                    //activity log
-                    _customerActivityService.InsertActivity("EditBlogComment", _localizationService.GetResource("ActivityLog.EditBlogComment"), blogComment.Id);
                 }
             }
 

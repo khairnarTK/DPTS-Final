@@ -372,6 +372,7 @@
     <Compile Include="AppFilters\LogApplicationAttribute.cs" />
     <Compile Include="AppInfra\Constants.cs" />
     <Compile Include="AppInfra\Enum.cs" />
+    <Compile Include="AppInfra\Extensions.cs" />
     <Compile Include="AppInfra\PagerModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -409,8 +410,10 @@
     <Compile Include="Helpers\AssetsHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressViewModel.cs" />
+    <Compile Include="Models\AdminBlogCommentListModel.cs" />
     <Compile Include="Models\AdminBlogPostModel.cs" />
     <Compile Include="Models\AdminDocorReviewModel.cs" />
+    <Compile Include="Models\AdminBlogCommentModel.cs" />
     <Compile Include="Models\AppointmentScheduleViewModel.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\DeleteConfirmationModel.cs" />
@@ -2148,12 +2151,17 @@
     <Content Include="Views\AdminDoctorReview\List.cshtml" />
     <Content Include="Views\AdminDoctorReview\Edit.cshtml" />
     <Content Include="Views\AdminDoctorReview\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\AdminBlog\Comments.cshtml" />
+    <Content Include="Views\AdminBlog\Create.cshtml" />
+    <Content Include="Views\AdminBlog\Edit.cshtml" />
+    <Content Include="Views\AdminBlog\List.cshtml" />
+    <Content Include="Views\AdminBlog\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTimeNullable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\thumbs\000\" />
     <Folder Include="Content\wp-content\plugins\unyson\framework\extensions\shortcodes\shortcodes\button\static\css\" />
-    <Folder Include="Views\AdminBlog\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Picture\" />
   </ItemGroup>
