@@ -8,11 +8,11 @@ namespace DPTS.Web.Models
 {
     public partial class BlogCommentModel : BaseEntity
     {
-        public int CustomerId { get; set; }
+        public string VisitorId { get; set; }
 
-        public string CustomerName { get; set; }
+        public string VisitorName { get; set; }
 
-        public string CustomerAvatarUrl { get; set; }
+        public string VisitorAvatarUrl { get; set; }
 
         public string CommentText { get; set; }
 

@@ -57,6 +57,15 @@ namespace DPTS.Web
                           "setdoctorreviewhelpfulness",
                           new { controller = "Doctor", action = "SetDoctorReviewHelpfulness" });
 
+            //blog
+            routes.MapRoute("BlogByTag",
+                            "blog/tag/{tag}",
+                            new { controller = "Blog", action = "BlogByTag" });
+
+            routes.MapRoute("BlogByMonth",
+                            "blog/month/{month}",
+                            new { controller = "Blog", action = "BlogByMonth" });
+
             //routes.MapRoute(
             //    "ContactUs",
             //    "contact",

@@ -370,10 +370,12 @@
   <ItemGroup>
     <Compile Include="AppFilters\ExceptionLogingAttribute.cs" />
     <Compile Include="AppFilters\LogApplicationAttribute.cs" />
+    <Compile Include="AppInfra\BlogModelFactory.cs" />
     <Compile Include="AppInfra\Constants.cs" />
     <Compile Include="AppInfra\Enum.cs" />
     <Compile Include="AppInfra\Extensions.cs" />
     <Compile Include="AppInfra\IBlogModelFactory.cs" />
+    <Compile Include="AppInfra\Pager.cs" />
     <Compile Include="AppInfra\PagerModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -411,16 +413,20 @@
     </Compile>
     <Compile Include="Helpers\AssetsHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddBlogCommentModel.cs" />
     <Compile Include="Models\AddressViewModel.cs" />
     <Compile Include="Models\AdminBlogCommentListModel.cs" />
     <Compile Include="Models\AdminBlogPostModel.cs" />
     <Compile Include="Models\AdminDocorReviewModel.cs" />
     <Compile Include="Models\AdminBlogCommentModel.cs" />
     <Compile Include="Models\AppointmentScheduleViewModel.cs" />
-    <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\BlogCommentModel.cs" />
     <Compile Include="Models\BlogPagingFilteringModel.cs" />
+    <Compile Include="Models\BlogPostListModel.cs" />
     <Compile Include="Models\BlogPostModel.cs" />
+    <Compile Include="Models\BlogPostTagListModel.cs" />
+    <Compile Include="Models\BlogPostTagModel.cs" />
+    <Compile Include="Models\BlogPostYearModel.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\DeleteConfirmationModel.cs" />
     <Compile Include="Models\DoctorPictureModel.cs" />
@@ -2163,12 +2169,15 @@
     <Content Include="Views\AdminBlog\List.cshtml" />
     <Content Include="Views\AdminBlog\_CreateOrUpdate.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTimeNullable.cshtml" />
+    <Content Include="Views\Blog\BlogMonths.cshtml" />
+    <Content Include="Views\Blog\BlogPost.cshtml" />
+    <Content Include="Views\Blog\BlogTags.cshtml" />
+    <Content Include="Views\Blog\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\thumbs\000\" />
     <Folder Include="Content\wp-content\plugins\unyson\framework\extensions\shortcodes\shortcodes\button\static\css\" />
-    <Folder Include="Views\Blog\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Picture\" />
   </ItemGroup>

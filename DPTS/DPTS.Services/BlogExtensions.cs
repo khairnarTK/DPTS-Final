@@ -27,5 +27,11 @@ namespace DPTS.Services
             }
             return parsedTags.ToArray();
         }
+        public static IList<BlogPost> GetPostsByDate(this IList<BlogPost> source,
+           DateTime dateFrom, DateTime dateTo)
+        {
+            return source.Where(p => dateFrom.Date <= (p.StartDateUtc ?? p.CreatedOnUtc) &&
+            (p.StartDateUtc ?? p.CreatedOnUtc).Date <= dateTo).ToList();
+        }
     }
 }

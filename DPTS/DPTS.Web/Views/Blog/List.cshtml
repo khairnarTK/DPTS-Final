@@ -1,0 +1,113 @@
+﻿@model BlogPostListModel
+@using DPTS.Web.Models
+@{
+   Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@*@section left {
+    @Html.Action("BlogMonths", "Blog")
+    @Html.Action("BlogTags", "Blog")
+}*@
+
+<main id="main" class="tg-page-wrapper tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="main-page-wrapper tg-haslayout">
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 pull-right  page-section">
+                    <div class="row">
+                        <div class="fw-page-builder-content">
+                            <section class="tg-main-section haslayout  default">
+                                <div class="builder-items">
+                                    <div class="col-xs-12 col-md-12 builder-column ">
+                                        <div class="sc-blogs">
+                                            <div class="tg-view tg-blog-list">
+                                                @foreach (var item in Model.BlogPosts)
+                                                {
+                                                    <article class="tg-post">
+                                                        <div class="tg-box">
+                                                            <figure class="tg-feature-img">
+                                                                <a href="https://themographics.com/wordpress/docdirect/family-clinic/"><img width="470" height="300" src="https://themographics.com/wordpress/docdirect/wp-content/uploads/2016/04/img-01-470x305.jpg" alt="family-clinic"></a>
+                                                                <ul class="tg-metadata">
+                                                                    <li><i class="fa fa-clock-o"></i><time datetime="2016-04-21">-@item.CreatedOn.ToString("D")</time> </li>
+                                                                    <li><i class="fa fa-comment-o"></i><a href="https://themographics.com/wordpress/docdirect/family-clinic/#comments"> 4 Comments</a></li>
+                                                                </ul>
+                                                            </figure>
+                                                            <div class="tg-contentbox">
+                                                                <div class="tg-displaytable">
+                                                                    <div class="tg-displaytablecell">
+                                                                        <div class="tg-heading-border tg-small">
+                                                                            <h3><a href="https://themographics.com/wordpress/docdirect/family-clinic/">Family clinic </a></h3>
+                                                                        </div>
+                                                                        <div class="tg-description">
+                                                                            @Html.Raw(!String.IsNullOrEmpty(item.BodyOverview) ? item.BodyOverview : item.Body)
+
+                                                                            <div class="blog-details">
+                                                                                @if (item.Tags.Count > 0)
+                                                                                {
+                                                                                    <div class="tags">
+                                                                                        <label>Blog.Tags :</label>
+                                                                                        <ul>
+                                                                                            @for (int i = 0; i < item.Tags.Count; i++)
+                                                                                            {
+                                                                                                var tag = item.Tags[i];
+                                                                                                <li><a href="@Url.RouteUrl("BlogByTag", new {tag = tag})">@tag</a></li>
+                                                                                                if (i != item.Tags.Count - 1)
+                                                                                                {
+                                                                                                    <li class="separator">,</li>
+                                                                                                }
+                                                                                            }
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                }
+                                                                                <div class="buttons">
+                                                                                    @if (item.AllowComments)
+                                                                                    {
+                                                                                        @*<a href="@Url.Action("BlogPost", new {SeName = item.Id})#comments" class="read-comments">@string.Format("Blog.CommentsLink", item.NumberOfComments)</a>*@
+                                                                                    }
+                                                                                    @*<a href="@Url.RouteUrl("BlogPost", new {SeName = item.Id})" class="read-more">Blog.MoreInfo</a>*@
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="https://themographics.com/wordpress/docdirect/family-clinic/"><span class="tg-show"><em class="icon-add"></em></span></a>
+                                                            </div>
+                                                        </div>
+                                                     </article>
+                                                }
+                                             
+                                            </div>
+                                            <nav class="doc-pagination"><ul><li><a class="active" href="javascript:;">1</a></li><li><a href="https://themographics.com/wordpress/docdirect/blog-list/page/2/" class="inactive">2</a></li><li class="tg-next"><a class="" href="https://themographics.com/wordpress/docdirect/blog-list/page/2/"><i class="fa fa-angle-right"></i></a></li></ul></nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 aside sidebar-section pull-left" id="sidebar">
+                    <aside id="tg-sidebar" class="tg-sidebar tg-haslayout">
+                        <div id="categories-2" class="tg-widget widget_categories">
+                            <h3>Categories</h3>		<ul>
+                                <li class="cat-item cat-item-59">
+                                    <a href="https://themographics.com/wordpress/docdirect/category/directory/">Directory</a>
+                                </li>
+                                @Html.Action("BlogMonths", "Blog")
+                               
+                            </ul>
+                        </div>
+                        <div id="docdirect_recent_posts-2" class="tg-widget tg-widget-recentposts">
+                            <h3>Recent Posts</h3>
+                            <ul>
+                                @Html.Action("BlogTags", "Blog")
+                            </ul>
+                        </div>
+
+                    </aside>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>

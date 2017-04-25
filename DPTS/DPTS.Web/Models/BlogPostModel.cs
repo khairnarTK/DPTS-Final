@@ -1,11 +1,10 @@
-﻿using System;
+﻿using DPTS.Domain.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace DPTS.Web.Models
 {
-    public partial class BlogPostModel : BaseNopEntityModel
+    public partial class BlogPostModel : BaseEntity
     {
         public BlogPostModel()
         {
@@ -13,11 +12,6 @@ namespace DPTS.Web.Models
             Comments = new List<BlogCommentModel>();
             AddNewComment = new AddBlogCommentModel();
         }
-
-        public string MetaKeywords { get; set; }
-        public string MetaDescription { get; set; }
-        public string MetaTitle { get; set; }
-        public string SeName { get; set; }
 
         public string Title { get; set; }
         public string Body { get; set; }

@@ -1,4 +1,6 @@
-﻿using DPTS.Domain.Entities;
+﻿using DPTS.Common.Paging;
+using DPTS.Domain.Entities;
+using DPTS.Web.AppInfra;
 using DPTS.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -49,6 +51,10 @@ namespace DPTS.Web.Helpers
             window.AppendLine("</script>");
 
             return MvcHtmlString.Create(window.ToString());
+        }
+        public static Pager Pager(this HtmlHelper helper, IPageableModel pagination)
+        {
+            return new Pager(pagination, helper.ViewContext);
         }
     }
 
@@ -123,4 +129,6 @@ namespace DPTS.Web.Helpers
         public const string InlineScripts = "<script type=\"text/javascript\">{0}</script>";
         public const string InlineStyles = "<style type=\"text/css\">{0}</style>";
     }
+
+   
 }

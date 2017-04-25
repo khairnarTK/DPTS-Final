@@ -1,4 +1,5 @@
 ﻿using DPTS.Common.Kendoui;
+using DPTS.Common.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace DPTS.Web.AppInfra
             //we ignore items with "0" value? Usually it's something like "Select All", "etc
             return items.Count(x => !ignoreZeroValue || !x.Value.ToString().Equals("0")) < 2;
         }
+       
 
         /// <summary>
         /// Relative formatting of DateTime (e.g. 2 hours ago, a month ago)

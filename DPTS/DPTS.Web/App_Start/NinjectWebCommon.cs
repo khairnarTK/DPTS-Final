@@ -39,6 +39,7 @@ namespace DPTS.Web
     using Domain.Core.Common;
     using Controllers;
     using Services.Blog;
+    using AppInfra;
 
     public static class NinjectWebCommon
     {
@@ -106,6 +107,7 @@ namespace DPTS.Web
             kernel.Bind<IPictureService>().To<PictureService>();
             kernel.Bind<IQualifiactionService>().To<QualifiactionService>();
             kernel.Bind<IBlogService>().To<BlogService>();
+            kernel.Bind<IBlogModelFactory>().To<BlogModelFactory>();
 
         }
     }
