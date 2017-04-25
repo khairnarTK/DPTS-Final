@@ -373,6 +373,7 @@
     <Compile Include="AppInfra\Constants.cs" />
     <Compile Include="AppInfra\Enum.cs" />
     <Compile Include="AppInfra\Extensions.cs" />
+    <Compile Include="AppInfra\IBlogModelFactory.cs" />
     <Compile Include="AppInfra\PagerModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -386,6 +387,7 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\AdminDoctorReviewController.cs" />
     <Compile Include="Controllers\EmailCategoryController.cs" />
@@ -415,6 +417,10 @@
     <Compile Include="Models\AdminDocorReviewModel.cs" />
     <Compile Include="Models\AdminBlogCommentModel.cs" />
     <Compile Include="Models\AppointmentScheduleViewModel.cs" />
+    <Compile Include="Models\BlogComment.cs" />
+    <Compile Include="Models\BlogCommentModel.cs" />
+    <Compile Include="Models\BlogPagingFilteringModel.cs" />
+    <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\DeleteConfirmationModel.cs" />
     <Compile Include="Models\DoctorPictureModel.cs" />
@@ -2162,6 +2168,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\thumbs\000\" />
     <Folder Include="Content\wp-content\plugins\unyson\framework\extensions\shortcodes\shortcodes\button\static\css\" />
+    <Folder Include="Views\Blog\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Picture\" />
   </ItemGroup>

@@ -63,7 +63,7 @@
                                     type: "json",
                                     transport: {
                                         read: {
-                                            url: "@Html.Raw(Url.Action("List", "Blog"))",
+                                            url: "@Html.Raw(Url.Action("List", "AdminBlog"))",
                                             type: "POST",
                                             dataType: "json"
                                             //data: additionalData
@@ -127,7 +127,7 @@
                                     width: 100,
                                     headerAttributes: { style: "text-align:center" },
                                     attributes: { style: "text-align:center" },
-                                    template: '<a class="btn btn-default" href="Edit/#=Id#"><i class="fa fa-pencil"></i>Edit</a>'
+                                    template: '<a class="btn btn-default" href="Edit?id=#=Id#"><i class="fa fa-pencil"></i>Edit</a>'
                                     }
                                 ]
                             });

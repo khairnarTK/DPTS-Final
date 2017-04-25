@@ -43,11 +43,19 @@
   <ItemGroup>
     <Compile Include="Kendoui\DataSourceRequest.cs" />
     <Compile Include="Kendoui\DataSourceResult.cs" />
+    <Compile Include="Paging\BasePageableModel.cs" />
+    <Compile Include="Paging\IPageableModel.cs" />
     <Compile Include="QrCodeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HTML\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DPTS.Domain\DPTS.Domain.csproj">
+      <Project>{087EF4A4-1E44-4087-8E62-76AA1E4D2E53}</Project>
+      <Name>DPTS.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

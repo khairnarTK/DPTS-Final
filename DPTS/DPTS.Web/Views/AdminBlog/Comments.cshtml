@@ -3,7 +3,7 @@
 @{
     //page title
     ViewBag.Title = "Comments";
-
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
     int? filterByBlogPostId = ViewBag.FilterByBlogPostId;
 }
 
@@ -13,15 +13,15 @@
        Comments
     </h1>
     <div class="pull-right">
-        <button type="button" id="approve-selected" class="btn bg-green">
+        <button type="button" id="approve-selected" class="btn btn-success">
             <i class="fa fa-check-square-o"></i>
             ApproveSelected
         </button>
-        <button type="button" id="disapprove-selected" class="btn bg-navy">
+        <button type="button" id="disapprove-selected" class="btn btn-warning">
             <i class="fa fa-minus-square-o"></i>
           DisapproveSelected
         </button>
-        <button type="button" id="delete-selected" class="btn bg-red">
+        <button type="button" id="delete-selected" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
            DeleteSelected
         </button>
@@ -40,7 +40,7 @@
                                     @Html.LabelFor(model => model.CreatedOnFrom)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.CreatedOnFrom)
+                                    @Html.EditorFor(model => model.CreatedOnFrom, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -48,7 +48,7 @@
                                     @Html.LabelFor(model => model.CreatedOnTo)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.CreatedOnTo)
+                                    @Html.EditorFor(model => model.CreatedOnTo, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -56,7 +56,7 @@
                                     @Html.LabelFor(model => model.SearchApprovedId)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.DropDownList("SearchApprovedId", Model.AvailableApprovedOptions)
+                                    @Html.DropDownList("SearchApprovedId", Model.AvailableApprovedOptions, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -64,7 +64,7 @@
                                     @Html.LabelFor(model => model.SearchText)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.SearchText)
+                                    @Html.EditorFor(model => model.SearchText, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                             </div>
 

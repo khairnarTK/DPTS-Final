@@ -9,11 +9,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    
     <div class="content-header clearfix">
-        <h1 class="pull-left">
+        <h2 class="pull-left">
             Add New
             <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink("BackToList", "List")</small>
-        </h1>
+        </h2>
         <div class="pull-right">
             <button type="submit" name="save" class="btn bg-blue">
                 <i class="fa fa-floppy-o"></i>
