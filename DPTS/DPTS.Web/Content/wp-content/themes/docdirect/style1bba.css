@@ -755,10 +755,9 @@ input[type="submit"].tg-btn{    background-color: #006699;
 .bootstrap-select .dropdown-menu ul li a .glyphicon{display: none;}
 .tg-metadata{
 	width:100%;
-	bottom: 4%;
-	left: 3%;
-	position: absolute;
 	z-index: 4;
+    background: #505050;
+    padding: 10px;
 }
 .tg-metadata li{
 	list-style-type: none;
@@ -2934,7 +2933,7 @@ background:
 	rgba(255,255,255,0.3) 50%,
 	rgba(1,17,17,0.6) 100%);
 }
-.tg-post-detail .tg-post .tg-post-data{padding: 0;}
+.tg-post-detail .tg-post .tg-post-data{padding: 0; margin-top:20px;}
 .tg-post-detail .tg-post .tg-heading-border{margin: 0 0 15px;}
 .tg-post-detail .tg-post h2{
 	font-size: 18px;
@@ -2943,7 +2942,6 @@ background:
 .tg-post-detail .tg-post .tg-description {
 	padding: 0;
 	line-height: 20px;
-	border-bottom: 1px solid #ddd;
 }
 .tg-post .tg-description blockquote,
 .tg-post-detail .tg-post .tg-description p{
@@ -3292,7 +3290,6 @@ textarea.form-control{
 	overflow: hidden;
 	padding: 20px;
 	border: 1px solid #ddd;
-	height: 302px;
 	position:relative;
 }
 .tg-blog-list .tg-contentbox .tg-description {padding: 0;}
