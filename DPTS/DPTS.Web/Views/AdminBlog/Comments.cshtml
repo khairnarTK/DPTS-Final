@@ -1,12 +1,17 @@
 ﻿@model AdminBlogCommentListModel
+@using DPTS.Web.Helpers
 @using DPTS.Web.Models
 @{
     //page title
     ViewBag.Title = "Comments";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
     int? filterByBlogPostId = ViewBag.FilterByBlogPostId;
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.common-material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.min.css");
+    Html.Assets().Styles.Add("/Content/kendo/2017.1.118/kendo.material.mobile.min.css");
 }
-
+<script src="~/Scripts/kendo/2017.1.118/jquery.min.js"></script>
+<script src="~/Scripts/kendo/2017.1.118/kendo.all.min.js"></script>
 @Html.AntiForgeryToken()
 <div class="content-header clearfix">
     <h1 class="pull-left">
@@ -76,6 +81,7 @@
                                     </button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -159,9 +165,9 @@
                                         width: 50
                                     }, {
                                         field: "BlogPostTitle",
-                                        title: "BlogPost",
+                                        title: "Blog Post",
                                         width: 200,
-                                        template: '<a href="@Url.Content("~/Admin/Blog/Edit/")#=BlogPostId#">#:BlogPostTitle#</a>'
+                                        //template: '<a href="@Url.Content("~/Admin/Blog/Edit/")#=BlogPostId#">#:BlogPostTitle#</a>'
                                     }, {
                                         field: "VisitorInfo",
                                         title: "Visitor",
@@ -257,12 +263,12 @@
                                     var postData = {
                                         selectedIds: selectedIds
                                     };
-                                    addAntiForgeryToken(postData);
+                                   // addAntiForgeryToken(postData);
 
                                     $.ajax({
                                         cache: false,
                                         type: "POST",
-                                        url: "@(Url.Action("ApproveSelected", "Blog"))",
+                                        url: "@(Url.Action("ApproveSelected", "AdminBlog"))",
                                         data: postData,
                                         complete: function(data) {
                                             //reload grid
@@ -290,7 +296,7 @@
                                     $.ajax({
                                         cache: false,
                                         type: "POST",
-                                        url: "@(Url.Action("DisapproveSelected", "Blog"))",
+                                        url: "@(Url.Action("DisapproveSelected", "AdminBlog"))",
                                         data: postData,
                                         complete: function(data) {
                                             //reload grid

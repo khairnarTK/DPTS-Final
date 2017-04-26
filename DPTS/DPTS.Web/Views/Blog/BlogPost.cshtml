@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*@section left {
-    @Html.Action("BlogMonths", "Blog")
-    @Html.Action("BlogTags", "Blog")
-}*@
+        @Html.Action("BlogMonths", "Blog")
+        @Html.Action("BlogTags", "Blog")
+    }*@
 
 <main id="main" class="tg-page-wrapper tg-haslayout">
     <div class="container">
@@ -17,7 +17,7 @@
                         <article class="tg-post tg-haslayout">
                             <ul class="tg-metadata">
                                 <li><i class="fa fa-clock-o"></i><time>@Model.CreatedOn.ToString("D")</time> </li>
-                                <li><i class="fa fa-comment-o"></i><a href="https://themographics.com/wordpress/docdirect/family-clinic/#comments"> 4 Comments</a></li>
+                                <li><i class="fa fa-comment-o"></i><a href="#"> 4 Comments</a></li>
                             </ul>
                             @if (Model.Tags.Count > 0)
                             {
@@ -36,130 +36,105 @@
                                     <h2>@Model.Title</h2>
                                 </div>
                                 <div class="tg-description">
-                                  @Html.Raw(HttpUtility.HtmlDecode(Model.Body))
+                                    @Html.Raw(Model.Body)
                                 </div>
                             </div>
                         </article>
                         @if (Model.AllowComments)
                         {
-                        <div class="tg-haslayout" id="comments">
-                            <div class="tg-heading-border tg-small">
-                                <h3>4 Comments</h3>
+                            if (Model.Comments.Count > 0)
+                            {
+                            <div class="tg-haslayout" id="comments">
+                                <div class="tg-heading-border tg-small">
+                                    <h3>4 Comments</h3>
+                                </div>
+                                <ul>
+                                    <!-- #comment-## -->
+                                    @foreach (var comment in Model.Comments)
+                                    {
+                                      <li class="byuser -author-docdirect-admin bypostauthor even thread-odd thread-alt depth-1 -entry clearfix" id="comment-31">
+                                        <div class="comment tg-border">
+                                            <figure class="tg-author-img">
+                                                <img alt="" src="https://secure.gravatar.com/avatar/79e16b06a4d7b956b1556086ba73012b?s=89&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/79e16b06a4d7b956b1556086ba73012b?s=178&amp;d=mm&amp;r=g 2x" class="avatar avatar-89 photo" height="89" width="89">
+                                            </figure>
+                                            <div class="comment-box">
+                                                <div class="comment-head">
+                                                    <div class="pull-left">
+                                                        <h3>@(comment.VisitorName)</h3>
+                                                    </div>
+                                                    @*<a rel="nofollow" class="tg-btn" href="https://themographics.com/wordpress/docdirect/family-clinic/?replytocom=31#respond" onclick="return addComment.moveForm( &quot;comment-31&quot;, &quot;31&quot;, &quot;respond&quot;, &quot;193&quot; )" aria-label="Reply to docdirect-admin">Reply</a>*@
+                                                </div>
+                                                <span>Posted on @comment.CreatedOn.ToString("g")</span>
+                                                <div class="tg-description">
+                                                    <p>@Html.Raw(comment.CommentText)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li><!-- #comment-## -->
+                                    }
+                                </ul>
                             </div>
-                            <ul>
-                                <li class = "byuser -author-docdirect-admin bypostauthor even thread-even depth-1 -entry clearfix" id="comment-2">
-                                    <div class="comment tg-border">
-                                        <figure class="tg-author-img">
-                                            <img alt="" src="https://secure.gravatar.com/avatar/79e16b06a4d7b956b1556086ba73012b?s=89&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/79e16b06a4d7b956b1556086ba73012b?s=178&amp;d=mm&amp;r=g 2x" class="avatar avatar-89 photo" height="89" width="89">
-                                        </figure>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <div class="pull-left">
-                                                    <h3>docdirect-admin</h3>
-                                                </div>
-                                                <a rel="nofollow" class="tg-btn" href="https://themographics.com/wordpress/docdirect/family-clinic/?replytocom=2#respond" onclick="return addComment.moveForm( &quot;comment-2&quot;, &quot;2&quot;, &quot;respond&quot;, &quot;193&quot; )" aria-label="Reply to docdirect-admin">Reply</a>
-                                            </div>
-                                            <span>Posted on Apr 22, 2016 at  06:28 am</span>
-                                            <div class="tg-description">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- #comment-## -->
-                                <li class="byuser -author-docdirect-admin bypostauthor even thread-odd thread-alt depth-1 -entry clearfix" id="comment-31">
-                                    <div class="comment tg-border">
-                                        <figure class="tg-author-img">
-                                            <img alt="" src="https://secure.gravatar.com/avatar/79e16b06a4d7b956b1556086ba73012b?s=89&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/79e16b06a4d7b956b1556086ba73012b?s=178&amp;d=mm&amp;r=g 2x" class="avatar avatar-89 photo" height="89" width="89">
-                                        </figure>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <div class="pull-left">
-                                                    <h3>docdirect-admin</h3>
-                                                </div>
-                                                <a rel="nofollow" class="tg-btn" href="https://themographics.com/wordpress/docdirect/family-clinic/?replytocom=31#respond" onclick="return addComment.moveForm( &quot;comment-31&quot;, &quot;31&quot;, &quot;respond&quot;, &quot;193&quot; )" aria-label="Reply to docdirect-admin">Reply</a>
-                                            </div>
-                                            <span>Posted on Apr 22, 2016 at  06:33 am</span>
-                                            <div class="tg-description">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- #comment-## -->
-                                <li class=" odd alt thread-even depth-1 -entry clearfix" id="comment-38">
-                                    <div class="comment tg-border">
-                                        <figure class="tg-author-img">
-                                            <img alt="" src="https://secure.gravatar.com/avatar/f6839ef4286a4f916f035e5ab91c02f3?s=89&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/f6839ef4286a4f916f035e5ab91c02f3?s=178&amp;d=mm&amp;r=g 2x" class="avatar avatar-89 photo" height="89" width="89">
-                                        </figure>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <div class="pull-left">
-                                                    <h3>2016 at 06:33 am</h3>
-                                                </div>
-                                                <a rel="nofollow" class="tg-btn" href="https://themographics.com/wordpress/docdirect/family-clinic/?replytocom=38#respond" onclick="return addComment.moveForm( &quot;comment-38&quot;, &quot;38&quot;, &quot;respond&quot;, &quot;193&quot; )" aria-label="Reply to 2016 at 06:33 am">Reply</a>
-                                            </div>
-                                            <span>Posted on Nov 03, 2016 at  04:54 am</span>
-                                            <div class="tg-description">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- #comment-## -->
-                            </ul>
-                        </div>
+                            }
 
-                        <div class="tg-comment-formarea tg-haslayout">
-                            <div class="row">
-                                <div id="respond" class="comment-respond">
-                                    <div class="col-xs-12"><div class="tg-heading-border tg-small"><h3>Add Comments<a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress/docdirect/family-clinic/#respond" style="display:none;">Cancel reply</a></h3></div></div>			<form action="https://themographics.com/wordpress/docdirect/wp-comments-post.php" method="post" id="reply-form" class="form-comment tg-haslayout">
-                                        <div class="col-xs-12"><div class="form-group"><textarea class="form-control" name="comment" placeholder="Message" rows="4"></textarea></div></div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12"><div class="form-group"><input class="form-control" id="author" placeholder="Name" name="author" type="text" value="" size="30"></div></div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12"><div class="form-group"><input class="form-control" id="email" placeholder="Email" name="email" type="text" value="" size="30"></div></div>
+                            var validationSummary = Html.ValidationSummary(true);
+                            <div class="notifications">
+                                @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+                                {
+                                    <div class="message-error">@validationSummary</div>
+                                }
+
+                                @*@{
+                                    var result = TempData["nop.blog.addcomment.result"] as string;
+                                }
+                                @if (!String.IsNullOrEmpty(result))
+                                {
+                                    <div class="result">@result</div>
+                                }*@
+                            </div>
+                            <div class="tg-comment-formarea tg-haslayout">
+                                <div class="row">
+                                    <div id="respond" class="comment-respond">
                                         <div class="col-xs-12">
-                                            <input name="submit" type="submit" id="tg-btn" class="tg-btn" value="Submit"> <input type="hidden" name="comment_post_ID" value="193" id="comment_post_ID">
-                                            <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+                                            <div class="tg-heading-border tg-small"><h3>Add Comments<a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress/docdirect/family-clinic/#respond" style="display:none;">Cancel reply</a></h3></div>
                                         </div>
-                                    </form>
-                                </div><!-- #respond -->
+                                        @using (Html.BeginForm())
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    @Html.TextAreaFor(model => model.AddNewComment.CommentText, new { @class = "form-control", @placeholder = "Message" })
+                                                    @*<textarea class="form-control" name="@Model.AddNewComment.CommentText" id="@Model.AddNewComment.CommentText" placeholder="Message" rows="4"></textarea>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <input name="submit" type="submit" id="tg-btn" class="tg-btn" value="Submit">
+                                            </div>
+                                        }
+                                    </div><!-- #respond -->
+                                </div>
                             </div>
-                        </div>
-                        }
-
+                            }
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 sidebar-section pull-left">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 aside sidebar-section pull-left" id="sidebar">
                     <aside id="tg-sidebar" class="tg-sidebar tg-haslayout">
                         <div id="categories-2" class="tg-widget widget_categories">
-                            <h3>Categories</h3>	
-                            <ul>
+                            <h3>Categories</h3>		<ul>
                                 <li class="cat-item cat-item-59">
                                     <a href="https://themographics.com/wordpress/docdirect/category/directory/">Directory</a>
                                 </li>
-                                <li class="cat-item cat-item-58">
-                                    <a href="https://themographics.com/wordpress/docdirect/category/medical/">Medical</a>
-                                </li>
-                                <li class="cat-item cat-item-60">
-                                    <a href="https://themographics.com/wordpress/docdirect/category/responsive/">Responsive</a>
-                                </li>
-                                <li class="cat-item cat-item-61">
-                                    <a href="https://themographics.com/wordpress/docdirect/category/unique/">Unique</a>
-                                </li>
+                                @Html.Action("BlogMonths", "Blog")
+
                             </ul>
                         </div>
                         <div id="docdirect_recent_posts-2" class="tg-widget tg-widget-recentposts">
-                            <h3>Recent Posts</h3>	
-                        		<ul>
-                                <li>
-                                    <a href="https://themographics.com/wordpress/docdirect/family-clinic/">Family clinic</a>
-                                    <time datetime="2016-04-21">April 21, 2016</time>
-                                </li>
-                                <li>
-                                    <a href="https://themographics.com/wordpress/docdirect/athletic-clubs/">Athletic Clubs</a>
-                                    <time datetime="2016-04-21">April 21, 2016</time>
-                                </li>
+                            <h3>Recent Posts</h3>
+                            <ul>
+                                @Html.Action("BlogTags", "Blog")
                             </ul>
-                        </div>     
-                             
+                        </div>
+
                     </aside>
                 </div>
             </div>

@@ -129,6 +129,8 @@ namespace DPTS.Domain.Common
         /// <param name="blogComments">Blog comments</param>
         void DeleteBlogComments(IList<BlogComment> blogComments);
 
+        void UpdateBlogPostComment(BlogComment comment);
+
         #endregion
     }
 }

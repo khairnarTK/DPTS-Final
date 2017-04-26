@@ -83,8 +83,7 @@ namespace DPTS.Web.Controllers
         }
 
         [HttpPost, ActionName("BlogPost")]
-      //  [FormValueRequired("add-comment")]
-        public virtual ActionResult BlogCommentAdd(int blogPostId, BlogPostModel model, bool captchaValid)
+        public virtual ActionResult BlogCommentAdd(int blogPostId, BlogPostModel model)
         {
             var blogPost = _blogService.GetBlogPostById(blogPostId);
             if (blogPost == null || !blogPost.AllowComments)
@@ -92,7 +91,7 @@ namespace DPTS.Web.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
-                ModelState.AddModelError("","Blog.Comments.OnlyRegisteredUsersLeaveComments");
+                ModelState.AddModelError("", "Only registered users can leave comments.");
             }
 
             if (ModelState.IsValid)
@@ -102,7 +101,7 @@ namespace DPTS.Web.Controllers
                     BlogPostId = blogPost.Id,
                     VisitorId = User.Identity.GetUserId(),
                     CommentText = model.AddNewComment.CommentText,
-                    IsApproved = true,
+                    IsApproved = false,
                     CreatedOnUtc = DateTime.UtcNow,
                 };
                 blogPost.BlogComments.Add(comment);
@@ -110,11 +109,13 @@ namespace DPTS.Web.Controllers
 
                 //The text boxes should be cleared after a comment has been posted
                 //That' why we reload the page
-                TempData["nop.blog.addcomment.result"] = comment.IsApproved
-                    ? "Blog.Comments.SuccessfullyAdded"
-                    : "Blog.Comments.SeeAfterApproving";
+                //TempData["nop.blog.addcomment.result"] = comment.IsApproved
+                //    ? "Blog.Comments.SuccessfullyAdded"
+                //    : "Blog.Comments.SeeAfterApproving";
 
-               // return RedirectToRoute("BlogPost", new { SeName = blogPost.GetSeName(blogPost.LanguageId, ensureTwoPublishedLanguages: false) });
+                SuccessNotification("You will see the blog comment after approving by a administrator. !!");
+
+               return RedirectToAction("BlogPost","Blog", new { blogPostId = blogPost.Id });
             }
 
             //If we got this far, something failed, redisplay form

@@ -241,7 +241,7 @@ namespace DPTS.Web.Controllers
             var previousIsApproved = comment.IsApproved;
 
             comment.IsApproved = model.IsApproved;
-            _blogService.UpdateBlogPost(comment.BlogPost);
+            _blogService.UpdateBlogPostComment(comment);
 
             return new NullJsonResult();
         }
@@ -283,7 +283,7 @@ namespace DPTS.Web.Controllers
                 foreach (var blogComment in blogComments)
                 {
                     blogComment.IsApproved = true;
-                    _blogService.UpdateBlogPost(blogComment.BlogPost);
+                    _blogService.UpdateBlogPostComment(blogComment);
 
                 }
             }
@@ -302,7 +302,7 @@ namespace DPTS.Web.Controllers
                 foreach (var blogComment in blogComments)
                 {
                     blogComment.IsApproved = false;
-                    _blogService.UpdateBlogPost(blogComment.BlogPost);
+                    _blogService.UpdateBlogPostComment(blogComment);
                 }
             }
 

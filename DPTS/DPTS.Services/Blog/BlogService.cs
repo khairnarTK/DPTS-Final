@@ -205,6 +205,14 @@ namespace DPTS.Services.Blog
             _blogPostRepository.Update(blogPost);
         }
 
+        public virtual void UpdateBlogPostComment(BlogComment comment)
+        {
+            if (comment == null)
+                throw new ArgumentNullException("comment");
+
+            _blogCommentRepository.Update(comment);
+        }
+
         #endregion
 
         #region Blog comments

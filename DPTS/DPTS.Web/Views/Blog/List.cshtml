@@ -26,14 +26,14 @@
                                                     <article class="tg-post">
                                                         <div class="tg-box">
                                                             <ul class="tg-metadata">
-                                                                <li><i class="fa fa-clock-o"></i><time datetime="2016-04-21">@item.CreatedOn.ToString("D")</time> </li>
+                                                                <li><i class="fa fa-clock-o"></i><time>@item.CreatedOn.ToString("D")</time> </li>
                                                                 <li><i class="fa fa-comment-o"></i><a href="#"> 4 Comments</a></li>
                                                             </ul>
                                                             <div class="tg-contentbox">
                                                                 <div class="tg-displaytable">
                                                                     <div class="tg-displaytablecell">
                                                                         <div class="tg-heading-border tg-small">
-                                                                            <h3><a href="#">@item.Title </a></h3>
+                                                                            <h3><a href="@Url.Action("BlogPost","Blog",new { blogPostId = item.Id})">@item.Title </a></h3>
                                                                         </div>
                                                                         <div class="tg-description">
                                                                             @Html.Raw(!String.IsNullOrEmpty(item.BodyOverview) ? item.BodyOverview : item.Body)
@@ -62,7 +62,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <a href="#"><span class="tg-show"><em class="icon-magnifier"></em></span></a>
+                                                                <a href="@Url.Action("BlogPost","Blog",new { blogPostId = item.Id})"><span class="tg-show"><em class="icon-magnifier"></em></span></a>
                                                             </div>
                                                         </div>
                                                      </article>
