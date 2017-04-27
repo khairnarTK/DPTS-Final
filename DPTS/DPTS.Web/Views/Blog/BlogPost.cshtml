@@ -3,11 +3,6 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@section left {
-        @Html.Action("BlogMonths", "Blog")
-        @Html.Action("BlogTags", "Blog")
-    }*@
-
 <main id="main" class="tg-page-wrapper tg-haslayout">
     <div class="container">
         <div class="row">
@@ -17,7 +12,10 @@
                         <article class="tg-post tg-haslayout">
                             <ul class="tg-metadata">
                                 <li><i class="fa fa-clock-o"></i><time>@Model.CreatedOn.ToString("D")</time> </li>
-                                <li><i class="fa fa-comment-o"></i><a href="#"> 4 Comments</a></li>
+                                @if (Model.Comments.Count > 0)
+                                {
+                                  <li><i class="fa fa-comment-o"></i><a href="#">@Model.Comments.Count() Comments</a></li>
+                                }
                             </ul>
                             @if (Model.Tags.Count > 0)
                             {
@@ -36,7 +34,7 @@
                                     <h2>@Model.Title</h2>
                                 </div>
                                 <div class="tg-description">
-                                    @Html.Raw(HttpUtility.HtmlDecode(Model.Body));
+                                    @Html.Raw(HttpUtility.HtmlDecode(Model.Body))
                                 </div>
                             </div>
                         </article>
@@ -46,7 +44,7 @@
                             {
                             <div class="tg-haslayout" id="comments">
                                 <div class="tg-heading-border tg-small">
-                                    <h3>4 Comments</h3>
+                                    <h3>@Model.Comments.Count() Comments</h3>
                                 </div>
                                 <ul>
                                     <!-- #comment-## -->
@@ -120,16 +118,13 @@
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 aside sidebar-section pull-left" id="sidebar">
                     <aside id="tg-sidebar" class="tg-sidebar tg-haslayout">
                         <div id="categories-2" class="tg-widget widget_categories">
-                            <h3>Categories</h3>		<ul>
-                                <li class="cat-item cat-item-59">
-                                    <a href="https://themographics.com/wordpress/docdirect/category/directory/">Directory</a>
-                                </li>
+                            <h3>Blog archive</h3>
+                            <ul>
                                 @Html.Action("BlogMonths", "Blog")
-
                             </ul>
                         </div>
                         <div id="docdirect_recent_posts-2" class="tg-widget tg-widget-recentposts">
-                            <h3>Recent Posts</h3>
+                            <h3>Popular blog tags</h3>
                             <ul>
                                 @Html.Action("BlogTags", "Blog")
                             </ul>

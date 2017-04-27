@@ -52,6 +52,7 @@ namespace DPTS.Web.Controllers
 
             return View();
         }
+      
 
         [HttpPost]
         public virtual ActionResult List(DataSourceRequest command)
@@ -96,23 +97,27 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(AdminBlogPostModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var blogPost = new BlogPost();
-                blogPost.Title = model.Title;
-                blogPost.Tags = model.Tags;
-                blogPost.BodyOverview = model.BodyOverview.Trim();
-                blogPost.Body = model.Body;
-                blogPost.AllowComments = true;
-                blogPost.StartDateUtc = model.StartDate;
-                blogPost.EndDateUtc = model.EndDate;
-                blogPost.CreatedOnUtc = DateTime.UtcNow;
-                _blogService.InsertBlogPost(blogPost);
+                if (ModelState.IsValid)
+                {
+                    var blogPost = new BlogPost();
+                    blogPost.Title = model.Title;
+                    blogPost.Tags = model.Tags;
+                    blogPost.BodyOverview = model.BodyOverview.Trim();
+                    blogPost.Body = HttpUtility.HtmlDecode(model.Body);
+                    blogPost.AllowComments = model.AllowComments;
+                    blogPost.StartDateUtc = model.StartDate;
+                    blogPost.EndDateUtc = model.EndDate;
+                    blogPost.CreatedOnUtc = DateTime.UtcNow;
+                    _blogService.InsertBlogPost(blogPost);
 
-                SuccessNotification("blog post added successfully");
+                    SuccessNotification("The new blog post has been added successfully.");
 
-                return RedirectToAction("List");
+                    return RedirectToAction("List");
+                }
             }
+            catch { }
 
             return View(model);
         }
@@ -128,7 +133,7 @@ namespace DPTS.Web.Controllers
             model.Title = blogPost.Title;
             model.Tags = blogPost.Tags;
             model.BodyOverview = blogPost.BodyOverview.Trim();
-            model.Body = HttpUtility.HtmlEncode(blogPost.Body);
+            model.Body = blogPost.Body;
             model.AllowComments = blogPost.AllowComments;
             model.StartDate = blogPost.StartDateUtc;
             model.EndDate = blogPost.EndDateUtc;
@@ -138,26 +143,29 @@ namespace DPTS.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(AdminBlogPostModel model)
         {
-            var blogPost = _blogService.GetBlogPostById(model.Id);
-            if (blogPost == null)
-                //No blog post found with the specified id
-                return RedirectToAction("List");
-
-            if (ModelState.IsValid)
+            try
             {
-                blogPost.Title = model.Title;
-                blogPost.Tags = model.Tags;
-                blogPost.BodyOverview = model.BodyOverview.Trim();
-                blogPost.Body = model.Body;
-                blogPost.AllowComments = true;
-                blogPost.StartDateUtc = model.StartDate;
-                blogPost.EndDateUtc = model.EndDate;
-                _blogService.UpdateBlogPost(blogPost);
+                var blogPost = _blogService.GetBlogPostById(model.Id);
+                if (blogPost == null)
+                    //No blog post found with the specified id
+                    return RedirectToAction("List");
 
+                if (ModelState.IsValid)
+                {
+                    blogPost.Title = model.Title;
+                    blogPost.Tags = model.Tags;
+                    blogPost.BodyOverview = model.BodyOverview.Trim();
+                    blogPost.Body = HttpUtility.HtmlDecode(model.Body);
+                    blogPost.AllowComments = model.AllowComments;
+                    blogPost.StartDateUtc = model.StartDate;
+                    blogPost.EndDateUtc = model.EndDate;
+                    _blogService.UpdateBlogPost(blogPost);
 
-                SuccessNotification("blog post pdated successfully");
-                return RedirectToAction("List");
+                    SuccessNotification("The blog post has been updated successfully.");
+                    return RedirectToAction("List");
+                }
             }
+            catch { }
             return View(model);
         }
 
@@ -171,7 +179,7 @@ namespace DPTS.Web.Controllers
 
             _blogService.DeleteBlogPost(blogPost);
 
-            SuccessNotification("blog post deleted successfully.");
+            SuccessNotification("The blog post has been deleted successfully.");
             return RedirectToAction("List");
         }
 

@@ -21,6 +21,7 @@ using DPTS.EmailSmsNotifications.IServices;
 using DPTS.EmailSmsNotifications.ServiceModels;
 using DPTS.Data.Context;
 using DPTS.Web.AppInfra;
+using RestSharp.Extensions.MonoHttp;
 
 namespace DPTS.Web.Controllers
 {
@@ -376,7 +377,7 @@ namespace DPTS.Web.Controllers
                 doctor.DateUpdated = DateTime.UtcNow;
                 doctor.Language = model.Language;
                 doctor.RegistrationNumber = model.RegistrationNumber;
-                doctor.ProfessionalStatements = model.ProfessionalStatements;
+                doctor.ProfessionalStatements = HttpUtility.HtmlDecode(model.ProfessionalStatements);
                 doctor.VideoLink = model.VideoLink;
                 doctor.AspNetUser.LastName = model.LastName;
                 doctor.AspNetUser.FirstName = model.FirstName;
