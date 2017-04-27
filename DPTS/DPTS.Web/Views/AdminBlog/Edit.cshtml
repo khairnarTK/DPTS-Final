@@ -11,10 +11,10 @@
 {
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
-        <h1 class="pull-left">
-            EditBlogPostDetails - @Model.Title
+        <h3 class="pull-left">
+            Edit - @Model.Title
             <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink("BackToList", "List")</small>
-        </h1>
+        </h3>
         <div class="pull-right">
             <button type="submit" name="save" class="btn bg-blue">
                 <i class="fa fa-floppy-o"></i>

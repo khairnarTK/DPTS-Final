@@ -4,6 +4,7 @@ using DPTS.Domain.Entities;
 using DPTS.Services;
 using DPTS.Web.AppInfra;
 using DPTS.Web.Models;
+using RestSharp.Extensions.MonoHttp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,9 +101,9 @@ namespace DPTS.Web.Controllers
                 var blogPost = new BlogPost();
                 blogPost.Title = model.Title;
                 blogPost.Tags = model.Tags;
-                blogPost.BodyOverview = model.BodyOverview;
+                blogPost.BodyOverview = model.BodyOverview.Trim();
                 blogPost.Body = model.Body;
-                blogPost.AllowComments = model.AllowComments;
+                blogPost.AllowComments = true;
                 blogPost.StartDateUtc = model.StartDate;
                 blogPost.EndDateUtc = model.EndDate;
                 blogPost.CreatedOnUtc = DateTime.UtcNow;
@@ -126,8 +127,8 @@ namespace DPTS.Web.Controllers
             var model = new AdminBlogPostModel();
             model.Title = blogPost.Title;
             model.Tags = blogPost.Tags;
-            model.BodyOverview = blogPost.BodyOverview;
-            model.Body = blogPost.Body;
+            model.BodyOverview = blogPost.BodyOverview.Trim();
+            model.Body = HttpUtility.HtmlEncode(blogPost.Body);
             model.AllowComments = blogPost.AllowComments;
             model.StartDate = blogPost.StartDateUtc;
             model.EndDate = blogPost.EndDateUtc;
@@ -146,9 +147,9 @@ namespace DPTS.Web.Controllers
             {
                 blogPost.Title = model.Title;
                 blogPost.Tags = model.Tags;
-                blogPost.BodyOverview = model.BodyOverview;
+                blogPost.BodyOverview = model.BodyOverview.Trim();
                 blogPost.Body = model.Body;
-                blogPost.AllowComments = model.AllowComments;
+                blogPost.AllowComments = true;
                 blogPost.StartDateUtc = model.StartDate;
                 blogPost.EndDateUtc = model.EndDate;
                 _blogService.UpdateBlogPost(blogPost);

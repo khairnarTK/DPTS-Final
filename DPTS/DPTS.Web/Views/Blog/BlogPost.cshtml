@@ -36,7 +36,7 @@
                                     <h2>@Model.Title</h2>
                                 </div>
                                 <div class="tg-description">
-                                    @Html.Raw(Model.Body)
+                                    @Html.Raw(HttpUtility.HtmlDecode(Model.Body));
                                 </div>
                             </div>
                         </article>

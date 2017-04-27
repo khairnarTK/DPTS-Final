@@ -45,29 +45,6 @@ namespace DPTS.Web.Controllers
             return View("List", model);
         }
 
-        //public virtual ActionResult ListRss(int languageId)
-        //{
-        //    var feed = new SyndicationFeed(
-        //        string.Format("{0}: Blog", _storeContext.CurrentStore.GetLocalized(x => x.Name)),
-        //        "Blog",
-        //        new Uri(_webHelper.GetStoreLocation(false)),
-        //        string.Format("urn:store:{0}:blog", _storeContext.CurrentStore.Id),
-        //        DateTime.UtcNow);
-
-        //    if (!_blogSettings.Enabled)
-        //        return new RssActionResult(feed, _webHelper.GetThisPageUrl(false));
-
-        //    var items = new List<SyndicationItem>();
-        //    var blogPosts = _blogService.GetAllBlogPosts(_storeContext.CurrentStore.Id, languageId);
-        //    foreach (var blogPost in blogPosts)
-        //    {
-        //        string blogPostUrl = Url.RouteUrl("BlogPost", new { SeName = blogPost.GetSeName(blogPost.LanguageId, ensureTwoPublishedLanguages: false) }, _webHelper.IsCurrentConnectionSecured() ? "https" : "http");
-        //        items.Add(new SyndicationItem(blogPost.Title, blogPost.Body, new Uri(blogPostUrl), String.Format("urn:store:{0}:blog:post:{1}", _storeContext.CurrentStore.Id, blogPost.Id), blogPost.CreatedOnUtc));
-        //    }
-        //    feed.Items = items;
-        //    return new RssActionResult(feed, _webHelper.GetThisPageUrl(false));
-        //}
-
         public virtual ActionResult BlogPost(int blogPostId)
         {
             var blogPost = _blogService.GetBlogPostById(blogPostId);
