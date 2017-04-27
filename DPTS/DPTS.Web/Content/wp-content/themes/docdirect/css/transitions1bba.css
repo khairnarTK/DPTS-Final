@@ -76,7 +76,8 @@ a,
 .tg-userschedule ul li em,
 .tg-userphotogallery ul li figure figcaption,
 .tg-reviewlisting li,
-.tg-userrating li label
+.tg-userrating li label,
+.doc-languages .tg-socialicon li a, .doc-languages .tg-socialicon li a:hover
 {
 	-webkit-transition: all 300ms ease-in-out;
 	-moz-transition: all 300ms ease-in-out;

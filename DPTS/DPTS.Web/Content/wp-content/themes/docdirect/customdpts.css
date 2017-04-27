@@ -32,6 +32,11 @@
 .tg-searcharea{
         padding: 25px 0;
 }
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+{
+        background-color: #314152;
+    border-color: #314152;
+}
  .lst-appmt-btn{
     font-size: 13px;
     margin-top: 0;
@@ -222,6 +227,53 @@
 
 .tag:hover::after {
    border-left-color: crimson; 
+}
+
+.doc-header .doc-topbar{
+     padding: 10px 0;
+    overflow: visible;
+}
+.doc-contactweb {
+    float: left;
+    padding: 7px 0;
+    font-size: 13px;
+    line-height: 17px;
+    color: #fff;
+}
+.doc-contactweb p {
+    margin: 0;
+}
+.doc-contactweb a {
+    color: #fff;
+}
+.tg-socialicon {
+    text-align: center;
+}
+.tg-socialicon li {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+}
+.doc-languages .tg-socialicon li a {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #fff;
+    border: none;
+    color: #7dbb00;
+    border-radius: 2px;
+}
+.tg-socialicon li a i {
+    display: block;
+    font-size: 13px;
+    line-height: 30px;
+    text-align: center;
+}
+.doc-languages {
+    float: right;
+    padding: 4px 0;
+    position: relative;
+    text-align: center;
 }
 
 @media (max-width: 481px) {

@@ -26,7 +26,7 @@ namespace DPTS.Web.Controllers
         #endregion
 
         // GET: Administration
-        [Route("/admin")]
+        //[Route("/admin")]
         public ActionResult Index()
         {
             return View();

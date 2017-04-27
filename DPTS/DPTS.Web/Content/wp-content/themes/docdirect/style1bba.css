@@ -1724,7 +1724,7 @@ body.tg-comming-soon #main{
 .tg-threecolumn{
 	width: 100%;
 	float: left;
-	background: #006699;
+	background: #314152;
 	border-top: 5px solid;
 	padding: 70px 0;
 }
@@ -1904,14 +1904,14 @@ body.tg-comming-soon #main{
 .tg-widget ul li .tg-docinfo a{color: #fff;}
 .tg-widget ul li .tg-docinfo a:hover{text-decoration: none;}
 .tg-footerbar{
-	background: #006699;
+	/*background: #006699;*/
 	padding: 10px 0;
 	text-align: center;
     border-top: 1px dotted white; 
 }
 .tg-copyrights p{
 	margin: 0;
-	color:#fff;
+	color:#314152;
 	line-height: normal;
 }
 /* =============================================
@@ -1957,12 +1957,12 @@ body.tg-comming-soon #main{
 			Inner Pages Banner Style
 ============================================= */
 .tg-innerbanner,
-.tg-inner-header{background: #ffc202;    
-    box-shadow: 0 1px 5px #9e2826;}
+.tg-inner-header{   
+       box-shadow: 0 1px 5px #ddd;}
 .tg-inner-header .tg-navigationarea{
 	width: 100%;
 	float: left;
-	border-bottom: 3px solid #9b0000;
+	/*border-bottom: 3px solid #9b0000;*/
 	text-align: right;
     
 }
@@ -6274,7 +6274,7 @@ div.docdirect-loader-wrap {
     padding: 10px;
     vertical-align: middle;
 	/*background: rgba(93, 89, 85, 0.40);*/
-    background: rgb(255, 194, 2);
+    background: #c9c9c9;
 	margin: 0 -2px;
 }
 .tg-banner-holder .tg-searcharea-v2 .tg-searchform select{
@@ -9241,6 +9241,7 @@ select option:disabled {
     border-radius: 2px;
     height: 50px;
     line-height: 47px;
+    border:none;
 }
 .appointment-enabled .tg-section-map{
 	margin:80px 0 0 !important;
