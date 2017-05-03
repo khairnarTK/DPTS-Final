@@ -2173,6 +2173,7 @@
     <Content Include="Views\Blog\BlogPost.cshtml" />
     <Content Include="Views\Blog\BlogTags.cshtml" />
     <Content Include="Views\Blog\List.cshtml" />
+    <Content Include="Views\Doctor\ChatMeeting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

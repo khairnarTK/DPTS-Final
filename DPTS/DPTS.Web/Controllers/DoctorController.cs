@@ -22,6 +22,9 @@ using DPTS.EmailSmsNotifications.ServiceModels;
 using DPTS.Data.Context;
 using DPTS.Web.AppInfra;
 using RestSharp.Extensions.MonoHttp;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace DPTS.Web.Controllers
 {
@@ -2054,6 +2057,60 @@ namespace DPTS.Web.Controllers
             return View(model);
         }
 
+        #endregion
+
+        #region Chat
+        public async Task<ActionResult> ChatMeeting(string doctorId)
+        {
+            //using (var client = new HttpClient())
+            //{
+            //    client.BaseAddress = new Uri("https://api.zoom.us/v1/");
+            //    client.DefaultRequestHeaders.Accept.Clear();
+            //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //    // New code:
+            //    HttpResponseMessage response = await client.PostAsync("meeting/create/api_key=1bWhUSieTHq0s1gcN8WWSg&api_secret=gQ9WRM5Y6oIMq1VzA2uwkskNIH7nMtsxB3EX&data_type=JSON&host_id=DopOODl-RNmoMypJn_u8ag&topic=Testing%20for%20dpts&type=1&registration_type=1&option_host_video=true&option_audio=both");
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        Meeting meeting = await response.Content.ReadAsAsync<Meeting>();
+            //     //   Console.WriteLine("{0}\t${1}\t{2}", product.Name, product.Price, product.Category);
+            //    }
+            //}
+            string apiKey = "1bWhUSieTHq0s1gcN8WWSg";
+            string apiSecret = "gQ9WRM5Y6oIMq1VzA2uwkskNIH7nMtsxB3EX";
+            string topic = "Hello this is 3rd test";
+            string baseUrl = "https://api.zoom.us/v1/meeting/create";
+            string contentDetailsUrl = string.Format(baseUrl + "?api_key={0}&api_secret={1}&data_type=JSON&host_id=DopOODl-RNmoMypJn_u8ag&topic={2}&type=1&registration_type=1&option_host_video=true&option_audio=both", apiKey, apiSecret, topic);
+            HttpClient client = new HttpClient();
+            StringContent queryString = new StringContent(contentDetailsUrl);
+
+            HttpResponseMessage response = await client.PostAsync(new Uri(contentDetailsUrl), queryString);
+
+            //response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            response.EnsureSuccessStatusCode();
+            // string responseBody = await response.Content.ReadAsStringAsync();
+            Meeting meeting = await response.Content.ReadAsAsync<Meeting>();
+
+            // return responseBody;
+            return View();
+        }
+        public class Meeting
+        {
+            public string uuid { get; set; }
+            public int id { get; set; }
+            public string start_url { get; set; }
+            public string join_url { get; set; }
+
+            public DateTime created_at { get; set; }
+            public string host_id { get; set; }
+            public string topic { get; set; }
+            public int type { get; set; }
+            public bool option_jbh { get; set; }
+            public bool option_host_video { get; set; }
+            public bool option_participants_video { get; set; }
+            public string option_audio { get; set; }
+            public bool option_enforce_login { get; set; }
+        }
         #endregion
     }
 }
