@@ -440,6 +440,7 @@
     <Compile Include="Models\JoinUsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Meeting.cs" />
+    <Compile Include="Models\MeetingResponse.cs" />
     <Compile Include="Models\PatientDoctorReviewModel.cs" />
     <Compile Include="Models\PictureModel.cs" />
     <Compile Include="Models\DoctorReviewsModel.cs" />

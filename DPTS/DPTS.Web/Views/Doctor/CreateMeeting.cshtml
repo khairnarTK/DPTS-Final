@@ -1,4 +1,4 @@
-﻿
+﻿@model DPTS.Web.Models.Meeting
 @{
     ViewBag.Title = "CreateMeeting";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,32 +34,33 @@
 
                                         <div id="parameters_container">
                                             @*<div class="form-group">
-            <label class="control-label" for="api_field_host_id">
-            Host User ID:<span class="redstar">*</span></label>
-            <div class="controls">
-            <input id="api_field_host_id" class="form-control" type="text" value="">
-            </div>
-            </div>*@
+                                <label class="control-label" for="api_field_host_id">
+                                Host User ID:<span class="redstar">*</span></label>
+                                <div class="controls">
+                                <input id="api_field_host_id" class="form-control" type="text" value="">
+                                </div>
+                                </div>*@
 
                                             <div class="form-group">
                                                 <label class="control-label" for="api_field_topic">
                                                     Topic:<span class="redstar">*</span>
                                                 </label>
                                                 <div class="controls">
-                                                    <input id="api_field_topic" class="form-control" type="text" value="">
+                                                    <input id="Topic" name="Topic" class="form-control" type="text" value="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="api_field_password">Password:</label>
-                                                <div class="controls"><input id="api_field_password" class="form-control" type="text" value=""></div>
+                                                <div class="controls"><input id="Password" name="Password" class="form-control" type="text" value=""></div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="api_field_type">Type:<span class="redstar">*</span></label>
                                                 <div class="controls">
-                                                <label class="radio-inline"><input type="radio" name="api_field_type" id="api_field_type_1" checked="checked" value="1">Instant</label>
-                                                <label class="radio-inline"><input type="radio" name="api_field_type" id="api_field_type_2" value="2" disabled>Scheduled</label>
-                                                <label class="radio-inline"><input type="radio" name="api_field_type" id="api_field_type_3" value="3" disabled>Recurring(With No Fixed Time)</label>
-                                                <label class="radio-inline"><input type="radio" name="api_field_type" id="api_field_type_8" value="8" disabled>Recurring</label></div>
+                                                    <label class="radio-inline"><input type="radio" name="MeetingType" id="api_field_type_1" checked="checked" value="1">Instant</label>
+                                                    <label class="radio-inline"><input type="radio" name="MeetingType" id="api_field_type_2" value="2" disabled>Scheduled</label>
+                                                    <label class="radio-inline"><input type="radio" name="MeetingType" id="api_field_type_3" value="3" disabled>Recurring(With No Fixed Time)</label>
+                                                    <label class="radio-inline"><input type="radio" name="MeetingType" id="api_field_type_8" value="8" disabled>Recurring</label>
+                                                </div>
                                             </div>
                                             <div class="form-group" style="display: none;">
                                                 <label class="control-label" for="api_field_start_time">Start Time:<span class="redstar">*</span></label>
@@ -75,11 +76,10 @@
                                                     <div class="select2-container" id="s2id_api_field_timezone" style="width: 500px;">
                                                         <a href="javascript:void(0)" onclick="return false;" class="select2-choice" tabindex="-1">   <span class="select2-chosen">Please Select User Time Zone</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow"><b></b></span></a><input class="select2-focusser select2-offscreen" type="text" id="s2id_autogen1">
                                                         <div class="select2-drop select2-display-none select2-with-searchbox">
-                                                            <div class="select2-search">     
-                                                              <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input">   </div>
-                                                            <ul class="select2-results">
-                                                                  
-                                                            </ul>
+                                                            <div class="select2-search">
+                                                                <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input">
+                                                            </div>
+                                                            <ul class="select2-results"></ul>
                                                         </div>
                                                     </div>
                                                     <select id="api_field_timezone" tabindex="-1" class="select2-offscreen">
@@ -252,46 +252,55 @@
                                             <div class="form-group">
                                                 <span class="control-label"></span>
                                                 <div class="controls">
-                                                    <div class="checkbox"><label><input id="api_field_option_host_video" type="checkbox">Video Host ON</label></div>
+                                                    <div class="checkbox"><label><input id="IsVideoHostOn" name="IsVideoHostOn" type="checkbox">Video Host ON</label></div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <span class="control-label"></span>
                                                 <div class="controls">
-                                                    <div class="checkbox"><label><input id="api_field_option_participants_video" type="checkbox">Video Participants ON</label></div>
+                                                    <div class="checkbox"><label><input id="IsVideoParticipantsOn" name="IsVideoParticipantsOn" type="checkbox">Video Participants ON</label></div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="api_field_option_audio">Audio Option:</label>
-                                                <div class="controls"><label class="radio-inline"><input type="radio" name="api_field_option_audio" id="api_field_option_audio_telephony" value="telephony">Telephony</label><label class="radio-inline"><input type="radio" name="api_field_option_audio" id="api_field_option_audio_voip" value="voip">VoIP only</label><label class="radio-inline"><input type="radio" name="api_field_option_audio" id="api_field_option_audio_both" checked="checked" value="both">Both</label><label class="radio-inline clear"><button id="api_field_option_audio_btn_clear" class="btn btn-link btn-sm" onclick="$('[name=api_field_option_audio]:checked').removeAttr('checked');" type="button">Clear</button></label></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <span class="control-label"></span>
                                                 <div class="controls">
-                                                    <div class="checkbox"><label><input id="api_field_option_enforce_login" type="checkbox">Only signed-in users can join this meeting</label></div>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="AudioOption" id="api_field_option_audio_telephony" value="telephony">Telephony
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="AudioOption" id="api_field_option_audio_voip" value="voip">VoIP only
+                                                    </label><label class="radio-inline">
+                                                        <input type="radio" name="AudioOption" id="api_field_option_audio_both" checked="checked" value="both">Both
+                                                    </label><label class="radio-inline clear"><button id="api_field_option_audio_btn_clear" class="btn btn-link btn-sm" onclick="$('[name=AudioOption]:checked').removeAttr('checked');" type="button">Clear</button></label>
                                                 </div>
                                             </div>
+                                            @*<div class="form-group">
+                                    <span class="control-label"></span>
+                                    <div class="controls">
+                                        <div class="checkbox"><label><input id="api_field_option_enforce_login" type="checkbox">Only signed-in users can join this meeting</label></div>
+                                    </div>
+                                </div>*@
                                             <div class="form-group" style="display: none;">
                                                 <label class="control-label" for="api_field_option_enforce_login_domains">Domains:</label>
                                                 <div class="controls">
-                                                <input id="api_field_option_enforce_login_domains" class="form-control" type="text" value="">
+                                                    <input id="api_field_option_enforce_login_domains" class="form-control" type="text" value="">
                                                 </div>
                                             </div>
                                             @*<div class="form-group">
-                                                <label class="control-label" for="api_field_option_alternative_hosts">Alternative Hosts:</label>
-                                                <div class="controls"><input id="api_field_option_alternative_hosts" class="form-control" type="text" value=""></div>
-                                            </div>*@
+                                    <label class="control-label" for="api_field_option_alternative_hosts">Alternative Hosts:</label>
+                                    <div class="controls"><input id="api_field_option_alternative_hosts" class="form-control" type="text" value=""></div>
+                                </div>*@
                                             @*<div class="form-group">
-                                                <label class="control-label" for="api_field_option_alternative_host_ids">Alternative Host IDs:</label>
-                                                <div class="controls"><input id="api_field_option_alternative_host_ids" class="form-control" type="text" value=""></div>
-                                            </div>*@
+                                    <label class="control-label" for="api_field_option_alternative_host_ids">Alternative Host IDs:</label>
+                                    <div class="controls"><input id="api_field_option_alternative_host_ids" class="form-control" type="text" value=""></div>
+                                </div>*@
                                         </div>
 
 
                                         <div class="form-group">
                                             <button id="send_api" type="submit" class="btn btn-default">Send API Request</button>
                                         </div>
-                                        <div class="response">
+                                        @*<div class="response">
                                             <div class="form-group">
                                                 <label class="control-label" for="api_post_data">
                                                     Post Data:
@@ -308,7 +317,7 @@
                                                     <textarea class="form-control" style="height:350px;" id="api_result"></textarea>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
