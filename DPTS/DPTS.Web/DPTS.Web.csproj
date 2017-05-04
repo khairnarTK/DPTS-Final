@@ -439,6 +439,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JoinUsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\PatientDoctorReviewModel.cs" />
     <Compile Include="Models\PictureModel.cs" />
     <Compile Include="Models\DoctorReviewsModel.cs" />
@@ -2174,6 +2175,7 @@
     <Content Include="Views\Blog\BlogTags.cshtml" />
     <Content Include="Views\Blog\List.cshtml" />
     <Content Include="Views\Doctor\ChatMeeting.cshtml" />
+    <Content Include="Views\Doctor\CreateMeeting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

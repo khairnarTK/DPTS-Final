@@ -138,16 +138,22 @@ namespace DPTS.Services.ExportImport
                         new PropertyByName<Doctor>("DateOfBirth"),
                         new PropertyByName<Doctor>("Address1"),
                         new PropertyByName<Doctor>("Address2"),
+                        new PropertyByName<Doctor>("Hospital"),
                         new PropertyByName<Doctor>("Pincode"),
                         new PropertyByName<Doctor>("City"),
                         new PropertyByName<Doctor>("State"),
                         new PropertyByName<Doctor>("Country"),
-                        new PropertyByName<Doctor>("Fax"),
-                        new PropertyByName<Doctor>("Website")
-
+                        new PropertyByName<Doctor>("FaxNumber"),
+                        new PropertyByName<Doctor>("Website"),
+                        new PropertyByName<Doctor>("ConsultationFee"),
+                        new PropertyByName<Doctor>("IsAvailability")
             };
 
             var manager = new PropertyManager<Doctor>(properties);
+            //var tt = manager.GetProperty("FaxNumber").StringValue.Trim();
+            //var tt1 = manager.GetProperty("Hospital").StringValue.Trim();
+            //var tt2 = manager.GetProperty("PhoneNumber").StringValue.Trim();
+            //var tt3 = manager.GetProperty("Website").StringValue.Trim();
 
             using (var xlPackage = new ExcelPackage(stream))
             {
@@ -166,6 +172,10 @@ namespace DPTS.Services.ExportImport
                         throw new DptsException("column are empty");
 
                     manager.ReadFromXlsx(worksheet, iRow);
+                    string sds = manager.GetProperty("IsAvailability").StringValue;
+                    string dsdsd = manager.GetProperty("ConsultationFee").StringValue;
+                    bool rre = bool.Parse(manager.GetProperty("IsAvailability").StringValue);
+                    decimal ds = decimal.Parse(manager.GetProperty("ConsultationFee").StringValue);
 
                     #region DoctorInfo
                     var doctor = new Doctor
@@ -176,6 +186,9 @@ namespace DPTS.Services.ExportImport
                         // Language = manager.GetProperty("Qualifications").StringValue,
                         RegistrationNumber = manager.GetProperty("RegistrationNumber").StringValue,
                         DateOfBirth = manager.GetProperty("DateOfBirth").StringValue,
+                        IsAvailability = bool.Parse(manager.GetProperty("IsAvailability").StringValue),
+                        ConsultationFee= decimal.Parse(manager.GetProperty("ConsultationFee").StringValue)
+
                     };
                     _doctorService.AddDoctor(doctor);
                     #endregion
@@ -227,6 +240,9 @@ namespace DPTS.Services.ExportImport
                     {
                         int countryId = 0;
                         int stateId = 0;
+                        string rr1 = manager.GetProperty("Country").StringValue.Trim();
+                        string rr2 = manager.GetProperty("Address1").StringValue.Trim();
+                        string rr3 = manager.GetProperty("City").StringValue.Trim();
                         var country = _countryService.GetAllCountries().Where(c => c.Name.Contains(manager.GetProperty("Country").StringValue.Trim())).FirstOrDefault();
                         countryId = (country == null) ? 0 : country.Id;
                         string rr = manager.GetProperty("State").StringValue.Trim();
