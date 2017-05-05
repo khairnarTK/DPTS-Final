@@ -1,0 +1,38 @@
+﻿@model DPTS.Web.Models.MeetingResponse
+@{
+    ViewBag.Title = "JoinMeeting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center>
+    <h2>JoinMeeting</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Topic</th>
+            <th>Join Url</th>
+            <th>Created Date</th>
+        </tr>
+        <tr>
+            <td>
+                @Model.id
+            </td>
+            <td>
+                @Model.topic
+            </td>
+            <td>
+                @if (!string.IsNullOrWhiteSpace(Model.join_url))
+                {
+                    <a href="@Model.join_url" target="_blank">Join Now</a>
+                }
+            </td>
+            <td>
+                @Model.created_at
+            </td>
+        </tr>
+    </table>
+</center>
+
+
+
+

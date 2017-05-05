@@ -2100,6 +2100,11 @@ namespace DPTS.Web.Controllers
             var model = new Meeting();
             return View(model);
         }
+        public ActionResult JoinMeeting(MeetingResponse model)
+        {
+            return View(model);
+        }
+        [HttpPost]
         public async Task<ActionResult> CreateMeeting(Meeting model)
         {
             try
@@ -2107,13 +2112,16 @@ namespace DPTS.Web.Controllers
                 string apiKey = "1bWhUSieTHq0s1gcN8WWSg";
                 string apiSecret = "gQ9WRM5Y6oIMq1VzA2uwkskNIH7nMtsxB3EX";
                 string baseUrl = "https://api.zoom.us/v1/meeting/create";
-                string contentDetailsUrl = string.Format(baseUrl + "?api_key={0}&api_secret={1}&data_type=JSON&host_id=DopOODl-RNmoMypJn_u8ag&topic={2}&type=1&registration_type=1&option_host_video={3}&option_audio={4}", apiKey, apiSecret, model.Topic,model.IsVideoHostOn,model.AudioOption);
+                string contentDetailsUrl = string.Format(baseUrl + "?api_key={0}&api_secret={1}&data_type=JSON&host_id=DopOODl-RNmoMypJn_u8ag&topic={2}&type=1&registration_type=1&option_host_video={3}&option_audio={0}", apiKey, apiSecret, model.Topic,model.IsVideoHostOn,model.AudioOption);
                 HttpClient client = new HttpClient();
                 StringContent queryString = new StringContent(contentDetailsUrl);
+
                 HttpResponseMessage response = await client.PostAsync(new Uri(contentDetailsUrl), queryString);
+
                 response.EnsureSuccessStatusCode();
                 MeetingResponse meeting = await response.Content.ReadAsAsync<MeetingResponse>();
-                RedirectToAction("demo");
+                return RedirectToAction("JoinMeeting", meeting);
+
             }
             catch { }
             return View(model);
