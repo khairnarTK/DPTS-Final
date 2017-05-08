@@ -1724,7 +1724,7 @@ body.tg-comming-soon #main{
 .tg-threecolumn{
 	width: 100%;
 	float: left;
-	background: #314152;
+	background: #43a047;
 	border-top: 5px solid;
 	padding: 70px 0;
 }
@@ -6273,8 +6273,7 @@ div.docdirect-loader-wrap {
     display: inline-block;
     padding: 10px;
     vertical-align: middle;
-	/*background: rgba(93, 89, 85, 0.40);*/
-    background: #c9c9c9;
+    background: #f44336;
 	margin: 0 -2px;
 }
 .tg-banner-holder .tg-searcharea-v2 .tg-searchform select{
@@ -6321,7 +6320,7 @@ div.docdirect-loader-wrap {
 	top:0;
 	width:100%;
 	height:100%;
-	background:rgba(93, 89, 83, 0.30) url(images/pattern.png) repeat;
+	background:rgba(93, 89, 83, 0.30);
 }
 .tg-homeslidertwo .item figure img{
 	width:100%;

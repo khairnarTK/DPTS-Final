@@ -86,8 +86,8 @@ p a,
 .tg-userschedule ul li.current a,
 .tg-userschedule ul li.current a span,
 .tg-userschedule ul li.current a em,
-.tg-usercontactinfo .tg-doccontactinfo li:last-child a{color: #314152;}
-.tg-doctor-detail2 .tg-findbycategory ul li a:hover{color: #314152 !important;}
+.tg-usercontactinfo .tg-doccontactinfo li:last-child a{color: #008be4;}
+.tg-doctor-detail2 .tg-findbycategory ul li a:hover{color: #008be4 !important;}
 /* =============================================
 			Theme Background Color
 ============================================= */
@@ -157,14 +157,14 @@ p a,
 .tg-radio input[type="radio"]:checked + label,
 .tg-userrating li:after,
 .doc-topbar.doc-topbar-v1
-{background:#314152;}
+{background:#008be4;}
 
 .tg-featureverified li.tg-varified a{background:#10a64a;}
 
 .chosen-container-multi .chosen-choices li.search-choice:hover,
 .tg-banner-holder .tg-searcharea-v2 .tg-searchform .tg-btn{
-	border-color:#006699 !important;
-	background:#006699 !important;
+	border-color:#008be4 !important;
+	background:#008be4 !important;
 }
 /* =============================================
 			Theme Border Color
@@ -189,13 +189,17 @@ p a,
 .tg-radio input[type="radio"] + label,
 .tg-radio input[type="radio"]:checked + label,
 .tg-mapmarker figure
-{border-color: #314152 ;}
+{border-color: #008be4 ;}
 .tg-map-marker .tg-docimg .tg-show,
-.tg-docimg .tg-uploadimg{border-bottom-color: #314152 ;}
+.tg-docimg .tg-uploadimg{border-bottom-color: #008be4 ;}
 .tg-login-logout li ul,
-.tg-nav ul{border-top-color: #314152 !important;}
+.tg-nav ul{border-top-color: #008be4 !important;}
 
 .tg-appointmenttime .tg-doctimeslot .tg-box,
-.tg-appointmenttime .tg-doctimeslot.tg-available .tg-box:hover{border-color: #314152;}
-.tg-docimg .tg-uploadimg{border-bottom-color: #314152;}
+.tg-appointmenttime .tg-doctimeslot.tg-available .tg-box:hover{border-color: #008be4;}
+.tg-docimg .tg-uploadimg{border-bottom-color: #008be4;}
 .tg-login-logout > li > a:hover, .tg-nav .navbar-collapse ul li a:hover{color:black}
+.product-no-reviews a{
+    color:white;
+    font-weight:700;
+}

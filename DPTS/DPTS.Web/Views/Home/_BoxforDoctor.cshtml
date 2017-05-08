@@ -75,8 +75,11 @@
                                             {
                                                 <input type="hidden" class="shop-coordinates" data-latitude="@addr.Latitude" data-longitude="@addr.Longitude" data-shop-title="Dr @item.Doctors.AspNetUser.FirstName @item.Doctors.AspNetUser.LastName" value="1" />
                                             }
-                                            <a class="tg-btn tg-btn-lg make-appointment-btn lst-appmt-btn" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new {doctorId = item.Doctors.DoctorId}))">MAKE AN APPOINTMENT!</a>
-                                        }
+                                            if (item.Doctors.Schedules.Count() > 0)
+                                            {
+                                                 <a class="tg-btn tg-btn-lg make-appointment-btn lst-appmt-btn" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new { doctorId = item.Doctors.DoctorId }))">MAKE AN APPOINTMENT!</a>
+                                            }
+                                            }
                                     </div>
                                 </div>
                             </div>
@@ -114,6 +117,7 @@
                                                           </span>
                                                     </p>
                                             }
+                                @Html.Partial("_DoctorMeetingIcon")
                             </div>
                         </div>
                     </article>
