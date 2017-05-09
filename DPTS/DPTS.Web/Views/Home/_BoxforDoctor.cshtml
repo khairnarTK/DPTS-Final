@@ -117,7 +117,10 @@
                                                           </span>
                                                     </p>
                                             }
-                                @Html.Partial("_DoctorMeetingIcon")
+                                            @if (!string.IsNullOrWhiteSpace(item.Doctors.SkypeHandler))
+                                            {
+                                                 @Html.Partial("_DoctorMeetingIcon", item.Doctors.SkypeHandler)
+                                            }
                             </div>
                         </div>
                     </article>

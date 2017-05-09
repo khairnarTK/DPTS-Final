@@ -513,14 +513,12 @@ namespace DPTS.Services.Doctors
                         select p;
             }
             var pageQuery = new List<Doctor>();
-            if(!string.IsNullOrWhiteSpace(SortBy))
+
+            if (SortBy.Equals("mostpopuler"))
             {
-                if (SortBy.Equals("mostpopuler"))
-                {
-                    pageQuery = query.OrderByDescending(d => d.ApprovedTotalReviews)
-                    .Skip(itemsPerPage * page).Take(itemsPerPage)
-                             .ToList();
-                }
+                pageQuery = query.OrderByDescending(d => d.ApprovedTotalReviews)
+                .Skip(itemsPerPage * page).Take(itemsPerPage)
+                         .ToList();
             }
             else
             {

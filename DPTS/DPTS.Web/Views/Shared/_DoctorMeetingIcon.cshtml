@@ -1,33 +1,7 @@
-﻿
-<style>
-    .icon-bar {
-    width: 100%; /* Full-width */
-    background-color: #008be4; /* Dark-grey background */
-    overflow: auto; /* Overflow due to float */
-}
-
-.icon-bar a {
-    float: left; /* Float links side by side */
-    text-align: center; /* Center-align text */
-    width: 33%; /* Equal width (5 icons with 20% width each = 100%)
-    padding: 12px 0; /* Some top and bottom padding */
-    transition: all 0.3s ease; /* Add transition for hover effects */
-    color: white; /* White text color */
-    font-size: 25px; /* Increased font size */
-    padding: 5px 0 5px;
-}
-
-.icon-bar a:hover {
-    background-color: #000; /* Add a hover color */
-}
-
-.active {
-    background-color: #4CAF50; /* Add an active/current color */
-}
-</style>
+﻿@model string
 <div class="icon-bar">
-    <a href="skype:khairnar.tk?chat" id="meddelanden" data-title="Meddelanden" data-toggle="clickover"
+    <a href="skype:@Model?chat" id="meddelanden" data-title="Meddelanden" data-toggle="clickover"
                data-placement="right"><i class="fa fa-commenting-o"></i></a>
-    <a href="skype:khairnar.tk?call&video=true"><i class="fa fa-video-camera"></i></a>
-    <a href="skype:echo123?call"><i class="fa fa-phone"></i></a>
+    <a href="skype:@Model?call&video=true"><i class="fa fa-video-camera"></i></a>
+    <a href="skype:@Model?call"><i class="fa fa-phone"></i></a>
 </div>

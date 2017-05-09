@@ -328,6 +328,7 @@ namespace DPTS.Web.Controllers
                         model.VideoLink = doctor.VideoLink;
                         model.ConsultationFee = doctor.ConsultationFee;
                         model.IsAvailability = doctor.IsAvailability;
+                        model.SkypeHandler = doctor.SkypeHandler;
                     }
                 }
                 if (user != null)
@@ -388,6 +389,7 @@ namespace DPTS.Web.Controllers
                 doctor.AspNetUser.PhoneNumber = model.PhoneNumber;
                 doctor.IsAvailability = model.IsAvailability;
                 doctor.ConsultationFee = model.ConsultationFee;
+                doctor.SkypeHandler = model.SkypeHandler;
                 _doctorService.UpdateDoctor(doctor);
                 SuccessNotification("Profile updated successfully.");
                 return RedirectToAction("ProfileSetting");

@@ -74,6 +74,8 @@ namespace DPTS.Domain.Entities
         /// </summary>
         public int NotApprovedTotalReviews { get; set; }
 
+        public string SkypeHandler { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
 
         public virtual ICollection<SpecialityMapping> SpecialityMapping { get; set; }

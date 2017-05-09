@@ -104,7 +104,8 @@ namespace DPTS.Web.Models
         [Display(Name = "Is Available 24/7")]
         public bool IsAvailability { get; set; }
 
-       
+        [Display(Name ="Note : Add your skype handler(Id)")]
+        public string SkypeHandler { get; set; }
 
         public DateTime? ParseDateOfBirth()
         {

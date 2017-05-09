@@ -180,7 +180,7 @@
             <div class="tg-bordertop tg-haslayout">
                 <div class="tg-formsection">
                     <div class="tg-heading-border tg-small">
-                        <h3>Fee &Aacute; Availability</h3>
+                        <h3>Fee And Availability</h3>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-sm-6 col-xs-12">
@@ -246,6 +246,22 @@
                             @*<div class="form-group">
                                 <input class="form-control" name="video_url" value="https://www.youtube.com/embed/0aNNYEUARAk" type="url" placeholder="Enter Url">
                             </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tg-bordertop tg-haslayout">
+                <div class="tg-formsection tg-videoprofile">
+                    <div class="tg-heading-border tg-small">
+                        <h3>Skype Handler</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SkypeHandler)
+                                @Html.EditorFor(model => model.SkypeHandler, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SkypeHandler)
+                            </div>
                         </div>
                     </div>
                 </div>
