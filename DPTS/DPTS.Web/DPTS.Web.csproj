@@ -2178,7 +2178,7 @@
     <Content Include="Views\Doctor\ChatMeeting.cshtml" />
     <Content Include="Views\Doctor\CreateMeeting.cshtml" />
     <Content Include="Views\Doctor\JoinMeeting.cshtml" />
-    <Content Include="Views\Home\_DoctorMeetingIcon.cshtml" />
+    <Content Include="Views\Shared\_DoctorMeetingIcon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

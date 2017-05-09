@@ -104,7 +104,6 @@
                                 {
                                     <a class="tg-btn tg-btn-lg" href="http://maps.google.com/maps?saddr=&amp;daddr=@addr.Address1, @addr.City, @addr.StateProvince.Name, @addr.ZipPostalCode" target="_blank">get directions</a>
                                 }
-                                <a class="tg-btn tg-btn-lg" style="margin-top: 20px;" href="skype:khairnar.tk?call">Chat on Skype</a>
                                 <div class="tg-userschedule">
                                     <h3>Schedule</h3>
                                     <ul>
@@ -152,6 +151,7 @@
                                 <a class="tg-btn tg-btn-lg make-appointment-btn" href="@Url.Action("Booking", "Appointment", new RouteValueDictionary(new {doctorId = Model.Id}))">MAKE AN APPOINTMENT!</a>
                             }
                             @Html.Partial("_DoctorReviewOverview", Model.DoctorReviewOverview)
+                            @Html.Partial("_DoctorMeetingIcon")
                         </div>
                         @if (addr != null)
                         {
